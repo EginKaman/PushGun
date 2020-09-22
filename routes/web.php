@@ -16,7 +16,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 })->name('index');
-
+Route::post('/subscribe/{site}', 'SubscribeController@update')->name('subscribe.update');
+Route::get('manifest.json', function () {
+    return [
+        'name' => config('app.name'),
+        'gcm_sender_id' => config('webpush.gcm.sender_id')
+    ];
+});
 Auth::routes();
+Route::group(['middlewares' => 'auth'], function () {
+    Route::resource('account', 'AccountController')->except([
+        'create',
+        'store',
+        'destroy'
+    ]);
+    Route::resource('site', 'SiteController');
+    Route::resource('push', 'PushController');
+    Route::resource('ticket', 'TicketController');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');

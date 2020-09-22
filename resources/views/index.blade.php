@@ -1,8 +1,25 @@
-@extends('layouts.app')
-@section('content')
-    <header class="header">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <header class="header-landing">
         <div class="container">
-            <div class="header__wrapper">
+            <div class="header-landing__wrapper">
                 <a href="{{ route('index') }}" class="logo-light">
                     <picture>
                         <source srcset="{{ asset('images/logo.webp') }}" type="image/webp">
@@ -14,14 +31,14 @@
                         <img src="{{ asset('images/dark-logo.svg') }}" alt="logo">
                     </picture>
                 </a>
-                <ul class="header__wrapper__menu">
+                <ul class="header-landing__wrapper__menu">
                     <li><a href="#">О нас</a></li>
                     <li><a href="#">Цена</a></li>
                     <li><a href="#">FAQ</a></li>
                 </ul>
-                <div class="header__wrapper__links">
-                    <a href="#enter" rel="modal:open" class="header__wrapper__links_enter">Войти</a>
-                    <a href="#register" rel="modal:open" class="header__wrapper__links_reg">Регистрация</a>
+                <div class="header-landing__wrapper__links">
+                    <a href="#enter" rel="modal:open" class="header-landing__wrapper__links_enter">Войти</a>
+                    <a href="#register" rel="modal:open" class="header-landing__wrapper__links_reg">Регистрация</a>
                 </div>
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox"/>
@@ -420,7 +437,7 @@
                 @csrf
                 <input type="email" name="email" placeholder="E-mail" required>
                 <input type="password" name="password" placeholder="Пароль" required>
-                <button type="submit" class="header__wrapper__links_reg">Войти</button>
+                <button type="submit" class="header-landing__wrapper__links_reg">Войти</button>
             </div>
         </form>
     </div>
@@ -433,7 +450,7 @@
                 <input type="email" name="email" placeholder="E-mail *" required>
                 <input type="password" name="password" placeholder="Пароль *" required>
                 <input type="password" name="password_confirmation" placeholder="Повторите пароль *" required>
-                <button type="submit" class="header__wrapper__links_reg">Зарегистрироваться</button>
+                <button type="submit" class="header-landing__wrapper__links_reg">Зарегистрироваться</button>
             </div>
         </form>
     </div>
@@ -444,8 +461,11 @@
                 <input type="text" name="name" placeholder="Имя">
                 <input type="email" name="email" placeholder="E-mail *" required>
                 <textarea cols="2" name="message" rows="2" placeholder="Введите ваше сообщение *" required></textarea>
-                <button type="submit" class="header__wrapper__links_reg">Отправить</button>
+                <button type="submit" class="header-landing__wrapper__links_reg">Отправить</button>
             </div>
         </form>
     </div>
-@endsection
+</div>
+</body>
+</html>
+

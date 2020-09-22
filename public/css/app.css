@@ -348,6 +348,258 @@ template {
 [hidden] {
   display: none;
 }
+/* This is the core CSS of Tooltipster */
+
+/* GENERAL STRUCTURE RULES (do not edit this section) */
+
+.tooltipster-base {
+	/* this ensures that a constrained height set by functionPosition,
+	if greater that the natural height of the tooltip, will be enforced
+	in browsers that support display:flex */
+	display: flex;
+	pointer-events: none;
+	/* this may be overriden in JS for fixed position origins */
+	position: absolute;
+}
+
+.tooltipster-box {
+	/* see .tooltipster-base. flex-shrink 1 is only necessary for IE10-
+	and flex-basis auto for IE11- (at least) */
+	flex: 1 1 auto;
+}
+
+.tooltipster-content {
+	/* prevents an overflow if the user adds padding to the div */
+	box-sizing: border-box;
+	/* these make sure we'll be able to detect any overflow */
+	max-height: 100%;
+	max-width: 100%;
+	overflow: auto;
+}
+
+.tooltipster-ruler {
+	/* these let us test the size of the tooltip without overflowing the window */
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+	right: 0;
+	top: 0;
+	visibility: hidden;
+}
+
+/* ANIMATIONS */
+
+/* Open/close animations */
+
+/* fade */
+
+.tooltipster-fade {
+	opacity: 0;
+	transition-property: opacity;
+}
+.tooltipster-fade.tooltipster-show {
+	opacity: 1;
+}
+
+/* grow */
+
+.tooltipster-grow {
+	transform: scale(0,0);
+	transition-property: transform;
+	-webkit-backface-visibility: hidden;
+}
+.tooltipster-grow.tooltipster-show {
+	transform: scale(1,1);
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+
+/* swing */
+
+.tooltipster-swing {
+	opacity: 0;
+	transform: rotateZ(4deg);
+	transition-property: transform;
+}
+.tooltipster-swing.tooltipster-show {
+	opacity: 1;
+	transform: rotateZ(0deg);
+	transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+}
+
+/* fall */
+
+.tooltipster-fall {
+	transition-property: top;
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+.tooltipster-fall.tooltipster-initial {
+	top: 0 !important;
+}
+.tooltipster-fall.tooltipster-show {
+}
+.tooltipster-fall.tooltipster-dying {
+	transition-property: all;
+	top: 0 !important;
+	opacity: 0;
+}
+
+/* slide */
+
+.tooltipster-slide {
+	transition-property: left;
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+.tooltipster-slide.tooltipster-initial {
+	left: -40px !important;
+}
+.tooltipster-slide.tooltipster-show {
+}
+.tooltipster-slide.tooltipster-dying {
+	transition-property: all;
+	left: 0 !important;
+	opacity: 0;
+}
+
+/* Update animations */
+
+/* We use animations rather than transitions here because
+ transition durations may be specified in the style tag due to
+ animationDuration, and we try to avoid collisions and the use
+ of !important */
+
+/* fade */
+
+@-webkit-keyframes tooltipster-fading {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes tooltipster-fading {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.tooltipster-update-fade {
+	-webkit-animation: tooltipster-fading 400ms;
+	        animation: tooltipster-fading 400ms;
+}
+
+/* rotate */
+
+@-webkit-keyframes tooltipster-rotating {
+	25% {
+		transform: rotate(-2deg);
+	}
+	75% {
+		transform: rotate(2deg);
+	}
+	100% {
+		transform: rotate(0);
+	}
+}
+
+@keyframes tooltipster-rotating {
+	25% {
+		transform: rotate(-2deg);
+	}
+	75% {
+		transform: rotate(2deg);
+	}
+	100% {
+		transform: rotate(0);
+	}
+}
+
+.tooltipster-update-rotate {
+	-webkit-animation: tooltipster-rotating 600ms;
+	        animation: tooltipster-rotating 600ms;
+}
+
+/* scale */
+
+@-webkit-keyframes tooltipster-scaling {
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes tooltipster-scaling {
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.tooltipster-update-scale {
+	-webkit-animation: tooltipster-scaling 600ms;
+	        animation: tooltipster-scaling 600ms;
+}
+/*
+ * DOM element rendering detection
+ * https://davidwalsh.name/detect-node-insertion
+ */
+@-webkit-keyframes chartjs-render-animation {
+	from { opacity: 0.99; }
+	to { opacity: 1; }
+}
+@keyframes chartjs-render-animation {
+	from { opacity: 0.99; }
+	to { opacity: 1; }
+}
+
+.chartjs-render-monitor {
+	-webkit-animation: chartjs-render-animation 0.001s;
+	        animation: chartjs-render-animation 0.001s;
+}
+
+/*
+ * DOM element resizing detection
+ * https://github.com/marcj/css-element-queries
+ */
+.chartjs-size-monitor,
+.chartjs-size-monitor-expand,
+.chartjs-size-monitor-shrink {
+	position: absolute;
+	direction: ltr;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: -1;
+}
+
+.chartjs-size-monitor-expand > div {
+	position: absolute;
+	width: 1000000px;
+	height: 1000000px;
+	left: 0;
+	top: 0;
+}
+
+.chartjs-size-monitor-shrink > div {
+	position: absolute;
+	width: 200%;
+	height: 200%;
+	left: 0;
+	top: 0;
+}
 @charset "UTF-8";
 
 @font-face {
@@ -7220,29 +7472,29 @@ input {
   z-index: -1;
 }
 
-.header {
+.header-landing {
   background: #5BA4D7;
   padding-top: 55px;
   padding-bottom: 210px;
 }
 
-.header img {
+.header-landing img {
   width: 208px;
   height: 16px;
 }
 
-.header__wrapper {
+.header-landing__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header__wrapper__menu {
+.header-landing__wrapper__menu {
   display: flex;
   list-style: none;
 }
 
-.header__wrapper__menu li {
+.header-landing__wrapper__menu li {
   margin-right: 56px;
   font-size: 14px;
   line-height: 17px;
@@ -7250,34 +7502,34 @@ input {
   color: #FFFFFF;
 }
 
-.header__wrapper__menu li a {
+.header-landing__wrapper__menu li a {
   text-decoration: none;
   color: #fff;
 }
 
-.header__wrapper__menu li a:hover {
+.header-landing__wrapper__menu li a:hover {
   border-bottom: 1px solid #323441;
   padding-bottom: 6px;
 }
 
-.header__wrapper__links {
+.header-landing__wrapper__links {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.header__wrapper__links_enter {
+.header-landing__wrapper__links_enter {
   margin-right: 36px;
   text-decoration: none;
   color: #323441;
   border-bottom: 1px solid transparent;
 }
 
-.header__wrapper__links_enter:hover {
+.header-landing__wrapper__links_enter:hover {
   border-bottom: 1px solid #323441;
 }
 
-.header__wrapper__links_reg {
+.header-landing__wrapper__links_reg {
   text-align: center;
   line-height: 47px;
   background: #323441;
@@ -7288,7 +7540,7 @@ input {
   color: #fff;
 }
 
-.header__wrapper__links_reg:hover {
+.header-landing__wrapper__links_reg:hover {
   background: #3B8378;
 }
 
@@ -7722,7 +7974,7 @@ input {
     width: 1140px;
   }
 
-  .header {
+  .header-landing {
     padding-bottom: 110px;
   }
 
@@ -7746,7 +7998,7 @@ input {
     width: 960px;
   }
 
-  .header {
+  .header-landing {
     padding-bottom: 20px;
   }
 
@@ -7775,11 +8027,11 @@ input {
     width: 720px;
   }
 
-  .header {
+  .header-landing {
     padding-bottom: 20px;
   }
 
-  .header img {
+  .header-landing img {
     width: 145px;
   }
 
@@ -7830,11 +8082,11 @@ input {
     max-width: 540px;
   }
 
-  .header__wrapper__menu {
+  .header-landing__wrapper__menu {
     display: none;
   }
 
-  .header__wrapper__links {
+  .header-landing__wrapper__links {
     display: none;
   }
 
@@ -7888,7 +8140,7 @@ body {
   overflow-x: hidden;
 }
 
-.header {
+.header-landing {
   transition: 0.3s;
   background: transparent;
   padding-bottom: 30px;
@@ -7899,7 +8151,7 @@ body {
   z-index: 9;
 }
 
-.header::before {
+.header-landing::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -7910,7 +8162,7 @@ body {
   z-index: -2;
 }
 
-.header::after {
+.header-landing::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -7922,12 +8174,12 @@ body {
   transition: 0.3s;
 }
 
-.header.scroll {
+.header-landing.scroll {
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-.header.scroll::after {
+.header-landing.scroll::after {
   height: 100%;
 }
 
@@ -7935,15 +8187,15 @@ body {
   display: none;
 }
 
-.header.scroll .logo-light {
+.header-landing.scroll .logo-light {
   display: none;
 }
 
-.header.scroll .logo-dark {
+.header-landing.scroll .logo-dark {
   display: block;
 }
 
-.header.scroll .header__wrapper__menu li a {
+.header-landing.scroll .header-landing__wrapper__menu li a {
   color: #323441;
 }
 
@@ -8063,15 +8315,15 @@ body {
     top: 20px;
   }
 
-  .header .menu__btn.active span,
-  .header .menu__btn.active span::before,
-  .header .menu__btn.active span::after {
+  .header-landing .menu__btn.active span,
+  .header-landing .menu__btn.active span::before,
+  .header-landing .menu__btn.active span::after {
     background: #323441;
   }
 
-  .header.scroll .menu__btn span,
-  .header.scroll .menu__btn span::before,
-  .header.scroll .menu__btn span::after {
+  .header-landing.scroll .menu__btn span,
+  .header-landing.scroll .menu__btn span::before,
+  .header-landing.scroll .menu__btn span::after {
     background: #323441;
   }
 

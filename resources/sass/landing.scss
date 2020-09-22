@@ -306,18 +306,18 @@ input {
     z-index: -1;
 }
 
-.header {
+.header-landing {
     background: #5BA4D7;
     padding-top: 55px;
     padding-bottom: 210px;
 }
 
-.header img {
+.header-landing img {
     width: 208px;
     height: 16px;
 }
 
-.header__wrapper {
+.header-landing__wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -329,14 +329,14 @@ input {
     align-items: center;
 }
 
-.header__wrapper__menu {
+.header-landing__wrapper__menu {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     list-style: none;
 }
 
-.header__wrapper__menu li {
+.header-landing__wrapper__menu li {
     margin-right: 56px;
     font-size: 14px;
     line-height: 17px;
@@ -344,17 +344,17 @@ input {
     color: #FFFFFF;
 }
 
-.header__wrapper__menu li a {
+.header-landing__wrapper__menu li a {
     text-decoration: none;
     color: #fff;
 }
 
-.header__wrapper__menu li a:hover {
+.header-landing__wrapper__menu li a:hover {
     border-bottom: 1px solid #323441;
     padding-bottom: 6px;
 }
 
-.header__wrapper__links {
+.header-landing__wrapper__links {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -366,18 +366,18 @@ input {
     align-items: center;
 }
 
-.header__wrapper__links_enter {
+.header-landing__wrapper__links_enter {
     margin-right: 36px;
     text-decoration: none;
     color: #323441;
     border-bottom: 1px solid transparent;
 }
 
-.header__wrapper__links_enter:hover {
+.header-landing__wrapper__links_enter:hover {
     border-bottom: 1px solid #323441;
 }
 
-.header__wrapper__links_reg {
+.header-landing__wrapper__links_reg {
     text-align: center;
     line-height: 47px;
     background: #323441;
@@ -388,7 +388,7 @@ input {
     color: #fff;
 }
 
-.header__wrapper__links_reg:hover {
+.header-landing__wrapper__links_reg:hover {
     background: #3B8378;
 }
 
@@ -911,7 +911,7 @@ input {
         width: 1140px;
     }
 
-    .header {
+    .header-landing {
         padding-bottom: 110px;
     }
 
@@ -942,7 +942,7 @@ input {
         width: 960px;
     }
 
-    .header {
+    .header-landing {
         padding-bottom: 20px;
     }
 
@@ -978,11 +978,11 @@ input {
         width: 720px;
     }
 
-    .header {
+    .header-landing {
         padding-bottom: 20px;
     }
 
-    .header img {
+    .header-landing img {
         width: 145px;
     }
 
@@ -1041,11 +1041,11 @@ input {
         max-width: 540px;
     }
 
-    .header__wrapper__menu {
+    .header-landing__wrapper__menu {
         display: none;
     }
 
-    .header__wrapper__links {
+    .header-landing__wrapper__links {
         display: none;
     }
 
@@ -1109,7 +1109,7 @@ body {
     overflow-x: hidden;
 }
 
-.header {
+.header-landing {
     transition: 0.3s;
     background: transparent;
     padding-bottom: 30px;
@@ -1120,7 +1120,7 @@ body {
     z-index: 9;
 }
 
-.header::before {
+.header-landing::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -1131,7 +1131,7 @@ body {
     z-index: -2;
 }
 
-.header::after {
+.header-landing::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -1143,12 +1143,12 @@ body {
     transition: 0.3s;
 }
 
-.header.scroll {
+.header-landing.scroll {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.header.scroll::after {
+.header-landing.scroll::after {
     height: 100%;
 }
 
@@ -1156,15 +1156,15 @@ body {
     display: none;
 }
 
-.header.scroll .logo-light {
+.header-landing.scroll .logo-light {
     display: none;
 }
 
-.header.scroll .logo-dark {
+.header-landing.scroll .logo-dark {
     display: block;
 }
 
-.header.scroll .header__wrapper__menu li a {
+.header-landing.scroll .header-landing__wrapper__menu li a {
     color: #323441;
 }
 
@@ -1285,15 +1285,15 @@ body {
         top: 20px;
     }
 
-    .header .menu__btn.active span,
-    .header .menu__btn.active span::before,
-    .header .menu__btn.active span::after {
+    .header-landing .menu__btn.active span,
+    .header-landing .menu__btn.active span::before,
+    .header-landing .menu__btn.active span::after {
         background: #323441;
     }
 
-    .header.scroll .menu__btn span,
-    .header.scroll .menu__btn span::before,
-    .header.scroll .menu__btn span::after {
+    .header-landing.scroll .menu__btn span,
+    .header-landing.scroll .menu__btn span::before,
+    .header-landing.scroll .menu__btn span::after {
         background: #323441;
     }
 

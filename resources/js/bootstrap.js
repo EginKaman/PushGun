@@ -12,6 +12,7 @@ try {
     require('slick-carousel');
     require('select2');
     require('tooltipster');
+    require('chart.js');
 } catch (e) {
 }
 

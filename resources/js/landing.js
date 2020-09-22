@@ -4,11 +4,14 @@ $(document).ready(function () {
 
 
     //slider
-    $('.section1__content__slider').slick({
-        autoplay: true,
-        dots: true,
-        arrows: false,
-    });
+    let section1 = $('.section1__content__slider');
+    if (section1.length) {
+        section1.slick({
+            autoplay: true,
+            dots: true,
+            arrows: false,
+        });
+    }
 
 
     $('.menu__btn').on('click', () => {
@@ -52,9 +55,9 @@ $(document).ready(function () {
             });
         }
         if (top > 70) {
-            $('.header').addClass('scroll');
+            $('.header-landing').addClass('scroll');
         } else if (top <= 70) {
-            $('.header').removeClass('scroll');
+            $('.header-landing').removeClass('scroll');
         }
     }
 
@@ -71,19 +74,21 @@ $(document).ready(function () {
 
     $(document).scroll(() => {
         let countBlock = $('.section4__wrapper__count');
-        let topOffset = $(document).scrollTop();
-        let topElem = countBlock.offset().top;
-        if (countStatus == false) {
-            if (topOffset > topElem - $(window).height()) {
-                timer = setInterval(() => {
-                    if (Number(countBlock.text()) <= count) {
-                        j = j + 1;
-                        countBlock.text(j);
-                        countStatus = true;
-                    } else {
-                        clearTimeout(timer);
-                    }
-                }, 1);
+        if (countBlock.length) {
+            let topOffset = $(document).scrollTop();
+            let topElem = countBlock.offset().top;
+            if (countStatus == false) {
+                if (topOffset > topElem - $(window).height()) {
+                    timer = setInterval(() => {
+                        if (Number(countBlock.text()) <= count) {
+                            j = j + 1;
+                            countBlock.text(j);
+                            countStatus = true;
+                        } else {
+                            clearTimeout(timer);
+                        }
+                    }, 1);
+                }
             }
         }
     });
