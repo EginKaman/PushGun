@@ -43,4 +43,15 @@ class Site extends Model
     {
         return $this->hasMany(Push::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function todaySubscriptions(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->pushSubscriptions()->whereBetween('created_at', [
+            now()->startOfDay(),
+            now()->endOfDay()
+        ]);
+    }
 }

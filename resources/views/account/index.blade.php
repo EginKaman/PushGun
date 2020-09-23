@@ -12,27 +12,35 @@
                 </div>
                 <div class="general__status">
                     <div class="general__subs">
-                        <p class="">Подписчиков: <span>500</span> из 1000</p>
-                        <p class="percent">50%</p>
+                        <p class="">Подписчиков: <span>{{ $sites->sum('push_subscriptions_count') }}</span>
+                            из {{ $user->tariff->max_followers }}</p>
+                        <p class="percent">
+                            {{ ($sites->sum('push_subscriptions_count')/$user->tariff->max_followers)*100 }}%
+                        </p>
                     </div>
                     <div class="progress">
-                        <progress max="100" value="50"></progress>
+                        <progress max="100"
+                                  value="{{ ($sites->sum('push_subscriptions_count')/$user->tariff->max_followers)*100 }}"></progress>
                         <div class="progress_bg">
                             <div class="progress_bar"></div>
                         </div>
                     </div>
                     <div class="general__status_info">
-                        <p>Тариф “Бесплатно 10 000” будет продлен 16 июня 2020 г.</p>
+                        @empty($user->tariff_expired_at)
+                            <p>Тариф “{{ $user->tariff->name }}”</p>
+                        @else
+                            <p>Тариф “{{ $user->tariff->name }}” будет продлен {{ $user->tariff_expired_at }}</p>
+                        @endif
                         <a href="#" class="account__bottom_subscribe">Изменить</a>
                     </div>
                 </div>
                 <div class="general__stats">
                     <div class="general__stats_left">
                         <div class="general__stats_left-item stats__item" style="background: #FF808B;">
-                            <h3>2</h3>
+                            <h3>{{ $sites->sum('push_subscriptions_count') }}</h3>
                             <div class="mb-10">
                                 <p class="medium">активных подписчиков</p>
-                                <p class="semibold">за сегодня: 0</p>
+                                <p class="semibold">за сегодня: {{ $sites->sum('today_subscriptions_count') }}</p>
                             </div>
                         </div>
                         <div class="general__stats_left-item" style="background: #9698D5;">
@@ -47,49 +55,19 @@
                             </div>
                         </div>
                         <div class="general__stats_left-item" style="background: #36C2CF;">
-                            <h3>2</h3>
+                            <h3>{{ $user->pushes_count }}</h3>
                             <p class="medium mb-10">рассылок</p>
                         </div>
                     </div>
                     <div class=" general__stats_right">
-                        <div class="general__stats_right__inner">
-                            <div class="general__stats_right-top">
-                                <h3>Статистика последних рассылок</h3>
-                                <div class="general__stats_right-buttons">
-                                    <div class="general__stats_right-double_button">
-                                        <button id="days" class="button button_left-btn selected">По
-                                            дням
-                                        </button>
-                                        <button id="weeks" class="button button_right-btn">По неделям</button>
-                                    </div>
-                                    <select id="selector" class="stats__selector">
-                                        <option value="1">За месяц</option>
-                                        <option value="2">За год</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="canvas-container">
-                                <canvas id="myChart"></canvas>
-                            </div>
-                            <div class="current__stats">
-                                <div class="current__stats_item">
-                                    <h3 style="color: #36C2CF;">3</h3>
-                                    <p class="current__stats_desc">рассылок</p>
-                                </div>
-                                <div class="current__stats_item">
-                                    <h3 style="color: #5BA4D7;">3</h3>
-                                    <p class="current__stats_desc">отправлено</p>
-                                </div>
-                                <div class="current__stats_item">
-                                    <h3 style="color: #9698D5;">3</h3>
-                                    <p class="current__stats_desc">15% доставлено</p>
-                                </div>
-                                <div class="current__stats_item">
-                                    <h3 style="color: #68B781;">3</h3>
-                                    <p class="current__stats_desc">10% переходов</p>
-                                </div>
-                            </div>
+                        <div class="general__stats_right-top">
+                            <h3>@lang('Статистика последних рассылок')</h3>
+                            <chart-nav-component></chart-nav-component>
                         </div>
+                        <div class="canvas-container">
+                            <statistic-chart-component></statistic-chart-component>
+                        </div>
+                        <current-statistic-component></current-statistic-component>
                     </div>
                 </div>
                 <h2 class="subtitle">Мои сайты</h2>
@@ -100,9 +78,13 @@
                                 <img src="{{ asset('images/more.svg') }}" alt="">
                             </div>
                             <a href="{{ route('site.show', ['site' => $site]) }}">
-                                {{--<img class="general__sites_item-img" src="{{ asset('images/site.svg') }}" alt="">--}}
-                                <img class="general__sites_item-img" src="{{ asset( Storage::url($site->image) ) }}"
-                                     alt="">
+                                @empty($site->image)
+                                    <img class="general__sites_item-img" src="{{ asset('images/site.svg') }}"
+                                         alt="{{ $site->link }}">
+                                @else
+                                    <img class="general__sites_item-img" src="{{ asset( Storage::url($site->image) ) }}"
+                                         alt="{{ $site->link }}">
+                                @endempty
                             </a>
                             <div class="general__sites_info @if($site->installed)checkmark @endif">
                                 <a href="{{ route('site.show', $site) }}"
@@ -113,8 +95,7 @@
                     @endforeach
                 </div>
                 <div class="button_green mr-24">
-                            <span class="green_button_circle">
-                            </span>
+                    <span class="green_button_circle"></span>
                     <a href="{{ route('push.create') }}" class="button_green_inner">
                         <p class="button_text_container">
                             <img src="{{ asset('images/send.svg') }}" alt="">Отправить PUSH

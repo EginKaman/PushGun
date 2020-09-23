@@ -31,7 +31,7 @@
                         </div>
                     </a>
 
-                    <a href="mails.html" class="nav__item">
+                    <a href="{{ route('push.index') }}" class="nav__item">
                         <div class="nav__item_wrap">
                             <span>Мои рассылки</span>
                             <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
@@ -39,7 +39,7 @@
                     </a>
 
                     <div class="nav__wrapper">
-                        <a href="#" class="nav__item nav__arrow">
+                        <a href="{{ route('site.index') }}" class="nav__item nav__arrow">
                             <div class="nav__item_wrap">
                                 <span>Мои сайты</span>
                                 <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
@@ -66,12 +66,17 @@
 
                 </nav>
                 <div class="header__subscription">
-                    <h3 class="header__subscription_title">Подписка 1000</h3>
+                    <h3 class="header__subscription_title">{{ Auth::user()->tariff->name }}</h3>
                     <a href="tarif.html" class="header__subscription_link">Повысить тариф</a>
                 </div>
                 <div class="header__menu_wrap">
                     <a class="header__account">
-                        <img class="header__account_img" src="{{ asset('images/avatar.svg') }}" alt="">
+                        @empty(Auth::user()->photo)
+                            <img class="header__account_img" src="{{ asset('images/avatar.svg') }}" alt="">
+                        @else
+                            <img class="header__account_img" src="{{ asset(Storage::url(Auth::user()->photo)) }}"
+                                 alt="">
+                        @endempty
                     </a>
                     <div class="header__burger">
                         <img src="{{ asset('images/menu.svg') }}" alt="">
@@ -86,10 +91,10 @@
                         <p class="account__top_id">ID <span>{{ Auth::id() }}</span></p>
                     </div>
                     <div class="account__bottom">
-                        <h3 class="account__bottom_subscribtion">Бесплатный тариф</h3>
+                        <h3 class="account__bottom_subscribtion">Тариф "{{ Auth::user()->tariff->name }}"</h3>
                         <a href="tarif.html" class="account__bottom_subscribe">Повысить тариф</a>
                         <div class="account__bottom_balance-wrapper">
-                            <p class="account__bottom_balance">Баланс <span>300 руб</span></p>
+                            <p class="account__bottom_balance">Баланс <span>{{ Auth::user()->balance }} руб</span></p>
                             <a href="payment.html" class="account__bottom_subscribe">Пополнить</a>
                         </div>
                         <div class="account__bottom_links">

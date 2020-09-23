@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Site;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use NotificationChannels\WebPush\PushSubscription;
 
 class User extends Authenticatable
 {
@@ -75,5 +77,26 @@ class User extends Authenticatable
     public function pushes(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Push::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function subscriptions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(PushSubscription::class, Site::class, 'id', 'subscribable_id', 'id')
+            ->where('subscribable_type', Site::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function todaySubscriptions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->subscriptions()
+            ->whereBetween('push_subscriptions.created_at', [
+                now()->startOfDay(),
+                now()->endOfDay()
+            ]);
     }
 }

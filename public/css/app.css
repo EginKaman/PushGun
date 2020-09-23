@@ -548,198 +548,46 @@ template {
 	-webkit-animation: tooltipster-scaling 600ms;
 	        animation: tooltipster-scaling 600ms;
 }
-/*
- * DOM element rendering detection
- * https://davidwalsh.name/detect-node-insertion
- */
-@-webkit-keyframes chartjs-render-animation {
-	from { opacity: 0.99; }
-	to { opacity: 1; }
-}
-@keyframes chartjs-render-animation {
-	from { opacity: 0.99; }
-	to { opacity: 1; }
-}
-
-.chartjs-render-monitor {
-	-webkit-animation: chartjs-render-animation 0.001s;
-	        animation: chartjs-render-animation 0.001s;
-}
-
-/*
- * DOM element resizing detection
- * https://github.com/marcj/css-element-queries
- */
-.chartjs-size-monitor,
-.chartjs-size-monitor-expand,
-.chartjs-size-monitor-shrink {
-	position: absolute;
-	direction: ltr;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	overflow: hidden;
-	pointer-events: none;
-	visibility: hidden;
-	z-index: -1;
-}
-
-.chartjs-size-monitor-expand > div {
-	position: absolute;
-	width: 1000000px;
-	height: 1000000px;
-	left: 0;
-	top: 0;
-}
-
-.chartjs-size-monitor-shrink > div {
-	position: absolute;
-	width: 200%;
-	height: 200%;
-	left: 0;
-	top: 0;
-}
 @charset "UTF-8";
 
 @font-face {
   font-family: "Gilroy";
-  src: url(/fonts/Gilroy-SemiBold.ttf?05bdf30b8aaa10683c19e73dd0c428da) format("truetype");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-BlackItalic.ttf?25a0c193cf573450c069971145972e7c) format("truetype");
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-ThinItalic.ttf?9575e89230cc2f26e6e95436175f63cc) format("truetype");
-  font-weight: 100;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-Heavy.ttf?8d36efeb3349af073647c0c37ec995f1) format("truetype");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-BoldItalic.ttf?2b56aed03785343b8a9d2ab464f35d61) format("truetype");
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-Regular.ttf?ae5e7255973ffe09b53f07a2805232a8) format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-UltraLightItalic.ttf?21f2f1d85399276d2ef78ebc79cd253c) format("truetype");
-  font-weight: 200;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-ExtraBold.ttf?07e6a6cd3cdb9eedaa9aa81fafe1e42a) format("truetype");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-Medium.ttf?6444f14adcdee041b62184f13139a56d) format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-Bold.ttf?3cf0ee273a0b3f022234b6572c3b78f9) format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-Thin.ttf?b4e27db9f692dbeec0d2a59cd94194b3) format("truetype");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-HeavyItalic.ttf?574db652a041efb7bb8e55c280c797ec) format("truetype");
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-Light.ttf?73bfa12b55452a65a0253c511856d6c2) format("truetype");
+  src: url(/fonts/GilroyLight.woff2?085f3ee361c9b80e0ccf8a703da9efe6) format("woff2");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Gilroy";
-  src: url(/fonts/Gilroy-LightItalic.ttf?a774850a6f3bebd595224064172b5eba) format("truetype");
-  font-weight: 300;
-  font-style: italic;
+  src: url(/fonts/GilroyRegular.woff2?11c5b3569c89aeb846430453ceb7f6e6) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Gilroy";
-  src: url(/fonts/Gilroy-ExtraBoldItalic.ttf?1ccd0d2f9c282cf2e80d0b455164cd69) format("truetype");
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-MediumItalic.ttf?9bc60a85e3c00995d5e2878f00f9a36e) format("truetype");
+  src: url(/fonts/GilroyMedium.woff2?d00e876b339a56ae4718ed4e2208c4a3) format("woff2");
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Gilroy";
-  src: url(/fonts/Gilroy-SemiBoldItalic.ttf?d9652658411a4e21bfaab0b60df39596) format("truetype");
+  src: url(/fonts/GilroySemibold.woff2?aebaa8b1ed01037d84d61390cbba818f) format("woff2");
   font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-RegularItalic.ttf?4b9bfe4dcf729744ecbf9415d002abb2) format("truetype");
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url(/fonts/Gilroy-Black.ttf?d59719bcf2c0c2e0db325ecf56c1d257) format("truetype");
-  font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Gilroy";
-  src: url(/fonts/Gilroy-UltraLight.ttf?d3d30383ec85ad32cc9b7ac440646875) format("truetype");
-  font-weight: 200;
+  src: url(/fonts/GilroyBold.woff2?62872c8ea5a842ef49c30bedd7b857ab) format("woff2");
+  font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 .blocker {
@@ -1784,9 +1632,9 @@ a,
 button,
 img {
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body,
@@ -1803,7 +1651,8 @@ html {
 }
 
 .container {
-  width: 1110px;
+  max-width: 1196px;
+  width: auto;
   position: relative;
   padding-left: 15px;
   padding-right: 15px;
@@ -2332,9 +2181,9 @@ input[type=radio]:checked::before {
   position: relative;
   cursor: pointer;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   font-size: 12px;
   color: #060607;
   font-weight: 500;
@@ -2399,9 +2248,9 @@ input[type=radio]:checked::before {
 
 .button_green {
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   overflow: hidden;
   position: relative;
   display: inline-block;
@@ -2453,12 +2302,12 @@ input[type=radio]:checked::before {
 
 .explode-circle {
   -webkit-animation: explode 0.5s forwards;
-  animation: explode 0.5s forwards;
+          animation: explode 0.5s forwards;
 }
 
 .desplode-circle {
   -webkit-animation: desplode 0.5s forwards;
-  animation: desplode 0.5s forwards;
+          animation: desplode 0.5s forwards;
 }
 
 @-webkit-keyframes explode {
@@ -2535,9 +2384,9 @@ input[type=radio]:checked::before {
 
 .button_white {
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   overflow: hidden;
   position: relative;
   display: inline-block;
@@ -2590,9 +2439,9 @@ input[type=radio]:checked::before {
 .button_text_container {
   position: relative;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -2608,12 +2457,12 @@ input[type=radio]:checked::before {
 
 .explode-circle-w {
   -webkit-animation: explode-w 0.8s forwards;
-  animation: explode-w 0.8s forwards;
+          animation: explode-w 0.8s forwards;
 }
 
 .desplode-circle-w {
   -webkit-animation: desplode-w 0.5s forwards;
-  animation: desplode-w 0.5s forwards;
+          animation: desplode-w 0.5s forwards;
 }
 
 @-webkit-keyframes explode-w {
@@ -2748,9 +2597,9 @@ textarea {
   box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
   color: #fff;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   background: rgba(248, 249, 252, 0.2);
   cursor: pointer;
   margin-left: 24px;
@@ -2804,12 +2653,12 @@ textarea {
 
 .explode-circle-lb {
   -webkit-animation: explode-lb 0.8s forwards;
-  animation: explode-lb 0.8s forwards;
+          animation: explode-lb 0.8s forwards;
 }
 
 .desplode-circle-lb {
   -webkit-animation: desplode-lb 0.5s forwards;
-  animation: desplode-lb 0.5s forwards;
+          animation: desplode-lb 0.5s forwards;
 }
 
 @-webkit-keyframes explode-lb {
@@ -2943,12 +2792,12 @@ textarea {
 
 .explode-circle-rb {
   -webkit-animation: explode-rb 0.8s forwards;
-  animation: explode-rb 0.8s forwards;
+          animation: explode-rb 0.8s forwards;
 }
 
 .desplode-circle-rb {
   -webkit-animation: desplode-rb 0.5s forwards;
-  animation: desplode-rb 0.5s forwards;
+          animation: desplode-rb 0.5s forwards;
 }
 
 .rb_button_text_container.small-btn {
@@ -4428,7 +4277,6 @@ textarea {
   background-color: #fff;
   box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
   position: absolute;
-  -ms-grid-row-align: center;
   align-self: center;
   text-align: center;
   top: -35px;
@@ -4912,9 +4760,9 @@ textarea {
   box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
   border-radius: 100px;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -4974,9 +4822,9 @@ textarea {
 .setgen__form {
   display: flex;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .setgen__form img {
@@ -5490,7 +5338,7 @@ textarea {
   box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
   border-radius: 10px;
   padding: 24px 24px 35px 24px;
-  margin: 0px 16px 24px 16px;
+  margin: 0 16px 24px 16px;
   display: flex;
   flex-direction: column;
   transition: 0.3s;
@@ -5760,10 +5608,8 @@ textarea {
 }
 
 .tariff-check input:checked + .check {
-  background: url(/images/check.svg?c5be55cb438e5acdbd4442ae69c45e15);
-  background-position: center center;
   background-size: contain;
-  background-repeat: no-repeat;
+  background: url(/images/check.svg?c5be55cb438e5acdbd4442ae69c45e15) no-repeat center center;
 }
 
 .tariff-form {
@@ -5785,7 +5631,6 @@ textarea {
   display: flex;
   padding: 34px;
   margin-top: 24px;
-  display: flex;
   flex-direction: column;
 }
 
@@ -6343,7 +6188,7 @@ textarea {
   line-height: 17px;
   letter-spacing: 0.25px;
   -webkit-text-decoration-line: none !important;
-  text-decoration-line: none !important;
+          text-decoration-line: none !important;
   color: #3B8378;
   position: relative;
 }
@@ -7057,9 +6902,9 @@ article.step-2 a {
 .site_set .site_avatar_form {
   display: flex;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .site_set .site_avatar_form img {

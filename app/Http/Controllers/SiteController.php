@@ -30,18 +30,30 @@ class SiteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $site = new Site();
+        $site->link = $request->input('link');
+        $site->subscription = $request->input('requestOn');
+        $site->visit = $request->input('visit');
+        $site->delay = $request->input('delay');
+        $site->mobile = $request->boolean('hideMobile', 0);
+        $site->hint = $request->boolean('hint', 0);
+        $site->script = hash('sha256', $site->link) . '.js';
+        $site->img = $request->file('siteAvatar')->store('public/sites');
+        $site->user_id = Auth::user()->id;
+        $site->save();
+        $this->createScript($site);
+        return redirect()->route('complete.index', $site);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Site  $site
+     * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
     public function show(Site $site)
@@ -52,7 +64,7 @@ class SiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Site  $site
+     * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
     public function edit(Site $site)
@@ -63,8 +75,8 @@ class SiteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Site  $site
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Site $site)
@@ -75,7 +87,7 @@ class SiteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Site  $site
+     * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
     public function destroy(Site $site)

@@ -21,14 +21,17 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+Vue.component('statistic-chart-component', require('./components/MainPage/StatisticChart.vue').default);
+Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').default);
+Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import store from './store'
 
 const app = new Vue({
     el: '#app',
+    store
 });

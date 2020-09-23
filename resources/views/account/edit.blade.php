@@ -26,7 +26,6 @@
 
 
                     <div class="setgen__info">
-
                         <form action="{{ route('account.update') }}" method="post" class="set-form">
                             @csrf
                             @method('PUT')
@@ -70,8 +69,8 @@
                             <div class="set-form__label">
                                 <span class="set-form__title">Часовой пояс</span>
                                 <select id="time" name="timezone" class="set-form__select">
-                                    <option value="Europe/Moscow">(UTC +03:00) Москва</option>
-                                    <option value="time_2">(UTC +04:00) Ижевск</option>
+                                    <option value="GMT+3">(UTC +03:00) Москва</option>
+                                    <option value="GMT+4">(UTC +04:00) Ижевск</option>
                                 </select>
                             </div>
 
@@ -140,12 +139,12 @@
                     </div>
                     <div class="setgen__info">
 
-                        <form action="" method="post" class="set-form">
+                        <form action="{{ route('password.update') }}" method="post" class="set-form">
                             @csrf
                             @method('PUT')
                             <label for="oldPass" class="set-form__label oldPass">
                                 <span class="set-form__title">Старый пароль</span>
-                                <input class="" type="password" name="old_password" id="oldPass">
+                                <input type="password" name="old_password" id="oldPass">
                             </label>
 
                             <label for="newPass" class="set-form__label newPass">
@@ -155,7 +154,7 @@
 
                             <label for="confPass" class="set-form__label confPass">
                                 <span class="set-form__title">Подтвердите пароль</span>
-                                <input type="password" name="password_confirmation" id="confPass" value="">
+                                <input type="password" name="password_confirmation" id="confPass">
                             </label>
 
 
@@ -175,7 +174,7 @@
                 </section>
 
 
-                <section id="notifications-sec" class="setreq ">
+                <section id="notifications-sec" class="setreq">
                     <div class="setgen__buttons">
                         <div id="general" class="setgen__buttons_link">
                             <div class="new-tab">Общие</div>

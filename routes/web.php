@@ -30,8 +30,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('edit', 'AccountController@edit')->name('account.edit');
         Route::put('/', 'AccountController@update')->name('account.update');
     });
+    Route::put('/password', 'PasswordController@update')->name('password.update');
     Route::resource('site', 'SiteController');
     Route::resource('push', 'PushController');
     Route::resource('ticket', 'TicketController');
+
+    Route::get('/statistics', 'StatisticController@index');
 });
 

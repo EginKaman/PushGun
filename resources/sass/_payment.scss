@@ -1,0 +1,122 @@
+.payment {
+    &-price {
+        background: #FFFFFF;
+        box-shadow: $shadow;
+        border-radius: 10px;
+        margin-bottom: 24px;
+        overflow: hidden;
+    }
+
+    &-row {
+        display: flex;
+        justify-content: space-between;
+
+        &.light-blue {
+            background: $light-blue;
+        }
+
+        &__bottom {
+            border-top: 1px solid #D6E8F5;
+            text-align: right;
+            justify-content: flex-end;
+
+            & .payment-text {
+                text-align: left;
+                padding: 31px 37px;
+            }
+        }
+    }
+
+    &-left, &-right {
+        padding: 24px;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-left {
+        justify-content: flex-start;
+
+        & .payment-text {
+            text-align: left;
+        }
+    }
+
+    &-text {
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.25px;
+        color: $black;
+    }
+
+    &-method {
+        background: #FFFFFF;
+        box-shadow: $shadow;
+        border-radius: 10px;
+        padding: 24px;
+        margin-bottom: 32px;
+    }
+
+    &-radio {
+        line-height: 24px;
+        margin-bottom: 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &-bay {
+        padding: 0px;
+        width: 100%;
+        height: 40px;
+        max-width: 220px;
+        text-align: center;
+    }
+}
+
+.payment .small__title {
+    margin-bottom: 24px;
+}
+
+
+.payment .mail__time-sent p {
+    margin: 0;
+}
+
+.payment .mail__time-sent {
+    margin-bottom: 24px;
+}
+
+
+@media (max-width: 657px) {
+    .payment-row {
+        padding: 10px 0;
+        flex-wrap: wrap;
+    }
+    .payment-left, .payment-right {
+        padding: 10px 24px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 546px) {
+    .tariff-bay {
+        max-width: 292px;
+        width: 100%;
+    }
+    .payment-left, .payment-right {
+        padding: 10px 15px;
+    }
+    .payment-method {
+        padding: 15px;
+    }
+    .payment-row__bottom .payment-text {
+        padding: 10px 15px;
+    }
+}

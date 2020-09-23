@@ -1,605 +1,347 @@
 'use strict';
 
-
-$('.stats__selector, .filter__selector, .set-form__select, .sup-form__select, .site_domain_select').select2({
-    minimumResultsForSearch: -1,
-    placeholder: 'Выбрать'
-});
-
 $(document).ready(function () {
-    $('.tooltip').tooltipster({
-        side: ['left', 'bottom'],
-        trigger: 'click',
-        contentCloning: false,
-        interactive: true
+    $('.stats__selector, .filter__selector, .set-form__select, .sup-form__select, .site_domain_select').select2({
+        minimumResultsForSearch: -1,
+        placeholder: 'Выбрать'
     });
 
-    $('.header__account').click(function (e) {
-        e.preventDefault();
-        $('.account__popup').fadeToggle(300);
-        $('.header__popup').fadeOut(300);
-    });
-
-    $('.header__burger').click(function () {
-        $('.header__popup').fadeToggle(300);
-    });
-
-    $(".button_green_inner").mouseenter(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".green_button_circle").css({
-            "left": relX,
-            "top": relY
+    $(document).ready(function () {
+        $('.tooltip').tooltipster({
+            side: ['left', 'bottom'],
+            trigger: 'click',
+            contentCloning: false,
+            interactive: true
         });
-        $(this).prev(".green_button_circle").removeClass("desplode-circle");
-        $(this).prev(".green_button_circle").addClass("explode-circle");
-    });
-    $(".button_green_inner").mouseleave(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".green_button_circle").css({
-            "left": relX,
-            "top": relY
+
+        $('.header__account').click(function (e) {
+            e.preventDefault();
+            $('.account__popup').fadeToggle(300);
+            $('.header__popup').fadeOut(300);
         });
-        $(this).prev(".green_button_circle").removeClass("explode-circle");
-        $(this).prev(".green_button_circle").addClass("desplode-circle");
-    });
 
-    $(".button_lb_inner").mouseenter(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".lb_button_circle").css({
-            "left": relX,
-            "top": relY
+        $('.header__burger').click(function () {
+            $('.header__popup').fadeToggle(300);
         });
-        $(this).prev(".lb_button_circle").removeClass("desplode-circle-lb");
-        $(this).prev(".lb_button_circle").addClass("explode-circle-lb");
-    });
-    $(".button_lb_inner").mouseleave(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".lb_button_circle").css({
-            "left": relX,
-            "top": relY
-        });
-        $(this).prev(".lb_button_circle").removeClass("explode-circle-lb");
-        $(this).prev(".lb_button_circle").addClass("desplode-circle-lb");
-    });
 
-    $(".button_rb_inner").mouseenter(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".rb_button_circle").css({
-            "left": relX,
-            "top": relY
-        });
-        $(this).prev(".rb_button_circle").removeClass("desplode-circle-rb");
-        $(this).prev(".rb_button_circle").addClass("explode-circle-rb");
-    });
-    $(".button_rb_inner").mouseleave(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".rb_button_circle").css({
-            "left": relX,
-            "top": relY
-        });
-        $(this).prev(".rb_button_circle").removeClass("explode-circle-rb");
-        $(this).prev(".rb_button_circle").addClass("desplode-circle-rb");
-    });
-
-    $(".button_white_inner").mouseenter(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".white_button_circle").css({
-            "left": relX,
-            "top": relY
-        });
-        $(this).prev(".white_button_circle").removeClass("desplode-circle-w");
-        $(this).prev(".white_button_circle").addClass("explode-circle-w");
-    });
-    $(".button_white_inner").mouseleave(function (e) {
-        var parentOffset = $(this).offset();
-        var relX = e.pageX - parentOffset.left;
-        var relY = e.pageY - parentOffset.top;
-        $(this).prev(".white_button_circle").css({
-            "left": relX,
-            "top": relY
-        });
-        $(this).prev(".white_button_circle").removeClass("explode-circle-w");
-        $(this).prev(".white_button_circle").addClass("desplode-circle-w");
-    });
-
-    $('.button').click(function () {
-        $('.button').removeClass('selected');
-        $(this).addClass('selected')
-    });
-
-    $('#filter').click(function () {
-        $('.filter__popup').fadeToggle(300);
-    });
-    $('#btn_select').click(function () {
-        $('.filter__popup').fadeToggle(300);
-        if ($('#firstDate-input').val() !== '' && $('#lastDate-input').val() !== '') {
-            var fD = $('#firstDate-input').val();
-            var lD = $('#lastDate-input').val();
-
-            $('#firstDate').addClass('activated');
-            $('#first-date').text(fD);
-
-            $('#lastDate').addClass('activated');
-            $('#last-date').text(lD);
-
-            $('.mails__reset').fadeIn(300);
-
-        }
-    });
-
-    function checkEmpty() {
-        if ($('#firstDate-input').val() == 0 && $('#lastDate-input').val() == 0) {
-            $('.mails__reset').fadeOut(300);
-        }
-    }
-
-    $('.mails__reset').click(function () {
-        $('#firstDate').removeClass('activated');
-        $('#lastDate').removeClass('activated');
-        $('.filter__input').val('');
-        $(this).fadeOut(300);
-    });
-
-    $('.button_lb').click(function () {
-        $('.filter__input').val('');
-    });
-
-    $('#first-date-del').click(function () {
-        $('#firstDate').removeClass('activated');
-        $('#firstDate-input').val('');
-        checkEmpty();
-    });
-
-    $('#last-date-del').click(function () {
-        $('#lastDate').removeClass('activated');
-        $('#lastDate-input').val('');
-        checkEmpty();
-    });
-
-    var days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
-    var weeks = ['1 - 8 июня', '9 - 16 июня', '17 - 24 июня', '25 - 30 июня'];
-    var months = ['Янв.', 'Фев.', 'Мар.', 'Апр.', 'Июн.', 'Июл.', 'Авг.', 'Сен.', 'Окт.', 'Ноя.', 'Дек.'];
-    var dataMailing = [1, 30, 45, 60, 90, 139, 12, 38, 3, 15];
-    var dataSent = [1, 30, 45, 60, 39, 87, 12, 38, 3, 15];
-    var dataDelivery = [1, 30, 45, 60, 55, 54, 12, 38, 3, 15];
-    var dataGo = [1, 22, 45, 39, 59, 12, 12, 38, 3, 15];
-
-    if ($('#myChart').length !== 0) {
-        var myChart = new Chart(document.getElementById("myChart"), {
-            type: 'line',
-            data: {
-                labels: days,
-                datasets: [{
-                    data: dataMailing,
-                    label: "рассылок",
-                    borderColor: "#36C2CF",
-                    fill: false,
-                    pointBackgroundColor: '#ffffff00',
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    backgroundColor: 'transparent',
-                    pointHitRadius: 32,
-                }, {
-                    data: dataSent,
-                    label: "отправлено",
-                    borderColor: "#5BA4D7",
-                    fill: false,
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    pointHitRadius: 32,
-                    backgroundColor: 'transparent',
-                    pointBackgroundColor: '#ffffff00'
-                }, {
-                    data: dataDelivery,
-                    label: "доставлено",
-                    borderColor: "#9698D5",
-                    fill: false,
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    pointHitRadius: 32,
-                    backgroundColor: 'transparent',
-                    pointBackgroundColor: '#ffffff00'
-                }, {
-                    data: dataGo,
-                    label: "переходов",
-                    borderColor: "#68B781",
-                    fill: false,
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    pointHitRadius: 32,
-                    backgroundColor: 'transparent',
-                    pointBackgroundColor: '#ffffff00'
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                title: {
-                    display: false
-                },
-                tooltips: {
-                    backgroundColor: '#fff',
-                    titleFontColor: '#323441',
-                    titleMarginBottom: 12,
-                    bodyFontColor: '#323441',
-                    titleAlign: 'center',
-                    titleSpacing: 12,
-                    borderColor: '#DFE0EB',
-                    titleFontStyle: '600',
-                    titleFontFamily: 'Gilroy',
-                    bodyFontStyle: '500',
-                    bodyFontFamily: 'Gilroy',
-                    borderWidth: '1',
-                    xPadding: 18,
-                    yPadding: 12
-                },
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false,
-                            drawBorder: false,
-                            color: '#ffffff00'
-                        },
-                        ticks: {
-                            display: false
-                        },
-                    }],
-                    yAxes: [{
-                        gridLines: {
-                            display: true,
-                            drawBorder: false,
-                            color: '#f2f2f2'
-                        },
-                        ticks: {
-                            fontColor: '#979797',
-                            fontFamily: 'Gilroy',
-                            fontSize: 12,
-                            padding: 16,
-                            fontStyle: 'bold'
-                        },
-                    }]
-                },
-                layout: {
-                    padding: {
-                        left: 0,
-                        right: 0,
-                        top: 35,
-                        bottom: 35
-                    }
-                },
-                legend: {
-                    display: false,
-                }
-            }
-        });
-    } else {
-    }
-    ;
-
-    if ($('#myChart2').length !== 0) {
-        var myChart2 = new Chart(document.getElementById("myChart2"), {
-            type: 'line',
-            data: {
-                labels: days,
-                datasets: [{
-                    data: dataMailing,
-                    label: "рассылок",
-                    borderColor: "#36C2CF",
-                    fill: false,
-                    pointHitRadius: 32,
-                    backgroundColor: 'transparent',
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    pointBackgroundColor: '#ffffff00'
-                }, {
-                    data: dataSent,
-                    label: "отправлено",
-                    borderColor: "#5BA4D7",
-                    pointHitRadius: 32,
-                    fill: false,
-                    backgroundColor: 'transparent',
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    pointBackgroundColor: '#ffffff00'
-                }, {
-                    data: dataDelivery,
-                    pointHitRadius: 32,
-                    label: "доставлено",
-                    borderColor: "#9698D5",
-                    fill: false,
-                    pointBackgroundColor: '#ffffff00',
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    backgroundColor: 'transparent'
-                }, {
-                    data: dataGo,
-                    label: "переходов",
-                    borderColor: "#68B781",
-                    pointHitRadius: 32,
-                    pointBackgroundColor: '#ffffff00',
-                    pointBorderColor: '#ffffff00',
-                    pointHoverBackgroundColor: '#ffffff00',
-                    pointHoverBorderColor: '#ffffff00',
-                    fill: false,
-                    backgroundColor: 'transparent'
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                title: {
-                    display: false
-                },
-                tooltips: {
-                    backgroundColor: '#fff',
-                    titleFontColor: '#323441',
-                    titleMarginBottom: 12,
-                    bodyFontColor: '#323441',
-                    titleAlign: 'center',
-                    titleSpacing: 12,
-                    borderColor: '#DFE0EB',
-                    titleFontStyle: '600',
-                    titleFontFamily: 'Gilroy',
-                    bodyFontStyle: '500',
-                    bodyFontFamily: 'Gilroy',
-                    borderWidth: '1',
-                    xPadding: 18,
-                    yPadding: 12
-                },
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false,
-                            drawBorder: false,
-                            color: '#ffffff00'
-                        },
-                        ticks: {
-                            display: false
-                        },
-                    }],
-                    yAxes: [{
-                        gridLines: {
-                            display: true,
-                            drawBorder: false,
-                            color: '#f2f2f2'
-                        },
-                        ticks: {
-                            fontColor: '#979797',
-                            fontFamily: 'Gilroy',
-                            fontSize: 12,
-                            padding: 16,
-                            fontStyle: 'bold'
-                        },
-                    }]
-                },
-                layout: {
-                    padding: {
-                        left: 0,
-                        right: 0,
-                        top: 35,
-                        bottom: 30
-                    }
-                },
-                legend: {
-                    display: false,
-                },
-                point: {
-                    radius: 16
-                }
-            }
-        });
-    } else {
-    }
-
-
-    function addData(chart, label) {
-        chart.data.labels = label;
-        chart.update();
-    }
-
-    $("#days").click(function () {
-        addData(myChart, days);
-    });
-    $("#days-subs").click(function () {
-        addData(myChart2, days);
-    });
-    $("#weeks").click(function () {
-        addData(myChart, weeks);
-    });
-    $("#weeks-subs").click(function () {
-        addData(myChart2, weeks);
-    });
-    $('#selector').change(function () {
-        $('.button').removeClass('selected');
-        if ($("#selector").val() == 1) {
-            addData(myChart, weeks);
-        }
-        if ($("#selector").val() == 2) {
-            addData(myChart, months);
-        }
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.keyCode === 27) {
-            $('.account__popup').fadeOut(300);
-            $('.filter__popup').fadeOut(300);
-        }
-    });
-
-    $(document).click(function (e) {
-        if (!$(e.target).closest('#filter, .header__account, .datepicker--cell, .datepicker, .datepicker--nav, .datepicker--nav-action, .datepicker--nav-title, .filter__popup, .account__popup').length) {
-            $(".filter__popup, .account__popup").fadeOut(250);
-        }
-    });
-
-    $('.setgen__buttons_link').click(function () {
-        let id = $(this).attr('id');
-        $('section').removeClass('choosen');
-        $('#' + id + '-sec').addClass('choosen');
-    });
-
-
-    $('#sale').change(function () {
-        $(this).toggleClass('true');
-        let price = $('#tariff-price').text();
-        sale(price);
-        if (!$('#sale').hasClass('true')) {
-            sale(price / 0.8);
-        }
-    });
-
-    function sale(e) {
-        if ($('#sale').hasClass('true')) {
-            $('#tariff-price').text(e * 0.8);
-        } else {
-            $('#tariff-price').text(e);
-        }
-        $('.followsCount').val(e);
-    }
-
-
-    $('.change-email').on('click', function () {
-        $('.set-change').fadeOut(400);
-        $('.email input').removeAttr('disabled').focus().removeClass('disable');
-    });
-
-
-    if ($('.tariff-slider').length != 0) {
-        $('.tariff-slider').slider({
-            animate: 'fast',
-            // range: 'min',
-            max: 3,
-            value: 0,
-            slide: function (event, ui) {
-                if (ui.value == 0) {
-                    $('.number-followers').text('от 30 000 подписчиков');
-                    sale(3900);
-                } else if (ui.value == 1) {
-                    $('.number-followers').text('от 60 000 подписчиков');
-                    sale(6000);
-                } else if (ui.value == 2) {
-                    $('.number-followers').text('от 200 000 подписчиков');
-                    sale(10000);
-                } else if (ui.value == 3) {
-                    $('.number-followers').text('неограниченно');
-                    sale(13400);
-                }
-            }
-        });
-    }
-
-    function handleFileSelect(evt) {
-        var file = evt.target.files; // FileList object
-        var f = file[0];
-        // Only process image files.
-        if (!f.type.match('image.*')) {
-            alert("Image only please....");
-        }
-        var reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onload = (function (theFile) {
-            return function (e) {
-                // Render thumbnail.
-                var figure = document.createElement('figure');
-                figure.innerHTML = ['<img class="thumb" title="', escape(theFile.name), '" src="', e.target.result, '" />'].join('');
-                document.getElementById('output').insertBefore(figure, null);
-            };
-        })(f);
-        // Read in the image file as a data URL.
-        reader.readAsDataURL(f);
-    }
-
-    if ($('#photo').length != 0) {
-        document.getElementById('photo').addEventListener('change', handleFileSelect, false);
-    }
-
-
-    let h = $('.push-check').height();
-    $('#radio1, #radio2').change(function () {
-        if ($('#radio2').prop('checked')) {
-            $('.push-check').css({
-                'max-height': h
+        $(".button_green_inner").mouseenter(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".green_button_circle").css({
+                "left": relX,
+                "top": relY
             });
-        } else {
-            h = $('.push-check').height();
-            $('.push-check').css({
-                'max-height': '0px'
+            $(this).prev(".green_button_circle").removeClass("desplode-circle");
+            $(this).prev(".green_button_circle").addClass("explode-circle");
+        });
+        $(".button_green_inner").mouseleave(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".green_button_circle").css({
+                "left": relX,
+                "top": relY
             });
+            $(this).prev(".green_button_circle").removeClass("explode-circle");
+            $(this).prev(".green_button_circle").addClass("desplode-circle");
+        });
+
+        $(".button_lb_inner").mouseenter(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".lb_button_circle").css({
+                "left": relX,
+                "top": relY
+            });
+            $(this).prev(".lb_button_circle").removeClass("desplode-circle-lb");
+            $(this).prev(".lb_button_circle").addClass("explode-circle-lb");
+        });
+        $(".button_lb_inner").mouseleave(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".lb_button_circle").css({
+                "left": relX,
+                "top": relY
+            });
+            $(this).prev(".lb_button_circle").removeClass("explode-circle-lb");
+            $(this).prev(".lb_button_circle").addClass("desplode-circle-lb");
+        });
+
+        $(".button_rb_inner").mouseenter(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".rb_button_circle").css({
+                "left": relX,
+                "top": relY
+            });
+            $(this).prev(".rb_button_circle").removeClass("desplode-circle-rb");
+            $(this).prev(".rb_button_circle").addClass("explode-circle-rb");
+        });
+        $(".button_rb_inner").mouseleave(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".rb_button_circle").css({
+                "left": relX,
+                "top": relY
+            });
+            $(this).prev(".rb_button_circle").removeClass("explode-circle-rb");
+            $(this).prev(".rb_button_circle").addClass("desplode-circle-rb");
+        });
+
+        $(".button_white_inner").mouseenter(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".white_button_circle").css({
+                "left": relX,
+                "top": relY
+            });
+            $(this).prev(".white_button_circle").removeClass("desplode-circle-w");
+            $(this).prev(".white_button_circle").addClass("explode-circle-w");
+        });
+        $(".button_white_inner").mouseleave(function (e) {
+            var parentOffset = $(this).offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".white_button_circle").css({
+                "left": relX,
+                "top": relY
+            });
+            $(this).prev(".white_button_circle").removeClass("explode-circle-w");
+            $(this).prev(".white_button_circle").addClass("desplode-circle-w");
+        });
+
+        $('.button').click(function () {
+            $('.button').removeClass('selected');
+            $(this).addClass('selected')
+        });
+
+        $('#filter').click(function () {
+            $('.filter__popup').fadeToggle(300);
+        });
+        $('#btn_select').click(function () {
+            $('.filter__popup').fadeToggle(300);
+            if ($('#firstDate-input').val() !== '' && $('#lastDate-input').val() !== '') {
+                var fD = $('#firstDate-input').val();
+                var lD = $('#lastDate-input').val();
+
+                $('#firstDate').addClass('activated');
+                $('#first-date').text(fD);
+
+                $('#lastDate').addClass('activated');
+                $('#last-date').text(lD);
+
+                $('.mails__reset').fadeIn(300);
+
+            }
+        });
+
+        function checkEmpty() {
+            if ($('#firstDate-input').val() == 0 && $('#lastDate-input').val() == 0) {
+                $('.mails__reset').fadeOut(300);
+            }
         }
-    });
 
-    $('article.step-1 button').on('click', function () {
-        $('article.step-1').hide();
-        $('article.step-2').show();
-        $('html, body').animate({scrollTop: 80}, 500);
-    });
+        $('.mails__reset').click(function () {
+            $('#firstDate').removeClass('activated');
+            $('#lastDate').removeClass('activated');
+            $('.filter__input').val('');
+            $(this).fadeOut(300);
+        });
 
-    $('.file-img-remove').click(function (e) {
-        e.preventDefault();
-        $('#ticketFile').val('');
-        $('.ticket-fileName').text('');
-        $('.file-img').fadeIn(0);
-        $(this).fadeOut(0);
-    });
+        $('.button_lb').click(function () {
+            $('.filter__input').val('');
+        });
 
-    $('#ticketFile').on('change', function () {
-        var splittedFakePath = this.value.split('\\');
-        $('.ticket-fileName').text(splittedFakePath[splittedFakePath.length - 1]);
-        $('.file-img-remove').fadeIn(0);
-        $('.file-img').fadeOut(0);
-    });
+        $('#first-date-del').click(function () {
+            $('#firstDate').removeClass('activated');
+            $('#firstDate-input').val('');
+            checkEmpty();
+        });
+
+        $('#last-date-del').click(function () {
+            $('#lastDate').removeClass('activated');
+            $('#lastDate-input').val('');
+            checkEmpty();
+        });
+
+        var days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+        var weeks = ['1 - 8 июня', '9 - 16 июня', '17 - 24 июня', '25 - 30 июня'];
+        var months = ['Янв.', 'Фев.', 'Мар.', 'Апр.', 'Июн.', 'Июл.', 'Авг.', 'Сен.', 'Окт.', 'Ноя.', 'Дек.'];
+        var dataMailing = [1, 30, 45, 60, 90, 139, 12, 38, 3, 15];
+        var dataSent = [1, 30, 45, 60, 39, 87, 12, 38, 3, 15];
+        var dataDelivery = [1, 30, 45, 60, 55, 54, 12, 38, 3, 15];
+        var dataGo = [1, 22, 45, 39, 59, 12, 12, 38, 3, 15];
 
 
-    const changeBtnText = () => {
-        let btns = document.querySelector('.settings-body')
-        if (btns) {
-            btns.querySelectorAll('.sett-btn div');
+        document.addEventListener('keydown', function (e) {
+            if (e.keyCode === 27) {
+                $('.account__popup').fadeOut(300);
+                $('.filter__popup').fadeOut(300);
+            }
+        });
 
-            if (window.matchMedia('(max-width: 556px)').matches) {
-                btns[0].textContent = 'Общие';
-                btns[1].textContent = 'Интеграция';
-                btns[2].textContent = 'Подписка';
-                btns[3].textContent = 'Общие';
-                btns[4].textContent = 'Интеграция';
-                btns[5].textContent = 'Подписка';
-                btns[6].textContent = 'Общие';
-                btns[7].textContent = 'Интеграция';
-                btns[8].textContent = 'Подписка';
+        $(document).click(function (e) {
+            if (!$(e.target).closest('#filter, .header__account, .datepicker--cell, .datepicker, .datepicker--nav, .datepicker--nav-action, .datepicker--nav-title, .filter__popup, .account__popup').length) {
+                $(".filter__popup, .account__popup").fadeOut(250);
+            }
+        });
+
+        $('.setgen__buttons_link').click(function () {
+            let id = $(this).attr('id');
+            $('section').removeClass('choosen');
+            $('#' + id + '-sec').addClass('choosen');
+        });
+
+
+        $('#sale').change(function () {
+            $(this).toggleClass('true');
+            let price = $('#tariff-price').text();
+            sale(price);
+            if (!$('#sale').hasClass('true')) {
+                sale(price / 0.8);
+            }
+        });
+
+        function sale(e) {
+            if ($('#sale').hasClass('true')) {
+                $('#tariff-price').text(e * 0.8);
             } else {
-                btns[0].textContent = 'Общие настройки';
-                btns[1].textContent = 'Интеграция с сайтом';
-                btns[2].textContent = 'Запрос подписки';
-                btns[3].textContent = 'Общие настройки';
-                btns[4].textContent = 'Интеграция с сайтом';
-                btns[5].textContent = 'Запрос подписки';
-                btns[6].textContent = 'Общие настройки';
-                btns[7].textContent = 'Интеграция с сайтом';
-                btns[8].textContent = 'Запрос подписки';
+                $('#tariff-price').text(e);
+            }
+            $('.followsCount').val(e);
+        }
+
+
+        $('.change-email').on('click', function () {
+            $('.set-change').fadeOut(400);
+            $('.email input').removeAttr('disabled').focus().removeClass('disable');
+        });
+
+
+        if ($('.tariff-slider').length != 0) {
+            $('.tariff-slider').slider({
+                animate: 'fast',
+                // range: 'min',
+                max: 3,
+                value: 0,
+                slide: function (event, ui) {
+                    if (ui.value == 0) {
+                        $('.number-followers').text('от 30 000 подписчиков');
+                        sale(3900);
+                    } else if (ui.value == 1) {
+                        $('.number-followers').text('от 60 000 подписчиков');
+                        sale(6000);
+                    } else if (ui.value == 2) {
+                        $('.number-followers').text('от 200 000 подписчиков');
+                        sale(10000);
+                    } else if (ui.value == 3) {
+                        $('.number-followers').text('неограниченно');
+                        sale(13400);
+                    }
+                }
+            });
+        }
+
+        function handleFileSelect(evt) {
+            var file = evt.target.files; // FileList object
+            var f = file[0];
+            // Only process image files.
+            if (!f.type.match('image.*')) {
+                alert("Image only please....");
+            }
+            var reader = new FileReader();
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // Render thumbnail.
+                    var figure = document.createElement('figure');
+                    figure.innerHTML = ['<img class="thumb" title="', escape(theFile.name), '" src="', e.target.result, '" />'].join('');
+                    document.getElementById('output').insertBefore(figure, null);
+                };
+            })(f);
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
+        }
+
+        if ($('#photo').length != 0) {
+            document.getElementById('photo').addEventListener('change', handleFileSelect, false);
+        }
+
+
+        let h = $('.push-check').height();
+        $('#radio1, #radio2').change(function () {
+            if ($('#radio2').prop('checked')) {
+                $('.push-check').css({
+                    'max-height': h
+                });
+            } else {
+                h = $('.push-check').height();
+                $('.push-check').css({
+                    'max-height': '0px'
+                });
+            }
+        });
+
+        $('article.step-1 button').on('click', function () {
+            $('article.step-1').hide();
+            $('article.step-2').show();
+            $('html, body').animate({scrollTop: 80}, 500);
+        });
+
+        $('.file-img-remove').click(function (e) {
+            e.preventDefault();
+            $('#ticketFile').val('');
+            $('.ticket-fileName').text('');
+            $('.file-img').fadeIn(0);
+            $(this).fadeOut(0);
+        });
+
+        $('#ticketFile').on('change', function () {
+            var splittedFakePath = this.value.split('\\');
+            $('.ticket-fileName').text(splittedFakePath[splittedFakePath.length - 1]);
+            $('.file-img-remove').fadeIn(0);
+            $('.file-img').fadeOut(0);
+        });
+
+
+        const changeBtnText = () => {
+            let btns = document.querySelector('.settings-body')
+            if (btns) {
+                btns.querySelectorAll('.sett-btn div');
+
+                if (window.matchMedia('(max-width: 556px)').matches) {
+                    btns[0].textContent = 'Общие';
+                    btns[1].textContent = 'Интеграция';
+                    btns[2].textContent = 'Подписка';
+                    btns[3].textContent = 'Общие';
+                    btns[4].textContent = 'Интеграция';
+                    btns[5].textContent = 'Подписка';
+                    btns[6].textContent = 'Общие';
+                    btns[7].textContent = 'Интеграция';
+                    btns[8].textContent = 'Подписка';
+                } else {
+                    btns[0].textContent = 'Общие настройки';
+                    btns[1].textContent = 'Интеграция с сайтом';
+                    btns[2].textContent = 'Запрос подписки';
+                    btns[3].textContent = 'Общие настройки';
+                    btns[4].textContent = 'Интеграция с сайтом';
+                    btns[5].textContent = 'Запрос подписки';
+                    btns[6].textContent = 'Общие настройки';
+                    btns[7].textContent = 'Интеграция с сайтом';
+                    btns[8].textContent = 'Запрос подписки';
+                }
             }
         }
-    }
 
-    window.addEventListener('resize', () => {
+        window.addEventListener('resize', () => {
+            changeBtnText();
+        });
         changeBtnText();
     });
-    changeBtnText();
 });

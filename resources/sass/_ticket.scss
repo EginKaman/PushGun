@@ -1,0 +1,178 @@
+.ticket {
+    &-wrap {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &-avatar {
+        width: 80px;
+        padding-right: 20px;
+        overflow: hidden;
+
+        & figure, & img {
+            max-width: 100%;
+        }
+    }
+
+    &-chat {
+        width: calc(100% - 100px);
+        padding: 0;
+        padding-bottom: 15px;
+        // border: 1px solid #ccc;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: -60px;
+            top: 80px;
+            width: 1px;
+            height: calc(100% - 80px);
+            background: #ccc;
+        }
+
+        &__top {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 24px;
+            border-radius: 5px 5px 0 0;
+            border: 1px solid #ccc;
+        }
+
+        &__text {
+            border-radius: 0 0 5px 5px;
+            padding: 14px 24px;
+            border: 1px solid #ccc;
+            border-top: none;
+
+            & p {
+                font-size: 15px;
+                font-weight: normal;
+            }
+
+            & a {
+                overflow-wrap: break-word;
+                text-decoration: none;
+                color: #5ba4d7;
+                transition: 0.3s;
+                font-weight: 500;
+
+                &:hover {
+                    text-decoration: underline;
+                    color: darken(#5ba4d7, 30%)
+                }
+            }
+        }
+    }
+
+    &-data {
+        font-weight: normal;
+        font-size: 18px;
+        opacity: 0.7;
+    }
+
+    &-name {
+        font-size: 20px;
+
+        & small {
+            font-weight: normal;
+            font-size: 0.8em;
+            opacity: 0.7;
+            padding-left: 10px;
+        }
+    }
+
+    &-answer {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 100px);
+
+        & textarea {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            font-size: 16px;
+            resize: none;
+            height: 150px;
+        }
+    }
+
+    &-file {
+        height: 40px;
+        max-width: min-content;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-left: auto;
+        margin-top: 15px;
+
+        & input {
+            display: none;
+        }
+
+        & .file-img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            margin-left: 10px;
+
+            &-remove {
+                margin-left: 10px;
+                display: none;
+                cursor: pointer;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                transition: 0.3s;
+
+                &:hover {
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                }
+            }
+        }
+    }
+
+    &-btn {
+        margin-left: auto;
+        position: static;
+        left: 0;
+        margin-top: 20px;
+    }
+
+    &-fileName {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+}
+
+
+@media (max-width: 786px) {
+    .ticket-body .mail__time-sent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        & p {
+            margin-left: 0;
+        }
+    }
+    .ticket-avatar {
+        display: none;
+    }
+    .ticket-chat, .ticket-answer {
+        width: 100%;
+    }
+    .ticket-chat__top {
+        flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 546px) {
+    .ticket-chat__top, .ticket-chat__text {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
