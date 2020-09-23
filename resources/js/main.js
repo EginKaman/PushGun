@@ -288,12 +288,6 @@ $(document).ready(function () {
             }
         });
 
-        $('article.step-1 button').on('click', function () {
-            $('article.step-1').hide();
-            $('article.step-2').show();
-            $('html, body').animate({scrollTop: 80}, 500);
-        });
-
         $('.file-img-remove').click(function (e) {
             e.preventDefault();
             $('#ticketFile').val('');

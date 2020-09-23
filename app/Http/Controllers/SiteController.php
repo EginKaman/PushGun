@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SiteStore;
 use App\Site;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SiteController extends Controller
 {
@@ -24,7 +28,9 @@ class SiteController extends Controller
      */
     public function create()
     {
-        //
+        return view('sites.create', [
+
+        ]);
     }
 
     /**
@@ -33,18 +39,15 @@ class SiteController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SiteStore $request)
     {
         $site = new Site();
-        $site->link = $request->input('link');
-        $site->subscription = $request->input('requestOn');
-        $site->visit = $request->input('visit');
-        $site->delay = $request->input('delay');
-        $site->mobile = $request->boolean('hideMobile', 0);
-        $site->hint = $request->boolean('hint', 0);
+        $site->fill($request->all());
         $site->script = hash('sha256', $site->link) . '.js';
-        $site->img = $request->file('siteAvatar')->store('public/sites');
-        $site->user_id = Auth::user()->id;
+        if ($request->hasFile('image')) {
+            $site->image = $request->file('image')->store('public/sites');
+        }
+        $site->user()->associate(Auth::user());
         $site->save();
         $this->createScript($site);
         return redirect()->route('complete.index', $site);
@@ -93,5 +96,26 @@ class SiteController extends Controller
     public function destroy(Site $site)
     {
         //
+    }
+
+
+    protected function createScript(Site $site)
+    {
+        $script = file_get_contents(resource_path('/js/push.min.js'));
+        $script = Str::replaceFirst('APP_URL', config('app.url'), $script);
+        $script = Str::replaceFirst('SUBSCRIBE_URL', route('subscribe.update', $site), $script);
+        $script = Str::replaceFirst('APP_KEY', config('webpush.vapid.public_key'), $script);
+        Storage::disk('local')
+            ->put('/public/push/' . $site->script, $script);
+    }
+
+    protected static function getScript(Site $site)
+    {
+        return '/storage/push' . $site->script;
+    }
+
+    protected static function getLink(Site $site)
+    {
+        return $site->link;
     }
 }

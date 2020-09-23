@@ -26,7 +26,17 @@
 
 
                     <div class="setgen__info">
-                        <form action="{{ route('account.update') }}" method="post" class="set-form">
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('account.update') }}" method="post" class="set-form"
+                              enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <label for="email" class="set-form__label email">

@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::put('/password', 'PasswordController@update')->name('password.update');
     Route::resource('site', 'SiteController');
+    Route::get('site/{site}/complete', 'CompleteController@index')->name('complete.index');
+    Route::post('site/{site}/complete', 'CompleteController@store')->name('complete.store');
+    Route::get('site/{site}/download', 'DownloadController@index')->name('download.index');
     Route::resource('push', 'PushController');
     Route::resource('ticket', 'TicketController');
 
