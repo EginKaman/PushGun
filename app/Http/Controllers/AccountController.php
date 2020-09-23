@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccountUpdate;
 use App\Site;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Request;
@@ -45,10 +46,13 @@ class AccountController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(AccountUpdate $request)
     {
         $user = Auth::user();
         $user->fill($request->all());
+        if ($request->hasFile('photo')) {
+            $user->photo = $request->photo->store('public/photos');
+        }
         $user->save();
         return redirect()->route('account.index');
     }
