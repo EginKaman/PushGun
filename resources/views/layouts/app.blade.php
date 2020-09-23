@@ -81,9 +81,9 @@
             <div class="account__popup">
                 <div class="account__inner">
                     <div class="account__top">
-                        <p class="account__top_name">Максим</p>
-                        <p class="account__top_email">test@mail.ru</p>
-                        <p class="account__top_id">ID <span>123456</span></p>
+                        <p class="account__top_name">{{ Auth::user()->name }}</p>
+                        <p class="account__top_email">{{ Auth::user()->email }}</p>
+                        <p class="account__top_id">ID <span>{{ Auth::id() }}</span></p>
                     </div>
                     <div class="account__bottom">
                         <h3 class="account__bottom_subscribtion">Бесплатный тариф</h3>
@@ -97,10 +97,14 @@
                                 <a href="#" class="account__bottom_link">Платежи</a>
                             </div>
                             <div class="account__link_wrapper icon icon-settings">
-                                <a href="account.html" class="account__bottom_link">Настройки аккаунта</a>
+                                <a href="{{ route('account.edit') }}" class="account__bottom_link">
+                                    Настройки аккаунта
+                                </a>
                             </div>
                             <div class="account__link_wrapper icon icon-support">
-                                <a href="support.html" class="account__bottom_link">Тех. поддержка</a>
+                                <a href="{{ route('ticket.index') }}" class="account__bottom_link">
+                                    Тех. поддержка
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -115,15 +119,15 @@
             <div class="header__popup">
                 <div class="header__popup_inner">
                     <div class="nav__item_wrap">
-                        <a href="#">Главная</a>
+                        <a href="{{ route('account.index') }}">Главная</a>
                         <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
-                        <a href="#">Мои рассылки</a>
+                        <a href="{{ route('push.index') }}">Мои рассылки</a>
                         <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
-                        <a href="#">Мои сайты</a>
+                        <a href="{{ route('site.index') }}">Мои сайты</a>
                         <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
@@ -148,7 +152,7 @@
     </div>
     <footer class="footer">
         <a href="">База знаний</a>
-        <a href="support.html">Тех. поддержка</a>
+        <a href="{{ route('ticket.index') }}">Тех. поддержка</a>
         <a href="privacy.html">Политика конфиденциальности</a>
     </footer>
 </div>

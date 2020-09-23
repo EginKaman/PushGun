@@ -25,7 +25,7 @@ class AccountController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user->load('sites')->loadMorphCount('sites' , ['pushSubscriptions']);
+        $user->load('sites')->loadMorphCount('sites', ['pushSubscriptions']);
         return view('account.index', [
             'user' => $user,
             'sites' => $user->sites,
@@ -34,7 +34,9 @@ class AccountController extends Controller
 
     public function edit()
     {
-        return view('account.edit');
+        return view('account.edit', [
+            'user' => Auth::user()
+        ]);
     }
 
     public function update(Request $request)

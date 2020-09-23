@@ -24,12 +24,12 @@ Route::get('manifest.json', function () {
     ];
 });
 Auth::routes();
-Route::group(['middlewares' => 'auth'], function () {
-    Route::resource('account', 'AccountController')->except([
-        'create',
-        'store',
-        'destroy'
-    ]);
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('account')->group(function () {
+        Route::get('/', 'AccountController@index')->name('account.index');
+        Route::get('edit', 'AccountController@edit')->name('account.edit');
+        Route::put('/', 'AccountController@update')->name('account.update');
+    });
     Route::resource('site', 'SiteController');
     Route::resource('push', 'PushController');
     Route::resource('ticket', 'TicketController');
