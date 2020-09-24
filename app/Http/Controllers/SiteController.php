@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiteStore;
+use App\Http\Requests\SiteUpdate;
 use App\Http\Resources\SitesResource;
 use App\Site;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -72,11 +72,13 @@ class SiteController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Site $site
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function edit(Site $site): ?\Illuminate\Http\Response
+    public function edit(Site $site)
     {
-        //
+        return view('sites.edit', [
+            'site' => $site
+        ]);
     }
 
     /**
@@ -86,9 +88,16 @@ class SiteController extends Controller
      * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Site $site): ?\Illuminate\Http\Response
+    public function update(SiteUpdate $request, Site $site)
     {
-        //
+        $site->fill($request->all());
+        if ($request->hasFile('image')) {
+            Storage::delete($site->image);
+            $site->image = $request->file('image')->store('public/sites');
+        }
+        $site->user()->associate(Auth::user());
+        $site->save();
+        return redirect()->route('site.show', $site);
     }
 
     /**
