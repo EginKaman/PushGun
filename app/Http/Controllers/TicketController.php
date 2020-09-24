@@ -16,8 +16,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return view('ticket.index', [
-            'departments' => Department::all()
+        return view('tickets.index', [
+            'departments' => Department::all(),
+            'tickets' => Auth::user()->tickets
         ]);
     }
 
@@ -56,8 +57,8 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        return view('ticket.show', [
-            'ticket' => $ticket
+        return view('tickets.show', [
+            'ticket' => $ticket->load('messages', 'messages.user')
         ]);
     }
 

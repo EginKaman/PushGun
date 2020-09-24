@@ -99,4 +99,9 @@ class User extends Authenticatable
                 now()->endOfDay()
             ]);
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

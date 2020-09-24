@@ -7,14 +7,6 @@
                 <div class="general__title">
                     <h1 class="title">@lang('Техническая поддержка')</h1>
                 </div>
-
-                <button class="online-chat">
-                    <div class="icon">
-                        <img src="{{ asset('img/chat.svg') }}" alt="">
-                    </div>
-                    <span>@lang('Онлайн чат')</span>
-                </button>
-
                 <div class="mail__time-sent">
                     <p>@lang('Если вы сообщаете о проблеме, опишите её настолько подробно, насколько это возможно - это поможет её решить как можно быстрее.')</p>
                 </div>
@@ -41,7 +33,8 @@
                     </label>
                     <label for="message" class="sup-label">
                         <span class="">@lang('Сообщение')</span>
-                        <textarea id="message" name="message" class="sup-input sup-textarea">{{ old('message') }}</textarea>
+                        <textarea id="message" name="message"
+                                  class="sup-input sup-textarea">{{ old('message') }}</textarea>
                         <label for="file" class="sup-label sup-label-file">
                             <img src="{{ asset('img/file.svg') }}" alt="">
                             <input type="file" id="file" class="sup-input">
@@ -74,24 +67,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <a href="{{ route('ticket.show', 1) }}">
-                                    @lang('Добрый вечер! Запускали рассылки с разницей примерно в 3 недели...')
-                                </a>
-                            </td>
-                            <td>28 января 2019 г.<br>22:19</td>
-                            <td class="ticket-true">@lang('Есть ответ')</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="{{ route('ticket.show', 1) }}">
-                                    @lang('Добрый вечер! Запускали рассылки с разницей примерно в 3 недели...')
-                                </a>
-                            </td>
-                            <td>28 января 2019 г.<br>22:19</td>
-                            <td class="ticket-old">@lang('Закрыт')</td>
-                        </tr>
+                        @foreach($tickets as $ticket)
+                            <tr>
+                                <td>
+                                    <a href="{{ route('ticket.show', 1) }}">
+                                        {{ $ticket->message }}
+                                    </a>
+                                </td>
+                                <td>{{ $ticket->created_at }}</td>
+                                <td class="ticket-true">@lang('Есть ответ')</td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

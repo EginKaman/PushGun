@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('site/{site}/download', 'DownloadController@index')->name('download.index');
     Route::resource('push', 'PushController');
     Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
-    Route::post('ticket/{ticket}/message', 'MessageController@store');
+    Route::post('ticket/{ticket}/message', 'MessageController@store')->name('message.store');
     Route::get('/tariff', 'TariffController@index')->name('tariff.index');
     Route::post('/tariff/{tariff:slug}', 'TariffController@update')->name('tariff.update');
 
