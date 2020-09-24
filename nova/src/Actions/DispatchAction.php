@@ -28,7 +28,7 @@ class DispatchAction
         Collection $models,
         ActionFields $fields
     ) {
-        if (! $action->isStandalone() && $models->isEmpty()) {
+        if ($models->isEmpty()) {
             return;
         }
 

@@ -17,7 +17,7 @@
         type="button"
         @click="toggleCustomizeClick"
       >
-        {{ __('Customize') }}
+        Customize
       </button>
     </template>
   </default-field>
@@ -75,7 +75,7 @@ export default {
     },
 
     extraAttributes() {
-      return this.field.extraAttributes || {}
+      return this.field.extraAttributes
     },
   },
 }

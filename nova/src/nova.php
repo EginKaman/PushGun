@@ -63,7 +63,8 @@ class Nova
      */
     public static $createUserCommandCallback;
 
-    /* The callable that resolves the user's timezone.
+    /**
+     * The callable that resolves the user's timezone.
      *
      * @var callable
      */
@@ -147,20 +148,13 @@ class Nova
     public static $sortCallback;
 
     /**
-     * The debounce amount to use when using global search.
-     *
-     * @var float
-     */
-    public static $debounce = 0.5;
-
-    /**
      * Get the current Nova version.
      *
      * @return string
      */
     public static function version()
     {
-        return '3.10.0';
+        return '3.9.1';
     }
 
     /**
@@ -227,9 +221,6 @@ class Nova
                 'preventFormAbandonment' => $resource::preventFormAbandonment($request),
                 'tableStyle' => $resource::tableStyle(),
                 'showColumnBorders' => $resource::showColumnBorders(),
-                'polling' => $resource::$polling,
-                'pollingInterval' => $resource::$pollingInterval * 1000,
-                'debounce' => $resource::$debounce * 1000,
             ], $resource::additionalInformation($request));
         })->values()->all();
     }
@@ -890,7 +881,6 @@ class Nova
     {
         if (empty(static::$jsonVariables)) {
             static::$jsonVariables = [
-                'debounce' => static::$debounce * 1000,
                 'base' => static::path(),
                 'userId' => Auth::id() ?? null,
             ];
@@ -1016,17 +1006,5 @@ class Nova
         return static::$sortCallback ?? function ($resource) {
             return $resource::label();
         };
-    }
-
-    /**
-     * Return the debounce amount to use when using global search.
-     *
-     * @var int
-     */
-    public static function globalSearchDebounce($debounce)
-    {
-        static::$debounce = $debounce;
-
-        return new static;
     }
 }

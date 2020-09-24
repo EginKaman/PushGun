@@ -133,9 +133,9 @@
         <div class="flex items-center ml-auto px-3">
           <!-- Action Selector -->
           <action-selector
-            v-if="selectedResources.length > 0 || haveStandaloneActions"
+            v-if="selectedResources.length > 0"
             :resource-name="resourceName"
-            :actions="availableActions"
+            :actions="actions"
             :pivot-actions="pivotActions"
             :pivot-name="pivotName"
             :query-string="{
@@ -372,8 +372,7 @@ export default {
   },
 
   data: () => ({
-    debouncer: null,
-    pollingListener: null,
+    actionEventsRefresher: null,
     initialLoading: true,
     loading: true,
 
@@ -406,11 +405,6 @@ export default {
    * Mount the component and retrieve its initial data.
    */
   async created() {
-    this.debouncer = _.debounce(
-      callback => callback(),
-      this.resourceInformation.debounce
-    )
-
     if (Nova.missingResource(this.resourceName))
       return this.$router.push({ name: '404' })
 
@@ -454,16 +448,17 @@ export default {
       }
     )
 
-    Nova.$on('refresh-resources', () => {
-      this.getResources()
-    })
+    // Refresh the action events
+    if (this.resourceName === 'action-events') {
+      Nova.$on('refresh-action-events', () => {
+        this.getResources()
+      })
 
-    if (this.resourceInformation.polling) {
-      this.pollingListener = setInterval(() => {
+      this.actionEventsRefresher = setInterval(() => {
         if (document.hasFocus()) {
           this.getResources()
         }
-      }, this.resourceInformation.pollingInterval)
+      }, 15 * 1000)
     }
   },
 
@@ -476,8 +471,8 @@ export default {
    * Unbind the keydown even listener when the component is destroyed
    */
   destroyed() {
-    if (this.pollingListener) {
-      clearInterval(this.pollingListener)
+    if (this.actionEventsRefresher) {
+      clearInterval(this.actionEventsRefresher)
     }
 
     document.removeEventListener('keydown', this.handleKeydown)
@@ -634,7 +629,6 @@ export default {
     getActions() {
       this.actions = []
       this.pivotActions = null
-
       return Nova.request()
         .get(`/nova-api/${this.resourceName}/actions`, {
           params: {
@@ -664,6 +658,8 @@ export default {
         }
       })
     },
+
+    debouncer: _.debounce(callback => callback(), 500),
 
     /**
      * Clear the selected resouces and the "select all" states.
@@ -802,24 +798,6 @@ export default {
       return this.$store.getters[`${this.resourceName}/hasFilters`]
     },
 
-    haveStandaloneActions() {
-      return this.standaloneActions.length > 0
-    },
-
-    nonStandaloneActions() {
-      return _.filter(this.allActions, a => a.standalone == false)
-    },
-
-    standaloneActions() {
-      return _.filter(this.allActions, a => a.standalone == true)
-    },
-
-    availableActions() {
-      return this.selectedResources.length > 0
-        ? this.nonStandaloneActions
-        : this.standaloneActions
-    },
-
     /**
      * Determine if the resource should show any cards
      */
@@ -842,9 +820,7 @@ export default {
      * Get the name of the search query string variable.
      */
     searchParameter() {
-      return this.viaRelationship
-        ? this.viaRelationship + '_search'
-        : this.resourceName + '_search'
+      return this.viaRelationship + '_search'
     },
 
     /**

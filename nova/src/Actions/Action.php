@@ -134,13 +134,6 @@ class Action implements JsonSerializable
     public $confirmText = 'Are you sure you want to run this action?';
 
     /**
-     * Indicates if the action can be run without any models.
-     *
-     * @var bool
-     */
-    public $standalone = false;
-
-    /**
      * Determine if the action is executable for the given request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -254,29 +247,19 @@ class Action implements JsonSerializable
 
         $fields = $request->resolveFields();
 
-        if ($this->standalone) {
-            $wasExecuted = true;
+        $results = $request->chunks(
+            static::$chunkCount, function ($models) use ($fields, $request, $method, &$wasExecuted) {
+                $models = $models->filterForExecution($request);
 
-            $results = [
-                DispatchAction::forModels(
-                    $request, $this, $method, $results = collect([]), $fields
-                ),
-            ];
-        } else {
-            $results = $request->chunks(
-                static::$chunkCount, function ($models) use ($fields, $request, $method, &$wasExecuted) {
-                    $models = $models->filterForExecution($request);
-
-                    if (count($models) > 0) {
-                        $wasExecuted = true;
-                    }
-
-                    return DispatchAction::forModels(
-                        $request, $this, $method, $models, $fields
-                    );
+                if (count($models) > 0) {
+                    $wasExecuted = true;
                 }
+
+                return DispatchAction::forModels(
+                $request, $this, $method, $models, $fields
             );
-        }
+            }
+        );
 
         if (! $wasExecuted) {
             return static::danger(__('Sorry! You are not authorized to perform this action.'));
@@ -647,28 +630,6 @@ class Action implements JsonSerializable
     }
 
     /**
-     * Mark the action as a standalone action.
-     *
-     * @return $this
-     */
-    public function standalone()
-    {
-        $this->standalone = true;
-
-        return $this;
-    }
-
-    /**
-     * Determine if the action is a standalone action.
-     *
-     * @return bool
-     */
-    public function isStandalone()
-    {
-        return $this->standalone;
-    }
-
-    /**
      * Prepare the action for JSON serialization.
      *
      * @return array
@@ -691,7 +652,6 @@ class Action implements JsonSerializable
             'showOnDetail' => $this->shownOnDetail(),
             'showOnIndex' => $this->shownOnIndex(),
             'showOnTableRow' => $this->shownOnTableRow(),
-            'standalone' => $this->isStandalone(),
             'withoutConfirmation' => $this->withoutConfirmation,
         ], $this->meta());
     }

@@ -30,13 +30,6 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
         ResolvesCards;
 
     /**
-     * The default displayable pivot class name.
-     *
-     * @var string
-     */
-    const DEFAULT_PIVOT_NAME = 'Pivot';
-
-    /**
      * The visual style used for the table. Available options are 'tight' and 'default'.
      *
      * @var string
@@ -107,11 +100,6 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     public static $globalSearchResults = 5;
 
     /**
-     * The number of results to display when searching the resource using Scout.
-     */
-    public static $scoutSearchResults = 200;
-
-    /**
      * Where should the global search link to?
      *
      * @var string
@@ -161,25 +149,11 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     public static $maxPrimaryKeySize = PHP_INT_MAX;
 
     /**
-     * Indicates whether the resource should automatically poll for new resources.
+     * The default displayable pivot class name.
      *
-     * @var bool
+     * @var string
      */
-    public static $polling = false;
-
-    /**
-     * The interval at which Nova should poll for new resources.
-     *
-     * @var int
-     */
-    public static $pollingInterval = 15;
-
-    /**
-     * The debounce amount to use when searching this resource.
-     *
-     * @var float
-     */
-    public static $debounce = 0.5;
+    const DEFAULT_PIVOT_NAME = 'Pivot';
 
     /**
      * Create a new resource instance.
