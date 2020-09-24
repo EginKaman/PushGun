@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiteStore;
+use App\Http\Resources\SitesResource;
 use App\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,32 +15,33 @@ class SiteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return SitesResource
      */
-    public function index()
+    public function index(): SitesResource
     {
-        //
+        $user = Auth::user();
+        $sites = $user->sites;
+        $sites->loadCount('pushSubscriptions');
+        return new SitesResource($sites);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
-        return view('sites.create', [
-
-        ]);
+        return view('sites.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(SiteStore $request)
+    public function store(SiteStore $request): \Illuminate\Http\RedirectResponse
     {
         $site = new Site();
         $site->fill($request->all());
@@ -57,11 +59,13 @@ class SiteController extends Controller
      * Display the specified resource.
      *
      * @param \App\Site $site
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show(Site $site)
     {
-        //
+        return view('sites.show', [
+            'site' => $site->loadCount('pushSubscriptions', 'pushes')
+        ]);
     }
 
     /**
@@ -70,7 +74,7 @@ class SiteController extends Controller
      * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
-    public function edit(Site $site)
+    public function edit(Site $site): ?\Illuminate\Http\Response
     {
         //
     }
@@ -82,7 +86,7 @@ class SiteController extends Controller
      * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Site $site)
+    public function update(Request $request, Site $site): ?\Illuminate\Http\Response
     {
         //
     }
@@ -93,13 +97,16 @@ class SiteController extends Controller
      * @param \App\Site $site
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Site $site)
+    public function destroy(Site $site): ?\Illuminate\Http\Response
     {
         //
     }
 
 
-    protected function createScript(Site $site)
+    /**
+     * @param Site $site
+     */
+    protected function createScript(Site $site): void
     {
         $script = file_get_contents(resource_path('/js/push.min.js'));
         $script = Str::replaceFirst('APP_URL', config('app.url'), $script);
@@ -109,13 +116,13 @@ class SiteController extends Controller
             ->put('/public/push/' . $site->script, $script);
     }
 
-    protected static function getScript(Site $site)
+    /**
+     * @param Site $site
+     * @return string
+     */
+    protected static function getScript(Site $site): string
     {
         return '/storage/push' . $site->script;
     }
 
-    protected static function getLink(Site $site)
-    {
-        return $site->link;
-    }
 }

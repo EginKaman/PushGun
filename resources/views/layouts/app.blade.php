@@ -39,22 +39,13 @@
                     </a>
 
                     <div class="nav__wrapper">
-                        <a href="{{ route('site.index') }}" class="nav__item nav__arrow">
+                        <a href="#" class="nav__item nav__arrow">
                             <div class="nav__item_wrap">
                                 <span>Мои сайты</span>
                                 <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                             </div>
                         </a>
-                        <div class="nav__menu">
-                            <ul class="nav__menu_inner">
-                                <li class="nav__menu_item">
-                                    <a class="nav__menu_link" href="site.html">puzzle.pro</a>
-                                </li>
-                                <li class="nav__menu_item">
-                                    <a class="nav__menu_link" href="site.html">puzzle.pro</a>
-                                </li>
-                            </ul>
-                        </div>
+                       <header-sites-component></header-sites-component>
                     </div>
 
                     <a href="tarif.html" class="nav__item">
@@ -132,7 +123,7 @@
                         <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
-                        <a href="{{ route('site.index') }}">Мои сайты</a>
+                        <a href="#">Мои сайты</a>
                         <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">

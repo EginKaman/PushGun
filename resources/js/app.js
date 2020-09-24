@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('header-sites-component', require('./components/HeaderSitesComponent.vue').default);
 Vue.component('statistic-chart-component', require('./components/MainPage/StatisticChart.vue').default);
 Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').default);
 Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default)
