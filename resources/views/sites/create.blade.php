@@ -17,7 +17,7 @@
                     @csrf
                     <article class="step-1">
                         <div class="general__title">
-                            <h1 class="title">Добавить новый сайт</h1>
+                            <h1 class="title">@lang('Добавить новый сайт')</h1>
                         </div>
 
                         <div class="site_domain">
@@ -31,41 +31,41 @@
                         </div>
 
                         <div class="small__title sec">
-                            <h3 class="small-title">ОБЩИЕ НАСТРОЙКИ САЙТА</h3>
+                            <h3 class="small-title">@lang('Общие настройки сайта')</h3>
                         </div>
 
                         <div class="site_set">
                             <div class="site_set_avatar">
                                 <input type="file" name="image" id="image" required>
-                                <div class="site_set_avatar_title">Картинка сайта</div>
+                                <div class="site_set_avatar_title">@lang('Картинка сайта')</div>
                                 <label for="image" class="site_avatar_form">
                                     <img src="{{ asset('images/site.svg') }}" alt="">
                                     <div class="site_avatar_form_block">
-                                        <p class="site_avatar_form_title">Выберите изображение</p>
+                                        <p class="site_avatar_form_title">@lang('Выберите изображение')</p>
                                         <p class="site_avatar_form_desc">
-                                            Рекомендуемый размер: 128×128px <br> JPG, svg до 200KB
+                                            @lang('Рекомендуемый размер: 128×128px JPG, svg до 200KB')
                                         </p>
                                     </div>
                                 </label>
                             </div>
 
                             <div class="site_set_sub">
-                                <div class="site_set_sub_title">Запрос на подписку</div>
+                                <div class="site_set_sub_title">@lang('Запрос на подписку')</div>
                                 <div class="site_set_sub_radio">
                                     <div class="setreq__radio">
                                         <input type="radio" name="request" id="onJoin" value="visit" checked="">
-                                        <label for="onJoin" class="label-checkbox">При заходе на сайт</label>
+                                        <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>
                                         <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
                                     <div class="setreq__radio">
                                         <input type="radio" name="request" id="onClick" value="click">
-                                        <label for="onClick" class="label-checkbox">При клике на элемент</label>
+                                        <label for="onClick" class="label-checkbox">@lang('При клике на элемент')</label>
                                         <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
                                     <div class="setreq__radio">
                                         <input type="radio" name="request" id="intermediate" value="intermediate">
                                         <label for="intermediate" class="label-checkbox">
-                                            С промежуточным запросом
+                                            @lang('С промежуточным запросом')
                                         </label>
                                     </div>
                                 </div>
@@ -73,33 +73,33 @@
                                 <div class="site_set_sub_checkbox">
                                     <div class="setreq__checkbox">
                                         <input type="checkbox" class="checkbox-input" name="addTip" id="addTip">
-                                        <label class="label-checkbox" for="addTip">Добавить текст-подсказку</label>
+                                        <label class="label-checkbox" for="addTip">@lang('Добавить текст-подсказку')</label>
                                     </div>
-                                    <p class="setreq__sample">Пример подсказки</p>
+                                    <p class="setreq__sample">@lang('Пример подсказки')</p>
                                 </div>
                             </div>
 
                             <div class="site_set_push">
-                                <div class="site_set_push_title">Условия показа запроса</div>
+                                <div class="site_set_push_title">@lang('Условия показа запроса')</div>
                                 <div class="site_set_push_labels">
                                     <div class="site_set_push_label">
-                                        <h6>Показ запроса при</h6>
+                                        <h6>@lang('Показ запроса при')</h6>
                                         <div class="site_set_push_label_input">
                                             <input type="number" value="1">
-                                            <span>визите</span>
+                                            <span>@lang('визите')</span>
                                         </div>
                                     </div>
 
                                     <div class="site_set_push_label">
-                                        <h6>Задержка появления</h6>
+                                        <h6>@lang('Задержка появления')</h6>
                                         <div class="site_set_push_label_input">
                                             <input type="number" name="delay" value="{{ old('delay', 1) }}">
-                                            <span>сек</span>
+                                            <span>@lang('сек')</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="site_set_push_info">
-                                    Хорошая практика - предлагать подписаться на web push только при повторном визите
+                                    @lang('Хорошая практика - предлагать подписаться на web push только при повторном визите')
                                 </div>
                             </div>
 
@@ -108,7 +108,7 @@
                                     <div class="setreq__checkbox">
                                         <input type="checkbox" class="checkbox-input" name="mobile" id="hideMobile">
                                         <label class="label-checkbox" for="hideMobile">
-                                            Скрывать на мобильных девайсах
+                                            @lang('Скрывать на мобильных девайсах')
                                         </label>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
                         </div>
 
                         <button type="submit" class="button_green_inner">
-                            <p class="button_text_container">Следующий шаг</p>
+                            <p class="button_text_container">@lang('Следующий шаг')</p>
                         </button>
                     </article>
                 </form>

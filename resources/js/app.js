@@ -9,7 +9,17 @@ require('./landing');
 require('./main');
 
 window.Vue = require('vue');
+import languageBundle
+    from '@kirschbaum-development/laravel-translations-loader/json!@kirschbaum-development/laravel-translations-loader';
+import VueI18n from 'vue-i18n';
 
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+    fallbackLocale: 'ru',
+    locale: document.documentElement.lang,
+    messages: languageBundle,
+})
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -34,5 +44,6 @@ import store from './store'
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    i18n
 });

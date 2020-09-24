@@ -36,7 +36,7 @@
                         <textarea id="message" name="message"
                                   class="sup-input sup-textarea">{{ old('message') }}</textarea>
                         <label for="file" class="sup-label sup-label-file">
-                            <img src="{{ asset('img/file.svg') }}" alt="">
+                            <img src="{{ asset('images/file.svg') }}" alt="">
                             <input type="file" id="file" class="sup-input">
                         </label>
                     </label>

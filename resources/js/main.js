@@ -358,4 +358,17 @@ $(document).ready(function () {
         $('.txt').html(textarea);
         $('.txt').val(textarea);
     });
+
+    // Lang-toggle
+    $('.lang-toggle').on('click', function () {
+        $(this).toggleClass('active');
+        $('.lang-toggle ul').slideToggle();
+    });
+    $('.lang-toggle li').on('click', function () {
+        let lang = $(this).attr('data-lang');
+        $('.lang-toggle span').html(lang);
+    });
+    $('.lang--toggle').on('click', function () {
+        $(this).find('ul').slideToggle();
+    });
 });

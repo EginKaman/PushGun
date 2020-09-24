@@ -118,7 +118,6 @@
 }
 
 
-
 // NAV block =============================
 .nav {
     display: flex;
@@ -288,8 +287,42 @@
 }
 
 
-
 // ACCOUNT POPUP =============================
+.lang--toggle {
+    span {
+        color: #323441;
+        font-weight: 500;
+        font-size: 14px;
+        display: inline-block;
+        width: max-content;
+        cursor: pointer;
+    }
+
+    ul {
+        display: none;
+        padding: 0;
+        margin: 0;
+        margin-left: -10px;
+
+        li {
+            list-style: none;
+            background-color: #fff;
+            padding: 2px 12px;
+            cursor: pointer;
+            font-size: 13px;
+
+            img {
+                display: inline-block;
+                object-fit: contain;
+                width: 12px;
+                height: 12px;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
 .account {
     &__link_wrapper {
         position: relative;
@@ -491,6 +524,16 @@
     }
 }
 
+.icon-language {
+    &:before {
+        background-image: url('../images/global-icon.svg');
+        background-repeat: no-repeat;
+        top: 2px;
+        width: 12px;
+        height: 12px;
+    }
+}
+
 .icon-pay {
     &:before {
         background-image: url('../images/pay.svg');
@@ -527,7 +570,6 @@
         top: 2px;
     }
 }
-
 
 
 @media screen and (max-width: 1200px) {
@@ -665,6 +707,7 @@
     .account__popup {
         width: 310px;
         right: 5px;
+
         &:before {
             right: 68px;
         }

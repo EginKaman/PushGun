@@ -223,3 +223,43 @@ button {
 .section5 {
     padding-bottom: 130px;
 }
+
+// Lang toggle
+.lang-toggle {
+    position: relative;
+    cursor: pointer;
+    img {
+        object-fit: contain;
+        width: 12px;
+        height: 16px;
+        transform: rotate(90deg);
+        margin-left: 8px;
+        transition: all .3s ease-in-out;
+    }
+    ul {
+        display: none;
+        position: absolute;
+        top: 26px;
+        left: -4px;
+        margin: 0;
+        padding: 0;
+        li {
+            list-style: none;
+            background-color: #fff;
+            padding: 8px 18px;
+            transition: all .3s ease-in-out;
+            cursor: pointer;
+            &:hover {
+                background-color: #3B8378;
+                color: #ffffff;
+                transition: all .3s ease-in-out;
+            }
+        }
+    }
+}
+.lang-toggle.active {
+    img {
+        transition: all .3s ease-in-out;
+        transform: rotate(270deg);
+    }
+}

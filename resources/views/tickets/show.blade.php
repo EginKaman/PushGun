@@ -53,7 +53,7 @@
                             </span>
                             <button type="submit" class="button_green_inner">
                                 <p class="button_text_container">
-                                    Отправить
+                                    @lang('Отправить')
                                 </p>
                             </button>
                         </div>

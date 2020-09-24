@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
 Route::post('/subscribe/{site}', 'SubscribeController@update')->name('subscribe.update');
 Route::get('manifest.json', function () {
     return [
@@ -23,25 +21,31 @@ Route::get('manifest.json', function () {
         'gcm_sender_id' => config('webpush.gcm.sender_id')
     ];
 });
-Route::get('/privacy', 'PageController@privacy')->name('page.privacy');
-Auth::routes();
-Route::middleware(['auth'])->group(function () {
-    Route::prefix('account')->group(function () {
-        Route::get('/', 'AccountController@index')->name('account.index');
-        Route::get('edit', 'AccountController@edit')->name('account.edit');
-        Route::put('/', 'AccountController@update')->name('account.update');
-    });
-    Route::put('/password', 'PasswordController@update')->name('password.update');
-    Route::resource('site', 'SiteController');
-    Route::get('site/{site}/complete', 'CompleteController@index')->name('complete.index');
-    Route::post('site/{site}/complete', 'CompleteController@store')->name('complete.store');
-    Route::get('site/{site}/download', 'DownloadController@index')->name('download.index');
-    Route::resource('push', 'PushController');
-    Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
-    Route::post('ticket/{ticket}/message', 'MessageController@store')->name('message.store');
-    Route::get('/tariff', 'TariffController@index')->name('tariff.index');
-    Route::post('/tariff/{tariff:slug}', 'TariffController@update')->name('tariff.update');
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localize', 'localizationRedirect']], function () {
+    Route::get('/', function () {
+        return view('index');
+    })->name('index');
+    Route::get('/privacy', 'PageController@privacy')->name('page.privacy');
+    Auth::routes();
+    Route::middleware(['auth'])->group(function () {
+        Route::prefix('account')->group(function () {
+            Route::get('/', 'AccountController@index')->name('account.index');
+            Route::get('edit', 'AccountController@edit')->name('account.edit');
+            Route::put('/', 'AccountController@update')->name('account.update');
+        });
+        Route::put('/password', 'PasswordController@update')->name('password.update');
+        Route::resource('site', 'SiteController');
+        Route::get('site/{site}/complete', 'CompleteController@index')->name('complete.index');
+        Route::post('site/{site}/complete', 'CompleteController@store')->name('complete.store');
+        Route::get('site/{site}/download', 'DownloadController@index')->name('download.index');
+        Route::resource('push', 'PushController');
+        Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
+        Route::post('ticket/{ticket}/message', 'MessageController@store')->name('message.store');
+        Route::get('/tariff', 'TariffController@index')->name('tariff.index');
+        Route::post('/tariff/{tariff:slug}', 'TariffController@update')->name('tariff.update');
 
-    Route::get('/statistics', 'StatisticController@index');
+        Route::get('/statistics', 'StatisticController@index');
+    });
 });
 

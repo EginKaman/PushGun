@@ -4,7 +4,7 @@
 			<h3 :style="{color: item.color}">{{item.count}}</h3>
 			<p class="current__stats_desc">
 				<span v-if="item.percent != undefined && item.percent != 0">{{ item.percent }}%</span>
-				<span>{{ item.title }}</span>	
+				<span>{{ $t(item.title) }}</span>
 			</p>
 		</div>
 	</div>
@@ -42,13 +42,13 @@
 						} else {
 							this.statisticsParam[i].count = this.statistic[i]
 								.map(item => item.count)
-								.reduce((ac, el) => ac + el)	
+								.reduce((ac, el) => ac + el)
 						}
 					}
 
 					// TODO расчет процентов для доаствленых уведомлений и количества переходов по ним
 					// нужно будет оптимизировать
-					
+
 					if (this.statisticsParam.delivered.count != 0 && this.statisticsParam.sent.count != 0)
 						this.statisticsParam.delivered.percent = this.statisticsParam.delivered.count * 100 / this.statisticsParam.sent.count
 
@@ -64,5 +64,5 @@
 </script>
 
 <style scoped lang="scss">
-	
+
 </style>

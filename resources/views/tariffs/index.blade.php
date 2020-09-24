@@ -5,34 +5,34 @@
         <div class="container">
             <section class="tariffs">
                 <div class="general__title">
-                    <h1 class="title">Тарифы</h1>
+                    <h1 class="title">@lang('Тарифы')</h1>
                 </div>
                 <div class="mail__time-sent">
-                    <p>Текущий план: {{ $tariff->name }}</p>
+                    <p>@lang('Текущий план'): @lang($tariff->name)</p>
                 </div>
 
                 <div class="tariff-wrap">
 
                     <div class="tariff tariff-fs">
                         <div class="tariff-text">
-                            <h3 class="tariff-title">Базовый</h3>
-                            <strong class="tariff-subtitle">до 1 000 подписчиков</strong>
+                            <h3 class="tariff-title">@lang('Базовый')</h3>
+                            <strong class="tariff-subtitle">@lang('до 1 000 подписчиков')</strong>
                             <ul class="tariff-offer">
-                                <li>Неограниченное количество web push сообщений</li>
-                                <li>Поддержка HTTP и HTTPS</li>
-                                <li>Рассылка RSS</li>
-                                <li>Персонализация сообщений</li>
+                                <li>@lang('Неограниченное количество web push сообщений')</li>
+                                <li>@lang('Поддержка HTTP и HTTPS')</li>
+                                <li>@lang('Рассылка RSS')</li>
+                                <li>@lang('Персонализация сообщений')</li>
                             </ul>
                         </div>
                         <div class="tariff-bottom">
-                            <span class="tariff-price">Бесплатно </span>
+                            <span class="tariff-price">@lang('Бесплатно')</span>
 
                             <div class="button_green tariff-bay">
                                 <span class="green_button_circle">
                                 </span>
                                 <button type="submit" class="button_green_inner">
                                     <p class="rb_button_text_container">
-                                        Активировать
+                                        @lang('Активировать')
                                     </p>
                                 </button>
                             </div>
@@ -44,7 +44,7 @@
                         <form action="#" class="tariff-form">
                             <div class="tarim-top">
                                 <h3 class="tariff-title">PRO</h3>
-                                <strong class="tariff-subtitle number-followers">от 30 000 подписчиков</strong>
+                                <strong class="tariff-subtitle number-followers">@lang('от 30 000 подписчиков')</strong>
                                 <div class="tariff-slider"></div>
                                 <div class="tariff-slider-val">
                                     <!-- <div class="tariff-slider__line"></div> -->
@@ -66,18 +66,19 @@
                                     </div>
                                 </div>
                                 <ul class="tariff-offer">
-                                    <li>Отсутствие ссылки «Работает с помощью Push.Gun» в окне запроса подписки</li>
-                                    <li>Приоритетная поддержка</li>
+                                    <li>@lang('Отсутствие ссылки «Работает с помощью Push.Gun» в окне запроса подписки')</li>
+                                    <li>@lang('Приоритетная поддержка')</li>
                                 </ul>
                                 <label for="sale" class="tariff-check">
                                     <input type="checkbox" name="sale" id="sale">
                                     <span class="check"></span>
-                                    <span class="tariff-check__text">Подписка на год - 20%</span>
+                                    <span class="tariff-check__text">@lang('Подписка на год') - 20%</span>
                                 </label>
                             </div>
 
                             <div class="tariff-bottom">
-                                <span class="tariff-price"><span id="tariff-price"> 3900</span> руб./мес. </span>
+                                <span class="tariff-price"><span
+                                        id="tariff-price"> 3900</span> @lang('руб./мес.') </span>
                                 <input type="hidden" name="" class="followsCount" value="30к">
 
                                 <div class="button_rb tariff-bay">
@@ -85,7 +86,7 @@
                                     </span>
                                     <button type="submit" class="button_rb_inner">
                                         <p class="rb_button_text_container">
-                                            Купить
+                                            @lang('Купить')
                                         </p>
                                     </button>
                                 </div>
@@ -99,22 +100,22 @@
 
 
                 <div class="general__title sec">
-                    <h2 class="title">Мои подписки</h2>
+                    <h2 class="title">@lang('Мои подписки')</h2>
                 </div>
 
 
                 <div class="follows-wrap">
                     <div class="follows-row">
                         <div class="follows-left">
-                            <span class="follows-text">Ваш текущий баланс:</span>
+                            <span class="follows-text">@lang('Ваш текущий баланс'):</span>
                         </div>
                         <div class="follows-right">
-                            <span class="follows-text">{{ $user->balance }} руб</span>
+                            <span class="follows-text">{{ $user->balance }} @lang('руб')</span>
                         </div>
                     </div>
                     <div class="follows-row">
                         <div class="follows-left">
-                            <span class="follows-text">Ближайшая следующая оплата:</span>
+                            <span class="follows-text">@lang('Ближайшая следующая оплата'):</span>
                         </div>
                         <div class="follows-right">
                             <span class="follows-text">29 ноября 2020 г. 09:20</span>
@@ -122,7 +123,7 @@
                     </div>
                     <div class="follows-row">
                         <div class="follows-left">
-                            <span class="follows-text">Последнее снятие баланса:</span>
+                            <span class="follows-text">@lang('Последнее снятие баланса'):</span>
                         </div>
                         <div class="follows-right">
                             <span class="follows-text">29 ноября 2020 г. 16:20</span>
@@ -135,25 +136,25 @@
                     <div class="follows-top">
                         <div class="follows-title">
                             <span class="follows-title__hero">
-                                Тарифный план: <b>{{ $tariff->name }}</b>
+                                @lang('Тарифный план'): <b>@lang($tariff->name)</b>
                             </span>
                             <span class="follows-title__subtitle">
-                                Количество подписчиков: {{ $tariff->max_followers }}
+                                @lang('Количество подписчиков'): {{ $tariff->max_followers }}
                             </span>
                         </div>
-                        <a href="" class="follows-change__tariff">Выбрать другой тарифный план</a>
+                        <a href="" class="follows-change__tariff">@lang('Выбрать другой тарифный план')</a>
                     </div>
                     <div class="follows-row bb-1">
                         <div class="follows-left">
-                            <span class="follows-text">Статус:</span>
+                            <span class="follows-text">@lang('Статус'):</span>
                         </div>
                         <div class="follows-right">
-                            <span class="follows-text green">Активен</span>
+                            <span class="follows-text green">@lang('Активен')</span>
                         </div>
                     </div>
                     <div class="follows-row bb-1">
                         <div class="follows-left">
-                            <span class="follows-text">Активен до:</span>
+                            <span class="follows-text">@lang('Активен до'):</span>
                         </div>
                         <div class="follows-right">
                             <span class="follows-text">29 ноября 2020 г. 09:20</span>
@@ -161,7 +162,7 @@
                     </div>
                     <div class="follows-row bb-1">
                         <div class="follows-left">
-                            <span class="follows-text">Пакет активирован:</span>
+                            <span class="follows-text">@lang('Пакет активирован'):</span>
                         </div>
                         <div class="follows-right">
                             <span class="follows-text">29 апреля 2020 г. 16:20</span>
@@ -169,10 +170,10 @@
                     </div>
                     <div class="follows-row bb-1">
                         <div class="follows-left">
-                            <span class="follows-text">Размер платежа:</span>
+                            <span class="follows-text">@lang('Размер платежа'):</span>
                         </div>
                         <div class="follows-right">
-                            <span class="follows-text">{{ $tariff->price }} руб</span>
+                            <span class="follows-text">{{ $tariff->price }} @lang('руб')</span>
                         </div>
                     </div>
                 </div>

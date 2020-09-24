@@ -32,26 +32,41 @@
                     </picture>
                 </a>
                 <ul class="header-landing__wrapper__menu">
-                    <li><a href="#">О нас</a></li>
-                    <li><a href="#">Цена</a></li>
+                    <li><a href="#">@lang('О нас')</a></li>
+                    <li><a href="#">@lang('Цена')</a></li>
                     <li><a href="#">FAQ</a></li>
                 </ul>
+                <div class="lang-toggle">
+                    <span class="lang-current">{{ LaravelLocalization::getCurrentLocaleNative() }}</span>
+                    <img src="{{ asset('images/next.svg') }}" alt="arrow-down">
+                    <ul>
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li>
+                                <a rel="alternate" hreflang="{{ $localeCode }}"
+                                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ $properties['native'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
                 <div class="header-landing__wrapper__links">
-                    <a href="#enter" rel="modal:open" class="header-landing__wrapper__links_enter">Войти</a>
-                    <a href="#register" rel="modal:open" class="header-landing__wrapper__links_reg">Регистрация</a>
+                    <a href="#enter" rel="modal:open" class="header-landing__wrapper__links_enter">@lang('Войти')</a>
+                    <a href="#register" rel="modal:open"
+                       class="header-landing__wrapper__links_reg">@lang('Регистрация')</a>
                 </div>
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox"/>
                     <label class="menu__btn" for="menu__toggle"><span></span></label>
                     <ul class="menu__box">
-                        <li><a class="menu__item" href="#">О нас</a></li>
-                        <li><a class="menu__item" href="#">Цена</a></li>
-                        <li><a class="menu__item" href="#">FAQ</a></li>
+                        <li><a class="menu__item" href="#">@lang('О нас')</a></li>
+                        <li><a class="menu__item" href="#">@lang('Цена')</a></li>
+                        <li><a class="menu__item" href="#">@lang('FAQ')</a></li>
                         <li>
                             <hr>
                         </li>
-                        <li><a class="menu__item" href="#enter" rel="modal:open">Войти</a></li>
-                        <li><a class="menu__item" href="#register" rel="modal:open">Регистрация</a></li>
+                        <li><a class="menu__item" href="#enter" rel="modal:open">@lang('Войти')</a></li>
+                        <li><a class="menu__item" href="#register" rel="modal:open">@lang('Регистрация')</a></li>
                     </ul>
                 </div>
             </div>
@@ -62,12 +77,12 @@
             <div class="section1__content">
                 <div class="section1__content__slider">
                     <div>
-                        <h1>PushGun — пушечный сервис уведомлений</h1>
-                        <p>Общайся с клиентами прямо со своего браузера с помощью push-уведомлений</p>
+                        <h1>@lang('PushGun — пушечный сервис уведомлений')</h1>
+                        <p>@lang('Общайся с клиентами прямо со своего браузера с помощью push-уведомлений')</p>
                     </div>
                     <div>
-                        <h1>PushGun — пушечный сервис уведомлений</h1>
-                        <p>Общайся с клиентами прямо со своего браузера с помощью push-уведомлений</p>
+                        <h1>@lang('PushGun — пушечный сервис уведомлений')</h1>
+                        <p>@lang('Общайся с клиентами прямо со своего браузера с помощью push-уведомлений')</p>
                     </div>
                 </div>
                 <div class="hero-img--wrap">
@@ -107,10 +122,11 @@
     </section>
     <section class="section2" id="section2">
         <div class="container">
-            <h2 class="section2__title">Возможности и преимущества</h2>
-            <p class="section2__descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor
-                incididunt ut labore et dolore magna aliqua</p>
+            <h2 class="section2__title">@lang('Возможности и преимущества')</h2>
+            <p class="section2__descr">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua
+            </p>
             <div class="section2__itemsWrapper">
                 <div class="section2__itemsWrapper__item">
                     <svg width="85" height="71" viewBox="0 0 85 71" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +162,7 @@
                             </linearGradient>
                         </defs>
                     </svg>
-                    <h3 class="section2__itemsWrapper__item__title">Предложение подписки</h3>
+                    <h3 class="section2__itemsWrapper__item__title">@lang('Предложение подписки')</h3>
                 </div>
                 <div class="section2__itemsWrapper__item">
                     <svg width="85" height="69" viewBox="0 0 85 69" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -191,9 +207,7 @@
                             </linearGradient>
                         </defs>
                     </svg>
-
-
-                    <h3 class="section2__itemsWrapper__item__title">Уведомление о скидках и распродажах</h3>
+                    <h3 class="section2__itemsWrapper__item__title">@lang('Уведомление о скидках и распродажах')</h3>
                 </div>
                 <div class="section2__itemsWrapper__item">
                     <svg width="85" height="75" viewBox="0 0 85 75" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -241,8 +255,7 @@
                             </linearGradient>
                         </defs>
                     </svg>
-
-                    <h3 class="section2__itemsWrapper__item__title">Напоминания о брошенной корзине</h3>
+                    <h3 class="section2__itemsWrapper__item__title">@lang('Напоминания о брошенной корзине')</h3>
                 </div>
                 <div class="section2__itemsWrapper__item">
                     <svg width="73" height="85" viewBox="0 0 73 85" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -290,23 +303,23 @@
                             </linearGradient>
                         </defs>
                     </svg>
-
-
-                    <h3 class="section2__itemsWrapper__item__title">Продуктовый маркетинг</h3>
+                    <h3 class="section2__itemsWrapper__item__title">@lang('Продуктовый маркетинг')</h3>
                 </div>
             </div>
         </div>
     </section>
     <section class="section3">
         <div class="container">
-            <h2 class="section3__title">Зарегистрируйтесь прямо сейчас</h2>
-            <h3 class="section3__descr">Push'ки могут уже лететь. <span>Тестовый пакет до 1000 подписчиков
-                    бесплатно.</span></h3>
+            <h2 class="section3__title">@lang('Зарегистрируйтесь прямо сейчас')</h2>
+            <h3 class="section3__descr">
+                @lang('Push\'ки могут уже лететь.')
+                <span>@lang('Тестовый пакет до 1000 подписчиков бесплатно.')</span>
+            </h3>
             <div class="section3__form">
                 <form action="#" method="post">
-                    <input type="email" name="email" placeholder="Введите e-mail">
+                    <input type="email" name="email" placeholder="@lang('Введите e-mail')">
                     <button
-                        type="submit">Попробовать
+                        type="submit">@lang('Попробовать')
                     </button>
                 </form>
             </div>
@@ -315,15 +328,15 @@
     <section class="section4">
         <div class="container">
             <div class="section4__wrapper">
-                <h2 class="section4__wrapper__title">С нами уже:</h2>
+                <h2 class="section4__wrapper__title">@lang('С нами уже'):</h2>
                 <p class="section4__wrapper__count">892</p>
-                <h2 class="section4__wrapper__title">клиента</h2>
+                <h2 class="section4__wrapper__title">@lang('клиента')</h2>
             </div>
         </div>
     </section>
     <section class="section5">
         <div class="container">
-            <h2 class="section5__title">Наши партнеры</h2>
+            <h2 class="section5__title">@lang('Наши партнеры')</h2>
             <div class="section5__wrapper">
                 <div
                     class="first section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_br section5__wrapper__item_mbr section5__wrapper__item_mbb">
@@ -370,40 +383,40 @@
     <section class="section6">
         <div class="container">
             <h2 class="section6__title">FAQ</h2>
-            <p class="section6__descr">Ответы на часто задаваемые вопросы</p>
+            <p class="section6__descr">@lang('Ответы на часто задаваемые вопросы')</p>
             <div class="faq">
                 <div class="faq__item">
-                    Что такое push уведомления?
-                    <p>Далеко-далеко, за словесными горами в стране гласных и согласных живут.</p>
+                    @lang('Что такое push уведомления?')
+                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
                 </div>
                 <div class="faq__item">
-                    Что такое push уведомления?
-                    <p>Далеко-далеко, за словесными горами в стране гласных и согласных живут.</p>
+                    @lang('Что такое push уведомления?')
+                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
                 </div>
                 <div class="faq__item">
-                    Что такое push уведомления?
-                    <p>Далеко-далеко, за словесными горами в стране гласных и согласных живут.</p>
+                    @lang('Что такое push уведомления?')
+                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
                 </div>
             </div>
         </div>
     </section>
     <section class="section7">
         <div class="container">
-            <h2 class="section7__title">Остались вопросы?</h2>
-            <p class="section7__descr">Напишите нам на: <a href="mailto:info@pushgun.ru">info@pushgun.ru</a></p>
+            <h2 class="section7__title">@lang('Остались вопросы?')</h2>
+            <p class="section7__descr">@lang('Напишите нам на'): <a href="mailto:info@pushgun.ru">info@pushgun.ru</a>
+            </p>
             <div class="section7__form">
                 <form action="#" method="post">
                     <div class="section7__form__row">
-                        <input type="text" name="name" class="section7__form__name" placeholder="Ваше имя">
+                        <input type="text" name="name" class="section7__form__name" placeholder="@lang('Ваше имя')">
                         <input type="email" name="email" class="section7__form__email" placeholder="E-mail">
                     </div>
-                    <input type="text" class="section7__form__text"
-                           placeholder="Ваше сообщение">
+                    <input type="text" class="section7__form__text" placeholder="@lang('Ваше сообщение')">
                     <p class="section7__form__chk">
-                        <input type="checkbox" name="check">Я даю согласие на обработку персональных данных в
-                        соответствии с законом № 152-ФЗ «О персональных данных»
+                        <input type="checkbox" name="check">
+                        @lang('Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»')
                     </p>
-                    <button type="submit" class="section7__form__btn">Отправить</button>
+                    <button type="submit" class="section7__form__btn">@lang('Отправить')</button>
                 </form>
             </div>
         </div>
@@ -417,12 +430,12 @@
                              alt="logo"></picture>
                 </a>
                 <ul class="footer__wrapper__menu">
-                    <li><a href="/lk/privacy.html">Политика конфиденциальности</a></li>
-                    <li><a href="#support" rel="modal:open">Связаться с Техподдержкой</a></li>
+                    <li><a href="{{ route('page.privacy') }}">@lang('Политика конфиденциальности')</a></li>
+                    <li><a href="#support" rel="modal:open">@lang('Связаться с Техподдержкой')</a></li>
                 </ul>
                 <div class="footer__wrapper__links">
-                    <a href="#enter" rel="modal:open" class="footer__wrapper__links_enter">Войти</a>
-                    <a href="#register" rel="modal:open" class="footer__wrapper__links_reg">Регистрация</a>
+                    <a href="#enter" rel="modal:open" class="footer__wrapper__links_enter">@lang('Войти')</a>
+                    <a href="#register" rel="modal:open" class="footer__wrapper__links_reg">@lang('Регистрация')</a>
                 </div>
             </div>
             <div class="footer__by">
@@ -431,37 +444,38 @@
         </div>
     </footer>
     <div id="enter" class="modal">
-        <h2>Вход</h2>
+        <h2>@lang('Вход')</h2>
         <form action="{{ route('login') }}" method="POST">
             <div class="modal__inner">
                 @csrf
                 <input type="email" name="email" placeholder="E-mail" required>
-                <input type="password" name="password" placeholder="Пароль" required>
-                <button type="submit" class="header-landing__wrapper__links_reg">Войти</button>
+                <input type="password" name="password" placeholder="@lang('Пароль')" required>
+                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Войти')</button>
             </div>
         </form>
     </div>
     <div id="register" class="modal">
-        <h2>Регистрация</h2>
+        <h2>@lang('Регистрация')</h2>
         <form action="{{ route('register') }}" method="POST">
             <div class="modal__inner">
                 @csrf
-                <input type="text" name="name" placeholder="Имя">
-                <input type="email" name="email" placeholder="E-mail *" required>
-                <input type="password" name="password" placeholder="Пароль *" required>
-                <input type="password" name="password_confirmation" placeholder="Повторите пароль *" required>
-                <button type="submit" class="header-landing__wrapper__links_reg">Зарегистрироваться</button>
+                <input type="text" name="name" placeholder="@lang('Имя')">
+                <input type="email" name="email" placeholder="E-mail*" required>
+                <input type="password" name="password" placeholder="@lang('Пароль')*" required>
+                <input type="password" name="password_confirmation" placeholder="@lang('Повторите пароль') *" required>
+                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Зарегистрироваться')</button>
             </div>
         </form>
     </div>
     <div id="support" class="modal">
-        <h2>Связаться с Техподдержкой</h2>
+        <h2>@lang('Связаться с Техподдержкой')</h2>
         <form action="">
             <div class="modal__inner">
-                <input type="text" name="name" placeholder="Имя">
+                <input type="text" name="name" placeholder="@lang('Имя')">
                 <input type="email" name="email" placeholder="E-mail *" required>
-                <textarea cols="2" name="message" rows="2" placeholder="Введите ваше сообщение *" required></textarea>
-                <button type="submit" class="header-landing__wrapper__links_reg">Отправить</button>
+                <textarea cols="2" name="message" rows="2" placeholder="@lang('Введите ваше сообщение') *"
+                          required></textarea>
+                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Отправить')</button>
             </div>
         </form>
     </div>

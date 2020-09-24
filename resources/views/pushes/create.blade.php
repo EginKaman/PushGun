@@ -5,7 +5,7 @@
         <section class="push">
             <div class="container">
                 <div class="push__title">
-                    <h1>Отправить push-уведомление</h1>
+                    <h1>@lang('Отправить push-уведомление')</h1>
                 </div>
                 <div class="inner">
 
@@ -22,7 +22,7 @@
                         <form action="{{ route('push.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="push__input">
-                                <label>Список получателей</label>
+                                <label>@lang('Список получателей')</label>
                                 <select id="site" class="filter__input filter__selector" name="site" type="text">
                                     @foreach($sites as $site)
                                         <option value="{{ $site->id }}">{{ $site->link }}</option>
@@ -30,15 +30,16 @@
                                 </select>
                             </div>
                             <div class="push__input">
-                                <label for="pushSelect">Заголовок</label>
-                                <input class="inputTitle" name="title" type="text" placeholder="до 50 символов">
+                                <label for="pushSelect">@lang('Заголовок')</label>
+                                <input class="inputTitle" name="title" type="text"
+                                       placeholder="@lang('до 50 символов')">
                             </div>
                             <div class="push__input">
-                                <label for="pushSelect">Текст уведомления</label>
+                                <label for="pushSelect">@lang('Текст уведомления')</label>
                                 <textarea class="textarea" name="text" cols="5" rows="5"></textarea>
                             </div>
                             <div class="push__input">
-                                <label for="pushSelect">Ссылка на уведомление</label>
+                                <label for="pushSelect">@lang('Ссылка на уведомление')</label>
                                 <input type="text" name="link" placeholder="https://example.com">
                             </div>
                             <div class="agree">
@@ -62,7 +63,7 @@
                                     <span class="green_button_circle">
                                     </span>
                                         <button type="submit" class="button_green_inner">
-                                            <p class="button_text_container">Отправить</p>
+                                            <p class="button_text_container">@lang('Отправить')</p>
                                         </button>
                                     </div>
                                     <!-- <div class="buttons">
@@ -71,7 +72,7 @@
                                     </div> -->
                                 </div>
                                 <div class="send__push">
-                                    <a href="#">Отправить тестовый push</a>
+                                    <a href="#">@lang('Отправить тестовый push')</a>
                                 </div>
                             </div>
                         </form>
@@ -83,7 +84,7 @@
                             <div class="chrome">
                                 <img src="{{ asset('images/avatar.svg') }}" alt="avatar">
                                 <div class="chrome__text">
-                                    <p class="txt">Текст вашего сообщения</p>
+                                    <p class="txt">@lang('Текст вашего сообщения')</p>
                                     <a class="res" href="#">Google Chrome • puzzlepro.ru</a>
                                 </div>
                             </div>
@@ -92,7 +93,7 @@
                                 <div class="firefox">
                                     <img src="{{ asset('images/avatar.svg') }}" alt="avatar">
                                     <div class="firefox__text">
-                                        <p class="txt">Текст вашего сообщения</p>
+                                        <p class="txt">@lang('Текст вашего сообщения')</p>
                                         <a class="res" href="#">puzzlepro.ru</a>
                                     </div>
                                 </div>
@@ -103,12 +104,12 @@
                                     <img class="macos__avatar" src="{{ asset('images/chrome.svg') }}" alt="chrome">
                                     <div class="macos__text">
                                         <a class="res" href="#">puzzlepro.ru</a>
-                                        <p class="txt">Текст вашего сообщения</p>
+                                        <p class="txt">@lang('Текст вашего сообщения')</p>
                                     </div>
                                     <img class="macos__avatar" src="{{ asset('images/avatar.svg') }}" alt="avatar">
                                     <div class="macos__settings">
-                                        <span>Закрыть</span>
-                                        <span>Настройки</span>
+                                        <span>@lang('Закрыть')</span>
+                                        <span>@lang('Настройки')</span>
                                     </div>
                                 </div>
                             </div>

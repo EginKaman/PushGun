@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "predis/predis": "^1.1",
-        "propaganistas/laravel-phone": "^4.2"
+        "propaganistas/laravel-phone": "^4.2",
+        "mcamara/laravel-localization": "^1.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

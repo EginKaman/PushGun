@@ -26,14 +26,14 @@
                 <nav class="nav">
                     <a href="{{ route('account.index') }}" class="nav__item">
                         <div class="nav__item_wrap">
-                            <span>Главная</span>
+                            <span>@lang('Главная')</span>
                             <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
                         </div>
                     </a>
 
                     <a href="{{ route('push.index') }}" class="nav__item">
                         <div class="nav__item_wrap">
-                            <span>Мои рассылки</span>
+                            <span>@lang('Мои рассылки')</span>
                             <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                         </div>
                     </a>
@@ -41,7 +41,7 @@
                     <div class="nav__wrapper">
                         <a href="#" class="nav__item nav__arrow">
                             <div class="nav__item_wrap">
-                                <span>Мои сайты</span>
+                                <span>@lang('Мои сайты')</span>
                                 <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                             </div>
                         </a>
@@ -50,15 +50,15 @@
 
                     <a href="{{ route('tariff.index') }}" class="nav__item">
                         <div class="nav__item_wrap">
-                            <span>Тарифы</span>
+                            <span>@lang('Тарифы')</span>
                             <img class="nav__item_img" src="{{ asset('images/tarif.svg') }}" alt="">
                         </div>
                     </a>
 
                 </nav>
                 <div class="header__subscription">
-                    <h3 class="header__subscription_title">{{ Auth::user()->tariff->name }}</h3>
-                    <a href="{{ route('tariff.index') }}" class="header__subscription_link">Повысить тариф</a>
+                    <h3 class="header__subscription_title">@lang(Auth::user()->tariff->name)</h3>
+                    <a href="{{ route('tariff.index') }}" class="header__subscription_link">@lang('Повысить тариф')</a>
                 </div>
                 <div class="header__menu_wrap">
                     <a class="header__account">
@@ -82,31 +82,53 @@
                         <p class="account__top_id">ID <span>{{ Auth::id() }}</span></p>
                     </div>
                     <div class="account__bottom">
-                        <h3 class="account__bottom_subscribtion">Тариф "{{ Auth::user()->tariff->name }}"</h3>
-                        <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">Повысить тариф</a>
+                        <h3 class="account__bottom_subscribtion">@lang('Тариф') "@lang(Auth::user()->tariff->name)"</h3>
+                        <a href="{{ route('tariff.index') }}"
+                           class="account__bottom_subscribe">@lang('Повысить тариф')</a>
                         <div class="account__bottom_balance-wrapper">
-                            <p class="account__bottom_balance">Баланс <span>{{ Auth::user()->balance }} руб</span></p>
-                            <a href="payment.html" class="account__bottom_subscribe">Пополнить</a>
+                            <p class="account__bottom_balance">@lang('Баланс')
+                                <span>{{ Auth::user()->balance }} @lang('руб')</span></p>
+                            <a href="payment.html" class="account__bottom_subscribe">@lang('Пополнить')</a>
                         </div>
                         <div class="account__bottom_links">
                             <div class="account__link_wrapper icon icon-pay">
-                                <a href="#" class="account__bottom_link">Платежи</a>
+                                <a href="#" class="account__bottom_link">@lang('Платежи')</a>
                             </div>
                             <div class="account__link_wrapper icon icon-settings">
                                 <a href="{{ route('account.edit') }}" class="account__bottom_link">
-                                    Настройки аккаунта
+                                    @lang('Настройки аккаунта')
                                 </a>
+                            </div>
+                            <div class="account__link_wrapper lang--toggle icon icon-language">
+                                <span>@lang('Сменить язык')</span>
+                                <ul>
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        <li>
+                                            <a rel="alternate" hreflang="{{ $localeCode }}"
+                                               href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"><img
+                                                    src="{{ asset('images/' . $localeCode . '.svg') }}"
+                                                    alt="{{ $localeCode }}"> {{ $properties['native'] }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                             <div class="account__link_wrapper icon icon-support">
                                 <a href="{{ route('ticket.index') }}" class="account__bottom_link">
-                                    Тех. поддержка
+                                    @lang('Тех. поддержка')
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="account__link_exit">
                         <div class="account__link_wrapper icon icon-exit">
-                            <a href="#" class="account__bottom_link">Выйти</a>
+                            <a href="{{ route('logout') }}" class="account__bottom_link"
+                               onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                                @lang('Выйти')
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -115,24 +137,25 @@
             <div class="header__popup">
                 <div class="header__popup_inner">
                     <div class="nav__item_wrap">
-                        <a href="{{ route('account.index') }}">Главная</a>
+                        <a href="{{ route('account.index') }}">@lang('Главная')</a>
                         <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
-                        <a href="{{ route('push.index') }}">Мои рассылки</a>
+                        <a href="{{ route('push.index') }}">@lang('Мои рассылки')</a>
                         <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
-                        <a href="#">Мои сайты</a>
+                        <a href="#">@lang('Мои сайты')</a>
                         <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
-                        <a href="{{ route('tariff.index') }}">Тарифы</a>
+                        <a href="{{ route('tariff.index') }}">@lang('Тарифы')</a>
                         <img class="nav__item_img" src="{{ asset('images/tarif.svg') }}" alt="">
                     </div>
                     <div class="header__subscription header__mobile_sub">
-                        <h3 class="header__subscription_title">Подписка 1000</h3>
-                        <a href="{{ route('tariff.index') }}" class="header__subscription_link">Повысить тариф</a>
+                        <h3 class="header__subscription_title">@lang('Тариф') "@lang(Auth::user()->tariff->name)"</h3>
+                        <a href="{{ route('tariff.index') }}"
+                           class="header__subscription_link">@lang('Повысить тариф')</a>
                     </div>
                 </div>
             </div>
@@ -141,15 +164,15 @@
     @yield('content')
     <div class="tooltip_templates">
             <span id="tooltip_content" class="general__tooltip">
-                <p>Информация</p>
-                <a href="#">Как переподписать пользователей на SendPulse</a>
-                <a href="#">Как переподписать пользователей на SendPulse</a>
+                <p>@lang('Информация')</p>
+                <a href="#">@lang('Как переподписать пользователей на SendPulse')</a>
+                <a href="#">@lang('Как переподписать пользователей на SendPulse')</a>
             </span>
     </div>
     <footer class="footer">
-        <a href="">База знаний</a>
-        <a href="{{ route('ticket.index') }}">Тех. поддержка</a>
-        <a href="{{ route('page.privacy') }}">Политика конфиденциальности</a>
+        <a href="">@lang('База знаний')</a>
+        <a href="{{ route('ticket.index') }}">@lang('Тех. поддержка')</a>
+        <a href="{{ route('page.privacy') }}">@lang('Политика конфиденциальности')</a>
     </footer>
 </div>
 </body>

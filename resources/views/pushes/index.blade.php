@@ -7,19 +7,19 @@
                 <div class="filter__popup">
                     <div class="filter__popup__inner">
                         <div class="filter__popup_block w-50">
-                            <label for="" class="filter__popup_label">Начальная дата</label>
+                            <label for="" class="filter__popup_label">@lang('Начальная дата')</label>
                             <input id="firstDate-input" class="datepicker-here filter__input" type="text">
                         </div>
                         <div class="filter__popup_block w-50">
-                            <label for="" class="filter__popup_label">Конечная дата</label>
+                            <label for="" class="filter__popup_label">@lang('Конечная дата')</label>
                             <input id="lastDate-input" class="datepicker-here filter__input" type="text">
                         </div>
                         <div class="filter__popup_block">
-                            <label for="" class="filter__popup_label">Текст</label>
+                            <label for="" class="filter__popup_label">@lang('Текст')</label>
                             <input class="filter__input" type="text">
                         </div>
                         <div class="filter__popup_block">
-                            <label for="site" class="filter__popup_label">Сайт</label>
+                            <label for="site" class="filter__popup_label">@lang('Сайт')</label>
                             <select id="site" class="filter__input filter__selector" name="site" type="text">
                                 @foreach($sites as $site)
                                     <option value="{{ $site->id }}">{{ $site->link }}</option>
@@ -31,7 +31,7 @@
                                 </span>
                             <button class="button_lb_inner">
                                 <p class="lb_button_text_container">
-                                    Сброс
+                                    @lang('Сброс')
                                 </p>
                             </button>
                         </div>
@@ -40,33 +40,33 @@
                                 </span>
                             <button class="button_rb_inner">
                                 <p class="rb_button_text_container">
-                                    Выбрать
+                                    @lang('Выбрать')
                                 </p>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="general__title">
-                    <h1 class="title">Мои рассылки</h1>
+                    <h1 class="title">@lang('Мои рассылки')</h1>
                 </div>
                 <div class="mails__filter">
                     <div class="mails__reset">
-                        <div class="mails__reset_inner">Сбросить фильтр</div>
+                        <div class="mails__reset_inner">@lang('Сбросить фильтр')</div>
                     </div>
                     <div id="filter" class="button_green">
                             <span class="green_button_circle">
                             </span>
                         <div class="button_green_inner mails__filter_btn">
                             <p class="button_text_container">
-                                Фильтр
+                                @lang('Фильтр')
                             </p>
                         </div>
                     </div>
                     <div class="mails__date">
-                        <p id="firstDate">Начальная дата: <span id="first-date">123</span>
+                        <p id="firstDate">@lang('Начальная дата'): <span id="first-date">123</span>
                             <img id="first-date-del" src="{{ asset('images/remove.svg') }}" alt="">
                         </p>
-                        <p id="lastDate">Конечная дата: <span id="last-date">123</span>
+                        <p id="lastDate">@lang('Конечная дата'): <span id="last-date">123</span>
                             <img id="last-date-del" src="{{ asset('images/remove.svg') }}" alt="">
                         </p>
 
@@ -92,7 +92,7 @@
                                     <a href="{{ route('push.show', $push) }}">{{ $push->title }}</a>
                                     <p>
                                         <img src="{{ asset('images/mark.svg') }}" alt="">
-                                        Отправлено: {{ $push->created_at }}
+                                        @lang('Отправлено'): {{ $push->created_at }}
                                     </p>
                                     <p>
                                         <img src="{{ asset('images/siteDark.svg') }}" alt="">
@@ -103,15 +103,15 @@
                             <div class="mails__sites_stats">
                                 <div class="mails__sites_stats-item">
                                     <h3>2</h3>
-                                    <p>отправлено</p>
+                                    <p>@lang('отправлено')</p>
                                 </div>
                                 <div class="mails__sites_stats-item">
                                     <h3>2</h3>
-                                    <p>отправлено</p>
+                                    <p>@lang('отправлено')</p>
                                 </div>
                                 <div class="mails__sites_stats-item">
                                     <h3>2</h3>
-                                    <p>отправлено</p>
+                                    <p>@lang('отправлено')</p>
                                 </div>
                             </div>
                         </div>
