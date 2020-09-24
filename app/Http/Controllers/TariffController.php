@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tariff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +17,12 @@ class TariffController extends Controller
         ]);
     }
 
-    public function update()
+    public function update(Request $request, Tariff $tariff)
     {
+        $user = Auth::user();
+        $user->tariff()->associate($tariff);
+        $user->save();
 
+        return redirect()->route('tariff.index');
     }
 }
