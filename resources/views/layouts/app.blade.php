@@ -45,10 +45,10 @@
                                 <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                             </div>
                         </a>
-                       <header-sites-component></header-sites-component>
+                        <header-sites-component></header-sites-component>
                     </div>
 
-                    <a href="tarif.html" class="nav__item">
+                    <a href="{{ route('tariff.index') }}" class="nav__item">
                         <div class="nav__item_wrap">
                             <span>Тарифы</span>
                             <img class="nav__item_img" src="{{ asset('images/tarif.svg') }}" alt="">
@@ -58,7 +58,7 @@
                 </nav>
                 <div class="header__subscription">
                     <h3 class="header__subscription_title">{{ Auth::user()->tariff->name }}</h3>
-                    <a href="tarif.html" class="header__subscription_link">Повысить тариф</a>
+                    <a href="{{ route('tariff.index') }}" class="header__subscription_link">Повысить тариф</a>
                 </div>
                 <div class="header__menu_wrap">
                     <a class="header__account">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="account__bottom">
                         <h3 class="account__bottom_subscribtion">Тариф "{{ Auth::user()->tariff->name }}"</h3>
-                        <a href="tarif.html" class="account__bottom_subscribe">Повысить тариф</a>
+                        <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">Повысить тариф</a>
                         <div class="account__bottom_balance-wrapper">
                             <p class="account__bottom_balance">Баланс <span>{{ Auth::user()->balance }} руб</span></p>
                             <a href="payment.html" class="account__bottom_subscribe">Пополнить</a>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="header__subscription header__mobile_sub">
                         <h3 class="header__subscription_title">Подписка 1000</h3>
-                        <a href="tarif.html" class="header__subscription_link">Повысить тариф</a>
+                        <a href="{{ route('tariff.index') }}" class="header__subscription_link">Повысить тариф</a>
                     </div>
                 </div>
             </div>
