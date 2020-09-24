@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', __('Отправить push-уведомление'))
 @section('content')
     <main>
         <section class="push">

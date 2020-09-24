@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', __('Настройки сайта'))
 @section('content')
     <main class="main setgen">
         <div class="container">

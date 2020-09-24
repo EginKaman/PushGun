@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', __('Мои рассылки'))
 @section('content')
     <main class="main mymailing">
         <div class="container">

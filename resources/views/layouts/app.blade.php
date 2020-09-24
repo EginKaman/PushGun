@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -127,7 +127,7 @@
                         <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                     </div>
                     <div class="nav__item_wrap">
-                        <a href="#">Тарифы</a>
+                        <a href="{{ route('tariff.index') }}">Тарифы</a>
                         <img class="nav__item_img" src="{{ asset('images/tarif.svg') }}" alt="">
                     </div>
                     <div class="header__subscription header__mobile_sub">
@@ -149,7 +149,7 @@
     <footer class="footer">
         <a href="">База знаний</a>
         <a href="{{ route('ticket.index') }}">Тех. поддержка</a>
-        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="{{ route('page.privacy') }}">Политика конфиденциальности</a>
     </footer>
 </div>
 </body>

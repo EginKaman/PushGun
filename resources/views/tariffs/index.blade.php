@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', __('Тарифы'))
 @section('content')
     <main class="main single-mail">
         <div class="container">

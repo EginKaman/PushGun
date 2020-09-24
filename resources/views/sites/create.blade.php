@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title',__('Добавить новый сайт'))
 @section('content')
     <main class="main">
         <div class="container">

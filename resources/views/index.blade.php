@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@lang('Главная') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -25,7 +25,7 @@
                         <source srcset="{{ asset('images/logo.webp') }}" type="image/webp">
                         <img src="{{ asset('images/logo.png') }}" alt="logo"></picture>
                 </a>
-                <a href="#" class="logo-dark">
+                <a href="{{ route('index') }}" class="logo-dark">
                     <picture>
                         <source srcset="{{ asset('images/dark-logo.webp') }}" type="image/webp">
                         <img src="{{ asset('images/dark-logo.svg') }}" alt="logo">

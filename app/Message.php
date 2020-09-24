@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Ticket extends Model
+class Message extends Model
 {
     use SoftDeletes;
 
@@ -15,26 +15,23 @@ class Ticket extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'message'
+        'text'
     ];
 
-    public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Department::class);
-    }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function messages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function ticket(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Message::class);
+        return $this->belongsTo(Ticket::class);
     }
+
 }

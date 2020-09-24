@@ -23,6 +23,7 @@ Route::get('manifest.json', function () {
         'gcm_sender_id' => config('webpush.gcm.sender_id')
     ];
 });
+Route::get('/privacy', 'PageController@privacy')->name('page.privacy');
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::prefix('account')->group(function () {
@@ -36,7 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('site/{site}/complete', 'CompleteController@store')->name('complete.store');
     Route::get('site/{site}/download', 'DownloadController@index')->name('download.index');
     Route::resource('push', 'PushController');
-    Route::resource('ticket', 'TicketController');
+    Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
+    Route::post('ticket/{ticket}/message', 'MessageController@store');
     Route::get('/tariff', 'TariffController@index')->name('tariff.index');
     Route::post('/tariff/{tariff:slug}', 'TariffController@update')->name('tariff.update');
 
