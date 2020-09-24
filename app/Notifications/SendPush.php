@@ -6,9 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\OneSignal\OneSignalChannel;
-use NotificationChannels\OneSignal\OneSignalMessage;
-use NotificationChannels\OneSignal\OneSignalWebButton;
+//use NotificationChannels\OneSignal\OneSignalChannel;
+//use NotificationChannels\OneSignal\OneSignalMessage;
+//use NotificationChannels\OneSignal\OneSignalWebButton;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
@@ -63,7 +63,8 @@ class SendPush extends Notification
      */
     public function via($notifiable)
     {
-        return [WebPushChannel::class, OneSignalChannel::class];
+//        return [WebPushChannel::class, OneSignalChannel::class];
+        return [WebPushChannel::class];
     }
 
     /**
@@ -109,19 +110,19 @@ class SendPush extends Notification
         return $this;
     }
 
-    public function toOneSignal($notifiable)
-    {
-        return OneSignalMessage::create()
-            ->setSubject($this->title)
-            ->setBody($this->body)
-            ->setUrl($this->url);
-//            ->webButton(
-//                OneSignalWebButton::create('link-1')
-//                    ->text('Click here')
-//                    ->icon('https://upload.wikimedia.org/wikipedia/commons/4/4f/Laravel_logo.png')
-//                    ->url('http://laravel.com')
-//            );
-    }
+//    public function toOneSignal($notifiable)
+//    {
+//        return OneSignalMessage::create()
+//            ->setSubject($this->title)
+//            ->setBody($this->body)
+//            ->setUrl($this->url);
+////            ->webButton(
+////                OneSignalWebButton::create('link-1')
+////                    ->text('Click here')
+////                    ->icon('https://upload.wikimedia.org/wikipedia/commons/4/4f/Laravel_logo.png')
+////                    ->url('http://laravel.com')
+////            );
+//    }
 
     public function toWebPush($notifiable, $notification)
     {

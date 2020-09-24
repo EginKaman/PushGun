@@ -338,4 +338,24 @@ $(document).ready(function () {
         });
         changeBtnText();
     });
+
+    //изменение картинки пуша
+
+    $('#changeIcon').click(function () {
+        if ($(this).is(':checked')) {
+            $('#site_set_avatar').show(100);
+        } else {
+            $('#site_set_avatar').hide(100);
+        }
+    });
+    $('.inputTitle').on('input', function () {
+        let val = $('.inputTitle').val();
+        $('.res').html(val);
+        $('.res').val(val);
+    });
+    $('.textarea').on('input', function () {
+        let textarea = $('.textarea').val();
+        $('.txt').html(textarea);
+        $('.txt').val(textarea);
+    });
 });

@@ -21,12 +21,12 @@ class Push extends Model
         'link'
     ];
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function site()
+    public function site(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Site::class);
     }
