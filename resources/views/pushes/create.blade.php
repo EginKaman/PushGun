@@ -50,7 +50,7 @@
                                     <input type="file" name="image" id="siteAvatar" accept="image/*">
                                     <div class="site_set_avatar_title">@lang('Картинка уведомления')</div>
                                     <label for="siteAvatar" class="site_avatar_form">
-                                        <img src="{{ asset(Storage::url($site->image)) }}" alt="" id="image">
+                                        <img src="{{ asset('images/site.svg') }}" alt="" id="image">
                                         <div class="site_avatar_form_block">
                                             <p class="site_avatar_form_desc">@lang('Рекомендуемый размер: 128×128px JPG, svg до 200KB')</p>
                                         </div>
