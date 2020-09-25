@@ -1,8 +1,8 @@
 .mymailing {
     & .select2-container--default .select2-selection--single .select2-selection__rendered {
-        padding: 8px;
+        padding: 0 8px;
         padding-right: 24px;
-        color: $white;
+        color: black;
     }
 
     & .select2-container--default .select2-selection--single {
@@ -244,7 +244,7 @@
         border-radius: 4px;
         box-shadow: $shadow;
         color: $white;
-        top: 150px;
+        top: 216px;
         width: 332px;
         display: none;
         z-index: 9999;
