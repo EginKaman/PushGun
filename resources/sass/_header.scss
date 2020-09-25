@@ -288,6 +288,12 @@
 
 
 // ACCOUNT POPUP =============================
+.lang-toggle {
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
 .lang--toggle {
     span {
         color: #323441;
@@ -310,7 +316,10 @@
             padding: 2px 12px;
             cursor: pointer;
             font-size: 13px;
-
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
             img {
                 display: inline-block;
                 object-fit: contain;
