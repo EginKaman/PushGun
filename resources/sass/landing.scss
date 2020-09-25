@@ -289,7 +289,7 @@ input {
 }
 
 .container {
-    width: 1110px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -907,9 +907,9 @@ input {
 }
 
 @media (max-width: 1400px) {
-    .container {
-        width: 1140px;
-    }
+    // .container {
+    //     width: 1140px;
+    // }
 
     .header-landing {
         padding-bottom: 110px;
