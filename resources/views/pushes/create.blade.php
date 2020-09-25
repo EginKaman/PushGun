@@ -84,8 +84,8 @@
                             <div class="chrome">
                                 <img src="{{ asset('images/avatar.svg') }}" alt="avatar">
                                 <div class="chrome__text">
-                                    <p class="txt">@lang('Текст вашего сообщения')</p>
-                                    <a class="res" href="#">Google Chrome • puzzlepro.ru</a>
+                                    <p class="res">Google Chrome • puzzlepro.ru</p>
+                                    <a class="txt" href="#">@lang('Текст вашего сообщения')</a>
                                 </div>
                             </div>
                             <div class="block">
@@ -93,8 +93,8 @@
                                 <div class="firefox">
                                     <img src="{{ asset('images/avatar.svg') }}" alt="avatar">
                                     <div class="firefox__text">
-                                        <p class="txt">@lang('Текст вашего сообщения')</p>
-                                        <a class="res" href="#">puzzlepro.ru</a>
+                                        <p class="res">puzzlepro.ru</p>
+                                        <a class="txt" href="#">@lang('Текст вашего сообщения')</a>
                                     </div>
                                 </div>
                             </div>
