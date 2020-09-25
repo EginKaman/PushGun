@@ -350,13 +350,11 @@ $(document).ready(function () {
     });
     $('.inputTitle').on('input', function () {
         let val = $('.inputTitle').val();
-        $('.res').html(val);
-        $('.res').val(val);
+        $('.res').text(val);
     });
     $('.textarea').on('input', function () {
         let textarea = $('.textarea').val();
-        $('.txt').html(textarea);
-        $('.txt').val(textarea);
+        $('.txt').text(textarea);
     });
 
     // Lang-toggle
