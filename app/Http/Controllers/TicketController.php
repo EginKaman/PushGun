@@ -44,6 +44,9 @@ class TicketController extends Controller
         $ticket->fill($request->all());
         $ticket->user()->associate(Auth::user());
         $ticket->department()->associate($request->department);
+        if ($request->hasFile('file')) {
+            $ticket->file = $request->file->store('/public/tickets/');
+        }
         $ticket->save();
 
         return redirect()->route('ticket.show', $ticket);

@@ -15,6 +15,9 @@ class MessageController extends Controller
         $message->fill($request->all());
         $message->user()->associate(Auth::user());
         $message->ticket()->associate($ticket);
+        if ($request->hasFile('file')) {
+            $message->file = $request->file->store('/public/tickets/');
+        }
         $message->save();
         return redirect()->route('ticket.show', $ticket);
     }

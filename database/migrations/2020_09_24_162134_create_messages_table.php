@@ -18,6 +18,7 @@ class CreateMessagesTable extends Migration
             $table->foreignId('ticket_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->text('text');
+            $table->string('file')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
