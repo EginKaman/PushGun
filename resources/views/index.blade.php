@@ -448,8 +448,8 @@
         <form action="{{ route('login') }}" method="POST">
             <div class="modal__inner">
                 @csrf
-                <input type="email" name="email" placeholder="E-mail" required>
-                <input type="password" name="password" placeholder="@lang('Пароль')" required>
+                <input type="email" name="email" placeholder="E-mail" value="{{ $user->email }}" required>
+                <input type="password" name="password" placeholder="@lang('Пароль')" value="password" required>
                 <button type="submit" class="header-landing__wrapper__links_reg">@lang('Войти')</button>
             </div>
         </form>
