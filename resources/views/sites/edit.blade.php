@@ -140,18 +140,21 @@
                         <div class="setgen__info_block">
                             <div class="setgen__info_desc setreq__info_block">
                                 <div class="setreq__radio">
-                                    <input type="radio" name="request" id="onJoin" value="visit" checked>
+                                    <input type="radio" name="request" id="onJoin" value="visit"
+                                           @if($site->request === 'visit')checked @endif>
                                     <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>
                                     <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                 </div>
                                 <div class="setreq__radio">
-                                    <input type="radio" name="request" id="onClick" value="click">
+                                    <input type="radio" name="request" id="onClick" value="click"
+                                           @if($site->request === 'click')checked @endif>
                                     <label for="onClick"
                                            class="label-checkbox">@lang('При клике на элемент')</label>
                                     <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                 </div>
                                 <div class="setreq__radio">
-                                    <input type="radio" name="request" id="intermediate" value="intermediate">
+                                    <input type="radio" name="request" id="intermediate" value="intermediate"
+                                           @if($site->request === 'intermediate')checked @endif>
                                     <label for="intermediate" class="label-checkbox">
                                         @lang('С промежуточным запросом')
                                     </label>
@@ -159,7 +162,9 @@
                             </div>
                             <div class="setgen__info_desc">
                                 <div class="setreq__checkbox">
-                                    <input type="checkbox" class="checkbox-input" name="hint" id="addTip" value="1">
+                                    <input type="checkbox" class="checkbox-input" name="hint"
+                                           @if($site->hint)checked @endif
+                                           id="addTip" value="1">
                                     <label class="label-checkbox"
                                            for="addTip">@lang('Добавить текст-подсказку')</label>
                                 </div>
@@ -168,7 +173,8 @@
                             </div>
                             <div class="setgen__info_desc">
                                 <div class="setreq__checkbox">
-                                    <input type="checkbox" class="checkbox-input" name="mobile" id="hideMobile">
+                                    <input type="checkbox" class="checkbox-input" name="mobile"
+                                           @if($site->mobile)checked @endif id="hideMobile">
                                     <label class="label-checkbox" for="hideMobile">
                                         @lang('Скрывать на мобильных девайсах')
                                     </label>

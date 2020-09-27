@@ -22,8 +22,8 @@
 
                         <div class="site_domain">
                             <select name="protocol" id="" class="site_domain_select" required>
-                                <option value="https">HTTPS://</option>
-                                <option value="http">HTTP://</option>
+                                <option value="https" @if(old('protocol') === 'https') selected@endif>HTTPS://</option>
+                                <option value="http" @if(old('protocol') === 'http') selected@endif>HTTP://</option>
                             </select>
                             <input type="text" name="domain" class="site_domain_name" value="{{ old('domain') }}"
                                    required
@@ -52,18 +52,23 @@
                             <div class="site_set_sub">
                                 <div class="site_set_sub_title">@lang('Запрос на подписку')</div>
                                 <div class="site_set_sub_radio">
+                                    <
                                     <div class="setreq__radio">
-                                        <input type="radio" name="request" id="onJoin" value="visit" checked="">
+                                        <input type="radio" name="request" id="onJoin" value="visit"
+                                               @if(old('request') === 'visit')checked @endif>
                                         <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>
                                         <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
                                     <div class="setreq__radio">
-                                        <input type="radio" name="request" id="onClick" value="click">
-                                        <label for="onClick" class="label-checkbox">@lang('При клике на элемент')</label>
+                                        <input type="radio" name="request" id="onClick" value="click"
+                                               @if(old('request') === 'click')checked @endif>
+                                        <label for="onClick"
+                                               class="label-checkbox">@lang('При клике на элемент')</label>
                                         <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
                                     <div class="setreq__radio">
-                                        <input type="radio" name="request" id="intermediate" value="intermediate">
+                                        <input type="radio" name="request" id="intermediate" value="intermediate"
+                                               @if(old('request') === 'intermediate')checked @endif>
                                         <label for="intermediate" class="label-checkbox">
                                             @lang('С промежуточным запросом')
                                         </label>
@@ -72,8 +77,10 @@
 
                                 <div class="site_set_sub_checkbox">
                                     <div class="setreq__checkbox">
-                                        <input type="checkbox" class="checkbox-input" name="hint" id="addTip" value="1">
-                                        <label class="label-checkbox" for="addTip">@lang('Добавить текст-подсказку')</label>
+                                        <input type="checkbox" class="checkbox-input" name="hint"
+                                               @if(old('hint'))checked @endif id="addTip" value="1">
+                                        <label class="label-checkbox"
+                                               for="addTip">@lang('Добавить текст-подсказку')</label>
                                     </div>
                                     <p class="setreq__sample">@lang('Пример подсказки')</p>
                                 </div>
@@ -85,7 +92,7 @@
                                     <div class="site_set_push_label">
                                         <h6>@lang('Показ запроса при')</h6>
                                         <div class="site_set_push_label_input">
-                                            <input type="number" name="visit" value="1">
+                                            <input type="number" name="visit" value="{{ old('visit', 1) }}">
                                             <span>@lang('визите')</span>
                                         </div>
                                     </div>
@@ -106,7 +113,8 @@
                             <div class="site_set_hide">
                                 <div class="site_set_sub_checkbox">
                                     <div class="setreq__checkbox">
-                                        <input type="checkbox" class="checkbox-input" name="mobile" id="hideMobile">
+                                        <input type="checkbox" class="checkbox-input" name="mobile"
+                                               @if(old('mobile'))checked @endif id="hideMobile">
                                         <label class="label-checkbox" for="hideMobile">
                                             @lang('Скрывать на мобильных девайсах')
                                         </label>
