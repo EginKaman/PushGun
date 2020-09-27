@@ -154,7 +154,7 @@
                             @csrf
                             @method('PUT')
                             <label for="oldPass" class="set-form__label oldPass">
-                                <span class="set-form__title">@lang('Старый пароль')</span>
+                                <span class="set-form__title">@lang('Текущий пароль')</span>
                                 <input type="password" name="old_password" id="oldPass">
                             </label>
 
@@ -238,41 +238,41 @@
 
                             <div class="form-row__wrap">
                                 <div class="set-form-row">
-                                    <span class="set-form-row__title">Push уведомления:</span>
+                                    <span class="set-form-row__title">@lang('Push уведомления'):</span>
                                     <div class="notifications-ckecks">
 
                                         <label for="radio1" class="set-form__label-check">
                                             <input class="" type="radio" name="notification" id="radio1">
-                                            <span class="set-form__title">Отключить получение push уведомлений</span>
+                                            <span class="set-form__title">@lang('Отключить получение push уведомлений')</span>
                                         </label>
 
                                         <label for="radio2" class="set-form__label-check">
                                             <input class="" type="radio" name="notification" id="radio2" checked>
                                             <span
-                                                class="set-form__title">Получать уведомления по следующим событиям:</span>
+                                                class="set-form__title">@lang('Получать уведомления по следующим событиям'):</span>
                                         </label>
 
 
                                         <div class="push-check">
                                             <label for="check4" class="set-form__label-check">
                                                 <input class="" type="checkbox" name="" id="check4" checked>
-                                                <span class="set-form__title">Рассылка отправлена</span>
+                                                <span class="set-form__title">@lang('Рассылка отправлена')</span>
                                             </label>
 
                                             <label for="check5" class="set-form__label-check">
                                                 <input class="" type="checkbox" name="" id="check5" checked>
                                                 <span
-                                                    class="set-form__title">Получать уведомления о модерации рассылок</span>
+                                                    class="set-form__title">@lang('Получать уведомления о модерации рассылок')</span>
                                             </label>
 
                                             <label for="check6" class="set-form__label-check">
                                                 <input class="" type="checkbox" name="" id="check6" checked>
-                                                <span class="set-form__title">Адресная книга загружена</span>
+                                                <span class="set-form__title">@lang('Адресная книга загружена')</span>
                                             </label>
 
                                             <label for="check7" class="set-form__label-check">
                                                 <input class="" type="checkbox" name="" id="check7" checked>
-                                                <span class="set-form__title">Окончание подписки</span>
+                                                <span class="set-form__title">@lang('Окончание подписки')</span>
                                             </label>
                                         </div>
 
