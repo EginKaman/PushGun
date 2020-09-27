@@ -72,7 +72,7 @@
 
                                 <div class="site_set_sub_checkbox">
                                     <div class="setreq__checkbox">
-                                        <input type="checkbox" class="checkbox-input" name="addTip" id="addTip">
+                                        <input type="checkbox" class="checkbox-input" name="hint" id="addTip" value="1">
                                         <label class="label-checkbox" for="addTip">@lang('Добавить текст-подсказку')</label>
                                     </div>
                                     <p class="setreq__sample">@lang('Пример подсказки')</p>
@@ -85,7 +85,7 @@
                                     <div class="site_set_push_label">
                                         <h6>@lang('Показ запроса при')</h6>
                                         <div class="site_set_push_label_input">
-                                            <input type="number" value="1">
+                                            <input type="number" name="visit" value="1">
                                             <span>@lang('визите')</span>
                                         </div>
                                     </div>

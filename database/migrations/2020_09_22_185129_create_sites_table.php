@@ -19,11 +19,11 @@ class CreateSitesTable extends Migration
             $table->string('link');
             $table->string('image')->nullable();
             $table->boolean('installed')->default(false);
-            $table->unsignedBigInteger('subscription')->default(0);
-            $table->unsignedBigInteger('visit')->default(0);
-            $table->unsignedBigInteger('delay')->default(0);
-            $table->boolean('mobile')->default(false);
+            $table->enum('request', ['visit', 'click', 'intermediate'])->default('visit');
             $table->boolean('hint')->default(false);
+            $table->unsignedTinyInteger('visit')->default(0);
+            $table->unsignedSmallInteger('delay')->default(0);
+            $table->boolean('mobile')->default(false);
             $table->string('script');
             $table->softDeletes();
             $table->timestamps();

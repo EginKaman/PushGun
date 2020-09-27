@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SiteUpdate extends FormRequest
 {
@@ -24,15 +25,18 @@ class SiteUpdate extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'image'
+            'image' => ['nullable', 'image'],
+            'request' => ['required', 'string', Rule::in(['visit', 'click', 'intermediate'])],
+            'hint' => ['nullable', 'boolean'],
+            'mobile' => ['nullable', 'boolean'],
         ];
     }
 
     public function messages()
     {
         return [
-            'siteAvatar.required' => 'Обязательно загрузите изображение для сайта',
-            'siteAvatar.file' => 'Обязательно загрузите изображение для сайта'
+            'image.required' => 'Обязательно загрузите изображение для сайта',
+            'image.image' => 'Обязательно загрузите изображение для сайта'
         ];
     }
 }
