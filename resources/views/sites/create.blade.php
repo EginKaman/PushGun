@@ -22,8 +22,8 @@
 
                         <div class="site_domain">
                             <select name="protocol" id="" class="site_domain_select" required>
-                                <option value="https" @if(old('protocol') === 'https') selected@endif>HTTPS://</option>
-                                <option value="http" @if(old('protocol') === 'http') selected@endif>HTTP://</option>
+                                <option value="https" @if(old('protocol') === 'https') selected @endif>HTTPS://</option>
+                                <option value="http" @if(old('protocol') === 'http') selected @endif>HTTP://</option>
                             </select>
                             <input type="text" name="domain" class="site_domain_name" value="{{ old('domain') }}"
                                    required
@@ -55,20 +55,20 @@
                                     <
                                     <div class="setreq__radio">
                                         <input type="radio" name="request" id="onJoin" value="visit"
-                                               @if(old('request') === 'visit')checked @endif>
+                                               @if(old('request') === 'visit') checked @endif>
                                         <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>
                                         <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
                                     <div class="setreq__radio">
                                         <input type="radio" name="request" id="onClick" value="click"
-                                               @if(old('request') === 'click')checked @endif>
+                                               @if(old('request') === 'click') checked @endif>
                                         <label for="onClick"
                                                class="label-checkbox">@lang('При клике на элемент')</label>
                                         <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
                                     <div class="setreq__radio">
                                         <input type="radio" name="request" id="intermediate" value="intermediate"
-                                               @if(old('request') === 'intermediate')checked @endif>
+                                               @if(old('request') === 'intermediate') checked @endif>
                                         <label for="intermediate" class="label-checkbox">
                                             @lang('С промежуточным запросом')
                                         </label>
@@ -78,7 +78,7 @@
                                 <div class="site_set_sub_checkbox">
                                     <div class="setreq__checkbox">
                                         <input type="checkbox" class="checkbox-input" name="hint"
-                                               @if(old('hint'))checked @endif id="addTip" value="1">
+                                               @if(old('hint')) checked @endif id="addTip" value="1">
                                         <label class="label-checkbox"
                                                for="addTip">@lang('Добавить текст-подсказку')</label>
                                     </div>
@@ -114,7 +114,7 @@
                                 <div class="site_set_sub_checkbox">
                                     <div class="setreq__checkbox">
                                         <input type="checkbox" class="checkbox-input" name="mobile"
-                                               @if(old('mobile'))checked @endif id="hideMobile">
+                                               @if(old('mobile')) checked @endif id="hideMobile">
                                         <label class="label-checkbox" for="hideMobile">
                                             @lang('Скрывать на мобильных девайсах')
                                         </label>
