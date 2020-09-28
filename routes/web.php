@@ -22,7 +22,7 @@ Route::get('manifest.json', function () {
     ];
 });
 Route::group(['prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localize', 'localizationRedirect']], function () {
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::get('/', 'IndexController@index')->name('index');
     Route::get('/privacy', 'PageController@privacy')->name('page.privacy');
     Auth::routes();
