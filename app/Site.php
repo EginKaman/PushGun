@@ -20,7 +20,7 @@ class Site extends Model
         'link',
         'image',
         'installed',
-        'subscription',
+        'request',
         'visit',
         'delay',
         'mobile',

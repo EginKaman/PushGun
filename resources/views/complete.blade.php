@@ -31,7 +31,7 @@
                             </p>
                             <div class="setint__info_download">
                                 <img src="{{ asset('images/download.svg') }}" width="16" height="16" alt="">
-                                <a target="_blank" href="{{ route('download.index', $site) }}">
+                                <a target="_blank" href="{{ url('storage/pg-push.zip') }}">
                                     @lang('Скачать установочные файлы')
                                 </a>
                             </div>

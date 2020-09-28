@@ -36,7 +36,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::resource('site', 'SiteController');
         Route::get('site/{site}/complete', 'CompleteController@index')->name('complete.index');
         Route::post('site/{site}/complete', 'CompleteController@store')->name('complete.store');
-        Route::get('site/{site}/download', 'DownloadController@index')->name('download.index');
         Route::resource('push', 'PushController');
         Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
         Route::post('ticket/{ticket}/message', 'MessageController@store')->name('message.store');

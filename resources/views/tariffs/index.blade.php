@@ -113,22 +113,24 @@
                             <span class="follows-text">{{ $user->balance }} @lang('руб')</span>
                         </div>
                     </div>
-                    <div class="follows-row">
-                        <div class="follows-left">
-                            <span class="follows-text">@lang('Ближайшая следующая оплата'):</span>
+                    @if($user->tariff_expired_at)
+                        <div class="follows-row">
+                            <div class="follows-left">
+                                <span class="follows-text">@lang('Ближайшая следующая оплата'):</span>
+                            </div>
+                            <div class="follows-right">
+                                <span class="follows-text">29 ноября 2020 г. 09:20</span>
+                            </div>
                         </div>
-                        <div class="follows-right">
-                            <span class="follows-text">29 ноября 2020 г. 09:20</span>
+                        <div class="follows-row">
+                            <div class="follows-left">
+                                <span class="follows-text">@lang('Последнее снятие баланса'):</span>
+                            </div>
+                            <div class="follows-right">
+                                <span class="follows-text">29 ноября 2020 г. 16:20</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="follows-row">
-                        <div class="follows-left">
-                            <span class="follows-text">@lang('Последнее снятие баланса'):</span>
-                        </div>
-                        <div class="follows-right">
-                            <span class="follows-text">29 ноября 2020 г. 16:20</span>
-                        </div>
-                    </div>
+                    @endif
                 </div>
 
 
@@ -152,22 +154,24 @@
                             <span class="follows-text green">@lang('Активен')</span>
                         </div>
                     </div>
-                    <div class="follows-row bb-1">
-                        <div class="follows-left">
-                            <span class="follows-text">@lang('Активен до'):</span>
+                    @if($user->tariff_expired_at)
+                        <div class="follows-row bb-1">
+                            <div class="follows-left">
+                                <span class="follows-text">@lang('Активен до'):</span>
+                            </div>
+                            <div class="follows-right">
+                                <span class="follows-text">{{ $user->tariff_expired_at }}</span>
+                            </div>
                         </div>
-                        <div class="follows-right">
-                            <span class="follows-text">29 ноября 2020 г. 09:20</span>
+                        <div class="follows-row bb-1">
+                            <div class="follows-left">
+                                <span class="follows-text">@lang('Пакет активирован'):</span>
+                            </div>
+                            <div class="follows-right">
+                                <span class="follows-text">29 апреля 2020 г. 16:20</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="follows-row bb-1">
-                        <div class="follows-left">
-                            <span class="follows-text">@lang('Пакет активирован'):</span>
-                        </div>
-                        <div class="follows-right">
-                            <span class="follows-text">29 апреля 2020 г. 16:20</span>
-                        </div>
-                    </div>
+                    @endif
                     <div class="follows-row bb-1">
                         <div class="follows-left">
                             <span class="follows-text">@lang('Размер платежа'):</span>
