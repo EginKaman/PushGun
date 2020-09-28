@@ -24,8 +24,8 @@ class PushStore extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:255',
-            'text' => 'required',
+            'title' => 'required|string|max:30',
+            'text' => 'required|max:130',
             'link' => 'required|url',
             'image' => 'image',
             'site' => 'required|exists:sites,id'

@@ -1,9 +1,12 @@
 <template>
     <div class="inner">
-
         <div class="push__settings">
-            <slot name="errors"></slot>
-            <form action="/push" method="POST" enctype="multipart/form-data">
+            <div class="alert alert-danger" v-if="errors">
+                <ul>
+                    <li v-for="(error, index) in errors">{{ error }}</li>
+                </ul>
+            </div>
+            <form :action="action" method="POST" enctype="multipart/form-data" @submit.prevent="save">
                 <div class="push__input">
                     <label for="site">{{ $t('Список получателей') }}</label>
                     <select id="site" class="filter__input filter__selector" v-model="site_id" name="site"
@@ -26,14 +29,15 @@
                 </div>
                 <div class="push__input">
                     <label for="link">{{ $t('Ссылка на уведомление') }}</label>
-                    <input type="text" id="link" name="link" placeholder="https://example.com">
+                    <input type="text" id="link" v-model="link" name="link" placeholder="https://example.com">
                 </div>
                 <div class="agree">
                     <input type="checkbox" v-model="change" name="change" id="changeIcon">
                     <label for="changeIcon">{{ $t('Заменить стандартную картинку сайта') }}</label>
 
                     <div class="site_set_avatar" id="site_set_avatar" v-show="change">
-                        <input type="file" name="image" id="siteimage" accept="image/*" @change="uploadImage">
+                        <input type="file" ref="image" name="image" id="siteimage" accept="image/*"
+                               @change="uploadImage">
                         <div class="site_set_avatar_title">{{ $t('Картинка уведомления') }}</div>
                         <label for="siteimage" class="site_avatar_form">
                             <img :src="selected.image || default_image" alt="" id="image">
@@ -111,12 +115,20 @@ import {mapGetters, mapState} from "vuex";
 
 export default {
     name: "PushCreate",
+    props: {
+        action: {
+            type: String,
+            default: ''
+        }
+    },
     data() {
         return {
             site_id: 0,
             selected: {},
             title: '',
             text: '',
+            link: '',
+            errors: {},
             change: false,
             default_image: '/images/site.svg'
         }
@@ -152,6 +164,30 @@ export default {
         },
         imageLoaded(event) {
             this.selected.image = event.target.result;
+        },
+        save() {
+            let form = new FormData();
+            form.append('image', this.$refs.image.files[0]);
+            form.append('title', this.title);
+            form.append('link', this.link);
+            form.append('text', this.text);
+            form.append('site', this.site_id);
+            axios.post(this.action, form, {
+                header: {
+                    'Content-Type': 'multipart/form-data',
+                    "Cache-Control": "no-cache"
+                }
+            }).then(response =>
+                window.location.href = this.action
+            ).catch(error => {
+                let errors = '';
+                if (error.response.status === 403) {
+                    errors = error.response.statusText;
+                } else {
+                    errors = Object.values(error.response.data.errors);
+                }
+                this.errors = errors;
+            });
         }
     }
 
