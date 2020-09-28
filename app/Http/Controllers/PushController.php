@@ -67,7 +67,7 @@ class PushController extends Controller
             ->url($request->input('link'))
         );
 
-        return redirect()->route('pushes.index');
+        return redirect()->route('push.index');
     }
 
     /**
