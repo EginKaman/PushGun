@@ -52,7 +52,6 @@
                             <div class="site_set_sub">
                                 <div class="site_set_sub_title">@lang('Запрос на подписку')</div>
                                 <div class="site_set_sub_radio">
-                                    <
                                     <div class="setreq__radio">
                                         <input type="radio" name="request" id="onJoin" value="visit"
                                                @if(old('request') === 'visit') checked @endif>

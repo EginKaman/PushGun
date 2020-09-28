@@ -14,7 +14,7 @@ class ScriptChecker
     public static function getCheck(Site $site)
     {
         $script = $site->script;
-        $url = SiteController::getLink($site);
+        $url = $site->link;
         $check = false;
 
         $client = new Client();
