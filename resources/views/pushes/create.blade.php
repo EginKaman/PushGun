@@ -36,7 +36,7 @@
                             </div>
                             <div class="push__input">
                                 <label for="pushSelect">@lang('Текст уведомления')</label>
-                                <textarea class="textarea" name="text" maxlength="25" cols="5" rows="5"></textarea>
+                                <textarea class="textarea" name="text" maxlength="130" cols="5" rows="5"></textarea>
                             </div>
                             <div class="push__input">
                                 <label for="pushSelect">@lang('Ссылка на уведомление')</label>
