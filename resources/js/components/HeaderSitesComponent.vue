@@ -1,7 +1,7 @@
 <template>
     <div class="nav__menu">
         <ul class="nav__menu_inner">
-            <li class="nav__menu_item" v-for="site in sites">
+            <li class="nav__menu_item" v-for="(site, index) in sites" :key="index">
                 <a class="nav__menu_link" :href="site.url">{{ site.link }}</a>
             </li>
         </ul>
@@ -9,17 +9,20 @@
 </template>
 
 <script>
+import {mapGetters, mapState} from "vuex";
+
 export default {
     name: "HeaderSitesComponent",
-    data() {
-        return {
-            sites: []
-        }
+    computed: {
+        ...mapState({
+            sites: state => state.sites
+        }),
+        ...mapGetters("sites", {
+            sites: "getSites"
+        }),
     },
-    async mounted() {
-        await axios.get('/site').then(({data}) => {
-            this.sites = data.data;
-        });
+    mounted() {
+        this.$store.dispatch("sites/FETCH_SITES");
     }
 }
 </script>

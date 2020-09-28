@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class SiteResource extends JsonResource
 {
@@ -17,6 +18,7 @@ class SiteResource extends JsonResource
         return [
             'id' => $this->id,
             'link' => $this->link,
+            'image' => asset(Storage::url($this->image)),
             'url' => route('site.show', $this)
         ];
     }

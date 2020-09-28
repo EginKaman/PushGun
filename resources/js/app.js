@@ -34,7 +34,8 @@ const i18n = new VueI18n({
 Vue.component('header-sites-component', require('./components/HeaderSitesComponent.vue').default);
 Vue.component('statistic-chart-component', require('./components/MainPage/StatisticChart.vue').default);
 Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').default);
-Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default)
+Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default);
+Vue.component('push-create', require('./components/PushCreate.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -1,7 +1,8 @@
 'use strict';
 
 $(document).ready(function () {
-    $('.stats__selector, .filter__selector, .set-form__select, .sup-form__select, .site_domain_select').select2({
+    $('.stats__selector, .set-form__select, .sup-form__select, .site_domain_select').select2({
+    // $('.stats__selector, .filter__selector, .set-form__select, .sup-form__select, .site_domain_select').select2({
         minimumResultsForSearch: -1,
         placeholder: 'Выбрать'
     });
@@ -337,24 +338,6 @@ $(document).ready(function () {
             changeBtnText();
         });
         changeBtnText();
-    });
-
-    //изменение картинки пуша
-
-    $('#changeIcon').click(function () {
-        if ($(this).is(':checked')) {
-            $('#site_set_avatar').show(100);
-        } else {
-            $('#site_set_avatar').hide(100);
-        }
-    });
-    $('.inputTitle').on('input', function () {
-        let val = $('.inputTitle').val();
-        $('.res').text(val);
-    });
-    $('.textarea').on('input', function () {
-        let textarea = $('.textarea').val();
-        $('.txt').text(textarea);
     });
 
     // Lang-toggle
