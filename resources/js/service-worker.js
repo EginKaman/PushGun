@@ -37,7 +37,9 @@
          */
         notificationClick(event) {
             // console.log(event.notification)
-
+            if (event.data.url) {
+                self.clients.openWindow(event.data.url)
+            }
             if (event.action === 'some_action') {
                 // Do something...
             } else {
