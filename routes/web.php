@@ -45,4 +45,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::get('/statistics', 'StatisticController@index');
     });
 });
+Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
+    Route::get('site', 'Api\SiteController@index');
+});
 

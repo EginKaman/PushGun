@@ -18,7 +18,7 @@ export default {
     actions: {
         async FETCH_SITES({state, commit}) {
             try {
-                let {data} = await axios.get(`/site`)
+                let {data} = await axios.get(`/web-api/site`)
                 commit("setSites", data.data)
 
             } catch (e) {

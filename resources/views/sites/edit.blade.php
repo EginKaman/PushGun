@@ -15,7 +15,7 @@
                     </button>
                 </div>
             </div>
-            <form action="{{ route('site.update') }}" method="post">
+            <form action="{{ route('site.update', $site) }}" method="post">
                 @csrf
                 @method('PUT')
                 <section id="general-sec" class="choosen">
@@ -43,7 +43,7 @@
 
                                 <input type="file" name="image" id="siteAvatar" required>
                                 <label for="siteAvatar" class="setgen__form">
-                                    <img src="{{ asset('images/site.svg') }}" alt="">
+                                    <img src="{{ asset(Storage::url($site->image) ?? 'images/site.svg') }}" alt="">
                                     <div class="setgen__form_block">
                                         <p class="setgen__form_title">@lang('Выбрать изображение')</p>
                                         <p class="setgen__form_desc">
@@ -104,7 +104,7 @@
                         </p>
                         <div class="setint__info_download">
                             <img src="{{ asset('images/download.svg') }}" width="16" height="16" alt="">
-                            <a target="_blank" href="{{ route('download.index', $site) }}">
+                            <a target="_blank" href="{{ url('/storage/pg-push.zip') }}">
                                 @lang('Скачать установочные файлы')
                             </a>
                         </div>
