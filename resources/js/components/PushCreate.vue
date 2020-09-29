@@ -11,7 +11,7 @@
                     <label for="site">{{ $t('Список получателей') }}</label>
                     <select id="site" class="filter__input filter__selector" v-model="site_id" name="site"
                             @change="siteSelect">
-                        <option value="0" disabled>{{ $t('Выберите') }}</option>
+<!--                        <option value="0" disabled>{{ $t('Выберите') }}</option>-->
                         <option :value="site.id" v-for="(site, index) in sites" :key="index">{{ site.link }}</option>
                     </select>
                 </div>
@@ -150,7 +150,10 @@ export default {
         },
     },
     mounted() {
-        this.$store.dispatch("sites/FETCH_SITES");
+        this.$store.dispatch("sites/FETCH_SITES").then(() => {
+            this.selected = this.sites[0];
+            this.site_id = this.selected.id;
+        });
     },
     methods: {
         siteSelect(event) {
