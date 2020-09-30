@@ -12,18 +12,26 @@ window.Vue = require('vue');
 import languageBundle
     from '@kirschbaum-development/laravel-translations-loader/json!@kirschbaum-development/laravel-translations-loader';
 import VueI18n from 'vue-i18n';
+import VModal from 'vue-js-modal';
+import VueSwal from 'vue-swal';
 
 Vue.use(VueI18n);
+Vue.use(VModal, {
+    dynamic: true,
+    injectModalsContainer: true,
+    dynamicDefaults: {
+        draggable: false,
+        resizable: false,
+        height: 'auto'
+    }
+});
+Vue.use(VueSwal);
 
 const i18n = new VueI18n({
     fallbackLocale: 'ru',
     locale: document.documentElement.lang,
     messages: languageBundle,
-})
-
-import VueSwal from 'vue-swal'
-
-Vue.use(VueSwal);
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -41,6 +49,10 @@ Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').def
 Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default);
 Vue.component('push-create', require('./components/PushCreate.vue').default);
 Vue.component('site-check', require('./components/SiteCheck.vue').default);
+
+Vue.component('login-button', require('./components/Index/LoginButton.vue').default);
+Vue.component('register-button', require('./components/Index/RegisterButton.vue').default);
+Vue.component('support-button', require('./components/Index/SupportButton.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

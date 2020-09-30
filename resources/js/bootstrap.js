@@ -8,7 +8,7 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
-    require('jquery-modal')
+    // require('jquery-modal')
     require('slick-carousel');
     require('select2');
     require('tooltipster');

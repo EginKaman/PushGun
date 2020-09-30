@@ -51,9 +51,8 @@
                     </ul>
                 </div>
                 <div class="header-landing__wrapper__links">
-                    <a href="#enter" rel="modal:open" class="header-landing__wrapper__links_enter">@lang('Войти')</a>
-                    <a href="#register" rel="modal:open"
-                       class="header-landing__wrapper__links_reg">@lang('Регистрация')</a>
+                    <login-button action="{{ route('login') }}"></login-button>
+                    <register-button action="{{ route('register') }}"></register-button>
                 </div>
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox"/>
@@ -443,30 +442,6 @@
             </div>
         </div>
     </footer>
-    <div id="enter" class="modal">
-        <h2>@lang('Вход')</h2>
-        <form action="{{ route('login') }}" method="POST">
-            <div class="modal__inner">
-                @csrf
-                <input type="email" name="email" placeholder="E-mail" value="{{ $user->email }}" required>
-                <input type="password" name="password" placeholder="@lang('Пароль')" value="password" required>
-                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Войти')</button>
-            </div>
-        </form>
-    </div>
-    <div id="register" class="modal">
-        <h2>@lang('Регистрация')</h2>
-        <form action="{{ route('register') }}" method="POST">
-            <div class="modal__inner">
-                @csrf
-                <input type="text" name="name" placeholder="@lang('Имя')">
-                <input type="email" name="email" placeholder="E-mail*" required>
-                <input type="password" name="password" placeholder="@lang('Пароль')*" required>
-                <input type="password" name="password_confirmation" placeholder="@lang('Повторите пароль') *" required>
-                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Зарегистрироваться')</button>
-            </div>
-        </form>
-    </div>
     <div id="support" class="modal">
         <h2>@lang('Связаться с Техподдержкой')</h2>
         <form action="">
