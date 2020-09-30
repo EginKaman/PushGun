@@ -33,6 +33,8 @@
         "select2": "^4.0.13",
         "slick-carousel": "^1.8.1",
         "tooltipster": "^4.2.8",
+        "vue-swal": "^1.0.0",
+        "vue-js-modal": "^2.0.0-rc.6",
         "vue-chartjs": "^3.5.1",
         "vue-i18n": "^8.21.1",
         "vuex": "^3.5.1"

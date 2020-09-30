@@ -20,6 +20,10 @@ const i18n = new VueI18n({
     locale: document.documentElement.lang,
     messages: languageBundle,
 })
+
+import VueSwal from 'vue-swal'
+
+Vue.use(VueSwal);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -36,6 +40,7 @@ Vue.component('statistic-chart-component', require('./components/MainPage/Statis
 Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').default);
 Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default);
 Vue.component('push-create', require('./components/PushCreate.vue').default);
+Vue.component('site-check', require('./components/SiteCheck.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

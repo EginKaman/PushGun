@@ -3,24 +3,43 @@
 
 namespace App\Services;
 
-
-use App\Http\Controllers\SiteController;
 use App\Site;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class ScriptChecker
 {
-    public static function getCheck(Site $site)
+    /**
+     * @param Site $site
+     * @return array
+     */
+    public function getCheck(Site $site): array
     {
-        $script = $site->script;
-        $url = $site->link;
-        $check = false;
+        return [
+            'script' => $this->checkScript($site->link, $site->script),
+            'file' => $this->checkFile($site->link)
+        ];
+    }
 
-        $client = new Client();
-        $response = $client->request('GET', $url);
-        $response = $response->getBody()->getContents();
-        $check = Str::contains($response, $script);
-        return $check;
+    /**
+     * @param $url
+     * @param $script
+     * @return bool
+     */
+    protected function checkScript($url, $script): bool
+    {
+        $response = Http::get($url);
+        return Str::contains($response->body(), $script);
+    }
+
+    /**
+     * @param $url
+     * @return bool
+     * @throws \Throwable
+     */
+    protected function checkFile($url): bool
+    {
+        $response = Http::get("$url/pg-push-worker.js");
+        return Str::contains($response->body(), view('scripts.worker')->render());
     }
 }

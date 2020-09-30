@@ -9,7 +9,6 @@ $factory->define(Site::class, function (Faker $faker) {
     return [
         'user_id' => $faker->numberBetween(1, 10),
         'link' => 'https://'.$faker->unique()->domainName,
-        'subscription' => $faker->numberBetween(0, 1),
         'visit' => $faker->numberBetween(0, 5),
         'delay' => $faker->numberBetween(0, 5),
         'mobile' => $faker->boolean,

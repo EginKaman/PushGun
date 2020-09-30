@@ -86,42 +86,10 @@
                             <div class="new-tab">@lang('Запрос подписки')</div>
                         </div>
                     </div>
-                    <h3 class="setint__desc">@lang('Код PUSH.GUN для сайта')</h3>
-                    <div class="setint__info">
-                        <p class="setint__info_title">@lang('Скопируйте и вставьте код на ваш сайт, перед закрывающим тегом')
-                            <span>&lt;/head&gt;</span></p>
-                        <pre><code>&lt;script charset="UTF-8" src="{{ config('app.url') }}/storage/push/{{ $site->script }}" async&gt;&lt;/script&gt;</code></pre>
-                        <div class="setint__info_checked">
-                            <img src="{{ asset('images/mark.svg') }}" width="16" height="16" alt="V">
-                            <p style="color: #3B8378">@lang('Код добавлен корректно')</p>
-                        </div>
-
-                    </div>
-                    <h3 class="setint__desc">@lang('Установочные файлы Chrome')</h3>
-                    <div class="setint__info">
-                        <p class="setint__info_title">
-                            @lang('Для поддержки Chrome, загрузите установочные файлы ниже. Распакуйте из архива и скопируйте файлы в каталог верхнего уровня (root , или \'/\') вашего сайта.')
-                        </p>
-                        <div class="setint__info_download">
-                            <img src="{{ asset('images/download.svg') }}" width="16" height="16" alt="">
-                            <a target="_blank" href="{{ url('/storage/pg-push.zip') }}">
-                                @lang('Скачать установочные файлы')
-                            </a>
-                        </div>
-                        <div class="setint__info_checked">
-                            <img src="{{ asset('images/removeRed.svg') }}" width="16" height="16" alt="X">
-                            <p style="color: #F33657">@lang('Файлы sp-push-worker-fb.js, sp-push-manifest.json не установлены')</p>
-                        </div>
-
-                    </div>
-                    <div class="button_green save__button setint__button">
-                        <span class="green_button_circle"></span>
-                        <button class="button_green_inner">
-                            <p class="button_text_container">
-                                <img src="{{ asset('images/reload.svg') }}" alt="">@lang('Перепроверить')
-                            </p>
-                        </button>
-                    </div>
+                    <site-check script="{{ url("/storage/push/$site->script") }}"
+                                archive="{{ url('/storage/pg-push.zip') }}"
+                                action="{{ action('Api\CheckScriptController@index', $site) }}"
+                                installed="{{ $site->installed }}"></site-check>
                 </section>
                 <section id="request-sec" class="setreq">
                     <div class="setgen__buttons">

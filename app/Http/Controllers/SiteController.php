@@ -121,8 +121,8 @@ class SiteController extends Controller
         $script = Str::replaceFirst('APP_URL', config('app.url'), $script);
         $script = Str::replaceFirst('SUBSCRIBE_URL', route('subscribe.update', $site), $script);
         $script = Str::replaceFirst('APP_KEY', config('webpush.vapid.public_key'), $script);
-        Storage::disk('local')
-            ->put('/public/push/' . $site->script, $script);
+        Storage::drive('local')
+            ->store('/public/push/' . $site->script, $script);
     }
 
     /**
