@@ -844,16 +844,17 @@ input {
 .footer__wrapper__links_reg {
     text-align: center;
     line-height: 47px;
-    background: #323441;
+    background: #3B8378;
     border-radius: 100px;
     width: 178px;
     height: 47px;
     text-decoration: none;
-    color: #fff;
+    color: #fff !important;
 }
 
 .footer__wrapper__links_reg:hover {
-    background: #3B8378;
+    background: #000000;
+    &:before, &:after { display: none; }
 }
 
 .footer__by {
