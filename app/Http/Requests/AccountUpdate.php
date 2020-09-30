@@ -26,7 +26,7 @@ class AccountUpdate extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'lastname' => 'string|max:255',
-            'phone' => 'phone',
+            'phone' => 'phone:AUTO,mobile',
             'email' => 'sometimes|required|email',
             'lang' => 'string|max:255',
             'timezone' => 'string|max:255',

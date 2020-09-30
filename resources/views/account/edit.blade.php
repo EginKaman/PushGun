@@ -116,7 +116,9 @@
                                         class="set-form__desc">@lang('Рекомендуемый размер фото'):<br>150px × 150px</span>
                                 </div>
                                 <input type="file" name="photo" id="photo" accept="image/*">
-                                <div class="photo-min" id="output"></div>
+                                <div class="photo-min" id="output">
+                                    <img src="{{ asset(Storage::url($user->photo) ?? 'images/minPhoto.svg') }}" alt="">
+                                </div>
                             </label>
 
 
@@ -243,7 +245,8 @@
 
                                         <label for="radio1" class="set-form__label-check">
                                             <input class="" type="radio" name="notification" id="radio1">
-                                            <span class="set-form__title">@lang('Отключить получение push уведомлений')</span>
+                                            <span
+                                                class="set-form__title">@lang('Отключить получение push уведомлений')</span>
                                         </label>
 
                                         <label for="radio2" class="set-form__label-check">
