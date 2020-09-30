@@ -23,7 +23,7 @@ export default {
 			try {
 				let _range = range || 'week'
 
-                let {data} = await axios.get(`/statistics?range=${_range}`)
+                let {data} = await axios.get(`/web-api/statistics?range=${_range}`)
                 commit("setStatistics", data)
 
             } catch (e) {

@@ -41,11 +41,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::post('ticket/{ticket}/message', 'MessageController@store')->name('message.store');
         Route::get('/tariff', 'TariffController@index')->name('tariff.index');
         Route::post('/tariff/{tariff:slug}', 'TariffController@update')->name('tariff.update');
-
-        Route::get('/statistics', 'StatisticController@index');
     });
 });
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
     Route::get('site', 'Api\SiteController@index');
+    Route::get('site/{site}/statistics', 'Api\SiteStatisticController@index');
+    Route::get('statistics', 'Api\StatisticController@index');
 });
 
