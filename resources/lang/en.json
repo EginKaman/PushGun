@@ -143,6 +143,7 @@
     "Техническая поддержка": "Technical support",
     "Введите ваше сообщение": "Please enter your message",
     "до 50 символов": "up to 50 characters",
+    "до 130 символов": "up to 130 characters",
     "Новый сайт добавлен": "New site added",
     "Скопируйте и вставьте код на ваш сайт, перед закрывающим тегом": "Copy and paste the code to your site, before the closing tag",
     "Загрузите установочные файлы chrome на сервер в корневую директорию сайта": "Upload the chrome installation files to the server in the root directory of the site",

@@ -256,9 +256,21 @@
             color: #323441;
             transition: all 0.3s ease-in-out;
 
+            &::placeholder {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 150%;
+                letter-spacing: 0.25px;
+                color: #323441;
+            }
+
             &:hover {
-                border: 1px solid #3b8378;
                 transition: all 0.3s ease-in-out;
+                border: 1px solid #3b8378;
+
+                &::placeholder {
+                    color: #3b8378;
+                }
             }
         }
 

@@ -25,7 +25,7 @@
                 <div class="push__input">
                     <label for="text">{{ $t('Текст уведомления') }}</label>
                     <textarea class="textarea" id="text" v-model="text" name="text" maxlength="130" cols="5"
-                              rows="5"></textarea>
+                              rows="5" :placeholder="$t('до 130 символов')"></textarea>
                 </div>
                 <div class="push__input">
                     <label for="link">{{ $t('Ссылка на уведомление') }}</label>
