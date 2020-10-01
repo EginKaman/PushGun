@@ -58,43 +58,43 @@
                                         <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>
                                         <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
-                                    <div class="setreq__radio">
-                                        <input type="radio" name="request" id="onClick" value="click"
-                                               @if(old('request') === 'click') checked @endif>
-                                        <label for="onClick"
-                                               class="label-checkbox">@lang('При клике на элемент')</label>
-                                        <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
-                                    </div>
-                                    <div class="setreq__radio">
-                                        <input type="radio" name="request" id="intermediate" value="intermediate"
-                                               @if(old('request') === 'intermediate') checked @endif>
-                                        <label for="intermediate" class="label-checkbox">
-                                            @lang('С промежуточным запросом')
-                                        </label>
-                                    </div>
+{{--                                    <div class="setreq__radio">--}}
+{{--                                        <input type="radio" name="request" id="onClick" value="click"--}}
+{{--                                               @if(old('request') === 'click') checked @endif>--}}
+{{--                                        <label for="onClick"--}}
+{{--                                               class="label-checkbox">@lang('При клике на элемент')</label>--}}
+{{--                                        <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="setreq__radio">--}}
+{{--                                        <input type="radio" name="request" id="intermediate" value="intermediate"--}}
+{{--                                               @if(old('request') === 'intermediate') checked @endif>--}}
+{{--                                        <label for="intermediate" class="label-checkbox">--}}
+{{--                                            @lang('С промежуточным запросом')--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
                                 </div>
 
-                                <div class="site_set_sub_checkbox">
-                                    <div class="setreq__checkbox">
-                                        <input type="checkbox" class="checkbox-input" name="hint"
-                                               @if(old('hint')) checked @endif id="addTip" value="1">
-                                        <label class="label-checkbox"
-                                               for="addTip">@lang('Добавить текст-подсказку')</label>
-                                    </div>
-                                    <p class="setreq__sample">@lang('Пример подсказки')</p>
-                                </div>
+{{--                                <div class="site_set_sub_checkbox">--}}
+{{--                                    <div class="setreq__checkbox">--}}
+{{--                                        <input type="checkbox" class="checkbox-input" name="hint"--}}
+{{--                                               @if(old('hint')) checked @endif id="addTip" value="1">--}}
+{{--                                        <label class="label-checkbox"--}}
+{{--                                               for="addTip">@lang('Добавить текст-подсказку')</label>--}}
+{{--                                    </div>--}}
+{{--                                    <p class="setreq__sample">@lang('Пример подсказки')</p>--}}
+{{--                                </div>--}}
                             </div>
 
                             <div class="site_set_push">
                                 <div class="site_set_push_title">@lang('Условия показа запроса')</div>
                                 <div class="site_set_push_labels">
-                                    <div class="site_set_push_label">
-                                        <h6>@lang('Показ запроса при')</h6>
-                                        <div class="site_set_push_label_input">
-                                            <input type="number" name="visit" value="{{ old('visit', 1) }}">
-                                            <span>@lang('визите')</span>
-                                        </div>
-                                    </div>
+{{--                                    <div class="site_set_push_label">--}}
+{{--                                        <h6>@lang('Показ запроса при')</h6>--}}
+{{--                                        <div class="site_set_push_label_input">--}}
+{{--                                            <input type="number" name="visit" value="{{ old('visit', 1) }}">--}}
+{{--                                            <span>@lang('визите')</span>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     <div class="site_set_push_label">
                                         <h6>@lang('Задержка появления')</h6>
@@ -104,9 +104,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="site_set_push_info">
-                                    @lang('Хорошая практика - предлагать подписаться на web push только при повторном визите')
-                                </div>
+{{--                                <div class="site_set_push_info">--}}
+{{--                                    @lang('Хорошая практика - предлагать подписаться на web push только при повторном визите')--}}
+{{--                                </div>--}}
                             </div>
 
                             <div class="site_set_hide">
