@@ -107,11 +107,11 @@
                                 </div>
                                 <div class="mails__sites_stats-item">
                                     <h3>2</h3>
-                                    <p>@lang('отправлено')</p>
+                                    <p>@lang('доставлено')</p>
                                 </div>
                                 <div class="mails__sites_stats-item">
-                                    <h3>2</h3>
-                                    <p>@lang('отправлено')</p>
+                                    <h3>{{ $push->transitions_count }}</h3>
+                                    <p>@lang('переходов')</p>
                                 </div>
                             </div>
                         </div>

@@ -19,7 +19,7 @@ class PushController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $pushes = $user->pushes->load('site');
+        $pushes = $user->pushes->load('site')->loadCount('transitions');
         $sites = $user->sites;
         $sites->loadCount('pushSubscriptions');
         return view('pushes.index', [
@@ -79,7 +79,7 @@ class PushController extends Controller
      */
     public function show(Push $push)
     {
-        $push->load('site');
+        $push->load('site')->loadCount('transitions');
         $site = $push->site->loadCount('pushSubscriptions');
         return view('pushes.show', [
             'push' => $push,

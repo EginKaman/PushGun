@@ -27,11 +27,11 @@
                 </div>
                 <div class="general__status">
                     <div class="general__subs mail__go">
-                        <p class=""><span>500</span> @lang('переходов')</p>
+                        <p class=""><span>{{ $push->transitions_count }}</span> @lang('переходов')</p>
                         <p class="percent">50%</p>
                     </div>
                     <div class="progress">
-                        <progress max="100" value="50"></progress>
+                        <progress max="100" value="{{ $push->transitions_count }}"></progress>
                         <div class="progress_bg">
                             <div class="progress_bar"></div>
                         </div>
@@ -39,9 +39,9 @@
                 </div>
                 <div class="general__stats_left">
                     <div class="general__stats_left-item" style="background: #5BA4D7;">
-                        <h3>{{ $site->push_subscriptions_count }}</h3>
+                        <h3>0</h3>
                         <div class="mb-10">
-                            <p class="medium">@lang('активных подписчиков')</p>
+                            <p class="medium">@lang('отправлено')</p>
                         </div>
                     </div>
                     <div class="general__stats_left-item" style="background: #9698D5;">
@@ -49,21 +49,17 @@
                         <p class="medium mb-10">100% @lang('доставлено')</p>
                     </div>
                     <div class=" general__stats_left-item" style="background: #FF7226;">
-                        <h3>2</h3>
+                        <h3>{{ $push->transitions_count }}</h3>
                         <div class="mb-10">
                             <p class="medium">50% @lang('переходов')</p>
                         </div>
                     </div>
-                    <div class="general__stats_left-item" style="background: #D32626;">
-                        <h3>2</h3>
-                        <p class="medium mb-10">@lang('рассылок')</p>
-                    </div>
                 </div>
                 <div class="mail__info">
-                    <dl class="mail__info_item">
-                        <dt class="mail__info_title">@lang('В очереди на доставку')</dt>
-                        <dd class="mail__info_desc">0</dd>
-                    </dl>
+                    {{--                    <dl class="mail__info_item">--}}
+                    {{--                        <dt class="mail__info_title">@lang('В очереди на доставку')</dt>--}}
+                    {{--                        <dd class="mail__info_desc">0</dd>--}}
+                    {{--                    </dl>--}}
                     <dl class="mail__info_item">
                         <dt class="mail__info_title">@lang('Отправлено')</dt>
                         <dd class="mail__info_desc">0</dd>

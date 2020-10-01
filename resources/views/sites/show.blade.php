@@ -26,9 +26,13 @@
                         <p class="medium mb-10">100% @lang('доставлено')</p>
                     </div>
                     <div class=" general__stats_left-item" style="background: #FF7226;">
-                        <h3>2</h3>
+                        <h3>{{ $site->transitions_count }}</h3>
                         <div class="mb-10">
-                            <p class="medium">50% @lang('переходов')</p>
+                            <p class="medium">
+                                @if($site->transitions_count > 0)
+                                {{ $site->push_subscriptions_count / $site->transitions_count * 100 }}
+                                @endif @lang('переходов')
+                            </p>
                         </div>
                     </div>
                     <div class="general__stats_left-item" style="background: #36C2CF;">
@@ -58,8 +62,8 @@
                             <canvas id="myChart2"></canvas>
                         </div>
                         <div class="site__chart_desc">
-                            <p>@lang('Новых подписчиков за период'): <span>1</span></p>
-                            <p>@lang('Отписанных'): <span>1</span></p>
+                            <p>@lang('Новых подписчиков за период'): <span>{{ $site->today_subscriptions_count }}</span></p>
+{{--                            <p>@lang('Отписанных'): <span>1</span></p>--}}
                         </div>
                     </div>
                 </div>

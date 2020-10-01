@@ -55,6 +55,14 @@ class Site extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function transitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(Transition::class, Push::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function todaySubscriptions(): \Illuminate\Database\Eloquent\Relations\MorphMany
