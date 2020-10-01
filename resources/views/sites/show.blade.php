@@ -6,7 +6,9 @@
             <section class="mail site">
                 <div class="general__title">
                     <h1 class="title">{{ $site->link }}</h1>
-                    <img src="{{ asset('images/mark.svg') }}" alt="">
+                    @if($site->installed)
+                        <img src="{{ asset('images/mark.svg') }}" alt="">
+                    @endif
                 </div>
                 <div class="mail__time-sent">
                     <p>@lang('Статистика')</p>

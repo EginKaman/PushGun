@@ -15,6 +15,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 Route::post('/subscribe/{site}', 'SubscribeController@update')->name('subscribe.update');
+Route::get('/push/{push}/redirect', 'TransitionController@store')->name('transition.store');
 Route::get('manifest.json', function () {
     return [
         'name' => config('app.name'),

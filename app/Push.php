@@ -30,4 +30,12 @@ class Push extends Model
     {
         return $this->belongsTo(Site::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transitions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Transition::class);
+    }
 }

@@ -19,13 +19,23 @@ class Site extends Model
     protected $fillable = [
         'link',
         'image',
-        'installed',
         'request',
         'visit',
         'delay',
         'mobile',
         'hint',
         'script',
+    ];
+
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'installed' => 'bool',
+        'mobile' => 'bool'
     ];
 
     /**

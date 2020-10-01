@@ -65,7 +65,7 @@ class PushController extends Controller
             ->title($request->input('title'))
             ->icon(asset(Storage::url($push->image ?? $site->image)))
             ->body($request->input('text'))
-            ->url($request->input('link'))
+            ->url(route('push.transition', $push))
         );
 
         return redirect()->route('push.index');

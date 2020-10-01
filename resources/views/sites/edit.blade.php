@@ -15,7 +15,7 @@
                     </button>
                 </div>
             </div>
-            <form action="{{ route('site.update', $site) }}" method="post">
+            <form action="{{ route('site.update', $site) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <section id="general-sec" class="choosen">
@@ -33,17 +33,22 @@
                     <div class="setgen__info">
                         <dl class="setgen__info_block">
                             <dt class="setgen__info_title">@lang('URL сайта'):</dt>
-                            <dd class="setgen__info_desc">{{ $site->url }}
-                                <img class="checked" src="{{ asset('images/mark.svg') }}" alt="">
+                            <dd class="setgen__info_desc">{{ $site->link }}
+                                @if($site->installed)
+                                    <img class="checked" src="{{ asset('images/mark.svg') }}" alt="">
+                                @endif
                             </dd>
                         </dl>
                         <dl class="setgen__info_block">
                             <dt class="setgen__info_title">@lang('Изображение сайта'):</dt>
                             <dd class="setgen__info_upload">
-
                                 <input type="file" name="image" id="siteAvatar" required>
                                 <label for="siteAvatar" class="setgen__form">
-                                    <img src="{{ asset(Storage::url($site->image) ?? 'images/site.svg') }}" alt="">
+                                    @if($site->image)
+                                        <img src="{{ asset(Storage::url($site->image)) }}" alt="">
+                                    @else
+                                        <img src="{{ asset('images/site.svg') }}" alt="">
+                                    @endif
                                     <div class="setgen__form_block">
                                         <p class="setgen__form_title">@lang('Выбрать изображение')</p>
                                         <p class="setgen__form_desc">
