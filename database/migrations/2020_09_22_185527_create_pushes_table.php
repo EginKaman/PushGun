@@ -21,6 +21,8 @@ class CreatePushesTable extends Migration
             $table->string('image')->nullable();
             $table->text('text');
             $table->string('link')->nullable();
+            $table->unsignedBigInteger('sent')->default(0);
+            $table->unsignedBigInteger('delivered')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -61,12 +61,15 @@ class PushController extends Controller
         }
         $push->save();
         $site = $push->site;
+        $push->sent = $site->pushSubscriptions()->count();
         $site->notify((new SendPush())
             ->title($request->input('title'))
             ->icon(asset(Storage::url($push->image ?? $site->image)))
             ->body($request->input('text'))
             ->url(route('push.transition', $push))
         );
+        $push->delivered = $site->pushSubscriptions()->count();
+        $push->save();
 
         return redirect()->route('push.index');
     }

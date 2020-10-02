@@ -6,9 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-//use NotificationChannels\OneSignal\OneSignalChannel;
-//use NotificationChannels\OneSignal\OneSignalMessage;
-//use NotificationChannels\OneSignal\OneSignalWebButton;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
@@ -63,7 +60,6 @@ class SendPush extends Notification
      */
     public function via($notifiable)
     {
-//        return [WebPushChannel::class, OneSignalChannel::class];
         return [WebPushChannel::class];
     }
 
