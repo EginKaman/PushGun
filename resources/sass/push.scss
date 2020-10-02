@@ -63,10 +63,7 @@
                         letter-spacing: 0.25px;
                         color: #FFFFFF;
                         margin-bottom: 5px;
-                        -webkit-line-clamp: 1;
-                        display: -webkit-box; 
-                        -webkit-box-orient: vertical;
-                        overflow: hidden; 
+                        overflow-wrap: break-word;
                     }
 
                     a {
@@ -126,10 +123,7 @@
                     letter-spacing: 0.25px;
                     color: #060607;
                     margin-bottom: 5px;
-                    -webkit-line-clamp: 1;
-                    display: -webkit-box; 
-                    -webkit-box-orient: vertical;
-                    overflow: hidden; 
+                    overflow-wrap: break-word;
                 }
 
                 a {
