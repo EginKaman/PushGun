@@ -1,18 +1,24 @@
-.privacy-article {
-    margin-top: 20px;
-    
+.privacy_article {
+    margin-top: 30px;
+
+    h5 {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
     h6 {
         font-size: 18px;
         font-weight: bold;
-    }
-
-    p, ul {
-        margin-top: 10px;
+        margin: 10px 0;
     }
 
     ul {
         li {
-            list-style-type: none;
+            list-style: none;
         }
     }
+
+
+
 }
