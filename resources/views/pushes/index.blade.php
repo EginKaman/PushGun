@@ -106,7 +106,7 @@
                                     <p>@lang('отправлено')</p>
                                 </div>
                                 <div class="mails__sites_stats-item">
-                                    <h3>{{ $pust->delivered }}</h3>
+                                    <h3>{{ $push->delivered }}</h3>
                                     <p>@lang('доставлено')</p>
                                 </div>
                                 <div class="mails__sites_stats-item">

@@ -95,7 +95,8 @@
                     <site-check script="{{ url("/storage/push/$site->script") }}"
                                 archive="{{ url('/storage/pg-push.zip') }}"
                                 action="{{ action('Api\CheckScriptController@index', $site) }}"
-                                installed="{{ $site->installed }}"></site-check>
+                                button="@lang('Перепроверить')"
+                                :installed="{{ json_encode($site->installed) }}"></site-check>
                 </section>
                 <section id="request-sec" class="setreq">
                     <div class="setgen__buttons">

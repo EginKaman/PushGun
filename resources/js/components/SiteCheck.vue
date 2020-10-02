@@ -6,7 +6,7 @@
                 <span>&lt;/head&gt;</span>
             </p>
             <pre><code>&lt;script charset="UTF-8" src="{{ script }}" async&gt;&lt;/script&gt;</code></pre>
-            <div class="setint__info_checked" v-if="(checked.script || installed) || !create">
+            <div class="setint__info_checked" v-if="(checked.script || installed)">
                 <img src="../../images/mark.svg" width="16" height="16" alt="V">
                 <p style="color: #3B8378">{{ $t('Файл pg-push-worker.js, установлен') }}</p>
             </div>
@@ -30,7 +30,7 @@
                     {{ $t('Скачать установочные файлы') }}
                 </a>
             </div>
-            <div class="setint__info_checked" v-if="(checked.file || installed) || !create">
+            <div class="setint__info_checked" v-if="(checked.file || installed)">
                 <img src="../../images/mark.svg" width="16" height="16" alt="V">
                 <p style="color: #3B8378">{{ $t('Файл pg-push-worker.js, установлен') }}</p>
             </div>
@@ -43,16 +43,11 @@
         </div>
         <div class="button_green save__button setint__button">
             <span class="green_button_circle"></span>
-            <button type="button" class="button_green_inner" @click="check" v-if="!checked.file && !checked.script">
+            <button type="button" class="button_green_inner" @click="check">
                 <p class="button_text_container">
                     <img src="../../images/reload.svg" alt="">{{ button }}
                 </p>
             </button>
-            <a href="/push" class="button_green_inner" v-else>
-                <p class="button_text_container">
-                    {{ $t('Дальше') }}
-                </p>
-            </a>
         </div>
     </div>
 </template>
