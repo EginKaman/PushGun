@@ -43,7 +43,7 @@
                         <dl class="setgen__info_block">
                             <dt class="setgen__info_title">@lang('Изображение сайта'):</dt>
                             <dd class="setgen__info_upload">
-                                <input type="file" name="image" id="siteAvatar" required>
+                                <input type="file" name="image" id="siteAvatar">
                                 <label for="siteAvatar" class="setgen__form">
                                     @if($site->image)
                                         <img src="{{ asset(Storage::url($site->image)) }}" alt="">
@@ -148,7 +148,7 @@
                             <div class="setgen__info_desc">
                                 <div class="setreq__checkbox">
                                     <input type="checkbox" class="checkbox-input" name="mobile"
-                                           @if($site->mobile)checked @endif id="hideMobile">
+                                           @if($site->mobile)checked @endif id="hideMobile" value="1">
                                     <label class="label-checkbox" for="hideMobile">
                                         @lang('Скрывать на мобильных девайсах')
                                     </label>

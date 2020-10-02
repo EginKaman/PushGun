@@ -42,7 +42,6 @@ class SiteStore extends FormRequest
             'request' => ['required', 'string', Rule::in(['visit', 'click', 'intermediate'])],
             'hint' => ['nullable', 'boolean'],
             'mobile' => ['nullable', 'boolean'],
-            'visit' => ['required', 'digits_between:0,255'],
             'delay' => ['required', 'digits_between:0,65535']
         ];
     }

@@ -36,7 +36,7 @@
 
                         <div class="site_set">
                             <div class="site_set_avatar">
-                                <input type="file" name="image" id="image" required>
+                                <input type="file" name="image" id="image">
                                 <div class="site_set_avatar_title">@lang('Картинка сайта')</div>
                                 <label for="image" class="site_avatar_form">
                                     <img src="{{ asset('images/site.svg') }}" alt="">
@@ -113,7 +113,7 @@
                                 <div class="site_set_sub_checkbox">
                                     <div class="setreq__checkbox">
                                         <input type="checkbox" class="checkbox-input" name="mobile"
-                                               @if(old('mobile')) checked @endif id="hideMobile">
+                                               @if(old('mobile')) checked @endif id="hideMobile" value="1">
                                         <label class="label-checkbox" for="hideMobile">
                                             @lang('Скрывать на мобильных девайсах')
                                         </label>
