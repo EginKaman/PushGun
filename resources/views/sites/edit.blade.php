@@ -8,11 +8,12 @@
                 <div class="button_rb mail__button setgen__button">
                     <span class="rb_button_circle">
                     </span>
-                    <button class="button_rb_inner mail__button_inner setgen__button_inner">
+                    <a href="{{ route('site.show', $site) }}"
+                       class="button_rb_inner mail__button_inner setgen__button_inner">
                         <p class="rb_button_text_container">
                             {{ $site->link }} →
                         </p>
-                    </button>
+                    </a>
                 </div>
             </div>
             <form action="{{ route('site.update', $site) }}" method="post" enctype="multipart/form-data">
@@ -56,14 +57,14 @@
                                         </p>
                                     </div>
                                 </label>
-{{--                                <div class="setgen__info_block">--}}
-{{--                                    <div class="setgen__info_desc">--}}
-{{--                                        <input type="checkbox" class="checkbox-input" name="getPush" id="getPush">--}}
-{{--                                        <label class="label-checkbox" for="getPush">--}}
-{{--                                            @lang('Отправлять приветственное push-уведомление после подписки')--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="setgen__info_block">--}}
+                                {{--                                    <div class="setgen__info_desc">--}}
+                                {{--                                        <input type="checkbox" class="checkbox-input" name="getPush" id="getPush">--}}
+                                {{--                                        <label class="label-checkbox" for="getPush">--}}
+                                {{--                                            @lang('Отправлять приветственное push-уведомление после подписки')--}}
+                                {{--                                        </label>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                                 <div class="setgen__down-buttons">
                                     <div class="button_green save__button">
                                         <span class="green_button_circle"></span>
@@ -118,32 +119,32 @@
                                     <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>
                                     <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                 </div>
-{{--                                <div class="setreq__radio">--}}
-{{--                                    <input type="radio" name="request" id="onClick" value="click"--}}
-{{--                                           @if($site->request === 'click')checked @endif>--}}
-{{--                                    <label for="onClick"--}}
-{{--                                           class="label-checkbox">@lang('При клике на элемент')</label>--}}
-{{--                                    <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">--}}
-{{--                                </div>--}}
-{{--                                <div class="setreq__radio">--}}
-{{--                                    <input type="radio" name="request" id="intermediate" value="intermediate"--}}
-{{--                                           @if($site->request === 'intermediate')checked @endif>--}}
-{{--                                    <label for="intermediate" class="label-checkbox">--}}
-{{--                                        @lang('С промежуточным запросом')--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="setreq__radio">--}}
+                                {{--                                    <input type="radio" name="request" id="onClick" value="click"--}}
+                                {{--                                           @if($site->request === 'click')checked @endif>--}}
+                                {{--                                    <label for="onClick"--}}
+                                {{--                                           class="label-checkbox">@lang('При клике на элемент')</label>--}}
+                                {{--                                    <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">--}}
+                                {{--                                </div>--}}
+                                {{--                                <div class="setreq__radio">--}}
+                                {{--                                    <input type="radio" name="request" id="intermediate" value="intermediate"--}}
+                                {{--                                           @if($site->request === 'intermediate')checked @endif>--}}
+                                {{--                                    <label for="intermediate" class="label-checkbox">--}}
+                                {{--                                        @lang('С промежуточным запросом')--}}
+                                {{--                                    </label>--}}
+                                {{--                                </div>--}}
                             </div>
-{{--                            <div class="setgen__info_desc">--}}
-{{--                                <div class="setreq__checkbox">--}}
-{{--                                    <input type="checkbox" class="checkbox-input" name="hint"--}}
-{{--                                           @if($site->hint)checked @endif--}}
-{{--                                           id="addTip" value="1">--}}
-{{--                                    <label class="label-checkbox"--}}
-{{--                                           for="addTip">@lang('Добавить текст-подсказку')</label>--}}
-{{--                                </div>--}}
-{{--                                <p class="setreq__sample">@lang('Пример подсказки')</p>--}}
+                            {{--                            <div class="setgen__info_desc">--}}
+                            {{--                                <div class="setreq__checkbox">--}}
+                            {{--                                    <input type="checkbox" class="checkbox-input" name="hint"--}}
+                            {{--                                           @if($site->hint)checked @endif--}}
+                            {{--                                           id="addTip" value="1">--}}
+                            {{--                                    <label class="label-checkbox"--}}
+                            {{--                                           for="addTip">@lang('Добавить текст-подсказку')</label>--}}
+                            {{--                                </div>--}}
+                            {{--                                <p class="setreq__sample">@lang('Пример подсказки')</p>--}}
 
-{{--                            </div>--}}
+                            {{--                            </div>--}}
                             <div class="setgen__info_desc">
                                 <div class="setreq__checkbox">
                                     <input type="checkbox" class="checkbox-input" name="mobile"
