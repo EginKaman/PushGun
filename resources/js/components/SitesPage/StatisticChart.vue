@@ -9,7 +9,7 @@
 	import { chartFucntions } from '../../mixins/chart.js'
 
 	export default {
-		name: "testing",
+		name: 'StatisticChart',
 		mixins: [chartFucntions],
 		components: {
 			"chart-component": Chart
@@ -19,13 +19,19 @@
 				chartData: {}
 			}
 		},
+		props: {
+			address: {
+				type: String,
+				default: ''
+			}
+		},
 		computed: {
 			statistics() {
-				return this.$store.state.services.statistics
+				return this.$store.state.services.individual_statistick
 			},
 		},
 		mounted() {
-			this.$store.dispatch('services/FETCH_STATISTICS', {})
+			this.$store.dispatch('services/FETCH_INDIVIDUAL_STATISTICS', { id: this.address })
 		},
 		watch: {
 			statistics: {
@@ -44,5 +50,9 @@
 				deep: true
 			}
 		}
-	} 
+	}
 </script>
+
+<style scoped lang="scss">
+	
+</style>
