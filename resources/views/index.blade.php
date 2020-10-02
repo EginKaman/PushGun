@@ -124,8 +124,7 @@
         <div class="container">
             <h2 class="section2__title">@lang('Возможности и преимущества')</h2>
             <p class="section2__descr">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua
+            Push-уведомления всегда на виду и их сложно пропустить: подписчики сразу увидят ваше сообщение, как только зайдут на сайт.  Простая и понятная статистика: анализируйте и улучшайте показатели переходов, открытий и новых подписок. Высокая вероятность подписки на уведомления: пользователи сразу видят запрос на подписку, как только заходят на сайт. Бесплатный доступ к сервису: рассылайте пуш-уведомления бесплатно до 1000 подписчиков.
             </p>
             <div class="section2__itemsWrapper">
                 <div class="section2__itemsWrapper__item">
