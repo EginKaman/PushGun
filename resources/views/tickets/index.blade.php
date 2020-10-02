@@ -32,13 +32,13 @@
                                value="{{ old('email', Auth::user()->email) }}">
                     </label>
                     <label for="message" class="sup-label">
-                        <span class="">@lang('Тема')</span>
+                        <span class="">@lang('Сообщение')</span>
                         <textarea id="message" name="message"
                                   class="sup-input sup-textarea">{{ old('message') }}</textarea>
-                        <label for="file" class="sup-label sup-label-file">
+                        <!-- <label for="file" class="sup-label sup-label-file">
                             <img src="{{ asset('images/file.svg') }}" alt="">
                             <input type="file" id="file" class="sup-input">
-                        </label>
+                        </label> -->
                     </label>
                     <div class="setgen__down-buttons small-btn">
                         <div class="button_green save__button small-btn">
