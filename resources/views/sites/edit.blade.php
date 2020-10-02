@@ -96,6 +96,7 @@
                                 archive="{{ url('/storage/pg-push.zip') }}"
                                 action="{{ action('Api\CheckScriptController@index', $site) }}"
                                 button="@lang('Перепроверить')"
+                                :recheck="true"
                                 :installed="{{ json_encode($site->installed) }}"></site-check>
                 </section>
                 <section id="request-sec" class="setreq">

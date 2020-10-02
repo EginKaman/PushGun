@@ -8,7 +8,7 @@
             <pre><code>&lt;script charset="UTF-8" src="{{ script }}" async&gt;&lt;/script&gt;</code></pre>
             <div class="setint__info_checked" v-if="(checked.script || installed)">
                 <img src="../../images/mark.svg" width="16" height="16" alt="V">
-                <p style="color: #3B8378">{{ $t('Файл pg-push-worker.js, установлен') }}</p>
+                <p style="color: #3B8378">{{ $t('Код добавлен корректно') }}</p>
             </div>
             <div class="setint__info_checked" v-else-if="create">
             </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="setint__info_checked" v-if="(checked.file || installed)">
                 <img src="../../images/mark.svg" width="16" height="16" alt="V">
-                <p style="color: #3B8378">{{ $t('Файл pg-push-worker.js, установлен') }}</p>
+                <p style="color: #3B8378">{{ $t('Файл pg-push-worker.js установлен') }}</p>
             </div>
             <div class="setint__info_checked" v-else-if="create">
             </div>
@@ -79,6 +79,10 @@ export default {
         create: {
             type: Boolean,
             default: false
+        },
+        recheck: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -93,7 +97,20 @@ export default {
         check() {
             axios.post(this.action).then(response => {
                 this.checked = response.data;
-            })
+                if (this.checked) {
+                    this.$swal({
+                        title: this.$i18n.t('Успех!'),
+                        text: `${this.$t('Код добавлен корректно')}\r\n${this.$t('Файл pg-push-worker.js установлен')}`,
+                        icon: "error",
+                    });
+                } else {
+                    this.$swal({
+                        title: this.$i18n.t('Ошибка!'),
+                        text: `${this.$t('Код добавлен не корректно')}\r\n${this.$t('Файл pg-push-worker.js не установлен')}`,
+                        icon: "error",
+                    });
+                }
+            });
         }
     }
 }
