@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PaymentResource;
-use App\Nova\Push;
 use App\User;
-use AvtoDev\CloudPayments\Client;
-use AvtoDev\CloudPayments\Requests\Payments\Cards\CardsAuthRequestBuilder;
+use App\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
     public function check(Request $request)
     {
-        $s = hash_hmac('sha256', $request->post(), config('services.cloud_payments.api_key'), true);
+        $s = hash_hmac('sha256', implode('&', $request->post()), config('services.cloud_payments.api_key'), true);
         \Log::info('Check payment', [
             'post' => $request->post(),
             'X-Content-HMAC' => $request->header('X-Content-HMAC'),
@@ -39,6 +36,12 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+        $s = hash_hmac('sha256', implode('&', $request->post()), config('services.cloud_payments.api_key'), true);
+        \Log::info('Check payment', [
+            'post' => $request->post(),
+            'X-Content-HMAC' => $request->header('X-Content-HMAC'),
+            'Content-HMAC' => $request->header('Content-HMAC')
+        ]);
         $payment = new Payment();
         $payment->fill([
             'transaction_id' => $request->TransactionId,
