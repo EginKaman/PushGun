@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PaymentResource;
 use App\User;
+use App\Payment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
     public function check(Request $request)
     {
-        $s = hash_hmac('sha256', $request->post(), config('services.cloud_payments.api_key'), true);
+        $s = hash_hmac('sha256', implode('&', $request->post()), config('services.cloud_payments.api_key'), true);
         \Log::info('Check payment', [
             'post' => $request->post(),
             'X-Content-HMAC' => $request->header('X-Content-HMAC'),
@@ -35,7 +36,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $s = hash_hmac('sha256', $request->post(), config('services.cloud_payments.api_key'), true);
+        $s = hash_hmac('sha256', implode('&', $request->post()), config('services.cloud_payments.api_key'), true);
         \Log::info('Check payment', [
             'post' => $request->post(),
             'X-Content-HMAC' => $request->header('X-Content-HMAC'),
