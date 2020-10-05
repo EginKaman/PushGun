@@ -14,6 +14,7 @@ class TransitionController extends Controller
             'ip' => $request->getClientIp(),
             'user_agent' => $request->userAgent()
         ]);
+        $transition->push()->associate($push);
         $transition->save();
         return redirect($push->link ?? $push->site->link);
     }
