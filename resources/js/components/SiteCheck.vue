@@ -107,7 +107,7 @@ export default {
                     this.$swal({
                         title: this.$i18n.t('Ошибка!'),
                         text: `${this.$t('Код добавлен не корректно')}\r\n${this.$t('Файл pg-push-worker.js не установлен')}`,
-                        icon: "error",
+                        icon: "success",
                     });
                 }
             });

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title', __('Тарифы'))
+@push('scripts')
+    <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
+@endpush
 @section('content')
     <main class="main single-mail">
         <div class="container">
@@ -81,15 +84,11 @@
                                         id="tariff-price"> 3900</span> @lang('руб./мес.') </span>
                                 <input type="hidden" name="" class="followsCount" value="30к">
 
-                                <div class="button_rb tariff-bay">
-                                    <span class="rb_button_circle">
-                                    </span>
-                                    <button type="submit" class="button_rb_inner">
-                                        <p class="rb_button_text_container">
-                                            @lang('Купить')
-                                        </p>
-                                    </button>
-                                </div>
+                                <button-payment
+                                    public_id="{{ config('services.cloud_payments.public_id') }}"
+                                    account_id="{{ auth()->id() }}"
+                                    desctiption="Тариф ПРО"
+                                    :amount="3900"></button-payment>
                             </div>
 
 

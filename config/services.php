@@ -30,4 +30,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | CloudPayments Settings
+    |--------------------------------------------------------------------------
+    | - `public_id` (string) - Public ID  (You can find it in personal area)
+    | - `api_key`   (string) - API Secret (You can find it in personal area)
+    |
+    */
+    'cloud_payments' => [
+        'public_id' => env('CLOUD_PAYMENTS_PUBLIC_ID', 'some id'),
+        'api_key' => env('CLOUD_PAYMENTS_API_KEY', 'some api key'),
+    ],
+
 ];
