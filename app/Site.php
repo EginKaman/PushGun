@@ -63,6 +63,17 @@ class Site extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function todayTransitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->transitions()->whereBetween('transitions.created_at', [
+            now()->startOfDay(),
+            now()->endOfDay()
+        ]);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function todaySubscriptions(): \Illuminate\Database\Eloquent\Relations\MorphMany

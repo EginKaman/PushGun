@@ -29,9 +29,9 @@ class AccountController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user->loadCount(['pushes'])->load('pushes');
+        $user->loadCount(['pushes']);
         $sites = $user->sites;
-        $sites->loadCount('pushSubscriptions', 'todaySubscriptions', 'transitions');
+        $sites->loadCount('pushSubscriptions', 'todaySubscriptions', 'transitions', 'todayTransitions');
         return view('account.index', [
             'user' => $user,
             'sites' => $sites,

@@ -49,8 +49,9 @@
                         <div class="general__stats_left-item" style="background: #9698D5;">
                             <h3>{{ $pushes->sum('delivered') }}</h3>
                             @if($pushes->sum('delivered') > 0)
-                                <p class="medium mb-10">{{ ($pushes->sum('sent') / $pushes->sum('delivered')) * 100 }}
-                                    % @lang('доставлено')</p>
+                                <p class="medium mb-10">
+                                    {{ ($pushes->sum('sent') / $pushes->sum('delivered')) * 100 }}% @lang('доставлено')
+                                </p>
                             @else
                                 <p class="medium mb-10">0% @lang('доставлено')</p>
                             @endif
@@ -59,12 +60,15 @@
                             <h3>{{ $sites->sum('transitions_count') }}</h3>
                             <div class="mb-10">
                                 @if($pushes->sum('delivered') > 0)
-                                    <p class="medium">{{ ($pushes->sum('delivered') / $sites->sum('transitions_count')) * 100 }}
-                                        % @lang('переходов')</p>
+                                    <p class="medium">
+                                        {{ ($pushes->sum('delivered') / $sites->sum('transitions_count')) * 100 }}% @lang('переходов')
+                                    </p>
                                 @else
                                     <p class="medium mb-10">0% @lang('переходов')</p>
                                 @endif
-                                <p class="semibold">@lang('за сегодня'): 0</p>
+                                <p class="semibold">
+                                    @lang('за сегодня'): {{ $sites->sum('today_transitions_count') }}
+                                </p>
                             </div>
                         </div>
                         <div class="general__stats_left-item" style="background: #36C2CF;">
