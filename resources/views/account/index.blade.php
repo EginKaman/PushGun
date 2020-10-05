@@ -32,7 +32,7 @@
                             <p>@lang('Тариф') “@lang($user->tariff->name)
                                 ” @lang('будет продлен') {{ $user->tariff_expired_at }}</p>
                         @endif
-                        <a href="#" class="account__bottom_subscribe">@lang('Изменить')</a>
+                        <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Изменить')</a>
                     </div>
                 </div>
                 <div class="general__stats">
@@ -61,7 +61,8 @@
                             <div class="mb-10">
                                 @if($pushes->sum('delivered') > 0)
                                     <p class="medium">
-                                        {{ round($sites->sum('transitions_count') / $pushes->sum('delivered'), 2) * 100 }}% @lang('переходов')
+                                        {{ round($sites->sum('transitions_count') / $pushes->sum('delivered'), 2) * 100 }}
+                                        % @lang('переходов')
                                     </p>
                                 @else
                                     <p class="medium mb-10">0% @lang('переходов')</p>
