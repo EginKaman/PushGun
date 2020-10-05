@@ -18,12 +18,17 @@ class PaymentController extends Controller
                 'code' => 13
             ]);
         }
-        $user = User::find($request->AccountId)->first();
-        if (empty($user)) {
+        if (Tariff::where('id', '=', json_decode($request->Data, true)['tariff'])->doesntExist()) {
+            return response()->json([
+                'code' => 13
+            ]);
+        }
+        if (User::where('id', '=', $request->AccountId)->doesntExist()) {
             return response()->json([
                 'code' => 11
             ]);
         }
+
         return response()->json([
             'code' => 0
         ]);
@@ -50,7 +55,7 @@ class PaymentController extends Controller
             'currency' => $request->Currency,
             'email' => $request->Email,
             'description' => $request->Description,
-            'data' => $request->Data,
+            'data' => json_decode($request->Data, true),
             'ip_address' => $request->IpAddress,
             'name' => $request->Name,
             'card_first_six' => $request->CardFirstSix,
@@ -66,8 +71,12 @@ class PaymentController extends Controller
         $user = User::find($request->AccountId);
         $payment->user()->associate($user);
         $payment->save();
-        $user->tariff()->associate(Tariff::where('slug', '=', $payment->data['tariff']));
-        $user->tariff_expired_at->addMonth();
+        $user->tariff()->associate(Tariff::find($payment->data['tariff']));
+        if ($user->tariff_expired_at === null) {
+            $user->tariff_expired_at = now();
+        } else {
+            $user->tariff_expired_at = $user->tariff_expired_at->addMonth();
+        }
         $user->save();
         return response()->json([
             'code' => 0
