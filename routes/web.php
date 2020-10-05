@@ -16,6 +16,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::post('/subscribe/{site}', 'SubscribeController@update')->name('subscribe.update');
 Route::get('/push/{push}/redirect', 'TransitionController@store')->name('transition.store');
+Route::post('https://pushgun.eginkaman.com/payment/check', 'PaymentController@check');
+Route::post('https://pushgun.eginkaman.com/payment', 'PaymentController@store');
 Route::get('manifest.json', function () {
     return [
         'name' => config('app.name'),
