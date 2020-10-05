@@ -61,7 +61,7 @@
                             <div class="mb-10">
                                 @if($pushes->sum('delivered') > 0)
                                     <p class="medium">
-                                        {{ ($pushes->sum('delivered') / $sites->sum('transitions_count')) * 100 }}% @lang('переходов')
+                                        {{ ($sites->sum('transitions_count') / $pushes->sum('delivered')) * 100 }}% @lang('переходов')
                                     </p>
                                 @else
                                     <p class="medium mb-10">0% @lang('переходов')</p>
