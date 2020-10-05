@@ -2,27 +2,33 @@
 
 namespace App\Nova;
 
+use App\Nova\Push;
+use DateTime;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Push extends Resource
+class Site extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Push::class;
+    public static $model = \App\Site::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'link';
 
     /**
      * The columns that should be searched.
@@ -30,19 +36,17 @@ class Push extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'site_id', 'title'
+        'id', 'link'
     ];
 
     /**
-     * Get the fields displayed by the resource.
+     * Get the displayable label of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return string
      */
-
     public static function label()
     {
-        return __('Рассылки');
+        return __('Сайты');
     }
 
     /**
@@ -52,20 +56,32 @@ class Push extends Resource
      */
     public static function singularLabel()
     {
-        return __('Рассылка');
+        return __('Сайт');
     }
 
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
     public function fields(Request $request)
     {
         return [
             ID::make()->sortable(),
-            Text::make('Заголовок', 'title')
+            Avatar::make('Картинка сайта', 'img')
+                ->disk('public'),
+            Text::make('Ссылка', 'link')
                 ->sortable()
                 ->rules('required', 'max:255'),
-            BelongsTo::make('Сайт', 'site', Site::class)
-                ->sortable(),
             BelongsTo::make('Пользователь', 'user', User::class)
                 ->sortable(),
+            HasMany::make('Рассылки', 'mails', Push::class)
+                ->sortable(),
+            Boolean::make('Скрывать на мобильных устройствах', 'mobile')
+                ->sortable(),
+            Boolean::make('Текст - подсказка', 'hint')
+                ->sortable()
         ];
     }
 

@@ -3,8 +3,13 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 
@@ -24,6 +29,11 @@ class User extends Resource
      */
     public static $title = 'name';
 
+//    protected $casts = [
+//        'tariff_end' => 'datetime'
+//    ];
+//    protected $dates = ['tariff_end'];
+
     /**
      * The columns that should be searched.
      *
@@ -39,16 +49,37 @@ class User extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
+    public static function label()
+    {
+        return __('Пользователи');
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('Пользователь');
+    }
+
     public function fields(Request $request)
     {
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
+            Avatar::make('Фото пользователя', 'img')
+                ->disk('public'),
 
-            Text::make('Name')
+            Text::make('Имя', 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            Text::make('Фамилия', 'surname')
+                ->sortable()
+                ->rules( 'max:255'),
 
             Text::make('Email')
                 ->sortable()
@@ -56,7 +87,22 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Password::make('Password')
+            Number::make('Баланс', 'balance')
+                ->sortable(),
+
+            HasOne::make( 'Тариф', 'tariff', Tariff::class)
+                ->sortable(),
+
+            DateTime::make('Окончание тарифа', 'tariff_end')
+                ->nullable(),
+
+            HasMany::make('Сайты', 'sites', Site::class)
+                ->sortable(),
+
+            HasMany::make('Рассылки', 'mails', Push::class)
+                ->sortable(),
+
+            Password::make('Пароль', 'password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
