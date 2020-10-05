@@ -34,35 +34,37 @@ export default {
     },
     methods: {
         payment() {
-            let widget = new cp.CloudPayments();
-            this.pay = function () {
-                widget.pay('auth', // или 'charge'
-                    { //options
-                        publicId: 'test_api_00000000000000000000001', //id из личного кабинета
-                        description: 'Оплата товаров в example.com', //назначение
-                        amount: 100, //сумма
-                        currency: 'RUB', //валюта
-                        invoiceId: '1234567', //номер заказа  (необязательно)
-                        accountId: 'user@example.com', //идентификатор плательщика (необязательно)
-                        skin: "mini", //дизайн виджета (необязательно)
-                        data: {
-                            myProp: 'myProp value'
-                        }
-                    },
-                    {
-                        onSuccess: function (options) { // success
-                            //действие при успешной оплате
-                        },
-                        onFail: function (reason, options) { // fail
-                            //действие при неуспешной оплате
-                        },
-                        onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
-                            //например вызов вашей аналитики Facebook Pixel
-                        }
-                    }
-                )
-            };
 
+            this.pay();
+
+        },
+        pay() {
+            let widget = new cp.CloudPayments();
+            widget.pay('auth', // или 'charge'
+                { //options
+                    publicId: this.public_id, //id из личного кабинета
+                    description: this.description, //назначение
+                    amount: this.amount, //сумма
+                    currency: 'RUB', //валюта
+                    // invoiceId: '1234567', //номер заказа  (необязательно)
+                    accountId: this.account_id, //идентификатор плательщика (необязательно)
+                    skin: "mini", //дизайн виджета (необязательно)
+                    data: {
+                        myProp: 'myProp value'
+                    }
+                },
+                {
+                    onSuccess: function (options) { // success
+                        //действие при успешной оплате
+                    },
+                    onFail: function (reason, options) { // fail
+                        //действие при неуспешной оплате
+                    },
+                    onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+                        //например вызов вашей аналитики Facebook Pixel
+                    }
+                }
+            )
         }
     }
 }
