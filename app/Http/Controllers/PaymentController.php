@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PaymentResource;
+use App\Tariff;
 use App\User;
 use App\Payment;
 use Illuminate\Http\Request;
@@ -11,12 +12,12 @@ class PaymentController extends Controller
 {
     public function check(Request $request)
     {
-        $s = hash_hmac('sha256', implode('&', $request->post()), config('services.cloud_payments.api_key'), true);
-        \Log::info('Check payment', [
-            'post' => $request->post(),
-            'X-Content-HMAC' => $request->header('X-Content-HMAC'),
-            'Content-HMAC' => $request->header('Content-HMAC')
-        ]);
+        $s = base64_encode(hash_hmac('sha256', $request->getContent(), config('services.cloud_payments.api_key'), true));
+        if ($request->header('Content-HMAC') !== $s) {
+            return response()->json([
+                'code' => 13
+            ]);
+        }
         $user = User::find($request->AccountId)->first();
         if (empty($user)) {
             return response()->json([
@@ -36,36 +37,38 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $s = hash_hmac('sha256', implode('&', $request->post()), config('services.cloud_payments.api_key'), true);
-        \Log::info('Check payment', [
-            'post' => $request->post(),
-            'X-Content-HMAC' => $request->header('X-Content-HMAC'),
-            'Content-HMAC' => $request->header('Content-HMAC')
-        ]);
+        $s = base64_encode(hash_hmac('sha256', $request->getContent(), config('services.cloud_payments.api_key'), true));
+        if ($request->header('Content-HMAC') !== $s) {
+            return response()->json([
+                'code' => 13
+            ]);
+        }
         $payment = new Payment();
         $payment->fill([
             'transaction_id' => $request->TransactionId,
-            'amount' => $request->Amount,
+            'amount' => (float)$request->Amount,
             'currency' => $request->Currency,
-            'currency_code' => $request->CurrencyCode,
             'email' => $request->Email,
             'description' => $request->Description,
-            'json_data' => $request->JsonData,
+            'data' => $request->Data,
             'ip_address' => $request->IpAddress,
             'name' => $request->Name,
             'card_first_six' => $request->CardFirstSix,
             'card_last_four' => $request->CardLastFour,
             'card_exp_date' => $request->CardExpDate,
             'card_type' => $request->CardType,
-            'card_type_code' => $request->CardTypeCode,
             'status' => $request->Status,
-            'status_code' => $request->StatusCode,
-            'reason' => $request->Reason,
-            'reason_code' => $request->ReasonCode,
-            'card_holder_message' => $request->CardHolderMessage,
+            'token' => $request->Token,
+            'total_fee' => $request->TotalFee,
+            'card_product' => $request->CardProduct,
+            'payment_method' => $request->PaymentMethod,
         ]);
-        $payment->user()->associate(User::find($request->AccountId));
+        $user = User::find($request->AccountId);
+        $payment->user()->associate($user);
         $payment->save();
+        $user->tariff()->associate(Tariff::where('slug', '=', $payment->data['tariff']));
+        $user->tariff_expired_at->addMonth();
+        $user->save();
         return response()->json([
             'code' => 0
         ]);

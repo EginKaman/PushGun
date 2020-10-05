@@ -50,7 +50,7 @@ export default {
                     accountId: this.account_id, //идентификатор плательщика (необязательно)
                     skin: "mini", //дизайн виджета (необязательно)
                     data: {
-                        myProp: 'myProp value'
+                        tariff: 'pro'
                     }
                 },
                 {

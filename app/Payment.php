@@ -16,25 +16,33 @@ class Payment extends Model
      */
     protected $fillable = [
         'transaction_id',
+        'invoice_id',
         'amount',
         'currency',
-        'currency_code',
+        'operation_type',
+        'name',
         'email',
         'description',
-        'json_data',
+        'data',
         'ip_address',
         'name',
         'card_first_six',
         'card_last_four',
         'card_exp_date',
         'card_type',
-        'card_type_code',
         'status',
-        'status_code',
-        'reason',
-        'reason_code',
-        'card_holder_message'
-
+        'token',
+        'total_fee',
+        'card_product',
+        'payment_method',
+    ];
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'data' => 'json'
     ];
 
     public function user()

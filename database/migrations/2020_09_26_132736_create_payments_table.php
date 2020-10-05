@@ -17,27 +17,27 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('transaction_id');
-            $table->float('amount', '8', '5');
+            $table->string('invoice_id')->nullable();
+            $table->float('amount');
             $table->string('currency')->default('RUB');
-            $table->unsignedInteger('currency_code')->default(0);
-            $table->string('email')->nullable();
-            $table->string('description')->nullable();
-            $table->json('json_data')->nullable();
-            $table->ipAddress('ip_address');
-            $table->string('name');
+            $table->string('operation_type')->nullable();
             $table->unsignedInteger('card_first_six');
             $table->unsignedInteger('card_last_four');
             $table->string('card_exp_date');
             $table->string('card_type');
-            $table->unsignedInteger('card_type_code');
             $table->string('status');
-            $table->unsignedInteger('status_code');
-            $table->string('reason');
-            $table->unsignedInteger('reason_code');
-            $table->string('card_holder_message');
-
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('description')->nullable();
+            $table->json('data')->nullable();
+            $table->string('token');
+            $table->string('total_fee')->nullable();
+            $table->string('card_product')->nullable();
+            $table->string('payment_method')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
