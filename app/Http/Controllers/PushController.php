@@ -66,7 +66,7 @@ class PushController extends Controller
             ->title($request->input('title'))
             ->icon(asset(Storage::url($push->image ?? $site->image)))
             ->body($request->input('text'))
-            ->url(route('push.transition', $push))
+            ->url(route('transition.store', $push))
         );
         $push->delivered = $site->pushSubscriptions()->count();
         $push->save();
