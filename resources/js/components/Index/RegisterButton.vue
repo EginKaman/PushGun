@@ -1,5 +1,5 @@
 <template>
-    <a href="#register" class="header-landing__wrapper__links_reg" @click.prevent="show">{{ $t('Регистрация') }}</a>
+    <a href="#register" :class="classes" @click.prevent="show">{{ $t('Регистрация') }}</a>
 </template>
 
 <script>
@@ -12,6 +12,10 @@ export default {
             type: String,
             default: '/login'
         },
+        classes: {
+            type: String,
+            default: '/login'
+        }
     },
     methods: {
         show() {

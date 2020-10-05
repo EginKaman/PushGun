@@ -1,5 +1,5 @@
 <template>
-    <a href="#enter" class="header-landing__wrapper__links_enter" @click.prevent="show">{{ $t('Войти') }}</a>
+    <a href="#enter" :class="classes" @click.prevent="show">{{ $t('Войти') }}</a>
 </template>
 
 <script>
@@ -12,6 +12,10 @@ export default {
             type: String,
             default: '/login'
         },
+        classes: {
+            type: String,
+            default: '/login'
+        }
     },
     methods: {
         show() {

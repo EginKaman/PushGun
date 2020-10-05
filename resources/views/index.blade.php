@@ -51,8 +51,8 @@
                     </ul>
                 </div>
                 <div class="header-landing__wrapper__links">
-                    <login-button action="{{ route('login') }}"></login-button>
-                    <register-button action="{{ route('register') }}"></register-button>
+                    <login-button classes="header-landing__wrapper__links_enter" action="{{ route('login') }}"></login-button>
+                    <register-button classes="header-landing__wrapper__links_reg" action="{{ route('register') }}"></register-button>
                 </div>
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox"/>
@@ -64,8 +64,8 @@
                         <li>
                             <hr>
                         </li>
-                        <li><a class="menu__item" href="#enter" rel="modal:open">@lang('Войти')</a></li>
-                        <li><a class="menu__item" href="#register" rel="modal:open">@lang('Регистрация')</a></li>
+                        <li><login-button classes="menu__item" action="{{ route('login') }}"></login-button></li>
+                        <li><register-button classes="menu__item" action="{{ route('register') }}"></register-button></li>
                     </ul>
                 </div>
             </div>
@@ -432,8 +432,8 @@
                     <li><a href="#support" rel="modal:open">@lang('Связаться с Техподдержкой')</a></li>
                 </ul>
                 <div class="footer__wrapper__links">
-                    <a href="#enter" rel="modal:open" class="footer__wrapper__links_enter">@lang('Войти')</a>
-                    <a href="#register" rel="modal:open" class="footer__wrapper__links_reg">@lang('Регистрация')</a>
+                    <login-button classes="footer__wrapper__links_enter" action="{{ route('login') }}"></login-button>
+                    <register-button classes="footer__wrapper__links_reg" action="{{ route('register') }}"></register-button>
                 </div>
             </div>
             <div class="footer__by">
