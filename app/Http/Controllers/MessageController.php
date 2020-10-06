@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    public function store(Request $request, Ticket $ticket)
+    public function __invoke(Request $request, Ticket $ticket)
     {
         $message = new Message();
         $message->fill($request->all());

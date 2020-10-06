@@ -16,7 +16,7 @@ class SiteStatisticController extends Controller
      *
      * @return MailsResource
      */
-    public function index(Request $request, Site $site)
+    public function __invoke(Request $request, Site $site)
     {
         $user = Auth::user();
         $statistics = $site->pushes()->selectRaw('count(*) as count, MIN(created_at) as created_at')

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CheckScriptController extends Controller
 {
-    public function index(Request $request, Site $site)
+    public function __invoke(Request $request, Site $site)
     {
         $result = (new ScriptChecker())->getCheck($site);
         $site->installed = $result['script'] && $result['file'];

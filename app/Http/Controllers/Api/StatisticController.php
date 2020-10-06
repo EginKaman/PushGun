@@ -15,7 +15,7 @@ class StatisticController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
         $user = Auth::user();
         $statistics = $user->pushes()->selectRaw('count(*) as count, MIN(created_at) as created_at')

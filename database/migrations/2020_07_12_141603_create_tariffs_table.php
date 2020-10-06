@@ -16,7 +16,8 @@ class CreateTariffsTable extends Migration
         Schema::create('tariffs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('price')->default(0);
+            $table->unsignedBigInteger('price_per_month')->default(0);
+            $table->unsignedBigInteger('price_per_year')->default(0);
             $table->unsignedBigInteger('max_followers')->default(1000);
             $table->softDeletes();
             $table->timestamps();

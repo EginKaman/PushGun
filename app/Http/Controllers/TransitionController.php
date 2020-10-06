@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TransitionController extends Controller
 {
-    public function store(Request $request, Push $push)
+    public function __invoke(Request $request, Push $push)
     {
         $transition = new Transition([
             'ip' => $request->getClientIp(),

@@ -15,7 +15,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 Route::post('/subscribe/{site}', 'SubscribeController@update')->name('subscribe.update');
-Route::get('/push/{push}/redirect', 'TransitionController@store')->name('transition.store');
+Route::get('/push/{push}/redirect', 'TransitionController')->name('transition.store');
 Route::post('payment/check', 'PaymentController@check');
 Route::post('payment', 'PaymentController@store');
 Route::get('manifest.json', function () {
@@ -26,7 +26,7 @@ Route::get('manifest.json', function () {
 });
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
-    Route::get('/', 'IndexController@index')->name('index')->middleware(['guest']);
+    Route::get('/', 'IndexController')->name('index')->middleware(['guest']);
     Route::get('/privacy', 'PageController@privacy')->name('page.privacy');
     Auth::routes();
     Route::middleware(['auth'])->group(function () {
@@ -35,21 +35,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::get('edit', 'AccountController@edit')->name('account.edit');
             Route::put('/', 'AccountController@update')->name('account.update');
         });
-        Route::put('/password', 'PasswordController@update')->name('password.update');
+        Route::put('/password', 'PasswordController')->name('password.update');
         Route::resource('site', 'SiteController');
         Route::get('site/{site}/complete', 'CompleteController@index')->name('complete.index');
         Route::post('site/{site}/complete', 'CompleteController@store')->name('complete.store');
         Route::resource('push', 'PushController');
         Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
-        Route::post('ticket/{ticket}/message', 'MessageController@store')->name('message.store');
-        Route::get('/tariff', 'TariffController@index')->name('tariff.index');
-        Route::post('/tariff/{tariff:slug}', 'TariffController@update')->name('tariff.update');
+        Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
+        Route::get('/tariff', 'TariffController')->name('tariff.index');
     });
 });
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
-    Route::get('site', 'Api\SiteController@index');
-    Route::post('site/{site}/check', 'Api\CheckScriptController@index');
-    Route::get('site/{site}/statistics', 'Api\SiteStatisticController@index');
-    Route::get('statistics', 'Api\StatisticController@index');
+    Route::get('site', 'Api\SiteController');
+    Route::post('site/{site}/check', 'Api\CheckScriptController');
+    Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
+    Route::get('statistics', 'Api\StatisticController');
 });
 
