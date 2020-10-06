@@ -204,6 +204,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    select {
+        border: 1px solid #e5e5e5;
+    }
 </style>
