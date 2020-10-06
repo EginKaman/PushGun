@@ -28,11 +28,14 @@
                     <div class=" general__stats_left-item" style="background: #FF7226;">
                         <h3>{{ $site->transitions_count }}</h3>
                         <div class="mb-10">
-                            <p class="medium">
-                                @if($site->transitions_count > 0)
-                                {{ $site->push_subscriptions_count / $site->transitions_count * 100 }}
-                                @endif @lang('переходов')
-                            </p>
+                            @if($pushes->sum('delivered') > 0)
+                                <p class="medium">
+                                    {{ round($sites->sum('transitions_count') / $pushes->sum('delivered'), 2) * 100 }}
+                                    % @lang('переходов')
+                                </p>
+                            @else
+                                <p class="medium mb-10">0% @lang('переходов')</p>
+                            @endif
                         </div>
                     </div>
                     <div class="general__stats_left-item" style="background: #36C2CF;">
