@@ -18,7 +18,7 @@
 
                     <div class="tariff tariff-fs">
                         <div class="tariff-text">
-                            <h3 class="tariff-title">@lang('Базовый')</h3>
+                            <h3 class="tariff-title">@lang('Подписка 1000')</h3>
                             <strong class="tariff-subtitle">@lang('до 1 000 подписчиков')</strong>
                             <ul class="tariff-offer">
                                 <li>@lang('Неограниченное количество web push сообщений')</li>
