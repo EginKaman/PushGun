@@ -17,11 +17,11 @@ export default {
     data: () => ({
         loading: false,
         isPushEnabled: false,
-        pushButtonDisabled: true
     }),
 
     mounted() {
-        this.registerServiceWorker()
+        this.registerServiceWorker();
+        this.subscribe();
     },
 
     methods: {
@@ -34,7 +34,7 @@ export default {
                 return
             }
 
-            navigator.serviceWorker.register('/js/service_worker.js')
+            navigator.serviceWorker.register('/service-worker.js')
                 .then(() => this.initialiseServiceWorker())
         },
 
@@ -53,16 +53,9 @@ export default {
                 console.log('Push messaging isn\'t supported.')
                 return
             }
-
             navigator.serviceWorker.ready.then(registration => {
                 registration.pushManager.getSubscription()
                     .then(subscription => {
-                        this.pushButtonDisabled = false
-
-                        if (!subscription) {
-                            return
-                        }
-
                         this.updateSubscription(subscription)
 
                         this.isPushEnabled = true
@@ -88,17 +81,14 @@ export default {
                 registration.pushManager.subscribe(options)
                     .then(subscription => {
                         this.isPushEnabled = true
-                        this.pushButtonDisabled = false
 
                         this.updateSubscription(subscription)
                     })
                     .catch(e => {
                         if (Notification.permission === 'denied') {
                             console.log('Permission for Notifications was denied')
-                            this.pushButtonDisabled = true
                         } else {
                             console.log('Unable to subscribe to push.', e)
-                            this.pushButtonDisabled = false
                         }
                     })
             })
@@ -112,7 +102,6 @@ export default {
                 registration.pushManager.getSubscription().then(subscription => {
                     if (!subscription) {
                         this.isPushEnabled = false
-                        this.pushButtonDisabled = false
                         return
                     }
 
@@ -120,10 +109,8 @@ export default {
                         this.deleteSubscription(subscription)
 
                         this.isPushEnabled = false
-                        this.pushButtonDisabled = false
                     }).catch(e => {
                         console.log('Unsubscription error: ', e)
-                        this.pushButtonDisabled = false
                     })
                 }).catch(e => {
                     console.log('Error thrown while unsubscribing.', e)

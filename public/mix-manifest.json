@@ -2,5 +2,5 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/resources/js/push.min.js": "/resources/js/push.min.js",
-    "/js/service-worker.js": "/js/service-worker.js"
+    "/service-worker.js": "/service-worker.js"
 }
