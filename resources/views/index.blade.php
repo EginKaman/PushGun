@@ -380,20 +380,7 @@
         <div class="container">
             <h2 class="section6__title">FAQ</h2>
             <p class="section6__descr">@lang('Ответы на часто задаваемые вопросы')</p>
-            <div class="faq">
-                <div class="faq__item">
-                    @lang('Что такое push уведомления?')
-                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
-                </div>
-                <div class="faq__item">
-                    @lang('Что такое push уведомления?')
-                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
-                </div>
-                <div class="faq__item">
-                    @lang('Что такое push уведомления?')
-                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
-                </div>
-            </div>
+            <div class="faq"> {!! trans('home.faq') !!} </div>
         </div>
     </section>
     <section class="section7">
