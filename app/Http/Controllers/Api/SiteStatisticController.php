@@ -19,27 +19,42 @@ class SiteStatisticController extends Controller
     public function __invoke(Request $request, Site $site)
     {
         $user = Auth::user();
-        $statistics = $site->pushes()->selectRaw('count(*) as count, MIN(created_at) as created_at')
+        $pushes = $site->pushes()->selectRaw('count(*) as count, MIN(created_at) as created_at')
             ->groupByRaw('DAY(created_at)');
+        $transitions = $site->transitions()->selectRaw('count(*) as count, MIN(transitions.created_at) as created_at')
+            ->groupByRaw('DAY(transitions.created_at), `laravel_through_key`');
         if ($request->range === 'month') {
-            $statistics->whereBetween('created_at', [
+            $pushes->whereBetween('created_at', [
                 now()->startOfMonth(),
-                now()
+                now()->endOfDay()
+            ]);
+            $transitions->whereBetween('transitions.created_at', [
+                now()->startOfMonth(),
+                now()->endOfDay()
             ]);
         } elseif ($request->range === 'year') {
-            $statistics->whereBetween('created_at', [
+            $pushes->whereBetween('created_at', [
                 now()->startOfYear(),
-                now()
+                now()->endOfDay()
+            ]);
+            $transitions->whereBetween('transitions.created_at', [
+                now()->startOfYear(),
+                now()->endOfDay()
             ]);
         } else {
-            $statistics->whereBetween('created_at', [
+            $pushes->whereBetween('created_at', [
+                now()->subWeek(),
+                now()
+            ]);
+            $transitions->whereBetween('transitions.created_at', [
                 now()->subWeek(),
                 now()
             ]);
         }
-        $statistics = $statistics->get();
-        return (new MailsResource($statistics))->additional([
-            'conversions' => new ConversionsResource(collect()),
+        $pushes = $pushes->get();
+        $transitions = $transitions->get();
+        return (new MailsResource($pushes))->additional([
+            'conversions' => new ConversionsResource($transitions),
             'delivered' => new ConversionsResource(collect()),
             'sent' => new ConversionsResource(collect()),
         ]);
