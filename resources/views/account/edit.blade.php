@@ -232,12 +232,7 @@
                                 </div>
                             </div>
 
-
-                            <div class="set-war">
-                                @lang('Похоже вы запретили получение уведомлений от PushGun. Разблокируйте для получения уведомлений')
-                            </div>
-
-
+                            <notifications public_key="{{ config('webpush.vapid.public_key') }}"></notifications>
                             <div class="form-row__wrap">
                                 <div class="set-form-row">
                                     <span class="set-form-row__title">@lang('Push уведомления'):</span>

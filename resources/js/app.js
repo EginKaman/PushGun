@@ -55,6 +55,7 @@ Vue.component('login-button', require('./components/Index/LoginButton.vue').defa
 Vue.component('register-button', require('./components/Index/RegisterButton.vue').default);
 Vue.component('support-button', require('./components/Index/SupportButton.vue').default);
 Vue.component('button-payment', require('./components/UI/ButtonPayment.vue').default);
+Vue.component('notifications', require('./components/Notifications.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
