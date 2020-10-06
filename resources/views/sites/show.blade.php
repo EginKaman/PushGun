@@ -46,20 +46,6 @@
                 <div class="general__stats_right site__chart">
                     <div class="general__stats_right__inner">
                         <div class="general__stats_right-top">
-                            <select id="selector" class="stats__selector">
-                                <option value="1">@lang('Новых подписчиков')</option>
-                                <option value="2">@lang('Доставлено')</option>
-                            </select>
-                         <!--    <div class="general__stats_right-buttons">
-                                <div class="general__stats_right-double_button">
-                                    <button id="days-subs" class="button button_left-btn selected">
-                                        @lang('По дням')
-                                    </button>
-                                    <button id="weeks-subs" class="button button_right-btn">
-                                        @lang('По неделям')
-                                    </button>
-                                </div>
-                            </div> -->
                             <chart-nav-component name-service='FETCH_INDIVIDUAL_STATISTICS' />
                         </div>
                         <div class="canvas-container2">
@@ -67,7 +53,6 @@
                         </div>
                         <div class="site__chart_desc">
                             <p>@lang('Новых подписчиков за период'): <span>{{ $site->today_subscriptions_count }}</span></p>
-{{--                            <p>@lang('Отписанных'): <span>1</span></p>--}}
                         </div>
                     </div>
                 </div>
