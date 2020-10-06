@@ -28,6 +28,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::get('/', 'IndexController')->name('index')->middleware(['guest']);
     Route::get('/privacy', 'PageController@privacy')->name('page.privacy');
+    Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
+    Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes();
     Route::middleware(['auth'])->group(function () {
         Route::prefix('account')->group(function () {

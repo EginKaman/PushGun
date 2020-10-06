@@ -28,6 +28,10 @@ export default {
             type: String,
             default: '/register'
         },
+        now_email: {
+            type: String,
+            default: ''
+        },
     },
     data() {
         return {
@@ -36,6 +40,9 @@ export default {
             password: '',
             password_confirmation: ''
         }
+    },
+    mounted() {
+        this.email = this.now_email;
     },
     methods: {
         submit() {
