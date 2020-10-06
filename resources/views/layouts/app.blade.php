@@ -12,6 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    @stack('scripts')
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -85,11 +87,11 @@
                         <h3 class="account__bottom_subscribtion">@lang('Тариф') "@lang(Auth::user()->tariff->name)"</h3>
                         <a href="{{ route('tariff.index') }}"
                            class="account__bottom_subscribe">@lang('Повысить тариф')</a>
-                        <div class="account__bottom_balance-wrapper">
-                            <p class="account__bottom_balance">@lang('Баланс')
-                                <span>{{ Auth::user()->balance }} @lang('руб')</span></p>
-                            <a href="payment.html" class="account__bottom_subscribe">@lang('Пополнить')</a>
-                        </div>
+{{--                        <div class="account__bottom_balance-wrapper">--}}
+{{--                            <p class="account__bottom_balance">@lang('Баланс')--}}
+{{--                                <span>{{ Auth::user()->balance }} @lang('руб')</span></p>--}}
+{{--                            <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Пополнить')</a>--}}
+{{--                        </div>--}}
                         <div class="account__bottom_links">
                             <div class="account__link_wrapper icon icon-pay">
                                 <a href="#" class="account__bottom_link">@lang('Платежи')</a>

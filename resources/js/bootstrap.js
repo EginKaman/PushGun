@@ -8,7 +8,11 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
-    require('jquery-modal')
+    // require('jquery-modal')
+    require('jquery-ui/ui/widget');
+    require('jquery-ui/ui/widgets/mouse');
+    require('jquery-ui/ui/widgets/slider');
+    require('jquery-ui-touch-punch');
     require('slick-carousel');
     require('select2');
     require('tooltipster');

@@ -21,7 +21,6 @@ class CreateSitesTable extends Migration
             $table->boolean('installed')->default(false);
             $table->enum('request', ['visit', 'click', 'intermediate'])->default('visit');
             $table->boolean('hint')->default(false);
-            $table->unsignedTinyInteger('visit')->default(0);
             $table->unsignedSmallInteger('delay')->default(0);
             $table->boolean('mobile')->default(false);
             $table->string('script');

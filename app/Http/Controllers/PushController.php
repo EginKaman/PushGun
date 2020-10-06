@@ -19,7 +19,7 @@ class PushController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $pushes = $user->pushes->load('site');
+        $pushes = $user->pushes->load('site')->loadCount('transitions');
         $sites = $user->sites;
         $sites->loadCount('pushSubscriptions');
         return view('pushes.index', [
@@ -61,12 +61,15 @@ class PushController extends Controller
         }
         $push->save();
         $site = $push->site;
+        $push->sent = $site->pushSubscriptions()->count();
         $site->notify((new SendPush())
             ->title($request->input('title'))
             ->icon(asset(Storage::url($push->image ?? $site->image)))
             ->body($request->input('text'))
-            ->url($request->input('link'))
+            ->url(route('transition.store', $push))
         );
+        $push->delivered = $site->pushSubscriptions()->count();
+        $push->save();
 
         return redirect()->route('push.index');
     }
@@ -79,7 +82,7 @@ class PushController extends Controller
      */
     public function show(Push $push)
     {
-        $push->load('site');
+        $push->load('site')->loadCount('transitions');
         $site = $push->site->loadCount('pushSubscriptions');
         return view('pushes.show', [
             'push' => $push,

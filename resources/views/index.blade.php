@@ -51,9 +51,8 @@
                     </ul>
                 </div>
                 <div class="header-landing__wrapper__links">
-                    <a href="#enter" rel="modal:open" class="header-landing__wrapper__links_enter">@lang('Войти')</a>
-                    <a href="#register" rel="modal:open"
-                       class="header-landing__wrapper__links_reg">@lang('Регистрация')</a>
+                    <login-button classes="header-landing__wrapper__links_enter" action="{{ route('login') }}"></login-button>
+                    <register-button classes="header-landing__wrapper__links_reg" action="{{ route('register') }}"></register-button>
                 </div>
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox"/>
@@ -65,8 +64,8 @@
                         <li>
                             <hr>
                         </li>
-                        <li><a class="menu__item" href="#enter" rel="modal:open">@lang('Войти')</a></li>
-                        <li><a class="menu__item" href="#register" rel="modal:open">@lang('Регистрация')</a></li>
+                        <li><login-button classes="menu__item" action="{{ route('login') }}"></login-button></li>
+                        <li><register-button classes="menu__item" action="{{ route('register') }}"></register-button></li>
                     </ul>
                 </div>
             </div>
@@ -433,8 +432,8 @@
                     <li><a href="#support" rel="modal:open">@lang('Связаться с Техподдержкой')</a></li>
                 </ul>
                 <div class="footer__wrapper__links">
-                    <a href="#enter" rel="modal:open" class="footer__wrapper__links_enter">@lang('Войти')</a>
-                    <a href="#register" rel="modal:open" class="footer__wrapper__links_reg">@lang('Регистрация')</a>
+                    <login-button classes="footer__wrapper__links_enter" action="{{ route('login') }}"></login-button>
+                    <register-button classes="footer__wrapper__links_reg" action="{{ route('register') }}"></register-button>
                 </div>
             </div>
             <div class="footer__by">
@@ -442,30 +441,6 @@
             </div>
         </div>
     </footer>
-    <div id="enter" class="modal">
-        <h2>@lang('Вход')</h2>
-        <form action="{{ route('login') }}" method="POST">
-            <div class="modal__inner">
-                @csrf
-                <input type="email" name="email" placeholder="E-mail" value="{{ $user->email }}" required>
-                <input type="password" name="password" placeholder="@lang('Пароль')" value="password" required>
-                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Войти')</button>
-            </div>
-        </form>
-    </div>
-    <div id="register" class="modal">
-        <h2>@lang('Регистрация')</h2>
-        <form action="{{ route('register') }}" method="POST">
-            <div class="modal__inner">
-                @csrf
-                <input type="text" name="name" placeholder="@lang('Имя')">
-                <input type="email" name="email" placeholder="E-mail*" required>
-                <input type="password" name="password" placeholder="@lang('Пароль')*" required>
-                <input type="password" name="password_confirmation" placeholder="@lang('Повторите пароль') *" required>
-                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Зарегистрироваться')</button>
-            </div>
-        </form>
-    </div>
     <div id="support" class="modal">
         <h2>@lang('Связаться с Техподдержкой')</h2>
         <form action="">

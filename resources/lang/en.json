@@ -208,5 +208,7 @@
     "Получать уведомления о модерации рассылок": "Receive notifications about mailing moderation",
     "Адресная книга загружена": "Address book loaded",
     "Окончание подписки": "End of subscription",
-    "С промежуточным запросом": "With an intermediate request"
+    "С промежуточным запросом": "With an intermediate request",
+    "Файл pg-push-worker.js не установлен": "File pg-push-worker.js not installed",
+    "Файл pg-push-worker.js установлен": "File pg-push-worker.js installed"
 }

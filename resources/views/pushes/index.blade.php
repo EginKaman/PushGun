@@ -27,8 +27,8 @@
                             </select>
                         </div>
                         <div class="button_lb">
-                                <span class="lb_button_circle">
-                                </span>
+                            <span class="lb_button_circle">
+                            </span>
                             <button class="button_lb_inner">
                                 <p class="lb_button_text_container">
                                     @lang('Сброс')
@@ -36,8 +36,8 @@
                             </button>
                         </div>
                         <div id="btn_select" class="button_rb">
-                                <span class="rb_button_circle">
-                                </span>
+                            <span class="rb_button_circle">
+                            </span>
                             <button class="button_rb_inner">
                                 <p class="rb_button_text_container">
                                     @lang('Выбрать')
@@ -102,16 +102,16 @@
                             </div>
                             <div class="mails__sites_stats">
                                 <div class="mails__sites_stats-item">
-                                    <h3>2</h3>
+                                    <h3>{{ $push->sent }}</h3>
                                     <p>@lang('отправлено')</p>
                                 </div>
                                 <div class="mails__sites_stats-item">
-                                    <h3>2</h3>
-                                    <p>@lang('отправлено')</p>
+                                    <h3>{{ $push->delivered }}</h3>
+                                    <p>@lang('доставлено')</p>
                                 </div>
                                 <div class="mails__sites_stats-item">
-                                    <h3>2</h3>
-                                    <p>@lang('отправлено')</p>
+                                    <h3>{{ $push->transitions_count }}</h3>
+                                    <p>@lang('переходов')</p>
                                 </div>
                             </div>
                         </div>

@@ -9,20 +9,21 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ext-zip": "*",
+        "avto-dev/cloud-payments-laravel": "1.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel-notification-channels/webpush": "^5.0",
-        "minishlink/web-push": "6.0.0",
-        "web-token/jwt-util-ecc": "2.1.9",
         "laravel/framework": "^7.0",
         "laravel/nova": "*",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
+        "mcamara/laravel-localization": "^1.5",
+        "minishlink/web-push": "6.0.0",
         "predis/predis": "^1.1",
         "propaganistas/laravel-phone": "^4.2",
-        "mcamara/laravel-localization": "^1.5",
-        "ext-zip": "*"
+        "web-token/jwt-util-ecc": "2.1.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

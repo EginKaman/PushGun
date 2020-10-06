@@ -1,17 +1,11 @@
 <template>
     <div class="inner">
         <div class="push__settings">
-            <div class="alert alert-danger" v-if="errors">
-                <ul>
-                    <li v-for="(error, index) in errors">{{ error }}</li>
-                </ul>
-            </div>
             <form :action="action" method="POST" enctype="multipart/form-data" @submit.prevent="save">
                 <div class="push__input">
                     <label for="site">{{ $t('Список получателей') }}</label>
                     <select id="site" class="filter__input filter__selector" v-model="site_id" name="site"
                             @change="siteSelect">
-<!--                        <option value="0" disabled>{{ $t('Выберите') }}</option>-->
                         <option :value="site.id" v-for="(site, index) in sites" :key="index">{{ site.link }}</option>
                     </select>
                 </div>
@@ -123,7 +117,7 @@ export default {
     },
     data() {
         return {
-            site_id: 0,
+            Ssite_id: 0,
             selected: {},
             title: '',
             text: '',
@@ -170,7 +164,9 @@ export default {
         },
         save() {
             let form = new FormData();
-            form.append('image', this.$refs.image.files[0]);
+            if (this.$refs.image.files[0]) {
+                form.append('image', this.$refs.image.files[0]);
+            }
             form.append('title', this.title);
             form.append('link', this.link);
             form.append('text', this.text);
@@ -180,16 +176,27 @@ export default {
                     'Content-Type': 'multipart/form-data',
                     "Cache-Control": "no-cache"
                 }
-            }).then(response =>
-                window.location.href = this.action
-            ).catch(error => {
+            }).then(response => {
+                this.$swal({
+                    title: this.$i18n.t("Успех!"),
+                    text: response.data.message,
+                    icon: "success",
+                }).then(() => {
+                    window.location.href = this.action
+                });
+            }).catch(error => {
                 let errors = '';
                 if (error.response.status === 403) {
                     errors = error.response.statusText;
                 } else {
                     errors = Object.values(error.response.data.errors);
+                    errors = errors.flat().join("\r\n")
                 }
-                this.errors = errors;
+                this.$swal({
+                    title: this.$i18n.t('Ошибка!'),
+                    text: errors,
+                    icon: "error",
+                });
             });
         }
     }

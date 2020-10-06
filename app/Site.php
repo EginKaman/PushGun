@@ -19,13 +19,23 @@ class Site extends Model
     protected $fillable = [
         'link',
         'image',
-        'installed',
         'request',
         'visit',
         'delay',
         'mobile',
         'hint',
         'script',
+    ];
+
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'installed' => 'bool',
+        'mobile' => 'bool'
     ];
 
     /**
@@ -42,6 +52,25 @@ class Site extends Model
     public function pushes(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Push::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function transitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(Transition::class, Push::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function todayTransitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->transitions()->whereBetween('transitions.created_at', [
+            now()->startOfDay(),
+            now()->endOfDay()
+        ]);
     }
 
     /**

@@ -30,12 +30,12 @@ class AccountController extends Controller
     {
         $user = Auth::user();
         $user->loadCount(['pushes']);
-//            ->loadCount(['pushes', 'subscriptions', 'todaySubscriptions']);
         $sites = $user->sites;
-        $sites->loadCount('pushSubscriptions', 'todaySubscriptions');
+        $sites->loadCount('pushSubscriptions', 'todaySubscriptions', 'transitions', 'todayTransitions');
         return view('account.index', [
             'user' => $user,
             'sites' => $sites,
+            'pushes' => $user->pushes,
         ]);
     }
 

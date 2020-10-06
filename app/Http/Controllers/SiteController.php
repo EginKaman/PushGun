@@ -21,7 +21,7 @@ class SiteController extends Controller
     {
         $user = Auth::user();
         $sites = $user->sites;
-        $sites->loadCount('pushSubscriptions');
+        $sites->loadCount('pushSubscriptions', 'transitions', 'todaySubscriptions');
         return new SitesResource($sites);
     }
 
@@ -64,7 +64,7 @@ class SiteController extends Controller
     public function show(Site $site)
     {
         return view('sites.show', [
-            'site' => $site->loadCount('pushSubscriptions', 'pushes')
+            'site' => $site->loadCount('pushSubscriptions', 'todaySubscriptions', 'pushes', 'transitions')
         ]);
     }
 
@@ -121,7 +121,7 @@ class SiteController extends Controller
         $script = Str::replaceFirst('APP_URL', config('app.url'), $script);
         $script = Str::replaceFirst('SUBSCRIBE_URL', route('subscribe.update', $site), $script);
         $script = Str::replaceFirst('APP_KEY', config('webpush.vapid.public_key'), $script);
-        Storage::disk('local')
+        Storage::drive('local')
             ->put('/public/push/' . $site->script, $script);
     }
 

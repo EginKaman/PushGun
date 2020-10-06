@@ -17,7 +17,8 @@ class CompleteController extends Controller
 
     public function store(Site $site)
     {
-        $site->installed = ScriptChecker::getCheck($site);
+        $check = (new ScriptChecker())->getCheck($site);
+        $site->installed = $check['script'] && $check['file'];
         $site->save();
         if ($site->installed) {
             return redirect()->route('site.show', $site);

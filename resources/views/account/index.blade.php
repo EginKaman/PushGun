@@ -32,7 +32,7 @@
                             <p>@lang('Тариф') “@lang($user->tariff->name)
                                 ” @lang('будет продлен') {{ $user->tariff_expired_at }}</p>
                         @endif
-                        <a href="#" class="account__bottom_subscribe">@lang('Изменить')</a>
+                        <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Изменить')</a>
                     </div>
                 </div>
                 <div class="general__stats">
@@ -47,14 +47,29 @@
                             </div>
                         </div>
                         <div class="general__stats_left-item" style="background: #9698D5;">
-                            <h3>2</h3>
-                            <p class="medium mb-10">100% @lang('доставлено')</p>
+                            <h3>{{ $pushes->sum('delivered') }}</h3>
+                            @if($pushes->sum('delivered') > 0)
+                                <p class="medium mb-10">
+                                    {{ ($pushes->sum('sent') / $pushes->sum('delivered')) * 100 }}% @lang('доставлено')
+                                </p>
+                            @else
+                                <p class="medium mb-10">0% @lang('доставлено')</p>
+                            @endif
                         </div>
                         <div class=" general__stats_left-item" style="background: #4AB731;">
-                            <h3>2</h3>
+                            <h3>{{ $sites->sum('transitions_count') }}</h3>
                             <div class="mb-10">
-                                <p class="medium">50% @lang('переходов')</p>
-                                <p class="semibold">@lang('за сегодня'): 0</p>
+                                @if($pushes->sum('delivered') > 0)
+                                    <p class="medium">
+                                        {{ round($sites->sum('transitions_count') / $pushes->sum('delivered'), 2) * 100 }}
+                                        % @lang('переходов')
+                                    </p>
+                                @else
+                                    <p class="medium mb-10">0% @lang('переходов')</p>
+                                @endif
+                                <p class="semibold">
+                                    @lang('за сегодня'): {{ $sites->sum('today_transitions_count') }}
+                                </p>
                             </div>
                         </div>
                         <div class="general__stats_left-item" style="background: #36C2CF;">
