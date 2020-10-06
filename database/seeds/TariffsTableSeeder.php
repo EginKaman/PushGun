@@ -13,7 +13,7 @@ class TariffsTableSeeder extends Seeder
     public function run()
     {
         Tariff::create([
-            'name' => 'Базовый',
+            'name' => 'Подписка 1000',
             'max_followers' => 1000
         ]);
         Tariff::create([

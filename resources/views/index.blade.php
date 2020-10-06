@@ -122,9 +122,7 @@
     <section class="section2" id="section2">
         <div class="container">
             <h2 class="section2__title">@lang('Возможности и преимущества')</h2>
-            <p class="section2__descr">
-            Push-уведомления всегда на виду и их сложно пропустить: подписчики сразу увидят ваше сообщение, как только зайдут на сайт.  Простая и понятная статистика: анализируйте и улучшайте показатели переходов, открытий и новых подписок. Высокая вероятность подписки на уведомления: пользователи сразу видят запрос на подписку, как только заходят на сайт. Бесплатный доступ к сервису: рассылайте пуш-уведомления бесплатно до 1000 подписчиков.
-            </p>
+            <p class="section2__descr"> {!! trans('home.pushes') !!} </p>
             <div class="section2__itemsWrapper">
                 <div class="section2__itemsWrapper__item">
                     <svg width="85" height="71" viewBox="0 0 85 71" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -382,20 +380,7 @@
         <div class="container">
             <h2 class="section6__title">FAQ</h2>
             <p class="section6__descr">@lang('Ответы на часто задаваемые вопросы')</p>
-            <div class="faq">
-                <div class="faq__item">
-                    @lang('Что такое push уведомления?')
-                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
-                </div>
-                <div class="faq__item">
-                    @lang('Что такое push уведомления?')
-                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
-                </div>
-                <div class="faq__item">
-                    @lang('Что такое push уведомления?')
-                    <p>@lang('Далеко-далеко, за словесными горами в стране гласных и согласных живут.')</p>
-                </div>
-            </div>
+            <div class="faq"> {!! trans('home.faq') !!} </div>
         </div>
     </section>
     <section class="section7">
