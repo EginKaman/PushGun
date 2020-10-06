@@ -50,7 +50,7 @@
                             <h3>{{ $pushes->sum('delivered') }}</h3>
                             @if($pushes->sum('delivered') > 0)
                                 <p class="medium mb-10">
-                                    {{ ($pushes->sum('sent') / $pushes->sum('delivered')) * 100 }}% @lang('доставлено')
+                                    {{ round(($pushes->sum('delivered') / $pushes->sum('sent')) * 100, 2) }}% @lang('доставлено')
                                 </p>
                             @else
                                 <p class="medium mb-10">0% @lang('доставлено')</p>

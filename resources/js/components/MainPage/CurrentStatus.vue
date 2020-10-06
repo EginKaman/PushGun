@@ -50,7 +50,7 @@ export default {
                 // нужно будет оптимизировать
 
                 if (this.statisticsParam.delivered.count != 0 && this.statisticsParam.sent.count != 0)
-                    this.statisticsParam.delivered.percent = (this.statisticsParam.sent.count / this.statisticsParam.delivered.count) * 100
+                    this.statisticsParam.delivered.percent = Number((this.statisticsParam.delivered.count / this.statisticsParam.sent.count) * 100).toFixed(2)
 
                 if (this.statisticsParam.conversions.count != 0 && this.statisticsParam.delivered.count)
                     this.statisticsParam.conversions.percent = Number((this.statisticsParam.conversions.count / this.statisticsParam.delivered.count) * 100).toFixed(2);
