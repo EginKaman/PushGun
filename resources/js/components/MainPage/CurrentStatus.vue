@@ -53,7 +53,7 @@ export default {
                     this.statisticsParam.delivered.percent = (this.statisticsParam.sent.count / this.statisticsParam.delivered.count) * 100
 
                 if (this.statisticsParam.conversions.count != 0 && this.statisticsParam.delivered.count)
-                    this.statisticsParam.conversions.percent = (this.statisticsParam.delivered.count / this.statisticsParam.conversions.count) * 100
+                    this.statisticsParam.conversions.percent = Number((this.statisticsParam.conversions.count / this.statisticsParam.delivered.count) * 100).toFixed(2);
 
                 this.visibleStatistic = true
             },

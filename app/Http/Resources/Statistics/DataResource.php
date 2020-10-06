@@ -16,7 +16,7 @@ class DataResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'count' => $this->count,
+            'count' => (int) $this->count,
             'date' => $this->created_at->format('Y-m-d')
         ];
     }

@@ -15,7 +15,7 @@ class DataSentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'count' => $this->sent,
+            'count' => (int) $this->sent,
             'date' => $this->created_at->format('Y-m-d')
         ];
     }

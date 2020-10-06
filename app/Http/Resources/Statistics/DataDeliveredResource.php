@@ -15,7 +15,7 @@ class DataDeliveredResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'count' => $this->delivered,
+            'count' => (int) $this->delivered,
             'date' => $this->created_at->format('Y-m-d')
         ];
     }
