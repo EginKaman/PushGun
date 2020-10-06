@@ -32,7 +32,7 @@
                                value="{{ old('email', Auth::user()->email) }}">
                     </label>
                     <label for="message" class="sup-label">
-                        <span class="">@lang('Сообщение')</span>
+                        <span class="">@lang('Тема')</span>
                         <textarea id="message" name="message"
                                   class="sup-input sup-textarea">{{ old('message') }}</textarea>
                         <!-- <label for="file" class="sup-label sup-label-file">
