@@ -16,7 +16,8 @@ class Tariff extends Model
      */
     protected $fillable = [
         'name',
-        'price',
+        'price_per_month',
+        'price_per_year',
         'max_followers'
     ];
 
