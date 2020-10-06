@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Statistics\ConversionsResource;
+use App\Http\Resources\Statistics\DeliveredResource;
 use App\Http\Resources\Statistics\MailsResource;
+use App\Http\Resources\Statistics\SentResource;
 use App\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +21,7 @@ class SiteStatisticController extends Controller
     public function __invoke(Request $request, Site $site)
     {
         $user = Auth::user();
-        $pushes = $site->pushes()->selectRaw('count(*) as count, MIN(created_at) as created_at')
+        $pushes = $site->pushes()->selectRaw('count(*) as count, SUM(sent) as sent, SUM(delivered) as delivered, MIN(created_at) as created_at')
             ->groupByRaw('DAY(created_at)');
         $transitions = $site->transitions()->selectRaw('count(*) as count, MIN(transitions.created_at) as created_at')
             ->groupByRaw('DAY(transitions.created_at), `laravel_through_key`');
@@ -55,8 +57,8 @@ class SiteStatisticController extends Controller
         $transitions = $transitions->get();
         return (new MailsResource($pushes))->additional([
             'conversions' => new ConversionsResource($transitions),
-            'delivered' => new ConversionsResource(collect()),
-            'sent' => new ConversionsResource(collect()),
+            'delivered' => new DeliveredResource($pushes),
+            'sent' => new SentResource($pushes),
         ]);
     }
 }
