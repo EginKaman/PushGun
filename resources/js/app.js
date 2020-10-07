@@ -58,6 +58,8 @@ Vue.component('button-payment', require('./components/UI/ButtonPayment.vue').def
 Vue.component('notifications', require('./components/Notifications.vue').default);
 Vue.component('question-form', require('./components/Index/Question.vue').default);
 Vue.component('register-now-form', require('./components/Index/RegisterNow.vue').default);
+Vue.component('photo-component', require('./components/UI/Photo.vue').default);
+Vue.component('image-component', require('./components/UI/Image.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

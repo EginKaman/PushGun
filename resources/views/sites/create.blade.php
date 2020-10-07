@@ -36,17 +36,8 @@
 
                         <div class="site_set">
                             <div class="site_set_avatar">
-                                <input type="file" name="image" id="image">
                                 <div class="site_set_avatar_title">@lang('Картинка сайта')</div>
-                                <label for="image" class="site_avatar_form">
-                                    <img src="{{ asset('images/site.svg') }}" alt="">
-                                    <div class="site_avatar_form_block">
-                                        <p class="site_avatar_form_title">@lang('Выберите изображение')</p>
-                                        <p class="site_avatar_form_desc">
-                                            @lang('Рекомендуемый размер: 128×128px JPG, svg до 200KB')
-                                        </p>
-                                    </div>
-                                </label>
+                                <image-component></image-component>
                             </div>
 
                             <div class="site_set_sub">

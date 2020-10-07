@@ -109,17 +109,11 @@
                                        value="{{ old('postcode', $user->postcode) }}">
                             </label>
 
-                            <label for="photo" class="set-form__label photo">
-                                <div class="set-form__title-wrap">
-                                    <span class="set-form__title">@lang('Фото профиля')</span>
-                                    <span
-                                        class="set-form__desc">@lang('Рекомендуемый размер фото'):<br>150px × 150px</span>
-                                </div>
-                                <input type="file" name="photo" id="photo" accept="image/*">
-                                <div class="photo-min" id="output">
-                                    <img src="{{ asset(Storage::url($user->photo) ?? 'images/minPhoto.svg') }}" alt="">
-                                </div>
-                            </label>
+                            <photo-component
+                                @if($user->photo)
+                                    image="{{ asset(Storage::url($user->photo)) }}"
+                                @endif
+                            ></photo-component>
 
 
                             <div class="set-bottom">
