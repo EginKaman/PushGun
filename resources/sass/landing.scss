@@ -204,6 +204,9 @@
     -webkit-transition-duration: .25s;
     -o-transition-duration: .25s;
     transition-duration: .25s;
+    &:hover {
+        background-color: #CFD8DC;
+    }
 }
 
 .menu__item:hover {
@@ -1311,6 +1314,7 @@ body {
 
     .footer__wrapper__menu li {
         margin-bottom: 15px;
+        margin-right: 0;
     }
 
     .section7__form__row {

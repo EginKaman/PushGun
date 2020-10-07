@@ -63,15 +63,8 @@
                         <li><a class="menu__item" href="#">@lang('О нас')</a></li>
                         <li><a class="menu__item" href="#">@lang('Цена')</a></li>
                         <li><a class="menu__item" href="#">@lang('FAQ')</a></li>
-                        <li>
-                            <hr>
-                        </li>
-                        <li>
-                            <login-button classes="menu__item" action="{{ route('login') }}"></login-button>
-                        </li>
-                        <li>
-                            <register-button classes="menu__item" action="{{ route('register') }}"></register-button>
-                        </li>
+                        <li><login-button classes="menu__item" action="{{ route('login') }}"></login-button></li>
+                        <li><register-button classes="menu__item" action="{{ route('register') }}"></register-button></li>
                     </ul>
                 </div>
             </div>
