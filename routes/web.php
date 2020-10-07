@@ -14,10 +14,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::post('/subscribe/{site}', 'SubscribeController@update')->name('subscribe.update');
+Route::post('/subscribe/{site}', [\App\Http\Controllers\SubscribeController::class, 'update'])->name('subscribe.update');
 Route::get('/push/{push}/redirect', 'TransitionController')->name('transition.store');
-Route::post('payment/check', 'PaymentController@check');
-Route::post('payment', 'PaymentController@store');
+Route::post('payment/check', [\App\Http\Controllers\PaymentController::class, 'check']);
+Route::post('payment', [\App\Http\Controllers\PaymentController::class, 'store']);
 Route::get('manifest.json', function () {
     return [
         'name' => config('app.name'),
@@ -27,20 +27,20 @@ Route::get('manifest.json', function () {
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::get('/', 'IndexController')->name('index')->middleware(['guest']);
-    Route::get('/privacy', 'PageController@privacy')->name('page.privacy');
+    Route::get('/privacy', [\App\Http\Controllers\PageController::class, 'privacy'])->name('page.privacy');
     Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes();
     Route::middleware(['auth'])->group(function () {
         Route::prefix('account')->group(function () {
-            Route::get('/', 'AccountController@index')->name('account.index');
-            Route::get('edit', 'AccountController@edit')->name('account.edit');
-            Route::put('/', 'AccountController@update')->name('account.update');
+            Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
+            Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
+            Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
         });
         Route::put('/password', 'PasswordController')->name('password.update');
         Route::resource('site', 'SiteController');
-        Route::get('site/{site}/complete', 'CompleteController@index')->name('complete.index');
-        Route::post('site/{site}/complete', 'CompleteController@store')->name('complete.store');
+        Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
+        Route::post('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'store'])->name('complete.store');
         Route::resource('push', 'PushController');
         Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
         Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
