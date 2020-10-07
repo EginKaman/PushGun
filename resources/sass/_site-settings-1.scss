@@ -103,14 +103,14 @@
                     user-select: none;
 
                     & img {
-                        width: 128px;
-                        height: 128px;
+                        width: 64px;
+                        height: 64px;
                         border-radius: 4px;
                     }
 
                     &_title {
-                        font-size: 14px;
-                        padding: 10px;
+                        font-size: 12px;
+                        padding: 6px;
                         color: #979c9f;
                         position: relative;
                         width: max-content;
@@ -125,7 +125,7 @@
                     }
 
                     &_desc {
-                        font-size: 12px;
+                        font-size: 10px;
                         font-weight: 500;
                         color: #979797;
                         margin-top: 10px;
