@@ -47,8 +47,10 @@ export default {
     methods: {
         submit() {
             axios.post(this.action, {
+                name: this.name,
                 email: this.email,
-                password: this.password
+                password: this.password,
+                password_confirmation: this.password_confirmation
             }).then(response => {
                 location.reload();
             }).catch(error => {
