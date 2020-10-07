@@ -25,16 +25,16 @@ class AccountUpdate extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'lastname' => 'string|max:255',
-            'phone' => 'phone:AUTO,mobile',
+            'lastname' => 'nullable|string|max:255',
+            'phone' => 'nullable|phone:AUTO,mobile',
             'email' => 'sometimes|required|email',
-            'lang' => 'string|max:255',
-            'timezone' => 'string|max:255',
-            'country' => 'string|max:255',
-            'city' => 'string|max:255',
-            'address' => 'string|max:255',
-            'postcode' => 'string|max:255',
-            'photo' => 'image|max:5124',
+            'lang' => 'nullable|string|max:255',
+            'timezone' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'postcode' => 'nullable|string|max:255',
+            'photo' => 'nullable|image|max:5124',
         ];
     }
 }
