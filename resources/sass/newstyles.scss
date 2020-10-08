@@ -235,6 +235,8 @@ button {
 .lang-toggle {
     position: relative;
     cursor: pointer;
+    display: flex;
+    align-items: center;
     img {
         object-fit: contain;
         width: 12px;
