@@ -60,9 +60,9 @@
                     <input id="menu__toggle" type="checkbox"/>
                     <label class="menu__btn" for="menu__toggle"><span></span></label>
                     <ul class="menu__box">
-                        <li><a class="menu__item" href="#">@lang('О нас')</a></li>
-                        <li><a class="menu__item" href="#">@lang('Цена')</a></li>
-                        <li><a class="menu__item" href="#">@lang('FAQ')</a></li>
+                        <li><a class="menu__item" href="#aboutus">@lang('О нас')</a></li>
+                        <li><a class="menu__item" href="#price">@lang('Цена')</a></li>
+                        <li><a class="menu__item" href="#faq">@lang('FAQ')</a></li>
                         <li><login-button classes="menu__item" action="{{ route('login') }}"></login-button></li>
                         <li><register-button classes="menu__item" action="{{ route('register') }}"></register-button></li>
                     </ul>
