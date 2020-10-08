@@ -5,46 +5,49 @@
         <div class="container">
             <section class="mails">
                 <div class="filter__popup">
-                    <div class="filter__popup__inner">
-                        <div class="filter__popup_block w-50">
-                            <label for="" class="filter__popup_label">@lang('Начальная дата')</label>
-                            <input id="firstDate-input" class="datepicker-here filter__input" type="text">
-                        </div>
-                        <div class="filter__popup_block w-50">
-                            <label for="" class="filter__popup_label">@lang('Конечная дата')</label>
-                            <input id="lastDate-input" class="datepicker-here filter__input" type="text">
-                        </div>
-                        <div class="filter__popup_block">
-                            <label for="" class="filter__popup_label">@lang('Текст')</label>
-                            <input class="filter__input" type="text">
-                        </div>
-                        <div class="filter__popup_block">
-                            <label for="site" class="filter__popup_label">@lang('Сайт')</label>
-                            <select id="site" class="filter__input filter__selector" name="site" type="text">
-                                @foreach($sites as $site)
-                                    <option value="{{ $site->id }}">{{ $site->link }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="button_lb">
+                    <form action="{{ route('push.index') }}">
+                        <div class="filter__popup__inner">
+                            <div class="filter__popup_block w-50">
+                                <label class="filter__popup_label" for="firstDate-input">@lang('Начальная дата')</label>
+                                <input id="firstDate-input" class="datepicker-here filter__input" name="start"
+                                       type="text">
+                            </div>
+                            <div class="filter__popup_block w-50">
+                                <label class="filter__popup_label" for="lastDate-input">@lang('Конечная дата')</label>
+                                <input id="lastDate-input" class="datepicker-here filter__input" name="end" type="text">
+                            </div>
+                            <div class="filter__popup_block">
+                                <label class="filter__popup_label" for="text-input">@lang('Текст')</label>
+                                <input id="text-input" class="filter__input" name="text" type="text">
+                            </div>
+                            <div class="filter__popup_block">
+                                <label class="filter__popup_label" for="site">@lang('Сайт')</label>
+                                <select id="site" class="filter__input filter__selector" name="site" type="text">
+                                    <option v-for="site in $store.state.sites.sites" :key="site.id"
+                                            :value="site.id">@{{ site.link }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="button_lb">
                             <span class="lb_button_circle">
                             </span>
-                            <button class="button_lb_inner">
-                                <p class="lb_button_text_container">
-                                    @lang('Сброс')
-                                </p>
-                            </button>
-                        </div>
-                        <div id="btn_select" class="button_rb">
+                                <button class="button_lb_inner" type="reset">
+                                    <p class="lb_button_text_container">
+                                        @lang('Сброс')
+                                    </p>
+                                </button>
+                            </div>
+                            <div id="btn_select" class="button_rb">
                             <span class="rb_button_circle">
                             </span>
-                            <button class="button_rb_inner">
-                                <p class="rb_button_text_container">
-                                    @lang('Выбрать')
-                                </p>
-                            </button>
+                                <button class="button_rb_inner" type="submit">
+                                    <p class="rb_button_text_container">
+                                        @lang('Выбрать')
+                                    </p>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="general__title">
                     <h1 class="title">@lang('Мои рассылки')</h1>
@@ -54,8 +57,8 @@
                         <div class="mails__reset_inner">@lang('Сбросить фильтр')</div>
                     </div>
                     <div id="filter" class="button_green">
-                            <span class="green_button_circle">
-                            </span>
+                        <span class="green_button_circle">
+                        </span>
                         <div class="button_green_inner mails__filter_btn">
                             <p class="button_text_container">
                                 @lang('Фильтр')

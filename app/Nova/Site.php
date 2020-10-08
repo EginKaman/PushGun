@@ -93,7 +93,7 @@ class Site extends Resource
                 ->rules('required', 'string', Rule::in(['visit', 'click', 'intermediate'])),
             Boolean::make('Скрывать на мобильных устройствах', 'mobile')
                 ->sortable(),
-            Status::make('Установлено', 'installed')
+            Boolean::make('Установлено', 'installed')
                 ->exceptOnForms()
                 ->sortable(),
             DateTime::make(__('Deleted at'), 'deleted_at')
