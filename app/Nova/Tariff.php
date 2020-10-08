@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -33,7 +34,7 @@ class Tariff extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     public static function label()
@@ -54,7 +55,7 @@ class Tariff extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -64,6 +65,8 @@ class Tariff extends Resource
             Text::make('Заголовок', 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
+            Currency::make('Цена за месяц', 'price_per_month')->currency('RUB')->sortable(),
+            Currency::make('Цена за год', 'price_per_year')->currency('RUB')->sortable(),
             Number::make('Макс. кол-во подписчиков', 'max_followers')
                 ->sortable(),
             HasMany::make('Пользователи', 'users', User::Class)
@@ -73,7 +76,7 @@ class Tariff extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -84,7 +87,7 @@ class Tariff extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -95,7 +98,7 @@ class Tariff extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -106,7 +109,7 @@ class Tariff extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)
