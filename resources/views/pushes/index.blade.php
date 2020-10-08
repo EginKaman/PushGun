@@ -24,7 +24,9 @@
                                 <label class="filter__popup_label" for="site">@lang('Сайт')</label>
                                 <select id="site" class="filter__input filter__selector" name="site" type="text">
                                     <option v-for="site in $store.state.sites.sites" :key="site.id"
+                                            @if(request('site'))
                                             :selected="site.id === {{ request('site') }}"
+                                            @endif
                                             :value="site.id">@{{ site.link }}
                                     </option>
                                 </select>
