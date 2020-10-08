@@ -56,7 +56,7 @@ class Message extends Resource
                 ->sortable(),
             BelongsTo::make('Пользователь', 'user', User::class)
                 ->sortable(),
-            Textarea::make('Сообщение', 'message')
+            Textarea::make('Сообщение', 'text')
                 ->sortable(),
             DateTime::make(__('Created at'), 'created_at')
                 ->onlyOnDetail()
