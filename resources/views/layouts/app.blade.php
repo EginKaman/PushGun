@@ -175,7 +175,7 @@
             </span>
     </div>
     <footer class="footer">
-        <a href="">@lang('База знаний')</a>
+        <a href="{{ route('manual.index') }}">@lang('База знаний')</a>
         <a href="{{ route('ticket.index') }}">@lang('Тех. поддержка')</a>
         <a href="{{ route('page.privacy') }}">@lang('Политика конфиденциальности')</a>
     </footer>
