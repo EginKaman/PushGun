@@ -382,9 +382,8 @@
     </section>
     <section class="section7">
         <div class="container">
-            <h2 class="section7__title">@lang('Остались вопросы?')</h2>
-            <p class="section7__descr">@lang('Напишите нам на'): <a href="mailto:info@pushgun.ru">info@pushgun.ru</a>
-            </p>
+            <h2 class="section7__title">@lang('Интересуетесь push-уведомлениями, но вы не знаете, как применять их на своем сайте?')</h2>
+            <p class="section7__descr">@lang('Мы поможем вам интегрировать сервис push-уведомлений для сайта или сматфона для вашего бизнеса, настроим автоматический сценарий и расскажем все о сервисе.')</p>
             <div class="section7__form">
                 <form action="#" method="post">
                     <div class="section7__form__row">
