@@ -51,15 +51,18 @@
                                 <div class="tariff-slider"></div>
                                 <div class="tariff-slider-val">
                                     <!-- <div class="tariff-slider__line"></div> -->
-                                    <div class="tariff-slider__item active" data-text="от 30 000 подписчиков" data-price="3900">
+                                    <div class="tariff-slider__item active" data-text="от 30 000 подписчиков"
+                                         data-price="3900">
                                         <span class="tariff-slider__point"></span>
                                         <span class="tariff-slider__text">30к</span>
                                     </div>
-                                    <div class="tariff-slider__item" data-text="от 60 000 подписчиков" data-price="6000">
+                                    <div class="tariff-slider__item" data-text="от 60 000 подписчиков"
+                                         data-price="6000">
                                         <span class="tariff-slider__point"></span>
                                         <span class="tariff-slider__text">60к</span>
                                     </div>
-                                    <div class="tariff-slider__item" data-text="от 200 000 подписчиков" data-price="10000">
+                                    <div class="tariff-slider__item" data-text="от 200 000 подписчиков"
+                                         data-price="10000">
                                         <span class="tariff-slider__point"></span>
                                         <span class="tariff-slider__text">200к</span>
                                     </div>
@@ -104,29 +107,13 @@
 
 
                 <div class="follows-wrap">
-                    <div class="follows-row">
-                        <div class="follows-left">
-                            <span class="follows-text">@lang('Ваш текущий баланс'):</span>
-                        </div>
-                        <div class="follows-right">
-                            <span class="follows-text">{{ $user->balance }} @lang('руб')</span>
-                        </div>
-                    </div>
                     @if($user->tariff_expired_at)
                         <div class="follows-row">
                             <div class="follows-left">
                                 <span class="follows-text">@lang('Ближайшая следующая оплата'):</span>
                             </div>
                             <div class="follows-right">
-                                <span class="follows-text">29 ноября 2020 г. 09:20</span>
-                            </div>
-                        </div>
-                        <div class="follows-row">
-                            <div class="follows-left">
-                                <span class="follows-text">@lang('Последнее снятие баланса'):</span>
-                            </div>
-                            <div class="follows-right">
-                                <span class="follows-text">29 ноября 2020 г. 16:20</span>
+                                <span class="follows-text">{{ $user->tariff_expired_at }}</span>
                             </div>
                         </div>
                     @endif
@@ -167,18 +154,20 @@
                                 <span class="follows-text">@lang('Пакет активирован'):</span>
                             </div>
                             <div class="follows-right">
-                                <span class="follows-text">29 апреля 2020 г. 16:20</span>
+                                <span class="follows-text">{{ $user->payment->created_at }}</span>
                             </div>
                         </div>
                     @endif
-                    <div class="follows-row bb-1">
-                        <div class="follows-left">
-                            <span class="follows-text">@lang('Размер платежа'):</span>
+                    @if($tariff->price > 0)
+                        <div class="follows-row bb-1">
+                            <div class="follows-left">
+                                <span class="follows-text">@lang('Размер платежа'):</span>
+                            </div>
+                            <div class="follows-right">
+                                <span class="follows-text">{{ $tariff->price }} @lang('руб')</span>
+                            </div>
                         </div>
-                        <div class="follows-right">
-                            <span class="follows-text">{{ $tariff->price }} @lang('руб')</span>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </section>
         </div>
