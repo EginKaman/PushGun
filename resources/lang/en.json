@@ -21,7 +21,7 @@
     "клиента": "clients",
     "Наши партнеры": "Our partners",
     "Ответы на часто задаваемые вопросы": "Answers to frequently asked questions",
-    "Интересуетесь push-уведомлениями, но вы не знаете, как применять их на своем сайте?":  "Are you interested in push notifications, but you don't know how to use them on your site?",
+    "Интересуетесь push-уведомлениями, но вы не знаете, как применять их на своем сайте?": "Are you interested in push notifications, but you don't know how to use them on your site?",
     "Мы поможем вам интегрировать сервис push-уведомлений для сайта или сматфона для вашего бизнеса, настроим автоматический сценарий и расскажем все о сервисе.": "We will help you integrate a push notification service for your website or smartphone for your business, set up an automatic script, and tell you all about the service.",
     "Ваше имя": "Your name",
     "E-mail": "E-mail",
@@ -211,5 +211,10 @@
     "Окончание подписки": "End of subscription",
     "С промежуточным запросом": "With an intermediate request",
     "Файл pg-push-worker.js не установлен": "File pg-push-worker.js not installed",
-    "Файл pg-push-worker.js установлен": "File pg-push-worker.js installed"
+    "Файл pg-push-worker.js установлен": "File pg-push-worker.js installed",
+    "подписчиков": "subscribers",
+    "История платежей": "Payments history",
+    "Название продукта": "Product name",
+    "Номер заказа": "Order number",
+    "Стоимость": "Price"
 }

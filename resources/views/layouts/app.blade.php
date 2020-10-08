@@ -94,7 +94,7 @@
                         {{--                        </div>--}}
                         <div class="account__bottom_links">
                             <div class="account__link_wrapper icon icon-pay">
-                                <a href="#" class="account__bottom_link">@lang('Платежи')</a>
+                                <a href="{{ route('payment.index') }}" class="account__bottom_link">@lang('Платежи')</a>
                             </div>
                             <div class="account__link_wrapper icon icon-settings">
                                 <a href="{{ route('account.edit') }}" class="account__bottom_link">

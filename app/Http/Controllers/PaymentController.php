@@ -7,9 +7,24 @@ use App\Tariff;
 use App\User;
 use App\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $user = Auth::user()->load('payments', 'payments.tariff');
+        return view('payments.index', [
+            'user' => $user,
+        ]);
+    }
+
     public function check(Request $request)
     {
         $s = base64_encode(hash_hmac('sha256', $request->getContent(), config('services.cloud_payments.api_key'), true));
@@ -70,8 +85,9 @@ class PaymentController extends Controller
         ]);
         $user = User::find($request->AccountId);
         $payment->user()->associate($user);
+        $payment->tariff()->associate($payment->data['tariff']);
         $payment->save();
-        $user->tariff()->associate(Tariff::find($payment->data['tariff']));
+        $user->tariff()->associate($payment->data['tariff']);
         if ($user->tariff_expired_at === null) {
             $user->tariff_expired_at = now();
         } else {
