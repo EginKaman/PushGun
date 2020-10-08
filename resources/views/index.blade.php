@@ -32,9 +32,9 @@
                     </picture>
                 </a>
                 <ul class="header-landing__wrapper__menu">
-                    <li><a href="#">@lang('О нас')</a></li>
-                    <li><a href="#">@lang('Цена')</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#aboutus">@lang('О нас')</a></li>
+                    <li><a href="#price">@lang('Цена')</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
                 <div class="lang-toggle">
                     <span class="lang-current">{{ LaravelLocalization::getCurrentLocaleNative() }}</span>
@@ -110,7 +110,7 @@
                     </figure>
                 </div>
             </div>
-            <a href="#section2" class="btn_dwn"> <span class="whiteBg"></span>
+            <a href="#aboutus" class="btn_dwn"> <span class="whiteBg"></span>
                 <picture>
                     <source srcset="{{ asset('images/btn_down.webp') }}" type="image/webp">
                     <img src="{{ asset('images/btn_down.png') }}" alt="down">
@@ -118,7 +118,7 @@
             </a>
         </div>
     </section>
-    <section class="section2" id="section2">
+    <section class="section2" id="aboutus">
         <div class="container">
             <h2 class="section2__title">@lang('Возможности и преимущества')</h2>
             <p class="section2__descr"> {!! trans('home.pushes') !!} </p>
@@ -368,14 +368,14 @@
             </div>
         </div>
     </section>
-    <section class="section6">
+    <section class="section6" id="faq">
         <div class="container">
             <h2 class="section6__title">FAQ</h2>
             <p class="section6__descr">@lang('Ответы на часто задаваемые вопросы')</p>
             <div class="faq"> {!! trans('home.faq') !!} </div>
         </div>
     </section>
-    <section class="section7">
+    <section class="section7" id="price">
         <div class="container">
         <h2 class="section7__title">@lang('Интересуетесь push-уведомлениями, но вы не знаете, как применять их на своем сайте?')</h2>
             <p class="section7__descr">@lang('Мы поможем вам интегрировать сервис push-уведомлений для сайта или сматфона для вашего бизнеса, настроим автоматический сценарий и расскажем все о сервисе.')</p>
