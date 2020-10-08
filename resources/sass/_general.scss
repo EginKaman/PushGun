@@ -311,7 +311,9 @@
 
 .canvas-container {
     height: 358px;
+	min-height: 358px;
 }
+
 
 @media screen and (max-width: 1200px) {
     .general {
@@ -360,13 +362,17 @@
                 margin-bottom: 12px;
             }
         }
-
+ 
         .current__stats_item {
             padding-left: 28px;
             padding-right: 28px;
         }
 
     }
+	body.fixer {
+    position: fixed;
+	overflow: hidden;
+}
 }
 
 @media screen and (max-width: 600px) {

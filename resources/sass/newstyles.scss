@@ -112,7 +112,19 @@ button {
         position: relative;
 
         &::after {
-            content: '';
+           
+        }
+
+        p {
+            display: none;
+        }
+    }
+}
+.faq .ttlhfaq{
+
+}
+.faq .ttlhfaq:after{
+ content: '';
             background-image: url('../images/arrow_circle.svg');
             background-repeat: no-repeat;
             width: 32px;
@@ -121,15 +133,9 @@ button {
             right: 0;
             top: -5px;
             transition: all .3s ease-in-out;
-        }
-
-        p {
-            display: none;
-        }
-    }
 }
 
-.faq__item.active {
+.faq__item.active .ttlhfaq {
     &::after {
         transition: all .3s ease-in-out;
         transform: rotate(180deg);
@@ -274,4 +280,12 @@ button {
 
 .general__stats_right-top {
     padding: 15px;
+}
+
+@media (max-width: 786px) {
+
+.ttlhfaq {
+    padding-right: 40px;
+}
+
 }

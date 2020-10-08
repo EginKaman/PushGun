@@ -494,6 +494,10 @@ line-height: 17px;
 color: #323441;
 text-decoration: none;
 }
+.canvas-container {
+	min-height: 358px;
+}
+
 
 @media (max-width: 786px) {
 .set-form-row {
@@ -505,6 +509,9 @@ margin-bottom: 10px;
 }
 .set-form__label-check {
 margin-left: 0px;
+}
+.main {
+    padding-top: 55px;
 }
 }
 
