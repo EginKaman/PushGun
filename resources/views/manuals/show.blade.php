@@ -10,7 +10,7 @@
                 </div>
 
                 <p>
-                    {!! nl2br(e($manual->text)) !!}
+                    {!! Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($manual->text); !!}
                 </p>
 
             </section>

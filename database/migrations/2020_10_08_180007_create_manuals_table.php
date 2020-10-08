@@ -18,7 +18,7 @@ class CreateManualsTable extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('slug');
             $table->string('title');
-            $table->text('text');
+            $table->json('text');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Advoor\NovaEditorJs\NovaEditorJs;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
@@ -56,7 +57,7 @@ class Manual extends Resource
             BelongsTo::make('Category', 'category', Category::class)->sortable(),
             Slug::make('Slug')->from('Title')->separator('-'),
             Text::make('Title')->sortable(),
-            Textarea::make('Text'),
+            NovaEditorJs::make('Text'),
             DateTime::make(__('Deleted at'), 'deleted_at')
                 ->onlyOnDetail()
                 ->rules('nullable', 'date'),
