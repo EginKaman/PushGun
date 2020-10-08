@@ -4,9 +4,8 @@ namespace App\Http\Resources\Statistics;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DataResource extends JsonResource
+class DataSentResource extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *
@@ -16,7 +15,7 @@ class DataResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'count' => (int) $this->count,
+            'count' => (int) $this->sent,
             'date' => $this->created_at->format('Y-m-d')
         ];
     }

@@ -8,21 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class TariffController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
         $user = Auth::user();
         return view('tariffs.index', [
             'tariff' => $user->tariff,
-            'user' => $user
+            'user' => $user,
+            'tariffs' => Tariff::where('id', '!=', 1)->get()
         ]);
-    }
-
-    public function update(Request $request, Tariff $tariff)
-    {
-        $user = Auth::user();
-        $user->tariff()->associate($tariff);
-        $user->save();
-
-        return redirect()->route('tariff.index');
     }
 }

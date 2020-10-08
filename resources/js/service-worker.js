@@ -36,15 +36,7 @@
          * @param {NotificationEvent} event
          */
         notificationClick(event) {
-            // console.log(event.notification)
-            if (event.data.url) {
-                self.clients.openWindow(event.data.url)
-            }
-            if (event.action === 'some_action') {
-                // Do something...
-            } else {
-                self.clients.openWindow('/')
-            }
+            self.clients.openWindow(event.notification.data.url)
         },
 
         /**
