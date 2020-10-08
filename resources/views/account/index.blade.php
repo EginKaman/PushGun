@@ -92,7 +92,16 @@
                     @foreach($sites as $site)
                         <div class="general__sites_item">
                             <div class="general__sites_item-more">
+							<div class="general__sites_item-more_imgcontsd">
                                 <img src="{{ asset('images/more.svg') }}" alt="">
+								</div>
+								
+								<ul class="general__sites_item_ul">
+								<li><a href="{{ route('push.create') }}">Отправить PUSH</a></li>
+								<li><a href="#">Настройки сайта</a></li>
+								<li><a href="#">Удалить сайт</a></li>
+								</ul>
+								
                             </div>
                             <a href="{{ route('site.show', ['site' => $site]) }}">
                                 @empty($site->image)
