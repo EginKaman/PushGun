@@ -1,1 +1,1 @@
-importScripts('{{ url('js/service-worker.js') }}');
+importScripts('{{ url('/service-worker.js') }}');

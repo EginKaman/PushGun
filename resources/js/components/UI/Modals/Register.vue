@@ -28,6 +28,10 @@ export default {
             type: String,
             default: '/register'
         },
+        now_email: {
+            type: String,
+            default: ''
+        },
     },
     data() {
         return {
@@ -37,11 +41,16 @@ export default {
             password_confirmation: ''
         }
     },
+    mounted() {
+        this.email = this.now_email;
+    },
     methods: {
         submit() {
             axios.post(this.action, {
+                name: this.name,
                 email: this.email,
-                password: this.password
+                password: this.password,
+                password_confirmation: this.password_confirmation
             }).then(response => {
                 location.reload();
             }).catch(error => {

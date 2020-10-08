@@ -43,20 +43,11 @@
                         <dl class="setgen__info_block">
                             <dt class="setgen__info_title">@lang('Изображение сайта'):</dt>
                             <dd class="setgen__info_upload">
-                                <input type="file" name="image" id="siteAvatar">
-                                <label for="siteAvatar" class="setgen__form">
+                                <image-component
                                     @if($site->image)
-                                        <img src="{{ asset(Storage::url($site->image)) }}" alt="">
-                                    @else
-                                        <img src="{{ asset('images/site.svg') }}" alt="">
+                                    image="{{ asset(Storage::url($site->image)) }}"
                                     @endif
-                                    <div class="setgen__form_block">
-                                        <p class="setgen__form_title">@lang('Выбрать изображение')</p>
-                                        <p class="setgen__form_desc">
-                                            @lang('Рекомендуемый размер: 128×128px JPG, svg до 200KB')
-                                        </p>
-                                    </div>
-                                </label>
+                                ></image-component>
                                 {{--                                <div class="setgen__info_block">--}}
                                 {{--                                    <div class="setgen__info_desc">--}}
                                 {{--                                        <input type="checkbox" class="checkbox-input" name="getPush" id="getPush">--}}
@@ -143,7 +134,7 @@
                     </div>
                     <site-check script="{{ url("/storage/push/$site->script") }}"
                                 archive="{{ url('/storage/pg-push.zip') }}"
-                                action="{{ action('Api\CheckScriptController@index', $site) }}"
+                                action="{{ action('Api\CheckScriptController', $site) }}"
                                 button="@lang('Перепроверить')"
                                 :recheck="true"
                                 :installed="{{ json_encode($site->installed) }}"></site-check>

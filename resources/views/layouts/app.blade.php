@@ -12,9 +12,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    @stack('scripts')
+@stack('scripts')
 
-    <!-- Styles -->
+<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -87,11 +87,11 @@
                         <h3 class="account__bottom_subscribtion">@lang('Тариф') "@lang(Auth::user()->tariff->name)"</h3>
                         <a href="{{ route('tariff.index') }}"
                            class="account__bottom_subscribe">@lang('Повысить тариф')</a>
-{{--                        <div class="account__bottom_balance-wrapper">--}}
-{{--                            <p class="account__bottom_balance">@lang('Баланс')--}}
-{{--                                <span>{{ Auth::user()->balance }} @lang('руб')</span></p>--}}
-{{--                            <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Пополнить')</a>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="account__bottom_balance-wrapper">--}}
+                        {{--                            <p class="account__bottom_balance">@lang('Баланс')--}}
+                        {{--                                <span>{{ Auth::user()->balance }} @lang('руб')</span></p>--}}
+                        {{--                            <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Пополнить')</a>--}}
+                        {{--                        </div>--}}
                         <div class="account__bottom_links">
                             <div class="account__link_wrapper icon icon-pay">
                                 <a href="#" class="account__bottom_link">@lang('Платежи')</a>
@@ -149,6 +149,9 @@
                     <div class="nav__item_wrap">
                         <a href="#">@lang('Мои сайты')</a>
                         <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
+                    </div>
+                    <div class="nav__menu_item" v-for="(site, index) in $store.state.sites.sites" :key="index">
+                        <a class="nav__menu_link" :href="site.url">@{{ site.link }}</a>
                     </div>
                     <div class="nav__item_wrap">
                         <a href="{{ route('tariff.index') }}">@lang('Тарифы')</a>

@@ -51,8 +51,10 @@
                     </ul>
                 </div>
                 <div class="header-landing__wrapper__links">
-                    <login-button classes="header-landing__wrapper__links_enter" action="{{ route('login') }}"></login-button>
-                    <register-button classes="header-landing__wrapper__links_reg" action="{{ route('register') }}"></register-button>
+                    <login-button classes="header-landing__wrapper__links_enter"
+                                  action="{{ route('login') }}"></login-button>
+                    <register-button classes="header-landing__wrapper__links_reg"
+                                     action="{{ route('register') }}"></register-button>
                 </div>
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox"/>
@@ -308,14 +310,7 @@
                 @lang('Push\'ки могут уже лететь.')
                 <span>@lang('Тестовый пакет до 1000 подписчиков бесплатно.')</span>
             </h3>
-            <div class="section3__form">
-                <form action="#" method="post">
-                    <input type="email" name="email" placeholder="@lang('Введите e-mail')">
-                    <button
-                        type="submit">@lang('Попробовать')
-                    </button>
-                </form>
-            </div>
+            <register-now-form action="{{ route('register') }}"></register-now-form>
         </div>
     </section>
     <section class="section4">
@@ -382,22 +377,9 @@
     </section>
     <section class="section7">
         <div class="container">
-            <h2 class="section7__title">@lang('Интересуетесь push-уведомлениями, но вы не знаете, как применять их на своем сайте?')</h2>
+        <h2 class="section7__title">@lang('Интересуетесь push-уведомлениями, но вы не знаете, как применять их на своем сайте?')</h2>
             <p class="section7__descr">@lang('Мы поможем вам интегрировать сервис push-уведомлений для сайта или сматфона для вашего бизнеса, настроим автоматический сценарий и расскажем все о сервисе.')</p>
-            <div class="section7__form">
-                <form action="#" method="post">
-                    <div class="section7__form__row">
-                        <input type="text" name="name" class="section7__form__name" placeholder="@lang('Ваше имя')">
-                        <input type="email" name="email" class="section7__form__email" placeholder="E-mail">
-                    </div>
-                    <input type="text" class="section7__form__text" placeholder="@lang('Ваше сообщение')">
-                    <p class="section7__form__chk">
-                        <input type="checkbox" name="check">
-                        @lang('Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»')
-                    </p>
-                    <button type="submit" class="section7__form__btn">@lang('Отправить')</button>
-                </form>
-            </div>
+            <question-form action="{{ route('mail.question') }}"></question-form>
         </div>
     </section>
     <footer class="footer">
@@ -406,15 +388,19 @@
                     <picture>
                         <source srcset="{{ asset('images/footer_logo.svg') }}" type="image/webp">
                         <img src="{{ asset('images/footer_logo.svg') }}"
-                             alt="logo"></picture>
+                             alt="logo">
+                    </picture>
                 </a>
                 <ul class="footer__wrapper__menu">
                     <li><a href="{{ route('page.privacy') }}">@lang('Политика конфиденциальности')</a></li>
-                    <li><a href="#support" rel="modal:open">@lang('Связаться с Техподдержкой')</a></li>
+                    <li>
+                        <support-button action="{{ route('mail.support') }}"></support-button>
+                    </li>
                 </ul>
                 <div class="footer__wrapper__links">
                     <login-button classes="footer__wrapper__links_enter" action="{{ route('login') }}"></login-button>
-                    <register-button classes="footer__wrapper__links_reg" action="{{ route('register') }}"></register-button>
+                    <register-button classes="footer__wrapper__links_reg"
+                                     action="{{ route('register') }}"></register-button>
                 </div>
             </div>
             <div class="footer__by">
@@ -422,18 +408,6 @@
             </div>
         </div>
     </footer>
-    <div id="support" class="modal">
-        <h2>@lang('Связаться с Техподдержкой')</h2>
-        <form action="">
-            <div class="modal__inner">
-                <input type="text" name="name" placeholder="@lang('Имя')">
-                <input type="email" name="email" placeholder="E-mail *" required>
-                <textarea cols="2" name="message" rows="2" placeholder="@lang('Введите ваше сообщение') *"
-                          required></textarea>
-                <button type="submit" class="header-landing__wrapper__links_reg">@lang('Отправить')</button>
-            </div>
-        </form>
-    </div>
 </div>
 </body>
 </html>

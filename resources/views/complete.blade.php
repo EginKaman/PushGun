@@ -12,7 +12,7 @@
                 <section id="integration-sec" class="setgen setint choosen">
                     <site-check script="{{ url("/storage/push/$site->script") }}"
                                 archive="{{ url('/storage/pg-push.zip') }}"
-                                action="{{ action('Api\CheckScriptController@index', $site) }}"
+                                action="{{ action('Api\CheckScriptController', $site) }}"
                                 button="@lang('Проверить')"
                                 :create="true"
                                 :installed="{{ json_encode($site->installed) }}"></site-check>
