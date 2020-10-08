@@ -329,40 +329,40 @@
                 <div
                     class="first section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_br section5__wrapper__item_mbr section5__wrapper__item_mbb">
                     <picture>
-                        <source srcset="{{ asset('images/partner1.svg') }}" type="image/webp">
-                        <img src="{{ asset('images/partner1.svg') }}" alt=""
+                        <source srcset="{{ asset('images/tinkoff.png') }}" type="image/webp">
+                        <img src="{{ asset('images/tinkoff.png') }}" alt=""
                              class="section5__wrapper__item__logo"></picture>
                 </div>
                 <div
                     class="second section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_br section5__wrapper__item_mbb">
                     <picture>
-                        <source srcset="{{ asset('images/partner2.svg') }}" type="image/webp">
-                        <img src="{{ asset('images/partner2.svg') }}" alt=""
+                        <source srcset="{{ asset('images/kaspersky.png') }}" type="image/webp">
+                        <img src="{{ asset('images/kaspersky.png') }}" alt=""
                              class="section5__wrapper__item__logo"></picture>
                 </div>
                 <div
                     class="thirth section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_mbr section5__wrapper__item_mbb">
                     <picture>
-                        <source srcset="{{ asset('images/partner3.svg') }}" type="image/webp">
-                        <img src="{{ asset('images/partner3.svg') }}" alt=""
+                        <source srcset="{{ asset('images/afisha.png') }}" type="image/webp">
+                        <img src="{{ asset('images/afisha.png') }}" alt=""
                              class="section5__wrapper__item__logo"></picture>
                 </div>
                 <div class="fourth section5__wrapper__item section5__wrapper__item_br section5__wrapper__item_mbb">
                     <picture>
-                        <source srcset="{{ asset('images/partner4.svg') }}" type="image/webp">
-                        <img src="{{ asset('images/partner4.svg') }}" alt=""
+                        <source srcset="{{ asset('images/daily.png') }}" type="image/webp">
+                        <img src="{{ asset('images/daily.png') }}" alt=""
                              class="section5__wrapper__item__logo"></picture>
                 </div>
                 <div class="five section5__wrapper__item section5__wrapper__item_br section5__wrapper__item_mbr">
                     <picture>
-                        <source srcset="{{ asset('images/partner5.svg') }}" type="image/webp">
-                        <img src="{{ asset('images/partner5.svg') }}" alt=""
+                        <source srcset="{{ asset('images/mtc.png') }}" type="image/webp">
+                        <img src="{{ asset('images/mtc.png') }}" alt=""
                              class="section5__wrapper__item__logo"></picture>
                 </div>
                 <div class="six section5__wrapper__item">
                     <picture>
-                        <source srcset="{{ asset('images/partner6.svg') }}" type="image/webp">
-                        <img src="{{ asset('images/partner6.svg') }}" alt=""
+                        <source srcset="{{ asset('images/eldorado.png') }}" type="image/webp">
+                        <img src="{{ asset('images/eldorado.png') }}" alt=""
                              class="section5__wrapper__item__logo"></picture>
                 </div>
             </div>

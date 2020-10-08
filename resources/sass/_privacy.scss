@@ -18,7 +18,17 @@
             list-style: none;
         }
     }
+}
 
+.base {
+    &__wrap {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px;
 
-
+        .button_green {
+            margin: 0 15px;
+            margin-bottom: 15px;
+        }
+    }
 }
