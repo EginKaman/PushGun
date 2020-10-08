@@ -23,6 +23,7 @@ $(document).ready(function () {
 		
         $('.header__burger').click(function () {
             $('.header__popup').fadeToggle(300);
+            $('body').toggleClass('fixer');
 		});
 		
         $(".button_green_inner").mouseenter(function (e) {
