@@ -116,6 +116,7 @@ class User extends Resource
                 ->rules('nullable', 'date'),
             HasMany::make('Сайты', 'sites', Site::class),
             HasMany::make('Рассылки', 'pushes', Push::class),
+            HasMany::make('Платежи', 'payments', Payment::class),
 
         ];
     }
