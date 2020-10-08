@@ -20,6 +20,10 @@ article.step-2 {
     display: flex;
     margin-bottom: 30px;
 
+    .select2-container  {
+        min-width: 95px;
+    }
+
     .select2-selection {
         background-color: #5abfe4 !important;
         border-radius: 4px 0 0 4px !important;
