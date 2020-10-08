@@ -51,20 +51,20 @@
                                 <div class="tariff-slider"></div>
                                 <div class="tariff-slider-val">
                                     <!-- <div class="tariff-slider__line"></div> -->
-                                    <div class="tariff-slider__item active" data-price="3900">
-                                        <span class="tariff-slider__point fs"></span>
+                                    <div class="tariff-slider__item active" data-text="от 30 000 подписчиков" data-price="3900">
+                                        <span class="tariff-slider__point"></span>
                                         <span class="tariff-slider__text">30к</span>
                                     </div>
-                                    <div class="tariff-slider__item" data-price="6000">
-                                        <span class="tariff-slider__point sec"></span>
+                                    <div class="tariff-slider__item" data-text="от 60 000 подписчиков" data-price="6000">
+                                        <span class="tariff-slider__point"></span>
                                         <span class="tariff-slider__text">60к</span>
                                     </div>
-                                    <div class="tariff-slider__item" data-price="10000">
-                                        <span class="tariff-slider__point th"></span>
+                                    <div class="tariff-slider__item" data-text="от 200 000 подписчиков" data-price="10000">
+                                        <span class="tariff-slider__point"></span>
                                         <span class="tariff-slider__text">200к</span>
                                     </div>
-                                    <div class="tariff-slider__item" data-price="13400">
-                                        <span class="tariff-slider__point fr"></span>
+                                    <div class="tariff-slider__item" data-text="неограниченно" data-price="13400">
+                                        <span class="tariff-slider__point"></span>
                                         <span class="tariff-slider__text">∞</span>
                                     </div>
                                 </div>

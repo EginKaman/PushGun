@@ -228,25 +228,36 @@ $(document).ready(function () {
         if ($('.tariff-slider').length != 0) {
             $('.tariff-slider').slider({
                 animate: 'fast',
-                // range: 'min',
-                max: 3,
                 value: 0,
-                slide: function (event, ui) {
-                    if (ui.value == 0) {
-                        $('.number-followers').text('от 30 000 подписчиков');
-                        sale(3900);
-                    } else if (ui.value == 1) {
-                        $('.number-followers').text('от 60 000 подписчиков');
-                        sale(6000);
-                    } else if (ui.value == 2) {
-                        $('.number-followers').text('от 200 000 подписчиков');
-                        sale(10000);
-                    } else if (ui.value == 3) {
-                        $('.number-followers').text('неограниченно');
-                        sale(13400);
-                    }
+                min: 0,
+                max: 3,
+                step: 1,
+                change: function (event, ui) {
+                    let item = $('.tariff-slider__item ').eq(ui.value);
+                    let price = item.data('price');
+                    let text = item.data('text');
+
+                    $('.number-followers').text(text);
+                    sale(price);    
+                }
+            }).each(function() {
+                var opt = $(this).data().uiSlider.options;
+                var vals = opt.max - opt.min;
+            
+                for (var i = 0; i <= vals; i++) {
+                    var el = $('.tariff-slider__item ').eq(i);
+                    var elWidth = el.width();
+                    var pointWidth = $('.ui-slider-handle').width()
+                    el.css('left', `${i/vals*100}%`)
                 }
             });
+
+            $('.tariff-slider__item ').on('click', function () {
+                let index = $(this).index();
+                let slider = $('.tariff-slider');
+                slider.slider( "value", index );
+              
+            })
         }
 
         function handleFileSelect(evt) {

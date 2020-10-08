@@ -79,7 +79,7 @@
     }
 
     &-offer {
-        margin-top: 24px;
+        margin-top: 54px;
         padding: 0;
         list-style: none;
         margin-left: 0;
@@ -167,20 +167,27 @@
         // position: absolute;
         left: 0;
         top: 0;
-        width: 100%;
+        width: calc(100% - 16px);
         height: 6px;
         background: #C4C4C4;
         z-index: 9;
+        cursor: pointer;
+
+        label {
+            position: absolute;
+            text-align: center;
+        }
 
         &__item {
-            position: relative;
+            position: absolute;
         }
 
         &-val {
             position: relative;
-            // padding-bottom: 24px;
             display: flex;
-            justify-content: space-between;
+            width: calc(100% - 16px);
+            margin-top: -32px;
+            
         }
 
         &__point, & .ui-slider-handle {
@@ -197,42 +204,13 @@
             border: none;
             z-index: 9;
             cursor: pointer;
+        }
 
-            &.fs {
-                background: linear-gradient(141.16deg, #C4C4C4 -0.37%, #C4C4C4 96.94%);
-                left: -6px;
-                top: -32px;
-                width: 15px;
-                height: 15px;
-                z-index: 0;
-            }
-
-            &.sec {
-                background: linear-gradient(141.16deg, #C4C4C4 -0.37%, #C4C4C4 96.94%);
-                left: 0px;
-                top: -32px;
-                width: 15px;
-                height: 15px;
-                z-index: 0;
-            }
-
-            &.th {
-                background: linear-gradient(141.16deg, #C4C4C4 -0.37%, #C4C4C4 96.94%);
-                left: 5px;
-                top: -32px;
-                width: 15px;
-                height: 15px;
-                z-index: 0;
-            }
-
-            &.fr {
-                background: linear-gradient(141.16deg, #C4C4C4 -0.37%, #C4C4C4 96.94%);
-                right: -5px;
-                top: -32px;
-                width: 15px;
-                height: 15px;
-                z-index: 0;
-            }
+        &__point {
+            background: linear-gradient(141.16deg, #C4C4C4 -0.37%, #C4C4C4 96.94%);
+            width: 16px;
+            height: 16px;
+            position: static;
         }
 
         &__text {
@@ -245,6 +223,10 @@
             line-height: 14px;
             letter-spacing: 0.25px;
             color: $white;
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 
