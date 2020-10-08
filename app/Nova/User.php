@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Timezone;
 
 class User extends Resource
 {
@@ -64,13 +65,14 @@ class User extends Resource
     {
         return [
             ID::make()->sortable(),
-            Avatar::make('Фото пользователя', 'photo'),
+            Avatar::make('Фото', 'photo'),
             Text::make('Имя', 'name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'string', 'max:255'),
             Text::make('Фамилия', 'lastname')
                 ->sortable()
-                ->rules('max:255'),
+                ->nullable()
+                ->rules('nullable', 'max:255'),
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
@@ -80,21 +82,40 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
-
+            Timezone::make('Часовой пояс', 'timezone')
+                ->hideFromIndex()
+                ->nullable(),
+            Text::make('Страна', 'country')
+                ->hideFromIndex()
+                ->nullable(),
+            Text::make('Город', 'city')
+                ->hideFromIndex()
+                ->nullable(),
+            Text::make('Адрес', 'address')
+                ->hideFromIndex()
+                ->nullable(),
+            Number::make('Индекс', 'postcode')
+                ->hideFromIndex()
+                ->nullable(),
             Number::make('Баланс', 'balance')
                 ->sortable(),
-
             BelongsTo::make('Тариф', 'tariff', Tariff::class)
                 ->sortable(),
-
             DateTime::make('Окончание тарифа', 'tariff_expired_at')
                 ->nullable(),
-
-            HasMany::make('Сайты', 'sites', Site::class)
-                ->sortable(),
-
-            HasMany::make('Рассылки', 'pushes', Push::class)
-                ->sortable(),
+            DateTime::make(__('Deleted at'), 'deleted_at')
+                ->onlyOnDetail()
+                ->rules('nullable', 'date'),
+            DateTime::make(__('Created at'), 'created_at')
+                ->onlyOnDetail()
+                ->showOnIndex()
+                ->sortable()
+                ->rules('nullable', 'date'),
+            DateTime::make(__('Updated at'), 'updated_at')
+                ->onlyOnDetail()
+                ->rules('nullable', 'date'),
+            HasMany::make('Сайты', 'sites', Site::class),
+            HasMany::make('Рассылки', 'pushes', Push::class),
 
         ];
     }

@@ -2,17 +2,18 @@
 
 namespace App\Nova;
 
-use App\Nova\Push;
-use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Site extends Resource
 {
@@ -62,33 +63,59 @@ class Site extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
     {
         return [
             ID::make()->sortable(),
-            Avatar::make('Картинка сайта', 'img')
-                ->disk('public'),
+            BelongsTo::make('Пользователь', 'user', User::class)
+                ->rules('required', 'max:255'),
+            Image::make('Картинка сайта', 'image')
+                ->sortable()
+                ->required(),
             Text::make('Ссылка', 'link')
                 ->sortable()
-                ->rules('required', 'max:255'),
-            BelongsTo::make('Пользователь', 'user', User::class)
-                ->sortable(),
-            HasMany::make('Рассылки', 'mails', Push::class)
-                ->sortable(),
+                ->required()
+                ->rules('required', 'url', 'string', 'max:255'),
+            Select::make('Запрос при', 'request')->options([
+                'visit' => 'Открытии сайта',
+                'click' => 'Клике на элемент',
+                'intermediate' => 'Промежуточный запрос',
+            ])
+                ->default(function () {
+                    return 'visit';
+                })
+                ->hideFromIndex()
+                ->displayUsingLabels()
+                ->required()
+                ->rules('required', 'string', Rule::in(['visit', 'click', 'intermediate'])),
             Boolean::make('Скрывать на мобильных устройствах', 'mobile')
                 ->sortable(),
-            Boolean::make('Текст - подсказка', 'hint')
+            Status::make('Установлено', 'installed')
+                ->exceptOnForms()
+                ->sortable(),
+            DateTime::make(__('Deleted at'), 'deleted_at')
+                ->onlyOnDetail()
+                ->rules('nullable', 'date'),
+            DateTime::make(__('Created at'), 'created_at')
+                ->onlyOnDetail()
+                ->showOnIndex()
                 ->sortable()
+                ->rules('nullable', 'date'),
+            DateTime::make(__('Updated at'), 'updated_at')
+                ->onlyOnDetail()
+                ->rules('nullable', 'date'),
+            HasMany::make('Рассылки', 'mails', Push::class)
+                ->sortable(),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -99,7 +126,7 @@ class Site extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -110,7 +137,7 @@ class Site extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -121,7 +148,7 @@ class Site extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)
