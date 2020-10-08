@@ -37,6 +37,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
             Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
         });
+        Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
         Route::put('/password', 'PasswordController')->name('password.update');
         Route::resource('site', 'SiteController');
         Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
@@ -45,7 +46,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
         Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
         Route::get('/tariff', 'TariffController')->name('tariff.index');
-        Route::get('/order', 'OrderController')->name('order.index');
     });
 });
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {

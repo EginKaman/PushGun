@@ -457,6 +457,7 @@
         .button_green_inner {
             padding: 15px 46px;
         }
+		
 
         .buttons {
             display: flex;
@@ -524,4 +525,10 @@
         max-width: 132px;
         margin-right: 14px !important;
     }
+}
+
+@media (max-width: 768px) {
+    .push .bottom .button_green_inner{
+		padding: 14px 28px;
+		}
 }

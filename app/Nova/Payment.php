@@ -3,33 +3,28 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Status;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Site extends Resource
+class Payment extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Site::class;
+    public static $model = \App\Payment::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'link';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -37,28 +32,8 @@ class Site extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'link'
+        'id', 'transaction_id'
     ];
-
-    /**
-     * Get the displayable label of the resource.
-     *
-     * @return string
-     */
-    public static function label()
-    {
-        return __('Сайты');
-    }
-
-    /**
-     * Get the displayable singular label of the resource.
-     *
-     * @return string
-     */
-    public static function singularLabel()
-    {
-        return __('Сайт');
-    }
 
     /**
      * Get the fields displayed by the resource.
@@ -69,32 +44,16 @@ class Site extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-            BelongsTo::make('Пользователь', 'user', User::class)
-                ->rules('required', 'max:255'),
-            Image::make('Картинка сайта', 'image')
-                ->sortable()
-                ->required(),
-            Text::make('Ссылка', 'link')
-                ->sortable()
-                ->required()
-                ->rules('required', 'url', 'string', 'max:255'),
-            Select::make('Запрос при', 'request')->options([
-                'visit' => 'Открытии сайта',
-                'click' => 'Клике на элемент',
-                'intermediate' => 'Промежуточный запрос',
-            ])
-                ->default(function () {
-                    return 'visit';
-                })
-                ->hideFromIndex()
-                ->displayUsingLabels()
-                ->required()
-                ->rules('required', 'string', Rule::in(['visit', 'click', 'intermediate'])),
-            Boolean::make('Скрывать на мобильных устройствах', 'mobile')
+            ID::make(__('ID'), 'id')
                 ->sortable(),
-            Boolean::make('Установлено', 'installed')
-                ->exceptOnForms()
+            BelongsTo::make(__('User'), 'user', User::class)
+                ->sortable(),
+            BelongsTo::make(__('Tariff'), 'tariff', Tariff::class)
+                ->sortable(),
+            Number::make(__('Transaction'), 'transaction_id')
+                ->sortable(),
+            Currency::make(__('Amount'), 'amount')
+                ->currency($this->currency)
                 ->sortable(),
             DateTime::make(__('Deleted at'), 'deleted_at')
                 ->onlyOnDetail()
@@ -107,8 +66,6 @@ class Site extends Resource
             DateTime::make(__('Updated at'), 'updated_at')
                 ->onlyOnDetail()
                 ->rules('nullable', 'date'),
-            HasMany::make('Рассылки', 'mails', Push::class)
-                ->sortable(),
         ];
     }
 

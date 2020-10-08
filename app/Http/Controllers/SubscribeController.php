@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewSubscriber;
 use App\Site;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class SubscribeController extends Controller
             $request->authToken,
             $request->contentEncoding
         );
-
+        $site->user->notify(new NewSubscriber());
         return response()->json(null, 204);
     }
 

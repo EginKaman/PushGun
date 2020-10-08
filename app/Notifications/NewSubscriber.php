@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
-class ExpiredTariff extends Notification
+class NewSubscriber extends Notification
 {
     use Queueable;
 
@@ -43,16 +43,16 @@ class ExpiredTariff extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject("Окончание подписки")
-            ->line("Напоминаем вам о том что ваш тарифный план истекает через {$notifiable->tariff_expired_at->diffInDays(now())} дней");
+            ->subject("Новый подписчик")
+            ->line("Поздравляем! У Вас новый подписчик!");
     }
 
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title("Окончание подписки")
+            ->title("Новый подписчик")
             ->icon(url('favicon.png'))
-            ->body("Напоминаем вам о том что ваш тарифный план истекает через {$notifiable->tariff_expired_at->diffInDays(now())} дней")
+            ->body("У Вас новый подписчик!")
             ->options(['TTL' => 3000]);
     }
 

@@ -16,15 +16,24 @@ class PushController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $pushes = $user->pushes->load('site')->loadCount('transitions');
-        $sites = $user->sites;
-        $sites->loadCount('pushSubscriptions');
+        $pushes = $user->pushes()->with('site')->withCount('transitions');
+        if ($request->filled('start')) {
+            $pushes->where('created_at', '>=', $request->start);
+        }
+        if ($request->filled('end')) {
+            $pushes->where('created_at', '<=', $request->end);
+        }
+        if ($request->filled('site')) {
+            $pushes->whereSiteId($request->site);
+        }
+        if ($request->filled('text')) {
+            $pushes->where('text', 'like', "%{$request->text}%");
+        }
         return view('pushes.index', [
-            'pushes' => $pushes,
-            'sites' => $sites
+            'pushes' => $pushes->get()
         ]);
     }
 

@@ -13,7 +13,7 @@
 
 <script>
 export default {
-    name: "Image",
+    name: "ImageComponent",
     props: {
         image: {
             type: String,

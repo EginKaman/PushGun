@@ -16,6 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->foreignId('tariff_id')->constrained();
             $table->unsignedBigInteger('transaction_id');
             $table->string('invoice_id')->nullable();
             $table->float('amount');
