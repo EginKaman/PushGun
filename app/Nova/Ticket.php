@@ -21,6 +21,13 @@ class Ticket extends Resource
     public static $model = \App\Ticket::class;
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Техническая поддержка';
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
