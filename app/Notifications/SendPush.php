@@ -141,7 +141,9 @@ class SendPush extends Notification
             ->body($this->body)
             ->options(['TTL' => 3000])
             ->data((['url' => $this->url]));
-        if ($this->image)
+        if ($this->image) {
+            $message->image($this->image);
+        }
         return $message;
     }
 
