@@ -32,24 +32,24 @@
                             <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
                         </div>
                     </a>
-
-                    <a href="{{ route('push.index') }}" class="nav__item">
-                        <div class="nav__item_wrap">
-                            <span>@lang('Мои рассылки')</span>
-                            <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
-                        </div>
-                    </a>
-
-                    <div class="nav__wrapper">
-                        <a href="#" class="nav__item nav__arrow">
+                    @auth
+                        <a href="{{ route('push.index') }}" class="nav__item">
                             <div class="nav__item_wrap">
-                                <span>@lang('Мои сайты')</span>
-                                <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
+                                <span>@lang('Мои рассылки')</span>
+                                <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                             </div>
                         </a>
-                        <header-sites-component></header-sites-component>
-                    </div>
 
+                        <div class="nav__wrapper">
+                            <a href="#" class="nav__item nav__arrow">
+                                <div class="nav__item_wrap">
+                                    <span>@lang('Мои сайты')</span>
+                                    <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
+                                </div>
+                            </a>
+                            <header-sites-component></header-sites-component>
+                        </div>
+                    @endauth
                     <a href="{{ route('tariff.index') }}" class="nav__item">
                         <div class="nav__item_wrap">
                             <span>@lang('Тарифы')</span>
@@ -58,24 +58,28 @@
                     </a>
 
                 </nav>
-                <div class="header__subscription">
-                    <h3 class="header__subscription_title">@lang(Auth::user()->tariff->name)</h3>
-                    <a href="{{ route('tariff.index') }}" class="header__subscription_link">@lang('Повысить тариф')</a>
-                </div>
-                <div class="header__menu_wrap">
-                    <a class="header__account">
-                        @empty(Auth::user()->photo)
-                            <img class="header__account_img" src="{{ asset('images/avatar.svg') }}" alt="">
-                        @else
-                            <img class="header__account_img" src="{{ asset(Storage::url(Auth::user()->photo)) }}"
-                                 alt="">
-                        @endempty
-                    </a>
-                    <div class="header__burger">
-                        <img src="{{ asset('images/menu.svg') }}" alt="">
+                @auth
+                    <div class="header__subscription">
+                        <h3 class="header__subscription_title">@lang(Auth::user()->tariff->name)</h3>
+                        <a href="{{ route('tariff.index') }}"
+                           class="header__subscription_link">@lang('Повысить тариф')</a>
                     </div>
-                </div>
+                    <div class="header__menu_wrap">
+                        <a class="header__account">
+                            @empty(Auth::user()->photo)
+                                <img class="header__account_img" src="{{ asset('images/avatar.svg') }}" alt="">
+                            @else
+                                <img class="header__account_img" src="{{ asset(Storage::url(Auth::user()->photo)) }}"
+                                     alt="">
+                            @endempty
+                        </a>
+                        <div class="header__burger">
+                            <img src="{{ asset('images/menu.svg') }}" alt="">
+                        </div>
+                    </div>
+                @endauth
             </div>
+            @auth
             <div class="account__popup">
                 <div class="account__inner">
                     <div class="account__top">
@@ -135,6 +139,7 @@
                     </div>
                 </div>
             </div>
+            @endauth
 
             <div class="header__popup">
                 <div class="header__popup_inner">
@@ -142,26 +147,31 @@
                         <a href="{{ route('account.index') }}">@lang('Главная')</a>
                         <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
                     </div>
-                    <div class="nav__item_wrap">
-                        <a href="{{ route('push.index') }}">@lang('Мои рассылки')</a>
-                        <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
-                    </div>
-                    <div class="nav__item_wrap">
-                        <a href="#">@lang('Мои сайты')</a>
-                        <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
-                    </div>
-                    <div class="nav__menu_item" v-for="(site, index) in $store.state.sites.sites" :key="index">
-                        <a class="nav__menu_link" :href="site.url">@{{ site.link }}</a>
-                    </div>
+                    @auth
+                        <div class="nav__item_wrap">
+                            <a href="{{ route('push.index') }}">@lang('Мои рассылки')</a>
+                            <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
+                        </div>
+                        <div class="nav__item_wrap">
+                            <a href="#">@lang('Мои сайты')</a>
+                            <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
+                        </div>
+                        <div class="nav__menu_item" v-for="(site, index) in $store.state.sites.sites" :key="index">
+                            <a class="nav__menu_link" :href="site.url">@{{ site.link }}</a>
+                        </div>
+                    @endauth
                     <div class="nav__item_wrap">
                         <a href="{{ route('tariff.index') }}">@lang('Тарифы')</a>
                         <img class="nav__item_img" src="{{ asset('images/tarif.svg') }}" alt="">
                     </div>
-                    <div class="header__subscription header__mobile_sub">
-                        <h3 class="header__subscription_title">@lang('Тариф') "@lang(Auth::user()->tariff->name)"</h3>
-                        <a href="{{ route('tariff.index') }}"
-                           class="header__subscription_link">@lang('Повысить тариф')</a>
-                    </div>
+                    @auth
+                        <div class="header__subscription header__mobile_sub">
+                            <h3 class="header__subscription_title">@lang('Тариф') "@lang(Auth::user()->tariff->name)
+                                "</h3>
+                            <a href="{{ route('tariff.index') }}"
+                               class="header__subscription_link">@lang('Повысить тариф')</a>
+                        </div>
+                    @endauth
                 </div>
             </div>
         </div>
