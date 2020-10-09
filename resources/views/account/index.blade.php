@@ -50,7 +50,8 @@
                             <h3>{{ $pushes->sum('delivered') }}</h3>
                             @if($pushes->sum('delivered') > 0)
                                 <p class="medium mb-10">
-                                    {{ round(($pushes->sum('delivered') / $pushes->sum('sent')) * 100, 2) }}% @lang('доставлено')
+                                    {{ round(($pushes->sum('delivered') / $pushes->sum('sent')) * 100, 2) }}
+                                    % @lang('доставлено')
                                 </p>
                             @else
                                 <p class="medium mb-10">0% @lang('доставлено')</p>
@@ -61,7 +62,8 @@
                             <div class="mb-10">
                                 @if($pushes->sum('delivered') > 0)
                                     <p class="medium">
-                                        {{ round($sites->sum('transitions_count') / $pushes->sum('delivered') * 100, 2) }}% @lang('переходов')
+                                        {{ round($sites->sum('transitions_count') / $pushes->sum('delivered') * 100, 2) }}
+                                        % @lang('переходов')
                                     </p>
                                 @else
                                     <p class="medium mb-10">0% @lang('переходов')</p>
@@ -92,16 +94,19 @@
                     @foreach($sites as $site)
                         <div class="general__sites_item">
                             <div class="general__sites_item-more">
-							<div class="general__sites_item-more_imgcontsd">
-                                <img src="{{ asset('images/more.svg') }}" alt="">
-								</div>
-								
-								<ul class="general__sites_item_ul">
-								<li><a href="{{ route('push.create') }}">Отправить PUSH</a></li>
-								<li><a href="#">Настройки сайта</a></li>
-								<li><a href="#">Удалить сайт</a></li>
-								</ul>
-								
+                                <div class="general__sites_item-more_imgcontsd">
+                                    <img src="{{ asset('images/more.svg') }}" alt="">
+                                </div>
+
+                                <ul class="general__sites_item_ul">
+                                    <li><a href="{{ route('push.create') }}">Отправить PUSH</a></li>
+                                    <li><a href="{{ route('site.edit', $site) }}">Настройки сайта</a></li>
+                                    <li>
+                                        <site-button-delete
+                                            action="{{ route('site.destroy', $site) }}"></site-button-delete>
+                                    </li>
+                                </ul>
+
                             </div>
                             <a href="{{ route('site.show', ['site' => $site]) }}">
                                 @empty($site->image)

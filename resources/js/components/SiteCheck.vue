@@ -99,13 +99,13 @@ export default {
                     this.$swal({
                         title: this.$i18n.t('Успех!'),
                         text: `${this.$t('Код добавлен корректно')}\r\n${this.$t('Файл pg-push-worker.js установлен')}`,
-                        icon: "error",
+                        icon: "success",
                     });
                 } else {
                     this.$swal({
                         title: this.$i18n.t('Ошибка!'),
                         text: `${this.$t('Код добавлен не корректно')}\r\n${this.$t('Файл pg-push-worker.js не установлен')}`,
-                        icon: "success",
+                        icon: "error",
                     });
                 }
             });
