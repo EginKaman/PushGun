@@ -66,7 +66,7 @@ class PushController extends Controller
         $push->fill($request->all());
         $push->site()->associate($request->site);
         $push->user()->associate(Auth::user());
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('icon')) {
             $push->icon = $request->file('icon')->store('public/mails');
         }
         if ($request->hasFile('image')) {
