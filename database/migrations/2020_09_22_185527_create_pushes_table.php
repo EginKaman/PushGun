@@ -18,6 +18,7 @@ class CreatePushesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('site_id')->constrained()->onDelete('cascade');
             $table->string('title');
+            $table->string('icon')->nullable();
             $table->string('image')->nullable();
             $table->text('text');
             $table->string('link')->nullable();

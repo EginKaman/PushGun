@@ -89,6 +89,19 @@ class SendPush extends Notification
     }
 
     /**
+     * Set the notification image url.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function image($value)
+    {
+        $this->image = $value;
+
+        return $this;
+    }
+
+    /**
      * Set the notification body.
      *
      * @param string $value
@@ -122,21 +135,14 @@ class SendPush extends Notification
 
     public function toWebPush($notifiable, $notification)
     {
-        return (new WebPushMessage)
-            ->title($this->title)
+        $message = new WebPushMessage();
+        $message->title($this->title)
             ->icon($this->icon)
             ->body($this->body)
-//            ->action('View account', 'view_account')
             ->options(['TTL' => 3000])
             ->data((['url' => $this->url]));
-        // ->badge()
-        // ->dir()
-        // ->image()
-        // ->lang()
-        // ->renotify()
-        // ->requireInteraction()
-        // ->tag()
-        // ->vibrate()
+        if ($this->image)
+        return $message;
     }
 
     /**
