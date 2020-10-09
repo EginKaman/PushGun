@@ -32,17 +32,17 @@
                                 </select>
                             </div>
                             <div class="button_lb">
-                            <span class="lb_button_circle">
-                            </span>
-                                <button class="button_lb_inner" type="reset">
+                                <span class="lb_button_circle">
+                                </span>
+                                <a href="{{ route('push.index') }}" class="button_lb_inner">
                                     <p class="lb_button_text_container">
                                         @lang('Сброс')
                                     </p>
-                                </button>
+                                </a>
                             </div>
                             <div id="btn_select" class="button_rb">
-                            <span class="rb_button_circle">
-                            </span>
+                                <span class="rb_button_circle">
+                                </span>
                                 <button class="button_rb_inner" type="submit">
                                     <p class="rb_button_text_container">
                                         @lang('Выбрать')

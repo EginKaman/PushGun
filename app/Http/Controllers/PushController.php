@@ -6,6 +6,7 @@ use App\Http\Requests\PushStore;
 use App\Notifications\SendPush;
 use App\Push;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,10 +22,10 @@ class PushController extends Controller
         $user = Auth::user();
         $pushes = $user->pushes()->with('site')->withCount('transitions');
         if ($request->filled('start')) {
-            $pushes->where('created_at', '>=', $request->start);
+            $pushes->where('created_at', '>=', Carbon::make($request->start)->startOfDay());
         }
         if ($request->filled('end')) {
-            $pushes->where('created_at', '<=', $request->end);
+            $pushes->where('created_at', '<=', Carbon::make($request->end)->endOfDay());
         }
         if ($request->filled('site')) {
             $pushes->whereSiteId($request->site);
