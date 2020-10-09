@@ -303,6 +303,20 @@
             </div>
         </div>
     </section>
+
+    <section class="section8" id="browsers">
+        <div class="container">
+            <h2 class="section8__title">Push-уведомления работают со всеми <br> современными браузерами</h2>
+            <div class="section8__wrap">
+                <div class="browser"><img src="{{ asset('images/browsers/chrome.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/firefox.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/opera.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/android.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/safari.png') }}"></div>
+            </div>
+        </div>
+    </section>
+
     <section class="section3">
         <div class="container">
             <h2 class="section3__title">@lang('Зарегистрируйтесь прямо сейчас')</h2>
