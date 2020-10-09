@@ -48,10 +48,10 @@
                 </div>
                 <div class="big_image">
                     <div class="site_set_avatar">
-                        <input type="file" ref="image" name="image" id="siteBigImage" accept="image/*" @change="uploadImage">
+                        <input type="file" ref="bigImage" name="bigImage" id="siteBigImage" accept="image/*" @change="uploadBigImage">
                         <div class="site_set_avatar_title">{{ $t('Добавить большое изображение') }}</div>
                         <label for="siteBigImage" class="site_avatar_form">
-                            <img :src="selected.image || default_image" alt="" id="image">
+                            <img :src="bigImage || default_image" alt="">
                             <div class="site_avatar_form_block">
                                 <p class="site_avatar_form_title">
                                     {{ $t('Выберите изображение') }}
@@ -141,7 +141,8 @@ export default {
             link: '',
             errors: {},
             change: false,
-            default_image: '/images/site.svg'
+            default_image: '/images/site.svg',
+            bigImage: null,
         }
     },
     computed: {
@@ -170,6 +171,11 @@ export default {
         siteSelect(event) {
             this.selected = this.sites[event.target.selectedIndex];
         },
+        uploadBigImage(event) {
+            let file = event.target.files.item(0);
+            let reader = new FileReader();
+            this.bigImage = URL.createObjectURL(file);
+        },
         uploadImage(event) {
             let file = event.target.files.item(0);
             let reader = new FileReader();
@@ -183,6 +189,9 @@ export default {
             let form = new FormData();
             if (this.$refs.image.files[0]) {
                 form.append('image', this.$refs.image.files[0]);
+            }
+            if (this.$refs.bigImage.files[0]) {
+                form.append('bigImage', this.$refs.bigImage.files[0]);
             }
             form.append('title', this.title);
             form.append('link', this.link);
