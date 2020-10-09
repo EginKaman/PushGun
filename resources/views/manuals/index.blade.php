@@ -10,8 +10,8 @@
                 </div>
             </section>
             @foreach($categories as $category)
-                <h2>{{ $category->title }}</h2>
                 <section class="base">
+                    <div class="base__title">{{ $category->title }}</div>
                     <div class="base__wrap">
                         @foreach($category->manuals as $manual)
                             <div class="button_green"><span class="green_button_circle desplode-circle"></span>

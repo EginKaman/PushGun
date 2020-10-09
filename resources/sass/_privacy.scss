@@ -21,14 +21,21 @@
 }
 
 .base {
+    margin-top: 20px;
+
+    &__title {
+        font-weight: bold;
+        font-size: 22px;
+    }
+
     &__wrap {
         display: flex;
         flex-wrap: wrap;
-        margin: 0 -15px;
+        margin: 10px -15px 0;
 
         .button_green {
             margin: 0 15px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
     }
 }
