@@ -145,7 +145,7 @@
     -ms-flex-align: center;
     align-items: center;
     position: absolute;
-    top: -3px !important;
+    top: -1.5px !important;
     right: 50px;
     width: 26px;
     height: 26px;
@@ -1190,8 +1190,8 @@ body {
 }
 
 .header-landing.scroll {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .header-landing.scroll::after {
@@ -1200,6 +1200,11 @@ body {
 
 .logo-dark {
     display: none;
+
+    picture {
+        display: flex;
+    align-items: center;
+    }
 }
 
 .header-landing.scroll .logo-light {
