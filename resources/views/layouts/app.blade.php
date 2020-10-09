@@ -80,65 +80,68 @@
                 @endauth
             </div>
             @auth
-            <div class="account__popup">
-                <div class="account__inner">
-                    <div class="account__top">
-                        <p class="account__top_name">{{ Auth::user()->name }}</p>
-                        <p class="account__top_email">{{ Auth::user()->email }}</p>
-                        <p class="account__top_id">ID <span>{{ Auth::id() }}</span></p>
-                    </div>
-                    <div class="account__bottom">
-                        <h3 class="account__bottom_subscribtion">@lang('Тариф') "@lang(Auth::user()->tariff->name)"</h3>
-                        <a href="{{ route('tariff.index') }}"
-                           class="account__bottom_subscribe">@lang('Повысить тариф')</a>
-                        {{--                        <div class="account__bottom_balance-wrapper">--}}
-                        {{--                            <p class="account__bottom_balance">@lang('Баланс')--}}
-                        {{--                                <span>{{ Auth::user()->balance }} @lang('руб')</span></p>--}}
-                        {{--                            <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Пополнить')</a>--}}
-                        {{--                        </div>--}}
-                        <div class="account__bottom_links">
-                            <div class="account__link_wrapper icon icon-pay">
-                                <a href="{{ route('payment.index') }}" class="account__bottom_link">@lang('Платежи')</a>
-                            </div>
-                            <div class="account__link_wrapper icon icon-settings">
-                                <a href="{{ route('account.edit') }}" class="account__bottom_link">
-                                    @lang('Настройки аккаунта')
-                                </a>
-                            </div>
-                            <div class="account__link_wrapper lang--toggle icon icon-language">
-                                <span>@lang('Сменить язык')</span>
-                                <ul>
-                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                        <li>
-                                            <a rel="alternate" hreflang="{{ $localeCode }}"
-                                               href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"><img
-                                                    src="{{ asset('images/' . $localeCode . '.svg') }}"
-                                                    alt="{{ $localeCode }}"> {{ $properties['native'] }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="account__link_wrapper icon icon-support">
-                                <a href="{{ route('ticket.index') }}" class="account__bottom_link">
-                                    @lang('Тех. поддержка')
-                                </a>
+                <div class="account__popup">
+                    <div class="account__inner">
+                        <div class="account__top">
+                            <p class="account__top_name">{{ Auth::user()->name }}</p>
+                            <p class="account__top_email">{{ Auth::user()->email }}</p>
+                            <p class="account__top_id">ID <span>{{ Auth::id() }}</span></p>
+                        </div>
+                        <div class="account__bottom">
+                            <h3 class="account__bottom_subscribtion">@lang('Тариф') "@lang(Auth::user()->tariff->name)
+                                "</h3>
+                            <a href="{{ route('tariff.index') }}"
+                               class="account__bottom_subscribe">@lang('Повысить тариф')</a>
+                            {{--                        <div class="account__bottom_balance-wrapper">--}}
+                            {{--                            <p class="account__bottom_balance">@lang('Баланс')--}}
+                            {{--                                <span>{{ Auth::user()->balance }} @lang('руб')</span></p>--}}
+                            {{--                            <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Пополнить')</a>--}}
+                            {{--                        </div>--}}
+                            <div class="account__bottom_links">
+                                <div class="account__link_wrapper icon icon-pay">
+                                    <a href="{{ route('payment.index') }}"
+                                       class="account__bottom_link">@lang('Платежи')</a>
+                                </div>
+                                <div class="account__link_wrapper icon icon-settings">
+                                    <a href="{{ route('account.edit') }}" class="account__bottom_link">
+                                        @lang('Настройки аккаунта')
+                                    </a>
+                                </div>
+                                <div class="account__link_wrapper lang--toggle icon icon-language">
+                                    <span>@lang('Сменить язык')</span>
+                                    <ul>
+                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                            <li>
+                                                <a rel="alternate" hreflang="{{ $localeCode }}"
+                                                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"><img
+                                                        src="{{ asset('images/' . $localeCode . '.svg') }}"
+                                                        alt="{{ $localeCode }}"> {{ $properties['native'] }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="account__link_wrapper icon icon-support">
+                                    <a href="{{ route('ticket.index') }}" class="account__bottom_link">
+                                        @lang('Тех. поддержка')
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="account__link_exit">
-                        <div class="account__link_wrapper icon icon-exit">
-                            <a href="{{ route('logout') }}" class="account__bottom_link"
-                               onclick="event.preventDefault();
+                        <div class="account__link_exit">
+                            <div class="account__link_wrapper icon icon-exit">
+                                <a href="{{ route('logout') }}" class="account__bottom_link"
+                                   onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                                @lang('Выйти')
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                                    @lang('Выйти')
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endauth
 
             <div class="header__popup">

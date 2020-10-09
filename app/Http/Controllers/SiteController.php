@@ -105,11 +105,10 @@ class SiteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Site $site
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Site $site): ?\Illuminate\Http\Response
+    public function destroy(Site $site)
     {
-        //
+        $site->delete();
     }
 
 

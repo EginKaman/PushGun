@@ -226,5 +226,7 @@
     "Удалить веб-сайт": "Delete site",
     "Интеграция с сайтом": "Integration with the site",
     "Код добавлен корректно": "Code added correctly",
-    "Перепроверить": "Recheck"
+    "Перепроверить": "Recheck",
+    "Успех!": "Success!",
+    "Сайт удален успешно": "Site deleted successfully"
 }
