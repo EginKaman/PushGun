@@ -46,6 +46,23 @@
                         </label>
                     </div>
                 </div>
+                <div class="big_image">
+                    <div class="site_set_avatar">
+                        <input type="file" ref="image" name="image" id="siteBigImage" accept="image/*" @change="uploadImage">
+                        <div class="site_set_avatar_title">{{ $t('Добавить большое изображение') }}</div>
+                        <label for="siteBigImage" class="site_avatar_form">
+                            <img :src="selected.image || default_image" alt="" id="image">
+                            <div class="site_avatar_form_block">
+                                <p class="site_avatar_form_title">
+                                    {{ $t('Выберите изображение') }}
+                                </p>
+                                <p class="site_avatar_form_desc">
+                                    {{ $t('Рекомендуемый размер: 400x200px JPG, PNG до 200KB') }}
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
                 <div class="bottom">
                     <div class="bottom_inner">
                         <div class="button_green mr-24">
