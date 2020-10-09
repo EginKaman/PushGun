@@ -2,31 +2,38 @@
 
 namespace App\Nova;
 
+use Advoor\NovaEditorJs\NovaEditorJs;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Currency;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Tariff extends Resource
+class Manual extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Tariff::class;
+    public static $model = \App\Manual::class;
+
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'База знаний';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -34,23 +41,8 @@ class Tariff extends Resource
      * @var array
      */
     public static $search = [
-        'name',
+        'title', 'text',
     ];
-
-    public static function label()
-    {
-        return __('Тарифы');
-    }
-
-    /**
-     * Get the displayable singular label of the resource.
-     *
-     * @return string
-     */
-    public static function singularLabel()
-    {
-        return __('Тариф');
-    }
 
     /**
      * Get the fields displayed by the resource.
@@ -62,14 +54,21 @@ class Tariff extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make('Заголовок', 'name')
+            BelongsTo::make('Category', 'category', Category::class)->sortable(),
+            Slug::make('Slug')->from('Title')->separator('-'),
+            Text::make('Title')->sortable(),
+            NovaEditorJs::make('Text'),
+            DateTime::make(__('Deleted at'), 'deleted_at')
+                ->onlyOnDetail()
+                ->rules('nullable', 'date'),
+            DateTime::make(__('Created at'), 'created_at')
+                ->onlyOnDetail()
+                ->showOnIndex()
                 ->sortable()
-                ->rules('required', 'max:255'),
-            Currency::make('Цена за месяц', 'price_per_month')->currency('RUB')->sortable(),
-            Currency::make('Цена за год', 'price_per_year')->currency('RUB')->sortable(),
-            Number::make('Макс. кол-во подписчиков', 'max_followers')
-                ->sortable(),
-            HasMany::make('Пользователи', 'users', User::Class)
+                ->rules('nullable', 'date'),
+            DateTime::make(__('Updated at'), 'updated_at')
+                ->onlyOnDetail()
+                ->rules('nullable', 'date'),
         ];
     }
 

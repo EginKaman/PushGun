@@ -46,6 +46,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
         Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
         Route::get('/tariff', 'TariffController')->name('tariff.index');
+
+        Route::get('manual', [\App\Http\Controllers\ManualController::class, 'index'])->name('manual.index');
+        Route::get('manual/{manual}', [\App\Http\Controllers\ManualController::class, 'show'])->name('manual.show');
     });
 });
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {

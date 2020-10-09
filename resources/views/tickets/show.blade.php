@@ -22,7 +22,7 @@
                             <h3 class="ticket-name">
                                 {{ $message->user->name }} {{ $message->user->lastname }}<small>@lang('пишет')</small>
                             </h3>
-                            <span class="ticket-data">{{ $message->created_at }}</spa   n></div>
+                        <span class="ticket-data">{{ $message->created_at }}</span></div>
                         <div class="ticket-chat__text">
                             <p>{{ $message->text }}</p>
                         </div>
