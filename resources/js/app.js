@@ -60,6 +60,7 @@ Vue.component('question-form', require('./components/Index/Question.vue').defaul
 Vue.component('register-now-form', require('./components/Index/RegisterNow.vue').default);
 Vue.component('photo-component', require('./components/UI/Photo.vue').default);
 Vue.component('image-component', require('./components/UI/Image.vue').default);
+Vue.component('tariff-form', require('./components/TariffForm.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
