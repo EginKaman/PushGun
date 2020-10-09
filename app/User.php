@@ -84,7 +84,15 @@ class User extends Authenticatable
      */
     public function payments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class)->latest();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function payment(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Payment::class)->latest();
     }
 
     /**
