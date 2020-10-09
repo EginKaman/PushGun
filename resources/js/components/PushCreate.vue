@@ -51,7 +51,7 @@
                         <input type="file" ref="bigImage" name="bigImage" id="siteBigImage" accept="image/*" @change="uploadBigImage">
                         <div class="site_set_avatar_title">{{ $t('Добавить большое изображение') }}</div>
                         <label for="siteBigImage" class="site_avatar_form">
-                            <img :src="bigImage || default_image" alt="">
+                            <img :src="big_image || default_image" alt="">
                             <div class="site_avatar_form_block">
                                 <p class="site_avatar_form_title">
                                     {{ $t('Выберите изображение') }}
@@ -84,7 +84,9 @@
             <div class="block">
                 <p>Chrome, Windows</p>
                 <div class="chrome">
-                    <img :src="selected.image || default_image" alt="avatar">
+                    
+                    <div class="chrome__large"><img :src="big_image || default_image" alt=""></div>
+                    <div class="chrome__small"><img :src="selected.image || default_image" alt="avatar"></div>
                     <div class="chrome__text">
                         <p class="res">{{ title || $t('Заголовок') }}</p>
                         <p class="txt">{{ text || $t('Текст вашего сообщения') }}</p>
@@ -142,7 +144,7 @@ export default {
             errors: {},
             change: false,
             default_image: '/images/site.svg',
-            bigImage: null,
+            big_image: null,
         }
     },
     computed: {
@@ -174,7 +176,7 @@ export default {
         uploadBigImage(event) {
             let file = event.target.files.item(0);
             let reader = new FileReader();
-            this.bigImage = URL.createObjectURL(file);
+            this.big_image = URL.createObjectURL(file);
         },
         uploadImage(event) {
             let file = event.target.files.item(0);

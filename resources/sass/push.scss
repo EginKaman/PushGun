@@ -51,6 +51,21 @@
                 box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
                 padding: 16px;
                 margin-bottom: 24px;
+                padding-top: 220px;
+                position: relative;
+
+                &__large {
+                    position: absolute;
+                    height: 200px;
+                    width: calc(100% - 10px);
+                    left: 5px;
+                    top: 5px;
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
 
                 &__text {
                     margin-left: 24px;
