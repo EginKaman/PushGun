@@ -203,11 +203,11 @@ $(document).ready(function () {
 		
         $('#sale').change(function () {
             $(this).toggleClass('true');
-            let price = $('#tariff-price').text();
-            sale(price);
-            if (!$('#sale').hasClass('true')) {
-                sale(price / 0.8);
-			}
+   //          let price = $('#tariff-price').text();
+   //          sale(price);
+   //          if (!$('#sale').hasClass('true')) {
+   //              sale(price / 0.8);
+			// }
 		});
 		
         function sale(e) {
@@ -254,6 +254,7 @@ $(document).ready(function () {
             });
 
             $('.tariff-slider__item ').on('click', function () {
+                console.log("click some item slider")
                 let index = $(this).index();
                 let slider = $('.tariff-slider');
                 slider.slider( "value", index );
