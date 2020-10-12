@@ -88,11 +88,16 @@ class PaymentController extends Controller
         $payment->tariff()->associate($payment->data['tariff']);
         $payment->save();
         $user->tariff()->associate($payment->data['tariff']);
-        if ($user->tariff_expired_at === null) {
-            $user->tariff_expired_at = now();
-        } else {
-            $user->tariff_expired_at = $user->tariff_expired_at->addMonth();
+        $expired = now();
+        if ($user->tariff_expired_at !== null) {
+            $expired = $user->tariff_expired_at;
         }
+        if ($payment->data['yearly'] === true) {
+            $expired->addYear();
+        } else {
+            $expired->addMonth();
+        }
+        $user->tariff_expired_at = $expired;
         $user->save();
         return response()->json([
             'code' => 0

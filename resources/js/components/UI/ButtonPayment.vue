@@ -28,7 +28,15 @@ export default {
         },
         amount: {
             type: Number,
-            default: ''
+            default: 0
+        },
+        tariff: {
+            type: Number,
+            default: 0
+        },
+        yearly: {
+            type: Boolean,
+            default: false
         },
 
     },
@@ -50,7 +58,9 @@ export default {
                     accountId: this.account_id, //идентификатор плательщика (необязательно)
                     skin: "mini", //дизайн виджета (необязательно)
                     data: {
-                        tariff: 2
+                        tariff: this.tariff,
+                        yearly: this.yearly
+
                     }
                 },
                 {

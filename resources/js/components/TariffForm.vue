@@ -2,8 +2,11 @@
     <div class="tariff-form">
         <div class="tarim-top">
             <h3 class="tariff-title">PRO</h3>
-            <strong class="tariff-subtitle number-followers">
-                {{ $t('от 30 000 подписчиков') }}
+            <strong class="tariff-subtitle number-followers" v-if="currentFollowers > 0">
+                {{ $t('от') }} {{ currentFollowers }} {{ $t('подписчиков') }}
+            </strong>
+            <strong class="tariff-subtitle number-followers" v-else>
+                {{ $t('неограниченно') }}
             </strong>
             <div style="margin-top: 54px">
                 <slider-component :items="tariffs" @choosed="activeTarif($event)"/>
@@ -28,14 +31,16 @@
             <button-payment
                 :public_id="public_id"
                 :account_id="account_id"
-                desctiption="Тариф ПРО"
+                :desctiption="'Тариф' + currentTitle" ,
+                :tariff="currentTariff"
+                :yearly="subscription"
                 :amount="currentTariffAmount"></button-payment>
         </div>
     </div>
 </template>
 
 <script>
-    import Slider from './UI/Slider.vue'
+import Slider from './UI/Slider.vue'
 
 export default {
     name: "TariffForm",
@@ -43,6 +48,8 @@ export default {
         return {
             currentTariff: this.tariffs[0].id,
             currentTariffAmount: 0,
+            currentFollowers: 0,
+            currentTitle: '',
             subscription: false
         }
     },
@@ -65,8 +72,10 @@ export default {
     },
     methods: {
         activeTarif(tarif) {
-            this.currentTariff = tarif.id
-            this.currentTariffAmount =  this.subscription ? tarif.price_per_year : tarif.price_per_month    
+            this.currentTariff = tarif.id;
+            this.currentFollowers = tarif.max_followers;
+            this.currentTitle = tarif.title;
+            this.currentTariffAmount = this.subscription ? tarif.price_per_year : tarif.price_per_month;
         }
     },
     watch: {
