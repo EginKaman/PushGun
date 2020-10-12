@@ -31,7 +31,7 @@
             <button-payment
                 :public_id="public_id"
                 :account_id="account_id"
-                :desctiption="'Тариф' + currentTitle" ,
+                :desctiption="'Тариф' + currentTitle"
                 :tariff="currentTariff"
                 :yearly="subscription"
                 :amount="currentTariffAmount"></button-payment>
