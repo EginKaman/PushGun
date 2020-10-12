@@ -22,8 +22,14 @@
                         </div>
                     </div>
                     <div class="general__stats_left-item" style="background: #5BA4D7;">
-                        <h3>2</h3>
-                        <p class="medium mb-10">100% @lang('доставлено')</p>
+                        <h3>{{ $pushes->sum('delivered') }}</h3>
+                        @if($pushes->sum('delivered') > 0)
+                            <p class="medium mb-10">
+                                {{ round($pushes->sum('delivered') / $pushes->sum('sent'), 2) * 100 }}% @lang('доставлено')
+                            </p>
+                        @else
+                            <p class="medium mb-10">0% @lang('доставлено')</p>
+                        @endif
                     </div>
                     <div class=" general__stats_left-item" style="background: #FF7226;">
                         <h3>{{ $site->transitions_count }}</h3>
@@ -46,13 +52,14 @@
                 <div class="general__stats_right site__chart">
                     <div class="general__stats_right__inner">
                         <div class="general__stats_right-top">
-                            <chart-nav-component name-service='FETCH_INDIVIDUAL_STATISTICS' />
+                            <chart-nav-component name-service='FETCH_INDIVIDUAL_STATISTICS'/>
                         </div>
                         <div class="canvas-container2">
                             <statistic-individual-chart-component address="{{ $site->id }}"/>
                         </div>
                         <div class="site__chart_desc">
-                            <p>@lang('Новых подписчиков за период'): <span>{{ $site->today_subscriptions_count }}</span></p>
+                            <p>@lang('Новых подписчиков за период'): <span>{{ $site->today_subscriptions_count }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>

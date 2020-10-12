@@ -15,7 +15,7 @@
                         <p class="">@lang('Подписчиков'): <span>{{ $sites->sum('push_subscriptions_count') }}</span>
                             @lang('из') {{ $user->tariff->max_followers }}</p>
                         <p class="percent">
-                            {{ ($sites->sum('push_subscriptions_count')/$user->tariff->max_followers)*100 }}%
+                            {{ round(($sites->sum('push_subscriptions_count')/$user->tariff->max_followers)*100,2) }}%
                         </p>
                     </div>
                     <div class="progress">
