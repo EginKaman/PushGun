@@ -24,7 +24,9 @@
 
         <div class="tariff-bottom">
             <span class="tariff-price">
-                <span id="tariff-price"> {{ currentTariffAmount }}</span> {{ $t('руб./мес.') }}
+                <span id="tariff-price"> {{ currentTariffAmount }}</span>
+                <span v-if="!subscription">{{ $t('руб./мес.') }}</span>
+                <span v-else>{{ $t('руб./год') }}</span>
             </span>
             <input type="hidden" name="" class="followsCount" value="30к">
 
