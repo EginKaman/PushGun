@@ -21,6 +21,17 @@ class Tariff extends Model
         'max_followers'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'price_per_month' => 'integer',
+        'price_per_year' => 'integer',
+        'max_followers' => 'integer'
+    ];
+
     public function users()
     {
         return $this->hasMany(User::class);
