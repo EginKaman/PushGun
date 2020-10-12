@@ -39,10 +39,10 @@ class SiteStore extends FormRequest
         return [
             'link' => 'required|url|unique:sites,link',
             'image' => ['nullable', 'image'],
-            'request' => ['required', 'string', Rule::in(['visit', 'click', 'intermediate'])],
+            'request' => ['nullable', 'string', Rule::in(['visit', 'click', 'intermediate'])],
             'hint' => ['nullable', 'boolean'],
             'mobile' => ['nullable', 'boolean'],
-            'delay' => ['required', 'digits_between:0,65535']
+            'delay' => ['nullable', 'digits_between:0,65535']
         ];
     }
 
