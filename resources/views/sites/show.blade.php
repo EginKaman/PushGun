@@ -57,10 +57,6 @@
                         <div class="canvas-container2">
                             <statistic-individual-chart-component address="{{ $site->id }}"/>
                         </div>
-                        <div class="site__chart_desc">
-                            <p>@lang('Новых подписчиков за период'): <span>{{ $site->today_subscriptions_count }}</span>
-                            </p>
-                        </div>
                     </div>
                 </div>
                 <div class="button_green mr-24">
