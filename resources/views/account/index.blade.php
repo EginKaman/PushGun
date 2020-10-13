@@ -11,20 +11,29 @@
                          alt="">
                 </div>
                 <div class="general__status">
-                    <div class="general__subs">
-                        <p class="">@lang('Подписчиков'): <span>{{ $sites->sum('push_subscriptions_count') }}</span>
-                            @lang('из') {{ $user->tariff->max_followers }}</p>
-                        <p class="percent">
-                            {{ round(($sites->sum('push_subscriptions_count')/$user->tariff->max_followers)*100,2) }}%
-                        </p>
-                    </div>
-                    <div class="progress">
-                        <progress max="100"
-                                  value="{{ ($sites->sum('push_subscriptions_count')/$user->tariff->max_followers)*100 }}"></progress>
-                        <div class="progress_bg">
-                            <div class="progress_bar"></div>
+                    @if($user->tariff->max_followers > 0)
+                        <div class="general__subs">
+                            <p class="">@lang('Подписчиков'): <span>{{ $sites->sum('push_subscriptions_count') }}</span>
+                                @lang('из') {{ $user->tariff->max_followers }}</p>
+                            <p class="percent">
+                                {{ round(($sites->sum('push_subscriptions_count') / $user->tariff->max_followers)*100, 2) }}
+                                %
+                            </p>
                         </div>
-                    </div>
+                        <div class="progress">
+                            <progress max="100"
+                                      value="{{ round(($sites->sum('push_subscriptions_count')/ $user->tariff->max_followers)*100, 2) }}"></progress>
+                            <div class="progress_bg">
+                                <div class="progress_bar"></div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="general__subs">
+                            <p class="">@lang('Подписчиков'): <span>{{ $sites->sum('push_subscriptions_count') }}</span>
+                                @lang('из') @lang('неограниченно')</p>
+                        </div>
+                    @endif
+
                     <div class="general__status_info">
                         @empty($user->tariff_expired_at)
                             <p>@lang('Тариф') “@lang($user->tariff->name)”</p>
