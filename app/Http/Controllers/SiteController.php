@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SiteShow;
 use App\Http\Requests\SiteStore;
 use App\Http\Requests\SiteUpdate;
 use App\Http\Resources\SitesResource;
@@ -58,10 +59,11 @@ class SiteController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param SiteShow $request
      * @param \App\Site $site
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function show(Site $site)
+    public function show(SiteShow $request, Site $site)
     {
         return view('sites.show', [
             'site' => $site->loadCount('pushSubscriptions', 'todaySubscriptions', 'pushes', 'transitions'),
@@ -72,10 +74,11 @@ class SiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param SiteShow $request
      * @param \App\Site $site
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function edit(Site $site)
+    public function edit(SiteShow $request, Site $site)
     {
         return view('sites.edit', [
             'site' => $site
@@ -106,7 +109,7 @@ class SiteController extends Controller
      *
      * @param \App\Site $site
      */
-    public function destroy(Site $site)
+    public function destroy(SiteShow $request, Site $site)
     {
         $site->delete();
     }

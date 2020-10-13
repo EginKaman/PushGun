@@ -14,7 +14,7 @@ class SiteUpdate extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->route('site')->user_id === $this->user()->id;
     }
 
     /**

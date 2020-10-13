@@ -9,9 +9,6 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $user = User::first();
-        return view('index', [
-            'user' => $user
-        ]);
+        return view('index');
     }
 }

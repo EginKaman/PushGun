@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PushShow;
 use App\Http\Requests\PushStore;
 use App\Notifications\SendPush;
 use App\Push;
@@ -96,7 +97,7 @@ class PushController extends Controller
      * @param \App\Push $push
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function show(Push $push)
+    public function show(PushShow $request, Push $push)
     {
         $push->load('site')->loadCount('transitions');
         $site = $push->site->loadCount('pushSubscriptions');
