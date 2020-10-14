@@ -183,8 +183,10 @@
     <div class="tooltip_templates">
             <span id="tooltip_content" class="general__tooltip">
                 <p>@lang('Информация')</p>
-                <a href="#">@lang('Как переподписать пользователей на SendPulse')</a>
-                <a href="#">@lang('Как переподписать пользователей на SendPulse')</a>
+                <a target="_blank" href="https://sendpulse.com/ru/knowledge-base/push-notifications/general">
+                @lang('Информация о сервисе web push рассылок')</a>
+                <a target="_blank" href="https://sendpulse.com/ru/knowledge-base/push-notifications/webpush-sites">
+                @lang('Как добавить web push на ваш сайт')</a>
             </span>
     </div>
     <footer class="footer">

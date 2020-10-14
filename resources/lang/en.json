@@ -228,5 +228,7 @@
     "Код добавлен корректно": "Code added correctly",
     "Перепроверить": "Recheck",
     "Успех!": "Success!",
-    "Сайт удален успешно": "Site deleted successfully"
+    "Сайт удален успешно": "Site deleted successfully",
+    "Информация о сервисе web push рассылок": "Information about the web push mailing service",
+    "Как добавить web push на ваш сайт": "How to add web push to your site"
 }
