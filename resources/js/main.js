@@ -368,7 +368,11 @@ $(document).ready(function () {
 	
 	//mysitepop
 	$( ".general__sites_item-more" ).on( "click", ".general__sites_item-more_imgcontsd", function() {
-		$( this ).closest('.general__sites_item-more').toggleClass('active');
+        let active = $( ".general__sites_item-more.active" );
+        let menu = $(this).closest('.general__sites_item-more');
+
+        menu.toggleClass('active');
+        active.removeClass('active');
 	});
 	
 });
