@@ -9,6 +9,33 @@
 
     <title>@lang('Главная') | {{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Фавиконы и иконки сайта -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}"
+          data-mce-href="{{ asset('images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-32x32.png') }}" sizes="32x32"
+          data-mce-href="{{ asset('images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-16x16.png') }}" sizes="16x16"
+          data-mce-href="{{ asset('images/favicon/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-192x192.png') }}" sizes="192x192"
+          data-mce-href="{{ asset('images/favicon/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-512x512.png') }}" sizes="512x512"
+          data-mce-href="{{ asset('images/favicon/android-chrome-512x512.png') }}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4285f4">
+
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#4285f4">
+
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Яндекс.Браузер -->
+    <meta name="viewport" content="ya-title=#4e69a2,ya-dock=fade">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
