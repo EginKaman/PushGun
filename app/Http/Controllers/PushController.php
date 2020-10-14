@@ -66,18 +66,24 @@ class PushController extends Controller
         $push->fill($request->all());
         $push->site()->associate($request->site);
         $push->user()->associate(Auth::user());
+        if ($request->hasFile('icon')) {
+            $push->icon = $request->file('icon')->store('public/mails');
+        }
         if ($request->hasFile('image')) {
             $push->image = $request->file('image')->store('public/mails');
         }
         $push->save();
         $site = $push->site;
         $push->sent = $site->pushSubscriptions()->count();
-        $site->notify((new SendPush())
-            ->title($request->input('title'))
-            ->icon(asset(Storage::url($push->image ?? $site->image)))
-            ->body($request->input('text'))
-            ->url(route('transition.store', $push))
-        );
+        $message = new SendPush();
+        $message->title($request->input('title'))
+            ->icon(asset(Storage::url($push->icon ?? $site->image)));
+        if ($push->image !== null) {
+            $message->image(asset(Storage::url($push->image)));
+        }
+        $message->body($request->input('text'))
+            ->url(route('transition.store', $push));
+        $site->notify($message);
         $push->delivered = $site->pushSubscriptions()->count();
         $push->save();
 

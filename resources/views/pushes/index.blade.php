@@ -83,9 +83,9 @@
                         <div class="general__sites_item mails__sites">
                             <div class="flex">
                                 <a href="{{ route('push.show', $push) }}">
-                                    @if(!empty($push->image))
+                                    @if(!empty($push->icon))
                                         <img class="general__sites_item-img"
-                                             src="{{ asset(Storage::url($push->image)) }}">
+                                             src="{{ asset(Storage::url($push->icon)) }}">
                                     @elseif(!empty($push->site->image))
                                         <img class="general__sites_item-img"
                                              src="{{ asset(Storage::url($push->site->image)) }}">

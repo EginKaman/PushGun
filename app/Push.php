@@ -16,6 +16,7 @@ class Push extends Model
      */
     protected $fillable = [
         'title',
+        'icon',
         'image',
         'text',
         'link'

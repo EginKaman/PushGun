@@ -73,9 +73,6 @@
                             </button>
                         </div>
                     </div>
-                    <div class="send__push">
-                        <a href="#">{{ $t('Отправить тестовый push') }}</a>
-                    </div>
                 </div>
             </form>
         </div>
@@ -83,7 +80,7 @@
         <div class="push__test">
             <div class="block">
                 <p>Chrome, Windows</p>
-                <div class="chrome">           
+                <div class="chrome">
                     <div class="chrome__large" v-if="big_image"><img :src="big_image" alt=""></div>
                     <div class="chrome__block">
                         <div class="chrome__small"><img :src="selected.image || default_image" alt="avatar"></div>
@@ -191,10 +188,10 @@ export default {
         save() {
             let form = new FormData();
             if (this.$refs.image.files[0]) {
-                form.append('image', this.$refs.image.files[0]);
+                form.append('icon', this.$refs.image.files[0]);
             }
             if (this.$refs.bigImage.files[0]) {
-                form.append('bigImage', this.$refs.bigImage.files[0]);
+                form.append('image', this.$refs.bigImage.files[0]);
             }
             form.append('title', this.title);
             form.append('link', this.link);
