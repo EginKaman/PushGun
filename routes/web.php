@@ -30,22 +30,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/privacy', [\App\Http\Controllers\PageController::class, 'privacy'])->name('page.privacy');
     Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
-    Auth::routes();
+    Auth::routes(['verify' => true]);
     Route::middleware(['auth'])->group(function () {
         Route::prefix('account')->group(function () {
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
             Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
             Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
         });
-        Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
-        Route::put('/password', 'PasswordController')->name('password.update');
-        Route::resource('site', 'SiteController');
-        Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
-        Route::post('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'store'])->name('complete.store');
-        Route::resource('push', 'PushController');
-        Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
-        Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
-        Route::get('/tariff', 'TariffController')->name('tariff.index');
+        Route::middleware(['verified'])->group(function () {
+            Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
+            Route::put('/password', 'PasswordController')->name('password.update');
+            Route::resource('site', 'SiteController');
+            Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
+            Route::post('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'store'])->name('complete.store');
+            Route::resource('push', 'PushController');
+            Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
+            Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
+            Route::get('/tariff', 'TariffController')->name('tariff.index');
+        });
 
         Route::get('manual', [\App\Http\Controllers\ManualController::class, 'index'])->name('manual.index');
         Route::get('manual/{manual}', [\App\Http\Controllers\ManualController::class, 'show'])->name('manual.show');
