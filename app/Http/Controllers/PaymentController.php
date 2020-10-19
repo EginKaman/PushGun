@@ -92,7 +92,7 @@ class PaymentController extends Controller
         if ($user->tariff_expired_at !== null) {
             $expired = $user->tariff_expired_at;
         }
-        if ($payment->data['yearly'] === true) {
+        if (!empty($payment->data['yearly']) && $payment->data['yearly'] === true) {
             $expired->addYear();
         } else {
             $expired->addMonth();
