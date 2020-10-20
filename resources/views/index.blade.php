@@ -164,6 +164,18 @@
             </a>
         </div>
     </section>
+    <section class="section8" id="browsers">
+        <div class="container">
+            <h2 class="section8__title">@lang('Push-уведомления работают со всеми') <br> @lang('современными браузерами')</h2>
+            <div class="section8__wrap">
+                <div class="browser"><img src="{{ asset('images/browsers/chrome.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/firefox.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/opera.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/android.png') }}"></div>
+                <div class="browser"><img src="{{ asset('images/browsers/safari.png') }}"></div>
+            </div>
+        </div>
+    </section>
     <section class="section2" id="aboutus">
         <div class="container">
             <h2 class="section2__title">@lang('Возможности и преимущества')</h2>
@@ -350,15 +362,74 @@
         </div>
     </section>
 
-    <section class="section8" id="browsers">
+    <section class="business">
         <div class="container">
-            <h2 class="section8__title">@lang('Push-уведомления работают со всеми') <br> @lang('современными браузерами')</h2>
-            <div class="section8__wrap">
-                <div class="browser"><img src="{{ asset('images/browsers/chrome.png') }}"></div>
-                <div class="browser"><img src="{{ asset('images/browsers/firefox.png') }}"></div>
-                <div class="browser"><img src="{{ asset('images/browsers/opera.png') }}"></div>
-                <div class="browser"><img src="{{ asset('images/browsers/android.png') }}"></div>
-                <div class="browser"><img src="{{ asset('images/browsers/safari.png') }}"></div>
+            <h2 class="business-title">Сценарии уведомлений для вашего бизнеса</h2>
+            <div class="business-wrap">
+                <ul class="business-items">
+                    <li data-tab="1" class="active">Интернет магазины</li>
+                    <li data-tab="2">Страховые / Банки</li>
+                    <li data-tab="3">Рестораны / Доставка</li>
+                    <li data-tab="4">Блоги / СМИ</li>
+                    <li data-tab="5">Недвижимость</li>
+                </ul>
+                <div data-content="1" class="business-content active">
+                    <h4>Брошенная корзина 1</h4>
+                    <p>Пользователь положил товары в корзину и ушел с сайта не закончив покупку - уведомление «Вы забыли Ваши товары»</p>
+                    <div class="business-slider">
+                        <div class="business-window">
+                            <div class="business-window__inner">
+                                <img src="{{ asset('images/business-img.svg') }}" alt="image">
+                                <h5>Кажется, вы забыли что-то в корзине.</h5>
+                            </div>
+                            <a href="#" target="_blank">Перейти в корзину</a>
+                        </div>
+                    </div>
+                </div>
+                <div data-content="2" class="business-content">
+                    <h4>Брошенная корзина 2</h4>
+                    <p>Пользователь положил товары в корзину и ушел с сайта не закончив покупку - уведомление «Вы забыли Ваши товары»</p>
+                    <div class="business-slider">
+                        <div class="business-window">
+                            <div>
+                                <img src="{{ asset('images/business-img.svg') }}" alt="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-content="3" class="business-content">
+                    <h4>Брошенная корзина 3</h4>
+                    <p>Пользователь положил товары в корзину и ушел с сайта не закончив покупку - уведомление «Вы забыли Ваши товары»</p>
+                    <div class="business-slider">
+                        <div class="business-window">
+                            <div>
+                                <img src="{{ asset('images/business-img.svg') }}" alt="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-content="4" class="business-content">
+                    <h4>Брошенная корзина 4</h4>
+                    <p>Пользователь положил товары в корзину и ушел с сайта не закончив покупку - уведомление «Вы забыли Ваши товары»</p>
+                    <div class="business-slider">
+                        <div class="business-window">
+                            <div>
+                                <img src="{{ asset('images/business-img.svg') }}" alt="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-content="5" class="business-content">
+                    <h4>Брошенная корзина 5</h4>
+                    <p>Пользователь положил товары в корзину и ушел с сайта не закончив покупку - уведомление «Вы забыли Ваши товары»</p>
+                    <div class="business-slider">
+                        <div class="business-window">
+                            <div>
+                                <img src="{{ asset('images/business-img.svg') }}" alt="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

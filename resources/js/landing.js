@@ -27,6 +27,14 @@ $(document).ready(function () {
         }, 1000);
     });
 
+    // business tabs
+    $('.business-items li').on('click', function(){
+        let tab = $(this).attr('data-tab');
+        $('.business-items li').removeClass('active');
+        $(this).addClass('active');
+        $('.business-content').removeClass('active');
+        $(".business-content[data-content="+tab+"]").addClass('active');
+    });
 
     function anim(top) {
         let scale = ((top / 1000) + 0.8).toFixed(2)
