@@ -94,7 +94,9 @@
                     <div class="header__menu_wrap">
                         <a class="header__account">
                             @empty(Auth::user()->photo)
-                                <img class="header__account_img" src="{{ asset('images/avatar.svg') }}" alt="">
+                                <img class="header__account_img"
+                                     src="{{ 'https://ui-avatars.com/api/?name='.urlencode(Auth::user()->name . ' ' . Auth::user()->lastname).'&color=FFF&background=323441' }}"
+                                     alt="">
                             @else
                                 <img class="header__account_img" src="{{ asset(Storage::url(Auth::user()->photo)) }}"
                                      alt="">
