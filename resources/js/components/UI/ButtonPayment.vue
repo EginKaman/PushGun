@@ -65,7 +65,7 @@ export default {
                 },
                 {
                     onSuccess: function (options) { // success
-                        //действие при успешной оплате
+                        location.reload();
                     },
                     onFail: function (reason, options) { // fail
                         //действие при неуспешной оплате
