@@ -56,7 +56,7 @@ export default {
                     currency: 'RUB', //валюта
                     // invoiceId: '1234567', //номер заказа  (необязательно)
                     accountId: this.account_id, //идентификатор плательщика (необязательно)
-                    skin: "mini", //дизайн виджета (необязательно)
+                    skin: "modern", //дизайн виджета (необязательно)
                     data: {
                         tariff: this.tariff,
                         yearly: this.yearly
