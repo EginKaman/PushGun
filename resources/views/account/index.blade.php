@@ -109,8 +109,8 @@
                                 </div>
 
                                 <ul class="general__sites_item_ul">
-                                    <li><a href="{{ route('push.create') }}">Отправить PUSH</a></li>
-                                    <li><a href="{{ route('site.edit', $site) }}">Настройки сайта</a></li>
+                                    <li><a href="{{ route('push.create') }}">@lang('Отправить PUSH')</a></li>
+                                    <li><a href="{{ route('site.edit', $site) }}">@lang('Настройки сайта')</a></li>
                                     <li>
                                         <site-button-delete
                                             action="{{ route('site.destroy', $site) }}"></site-button-delete>

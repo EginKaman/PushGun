@@ -18,8 +18,8 @@ export default {
     methods: {
         destroy() {
             this.$swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                title: this.$i18n.t("Are you sure?"),
+                text: this.$i18n.t("Once deleted, you will not be able to recover this site!"),
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -30,7 +30,7 @@ export default {
                             this.success();
                         });
                 } else {
-                    this.swal("Your imaginary file is safe!");
+                    this.swal("Your site is safe!");
                 }
             });
         },
