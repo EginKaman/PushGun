@@ -52,7 +52,7 @@ class Category extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Slug::make('Slug')->from('Title')->separator('_'),
+            Slug::make('Slug')->from('Title')->separator('-'),
             Text::make('Title')->sortable(),
             DateTime::make(__('Deleted at'), 'deleted_at')
                 ->onlyOnDetail()
