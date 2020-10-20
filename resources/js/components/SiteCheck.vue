@@ -20,7 +20,9 @@
         <h3 class="setint__desc">{{ $t('Установочные файлы Chrome') }}</h3>
         <div class="setint__info">
             <p class="setint__info_title">
-                {{ $t("Для поддержки Chrome, загрузите установочные файлы ниже. Распакуйте из архива и скопируйте файлы в каталог верхнего уровня (root, или '/') вашего сайта.") }}
+                {{
+                    $t("Для поддержки Chrome, загрузите установочные файлы ниже. Распакуйте из архива и скопируйте файлы в каталог верхнего уровня (root, или '/') вашего сайта.")
+                }}
             </p>
             <div class="setint__info_download">
                 <img src="../../images/download.svg" width="16" height="16" alt="">
@@ -95,19 +97,25 @@ export default {
         check() {
             axios.post(this.action).then(response => {
                 this.checked = response.data;
-                if (this.checked) {
-                    this.$swal({
-                        title: this.$i18n.t('Успех!'),
-                        text: `${this.$t('Код добавлен корректно')}\r\n${this.$t('Файл pg-push-worker.js установлен')}`,
-                        icon: "success",
-                    });
-                } else {
-                    this.$swal({
-                        title: this.$i18n.t('Ошибка!'),
-                        text: `${this.$t('Код добавлен не корректно')}\r\n${this.$t('Файл pg-push-worker.js не установлен')}`,
-                        icon: "error",
-                    });
+                let title = this.$i18n.t('Успех!');
+                let text_file = this.$i18n.t('Файл pg-push-worker.js установлен');
+                let text_script = this.$i18n.t('Код добавлен корректно');
+                let icon = 'success'
+                if (!this.checked.script || !this.checked.file) {
+                    icon = 'error';
+                    title = this.$i18n.t('Ошибка!');
                 }
+                if (!this.checked.script) {
+                    text_script = this.$i18n.t('Код добавлен не корректно');
+                }
+                if (!this.checked.file) {
+                    text_script = this.$i18n.t('Файл pg-push-worker.js не установлен');
+                }
+                this.$swal({
+                    title: title,
+                    text: `${text_script}\r\n${text_file}`,
+                    icon: icon,
+                });
             });
         }
     }
