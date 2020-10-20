@@ -18,8 +18,8 @@ export default {
     methods: {
         destroy() {
             this.$swal({
-                title: this.$i18n.t("Are you sure?"),
-                text: this.$i18n.t("Once deleted, you will not be able to recover this site!"),
+                title: this.$i18n.t("Вы уверены?"),
+                text: this.$i18n.t("После удаления вы не сможете восстановить этот сайт!"),
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -30,7 +30,7 @@ export default {
                             this.success();
                         });
                 } else {
-                    this.swal("Your site is safe!");
+                    this.swal("Ваш сайт в безопасности!");
                 }
             });
         },
