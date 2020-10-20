@@ -40,7 +40,7 @@ export default {
                 text: this.$i18n.t('Сайт удален успешно'),
                 icon: "success",
             }).then(() => {
-                location.reload();
+                window.location = '/';
             });
         }
     }
