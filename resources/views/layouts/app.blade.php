@@ -187,6 +187,10 @@
                             <a href="#">@lang('Мои сайты')</a>
                             <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                         </div>
+                        <div class="nav__menu_item"
+                             v-if="$store.state.sites.sites.length < 1">
+                            <a class="nav__menu_link" href="{{ route('site.create') }}">@lang('Добавить сайт')</a>
+                        </div>
                         <div class="nav__menu_item" v-for="(site, index) in $store.state.sites.sites" :key="index">
                             <a class="nav__menu_link" :href="site.url">@{{ site.link }}</a>
                         </div>
