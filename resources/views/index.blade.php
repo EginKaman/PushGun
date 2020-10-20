@@ -352,7 +352,7 @@
 
     <section class="section8" id="browsers">
         <div class="container">
-            <h2 class="section8__title">Push-уведомления работают со всеми <br> современными браузерами</h2>
+            <h2 class="section8__title">@lang('Push-уведомления работают со всеми') <br> @lang('современными браузерами')</h2>
             <div class="section8__wrap">
                 <div class="browser"><img src="{{ asset('images/browsers/chrome.png') }}"></div>
                 <div class="browser"><img src="{{ asset('images/browsers/firefox.png') }}"></div>

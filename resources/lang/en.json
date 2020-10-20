@@ -225,6 +225,7 @@
     "URL сайта": "Site URL",
     "Изображение сайта": "Site image",
     "Удалить веб-сайт": "Delete site",
+    "Удалить сайт": "Delete site",
     "Интеграция с сайтом": "Integration with the site",
     "Код добавлен корректно": "Code added correctly",
     "Перепроверить": "Recheck",
@@ -235,5 +236,11 @@
     "Информация о сервисе web push рассылок": "Information about the web push mailing service",
     "Как добавить web push на ваш сайт": "How to add web push to your site",
     "Автоматизация маркетинга с сервисом PushGun": "Marketing automation with PushGun service",
-    "Marketing automation with PushGun service": "Reach more audience with push notifications and increase your profit"
+    "Marketing automation with PushGun service": "Reach more audience with push notifications and increase your profit",
+    "от": "from",
+    "Push-уведомления работают со всеми": "Push notifications work with",
+    "современными браузерами": "all modern browsers",
+    "Охватите больше аудитории с пуш-уведомлениями и увеличивайте прибыль": "Reach more audiences with push notifications and increase profits",
+    "Ошибка!": "Error!",
+    "Проверить": "Check"
 }

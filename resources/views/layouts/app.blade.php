@@ -115,8 +115,9 @@
                             <p class="account__top_id">ID <span>{{ Auth::id() }}</span></p>
                         </div>
                         <div class="account__bottom">
-                            <h3 class="account__bottom_subscribtion">@lang('Тариф') "@lang(Auth::user()->tariff->name)
-                                "</h3>
+                            <h3 class="account__bottom_subscribtion">
+                                @lang('Тариф') "@lang(Auth::user()->tariff->name)"
+                            </h3>
                             <a href="{{ route('tariff.index') }}"
                                class="account__bottom_subscribe">@lang('Повысить тариф')</a>
                             {{--                        <div class="account__bottom_balance-wrapper">--}}

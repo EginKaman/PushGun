@@ -38,8 +38,9 @@
                         @empty($user->tariff_expired_at)
                             <p>@lang('Тариф') “@lang($user->tariff->name)”</p>
                         @else
-                            <p>@lang('Тариф') “@lang($user->tariff->name)
-                                ” @lang('будет продлен') {{ $user->tariff_expired_at }}</p>
+                            <p>
+                                @lang('Тариф') “@lang($user->tariff->name)” @lang('будет продлен') {{ $user->tariff_expired_at }}
+                            </p>
                         @endif
                         <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Изменить')</a>
                     </div>
