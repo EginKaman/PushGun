@@ -217,10 +217,10 @@
     <div class="tooltip_templates">
             <span id="tooltip_content" class="general__tooltip">
                 <p>@lang('Информация')</p>
-                <a target="_blank" href="https://sendpulse.com/ru/knowledge-base/push-notifications/general">
+                <a target="_blank" href="https://push-gun.net/ru/manual/kak-vstavit-kod-dlya-push-uvedomlenij-na-sajte-s-pomoshyu-google-tag-manager">
                 @lang('Информация о сервисе web push рассылок')</a>
-                <a target="_blank" href="https://sendpulse.com/ru/knowledge-base/push-notifications/webpush-sites">
-                @lang('Как добавить web push на ваш сайт')</a>
+                <a target="_blank" href="https://push-gun.net/ru/manual/kak-sdelat-push-uvedomlenie-na-sajte">
+                @lang('Настройки рассылок')</a>
             </span>
     </div>
     <footer class="footer">

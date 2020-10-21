@@ -7,6 +7,15 @@
     transition: all .3s ease-in-out;
 }
 
+.verify {
+    padding: 100px 0 200px 0;
+    text-align: center;
+}
+.link-error {
+    color: red;
+    font-size: 12px;
+    margin: 4px 0;
+}
 .section2 {
     padding-bottom: 80px;
 }
@@ -285,9 +294,15 @@ button {
 }
 
 @media (max-width: 786px) {
-
+.setgen__down-buttons {
+    left: unset !important;
+}
 .ttlhfaq {
     padding-right: 40px;
 }
-
+.push__title {
+    font-size: 38px;
+    line-height: 100%;
+    margin: 40px 0;
+}
 }
