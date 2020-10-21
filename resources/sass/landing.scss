@@ -246,6 +246,7 @@
     &-content {
         display: none;
         color: #060607;
+        max-width: 800px;
         h4 {
             font-weight: 600;
             letter-spacing: 0.25px;
@@ -282,9 +283,16 @@
         }
         @include tablet {
             display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            margin-bottom: 30px;
             li {
+                padding: 4px;
+                font-size: 13px;
+                text-align: center;
                 margin-bottom: 0;
-                margin-right: 31px;
+                margin-right: 5px;
                 &:last-child {margin: 0;}
             }
         }
@@ -303,6 +311,10 @@
             line-height: 160%;
             letter-spacing: 0.25px;
             color: #3B8378;
+        }
+        h5 {
+            max-width: 315px;
+            line-height: 130%;
         }
         &__inner {
             display: flex;
@@ -329,6 +341,74 @@
                 top: 8px;
                 cursor: pointer;
             }
+        }
+    }
+    &-dots {
+        display: flex;
+        position: absolute;
+        bottom: 11px;
+        left: 45px;
+        @include tablet {
+            bottom: -39px;
+        }
+        li {
+            list-style: none;
+            background: none;
+            border: 0;
+            padding: 0;
+            font-size: 0;
+            outline: 0;
+            background-color: rgba(#323441, .2);
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            cursor: pointer;
+            margin-right: 16px;
+            &:last-child {margin-right: 0;}
+            transition: all .2s ease-in-out;
+        }
+        li.slick-active {
+            background-color: #323441;
+            transition: all .2s ease-in-out;
+        }
+    }
+    &-prev {
+        background: none;
+        outline: 0;
+        border: 0;
+        padding: 0;
+        font-size: 0;
+        background-image: url('../images/business/bus-arrow.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        @include tablet {
+            bottom: -50px;
+        }
+    }
+    &-next {
+        background: none;
+        outline: 0;
+        border: 0;
+        padding: 0;
+        font-size: 0;
+        transform: rotate(180deg);
+        background-image: url('../images/business/bus-arrow.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        bottom: 0;
+        left: 140px;
+        z-index: 2;
+        @include tablet {
+            bottom: -50px;
         }
     }
 }

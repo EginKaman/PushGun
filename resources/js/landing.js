@@ -28,12 +28,21 @@ $(document).ready(function () {
     });
 
     // business tabs
+    const slickSettings = {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        fade: true,
+        dotsClass: 'business-dots',
+        prevArrow: '<button type="button" class="slick-prev business-prev"></button>',
+        nextArrow: '<button type="button" class="slick-next business-next"></button>'
+    };
+    $('.business-content.active').slick(slickSettings);
     $('.business-items li').on('click', function(){
         let tab = $(this).attr('data-tab');
-        $('.business-items li').removeClass('active');
-        $(this).addClass('active');
-        $('.business-content').removeClass('active');
-        $(".business-content[data-content="+tab+"]").addClass('active');
+        $(this).addClass("active").siblings(".active").removeClass("active");
+        $('.business-content.active').hide().removeClass('active').filter('.slick-initialized').slick('unslick');
+        $(".business-content[data-content="+tab+"]").show().addClass('active').slick(slickSettings);
     });
 
     function anim(top) {
