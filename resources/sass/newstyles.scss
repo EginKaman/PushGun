@@ -294,7 +294,9 @@ button {
 }
 
 @media (max-width: 786px) {
-
+.setgen__down-buttons {
+    left: unset !important;
+}
 .ttlhfaq {
     padding-right: 40px;
 }
