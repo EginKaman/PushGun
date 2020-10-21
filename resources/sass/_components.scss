@@ -749,6 +749,10 @@ textarea {
         justify-content: center;
     }
 
+    .header__popup {
+        overflow: scroll;
+    }
+
 }
 
 @media screen and (max-width: 500px) {
