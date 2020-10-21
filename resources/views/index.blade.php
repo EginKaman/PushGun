@@ -161,10 +161,10 @@
                     </div>
                 </div>
                 <a href="#aboutus" class="btn_dwn"> <span class="whiteBg"></span>
-                    <picture>
-                        <source srcset="{{ asset('images/btn_down.webp') }}" type="image/webp">
-                        <img src="{{ asset('images/btn_down.png') }}" alt="down">
-                    </picture>
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="30" r="30" fill="white"/>
+                        <path d="M34.5 33.5L30 38M30 38L25.5 33.5M30 38V22" stroke="#323441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
                 </a>
             </div>
         </section>
