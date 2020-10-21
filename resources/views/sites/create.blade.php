@@ -28,6 +28,9 @@
                             <input type="text" name="domain" class="site_domain_name" value="{{ old('domain') }}"
                                    required
                                    placeholder="example.com">
+                            @error('link')
+                                <span class="link-error">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="small__title sec">
