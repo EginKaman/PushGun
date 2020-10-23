@@ -367,241 +367,251 @@
 
     <section class="business">
         <div class="container">
-            <h2 class="business-title">Сценарии уведомлений для вашего бизнеса</h2>
+            <h2 class="business-title">@lang('Сценарии уведомлений для вашего бизнеса')</h2>
             <div class="business-wrap">
                 <ul class="business-items">
-                    <li data-tab="1" class="active">Интернет магазины</li>
-                    <li data-tab="2">Страховые / Банки</li>
-                    <li data-tab="3">Рестораны / Доставка</li>
-                    <li data-tab="4">Блоги / СМИ</li>
-                    <li data-tab="5">Недвижимость</li>
+                    <li data-tab="1" class="active">@lang('Интернет магазины')</li>
+                    <li data-tab="2">@lang('Страховые') / @lang('Банки')</li>
+                    <li data-tab="3">@lang('Рестораны') / @lang('Доставка')</li>
+                    <li data-tab="4">@lang('Блоги') / @lang('СМИ')</li>
+                    <li data-tab="5">@lang('Недвижимость')</li>
                 </ul>
                 <div data-content="1" class="business-content active">
                     <div class="business-content__wrap">
-                        <h4>Брошенная корзина</h4>
-                        <p>Пользователь положил товары в корзину и ушел с сайта не закончив покупку -
-                            уведомление «Вы забыли Ваши товары»</p>
+                        <h4>@lang('Брошенная корзина')</h4>
+                        <p>
+                            @lang('Пользователь положил товары в корзину и ушел с сайта не закончив покупку - уведомление «Вы забыли Ваши товары»')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business-img.svg') }}" alt="image">
-                                <h5>Кажется, вы забыли что-то в корзине.</h5>
+                                <h5>@lang('Кажется, вы забыли что-то в корзине.')</h5>
                             </div>
-                            <a href="#" target="_blank">Перейти в корзину</a>
+                            <a href="#" target="_blank">@lang('Перейти в корзину')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Дополнительная продажа</h4>
-                        <p>Посетитель купил смартфон - через несколько дней отправляем</p>
+                        <h4>@lang('Дополнительная продажа')</h4>
+                        <p>@lang('Посетитель купил смартфон - через несколько дней отправляем')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/2.svg') }}" alt="image">
-                                <h5>Специальное предложение на защитные стекла для смартфона</h5>
+                                <h5>@lang('Специальное предложение на защитные стекла для смартфона')</h5>
                             </div>
-                            <a href="#" target="_blank">Посмотреть предложение</a>
+                            <a href="#" target="_blank">@lang('Посмотреть предложение')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Брошенный просмотр категории</h4>
-                        <p>Пользователь смотрел товар в разделе «брюки» - не положил товар в корзину - 20% на все брюки
-                            только 2 дня</p>
+                        <h4>@lang('Брошенный просмотр категории')</h4>
+                        <p>
+                            @lang('Пользователь смотрел товар в разделе «брюки» - не положил товар в корзину - 20% на все брюки только 2 дня')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/3.svg') }}" alt="image">
-                                <h5>Скидка -20% на все брюки</h5>
+                                <h5>@lang('Скидка -20% на все брюки')</h5>
                             </div>
-                            <a href="#" target="_blank">Посмотреть</a>
+                            <a href="#" target="_blank">@lang('Посмотреть')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Реактивация пользователя</h4>
-                        <p>Пользователь был на сайте - не посещал 30 дней - Самые горячие новинки со скидкой</p>
+                        <h4>@lang('Реактивация пользователя')</h4>
+                        <p>@lang('Пользователь был на сайте - не посещал 30 дней - Самые горячие новинки со скидкой')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/4.svg') }}" alt="image">
-                                <h5>Кажется, вы забыли что-то в корзине.</h5>
+                                <h5>@lang('Кажется, вы забыли что-то в корзине.')</h5>
                             </div>
-                            <a href="#" target="_blank">Посетить</a>
+                            <a href="#" target="_blank">@lang('Посетить')</a>
                         </div>
                     </div>
                 </div>
                 <div data-content="2" class="business-content">
                     <div class="business-content__wrap">
-                        <h4>Брошенная заявка</h4>
-                        <p>Пользователь бросил заполнение анкеты на кредитную карту, через несколько минут отправляем
-                            предложение дополнить поля анкеты для получения карты</p>
+                        <h4>@lang('Брошенная заявка')</h4>
+                        <p>
+                            @lang('Пользователь бросил заполнение анкеты на кредитную карту, через несколько минут отправляем предложение дополнить поля анкеты для получения карты')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/5.svg') }}" alt="image">
-                                <h5>Заполни анкету и получи <br> расширенный лимит</h5>
+                                <h5>@lang('Заполни анкету и получи расширенный лимит')</h5>
                             </div>
-                            <a href="#" target="_blank">Заполнить</a>
+                            <a href="#" target="_blank">@lang('Заполнить')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Брошенный просмотр категории</h4>
-                        <p>Пользователь смотрел или сравнивал продукты, но не начал заполнение анкеты, предложите ему
-                            уникальный продукт</p>
+                        <h4>@lang('Брошенный просмотр категории')</h4>
+                        <p>
+                            @lang('Пользователь смотрел или сравнивал продукты, но не начал заполнение анкеты, предложите ему уникальный продукт')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/6.svg') }}" alt="image">
-                                <h5>Получи карту с уникальным дизайном</h5>
+                                <h5>@lang('Получи карту с уникальным дизайном')</h5>
                             </div>
-                            <a href="#" target="_blank">Получить</a>
+                            <a href="#" target="_blank">@lang('Получить')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Дополнительные продажи</h4>
-                        <p>Пользователь не использует все возможности банка, расскажите ему о его привелегиях</p>
+                        <h4>@lang('Дополнительные продажи')</h4>
+                        <p>@lang('Пользователь не использует все возможности банка, расскажите ему о его привилегиях')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/7.svg') }}" alt="image">
-                                <h5>Быстрая отчетность по УСН <br> для наших клиентов</h5>
+                                <h5>@lang('Быстрая отчетность по УСН для наших клиентов')</h5>
                             </div>
-                            <a href="#" target="_blank">Воспользоваться</a>
+                            <a href="#" target="_blank">@lang('Воспользоваться')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Специальные предложения</h4>
-                        <p>Получайте целевые действия из подписчиков, делая специальные предложения</p>
+                        <h4>@lang('Специальные предложения')</h4>
+                        <p>@lang('Получайте целевые действия из подписчиков, делая специальные предложения')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/8.svg') }}" alt="image">
-                                <h5>Скидки от партнеров <br> для наших клиентов</h5>
+                                <h5>@lang('Скидки от партнеров для наших клиентов')</h5>
                             </div>
-                            <a href="#" target="_blank">Посетить</a>
+                            <a href="#" target="_blank">@lang('Посетить')</a>
                         </div>
                     </div>
                 </div>
                 <div data-content="3" class="business-content">
                     <div class="business-content__wrap">
-                        <h4>Брошенная корзина</h4>
-                        <p>Пользователь положил товары в корзину и ушел, не закончив покупку, верните его за счет
-                            спецпредложения с помощью сервиса рассылки push уведомлений</p>
+                        <h4>@lang('Брошенная корзина')</h4>
+                        <p>
+                            @lang('Пользователь положил товары в корзину и ушел, не закончив покупку, верните его за счет спецпредложения с помощью сервиса рассылки push уведомлений')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/9.svg') }}" alt="image">
-                                <h5>Забери заказ скорее, а то он остынет</h5>
+                                <h5>@lang('Забери заказ скорее, а то он остынет')</h5>
                             </div>
-                            <a href="#" target="_blank">Забрать</a>
+                            <a href="#" target="_blank">@lang('Забрать')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Реактивация пользователя</h4>
-                        <p>Возвращайте пользователей, которые давно не заходили всякими
-                            вкусняшками с помощью сервиса push уведомлений для сайта</p>
+                        <h4>@lang('Реактивация пользователя')</h4>
+                        <p>
+                            @lang('Возвращайте пользователей, которые давно не заходили всякими вкусняшками с помощью сервиса push уведомлений для сайта')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/10.svg') }}" alt="image">
-                                <h5>Каждый шестой кусочек за наш счет</h5>
+                                <h5>@lang('Каждый шестой кусочек за наш счет')</h5>
                             </div>
-                            <a href="#" target="_blank">Забрать</a>
+                            <a href="#" target="_blank">@lang('Забрать')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Специальные предложения</h4>
-                        <p>Создавайте поводы, что бы пользователи приходили к вам с помощью сервиса рассылки пуш
-                            уведомлений</p>
+                        <h4>@lang('Специальные предложения')</h4>
+                        <p>
+                            @lang('Создавайте поводы, что бы пользователи приходили к вам с помощью сервиса рассылки пуш уведомлений')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/11.svg') }}" alt="image">
-                                <h5>Охладим вас в этот знойтый день</h5>
+                                <h5>@lang('Охладим вас в этот знойный день')</h5>
                             </div>
-                            <a href="#" target="_blank">Получить подарок</a>
+                            <a href="#" target="_blank">@lang('Получить подарок')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Новости и события</h4>
-                        <p>Вовлекайте подписчиков в события вашего заведения</p>
+                        <h4>@lang('Новости и события')</h4>
+                        <p>@lang('Вовлекайте подписчиков в события вашего заведения')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/12.svg') }}" alt="image">
-                                <h5>Вечеринка в стиле супергероев <br> в эту пятницу!</h5>
+                                <h5>@lang('Вечеринка в стиле супергероев в эту пятницу!')</h5>
                             </div>
-                            <a href="#" target="_blank">Забрать билет</a>
+                            <a href="#" target="_blank">@lang('Забрать билет')</a>
                         </div>
                     </div>
                 </div>
                 <div data-content="4" class="business-content">
                     <div class="business-content__wrap">
-                        <h4>Возвращение читателей</h4>
-                        <p>Отправка подписчикам новостей на основе алгоритма интересов от бесплатного сервиса push
-                            уведомлений</p>
+                        <h4>@lang('Возвращение читателей')</h4>
+                        <p>
+                            @lang('Отправка подписчикам новостей на основе алгоритма интересов от бесплатного сервиса push уведомлений')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/13.svg') }}" alt="image">
-                                <h5>Новость из вашей любимой темы</h5>
+                                <h5>@lang('Новость из вашей любимой темы')</h5>
                             </div>
-                            <a href="#" target="_blank">Читать</a>
+                            <a href="#" target="_blank">@lang('Читать')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Срочные новости</h4>
-                        <p>Отправка подписчикам срочных и важных новостей со скоростью 10000 уведомлений/сек</p>
+                        <h4>@lang('Срочные новости')</h4>
+                        <p>@lang('Отправка подписчикам срочных и важных новостей со скоростью 10000 уведомлений/сек')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/14.svg') }}" alt="image">
-                                <h5>Самая горячая новость!</h5>
+                                <h5>@lang('Самая горячая новость!')</h5>
                             </div>
-                            <a href="#" target="_blank">Читать</a>
+                            <a href="#" target="_blank">@lang('Читать')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Продление подписки</h4>
-                        <p>Оповещайте вашик подписчиков об окончании срока подписки</p>
+                        <h4>@lang('Продление подписки')</h4>
+                        <p>@lang('Оповещайте ваших подписчиков об окончании срока подписки')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/15.svg') }}" alt="image">
-                                <h5>Ваша подписка подходит к концу</h5>
+                                <h5>@lang('Ваша подписка подходит к концу')</h5>
                             </div>
-                            <a href="#" target="_blank">Продлить</a>
+                            <a href="#" target="_blank">@lang('Продлить')</a>
                         </div>
                     </div>
                 </div>
                 <div data-content="5" class="business-content">
                     <div class="business-content__wrap">
-                        <h4>Брошенная заявка</h4>
-                        <p>Пользователь бросил заполнение анкеты на просмотр, через несколько минут отправляем
-                            предложение дополнить поля анкеты для записи на просмотр</p>
+                        <h4>@lang('Брошенная заявка')</h4>
+                        <p>
+                            @lang('Пользователь бросил заполнение анкеты на просмотр, через несколько минут отправляем предложение дополнить поля анкеты для записи на просмотр')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/16.svg') }}" alt="image">
-                                <h5>Посмотрите лучшие квартиры в этом доме, заполнив анкету</h5>
+                                <h5>@lang('Посмотрите лучшие квартиры в этом доме, заполнив анкету')</h5>
                             </div>
-                            <a href="#" target="_blank">Заполнить</a>
+                            <a href="#" target="_blank">@lang('Заполнить')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Брошенный просмотр категории</h4>
-                        <p>Пользователь смотрел или сравнивал квартиры, но не начал
-                            заполнение анкеты, предложите ему уникальную подборку объектов</p>
+                        <h4>@lang('Брошенный просмотр категории')</h4>
+                        <p>
+                            @lang('Пользователь смотрел или сравнивал квартиры, но не начал заполнение анкеты, предложите ему уникальную подборку объектов')
+                        </p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/17.svg') }}" alt="image">
-                                <h5>Подборка всех домов в этом районе</h5>
+                                <h5>@lang('Подборка всех домов в этом районе')</h5>
                             </div>
-                            <a href="#" target="_blank">Получить</a>
+                            <a href="#" target="_blank">@lang('Получить')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Дополнительные продажи</h4>
-                        <p>Пользователь купил квартиру, предложите ему дополнительный продукт</p>
+                        <h4>@lang('Дополнительные продажи')</h4>
+                        <p>@lang('Пользователь купил квартиру, предложите ему дополнительный продукт')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/18.svg') }}" alt="image">
-                                <h5>Отделка под ключ от партнера</h5>
+                                <h5>@lang('Отделка под ключ от партнера')</h5>
                             </div>
-                            <a href="#" target="_blank">Воспользоваться</a>
+                            <a href="#" target="_blank">@lang('Воспользоваться')</a>
                         </div>
                     </div>
                     <div class="business-content__wrap">
-                        <h4>Специальные предложения</h4>
-                        <p>Переводите подписчиков в покупателей за счет специальных предложений</p>
+                        <h4>@lang('Специальные предложения')</h4>
+                        <p>@lang('Переводите подписчиков в покупателей за счет специальных предложений')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/19.svg') }}" alt="image">
-                                <h5>Третья комната в подарок только в январе</h5>
+                                <h5>@lang('Третья комната в подарок только в январе')</h5>
                             </div>
-                            <a href="#" target="_blank">Посмотреть</a>
+                            <a href="#" target="_blank">@lang('Посмотреть')</a>
                         </div>
                     </div>
                 </div>
