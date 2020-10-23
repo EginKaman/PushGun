@@ -420,7 +420,7 @@
                         <div class="business-window">
                             <div class="business-window__inner">
                                 <img src="{{ asset('images/business/4.svg') }}" alt="image">
-                                <h5>@lang('Кажется, вы забыли что-то в корзине.')</h5>
+                                <h5>@lang('Мы скучаем') <br> @lang('Персональные скидки до 30%')</h5>
                             </div>
                             <a href="#" target="_blank">@lang('Посетить')</a>
                         </div>
@@ -506,7 +506,7 @@
                     <div class="business-content__wrap">
                         <h4>@lang('Специальные предложения')</h4>
                         <p>
-                            @lang('Создавайте поводы, что бы пользователи приходили к вам с помощью сервиса рассылки пуш уведомлений')
+                            @lang('Создавайте поводы, чтобы пользователи приходили к вам с помощью сервиса рассылки пуш уведомлений')
                         </p>
                         <div class="business-window">
                             <div class="business-window__inner">
