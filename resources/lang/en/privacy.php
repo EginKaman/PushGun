@@ -2,7 +2,7 @@
 
 return [
     'text' => '
-    
+
     <div class="privacy_article">
         <h5>1. Generalities</h5>
         This personal data processing policy is drawn up in accordance with the requirements of Federal law No. 152-FZ of
@@ -12,7 +12,7 @@ return [
         rights and freedoms of individuals and citizens when processing their personal data, including the protection of the
         rights to privacy, personal and family secrets. <br>
         1.2. This Operator`s personal data processing policy (Hereinafter referred to as the policy) applies to all
-        information that the Operator can obtain about website visitors <a href="http://pushgun.eginkaman.com/">http://pushgun.eginkaman.com/</a>.
+        information that the Operator can obtain about website visitors <a href="https://push-gun.net/">https://push-gun.net/</a>.
     </div>
 
     <div class="privacy_article"><h5>2. Basic concepts used in Politics</h5>
@@ -20,7 +20,7 @@ return [
         2.2. Blocking of personal data – temporary termination of processing of personal data (except for cases when
         processing is necessary to clarify personal data); <br>
         2.3. Website – a set of graphic and informational materials, as well as computer programs and databases that ensure
-        their availability on the Internet at a network address <a href="http://pushgun.eginkaman.com/">http://pushgun.eginkaman.com/</a>; <br>
+        their availability on the Internet at a network address <a href="https://push-gun.net/">https://push-gun.net/</a>; <br>
         2.4. Personal data information system — a set of personal data contained in databases, and information technologies
         and technical means that ensure their processing; <br>
         2.5. Depersonalization of personal data — actions that make it impossible to determine whether personal data belongs
@@ -34,8 +34,8 @@ return [
         processing personal data, the composition of personal data to be processed, actions (operations) performed with
         personal data; <br>
         2.8. Personal data – any information related directly or indirectly to a specific or identifiable user of the
-        website <a href="http://pushgun.eginkaman.com/">http://pushgun.eginkaman.com/</a>; <br>
-        2.9. User – any user of the website <a href="http://pushgun.eginkaman.com/">http://pushgun.eginkaman.com/</a>; <br>
+        website <a href="https://push-gun.net/">https://push-gun.net/</a>; <br>
+        2.9. User – any user of the website <a href="https://push-gun.net/">https://push-gun.net/</a>; <br>
         2.10. Provision of personal data – actions aimed at disclosure of personal data to a certain person or a certain
         group of persons; <br>
         2.11. Distribution of personal data – any actions aimed at disclosure of personal data to an indefinite circle of
@@ -71,7 +71,7 @@ return [
 
     <div class="privacy_article"><h5>5. Legal grounds for processing personal data</h5>
         5.1. The operator processes the User`s personal data only if they are filled in and/or sent by the User independently
-        through special forms located on the site <a href="http://pushgun.eginkaman.com/">http://pushgun.eginkaman.com/</a>. By filling out the appropriate forms and/or
+        through special forms located on the site <a href="https://push-gun.net/">https://push-gun.net/</a>. By filling out the appropriate forms and/or
         sending their personal data to the Operator, the User agrees to this policy. <br>
         5.2. The operator processes depersonalized data about the User if this is allowed in the User`s browser settings
         (cookies are saved and JavaScript technology is enabled).</div>
@@ -105,7 +105,7 @@ return [
         contacting the Operator via email lnikitin@example.net. <br>
         8.2. This document will reflect any changes to the Operator`s personal data processing policy. The policy is valid
         indefinitely until it is replaced with a new version. <br>
-        8.3. The current version Of the policy is freely available on the Internet at <a href="http://pushgun.eginkaman.com/ru/privacy">http://pushgun.eginkaman.com/ru/privacy</a>.</div>
-    
+        8.3. The current version Of the policy is freely available on the Internet at <a href="https://push-gun.net/ru/privacy">https://push-gun.net/ru/privacy</a>.</div>
+
     ',
 ];
