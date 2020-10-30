@@ -28,6 +28,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::get('/', 'IndexController')->name('index')->middleware(['guest']);
     Route::get('/privacy', [\App\Http\Controllers\PageController::class, 'privacy'])->name('page.privacy');
+    Route::get('/blog', [\App\Http\Controllers\PageController::class, 'blog'])->name('page.blog');
     Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);
