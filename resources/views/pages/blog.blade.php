@@ -6,7 +6,7 @@
     <div id="app">
         <section class="blog-offer">
             <div class="container">
-                <h1>Блог</h1>
+                <h1>@lang('Блог')</h1>
                 <div class="blog-offer__wrapper">
                     <div class="blog__wrapper">
                         <div class="blog__item">

@@ -59,7 +59,7 @@
                         <li><a href="#aboutus">@lang('О нас')</a></li>
                         <li><a href="#price">@lang('Цена')</a></li>
                         <li><a href="#faq">FAQ</a></li>
-                        <li><a href="{{ route('page.blog') }}">Блог</a></li>
+                        <li><a href="{{ route('page.blog') }}">@lang('Блог')</a></li>
                     </ul>
                     <div class="lang-toggle">
                         <span class="lang-current">{{ LaravelLocalization::getCurrentLocaleNative() }}</span>
