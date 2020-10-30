@@ -15,6 +15,7 @@
     <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-16x16.png') }}" sizes="16x16" data-mce-href="{{ asset('images/favicon/favicon-16x16.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-192x192.png') }}" sizes="192x192" data-mce-href="{{ asset('images/favicon/android-chrome-192x192.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-512x512.png') }}" sizes="512x512" data-mce-href="{{ asset('images/favicon/android-chrome-512x512.png') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Chrome, Firefox OS and Opera -->

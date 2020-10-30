@@ -496,10 +496,7 @@ input {
     font-size: 16px;
 }
 
-.container {
-    width: 1200px;
-    margin: 0 auto;
-}
+
 
 .bg {
     position: absolute;
@@ -1778,11 +1775,6 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
-    .container {
-        max-width: 100%;
-        margin: 0px 20px;
-    }
-
     .btn {
         display: block;
         margin: 0 auto;
