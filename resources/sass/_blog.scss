@@ -1,18 +1,22 @@
-.blog-offer__wrapper{
+.blog-offer__wrapper {
     margin-top: 25px;
+    overflow: hidden;
 }
 
 
 .blog-offer {
-    height: 600px;
+
     position: relative;
+
     h1 {
         padding-top: 30px;
     }
+
     .blog__wrapper {
         display: flex;
         width: 100%;
         height: 400px;
+
         .blog__item {
             background: url(../images/testing.png);
             background-size: cover;
@@ -20,7 +24,8 @@
             position: relative;
             width: 100%;
             margin: 1px 0px 1px 1px;
-            &::before{
+
+            &::before {
                 content: '';
                 position: absolute;
                 width: 100%;
@@ -29,10 +34,12 @@
                 top: 0;
                 background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.65) 100%);
             }
+
             .section-blog__content {
                 position: absolute;
                 bottom: 15px;
                 display: flex;
+
                 .section-item__title {
                     p {
                         color: #fff;
@@ -59,13 +66,89 @@
         }
     }
 }
-.blog-offeringer{
+
+.blog-offeringer {
     width: 100%;
-    overflow: hidden;
-    .blog__item{
+    .blog__item {
         height: 168px;
     }
 }
-.blog-wrapp-wrapp{
+
+.blog-wrapp-wrapp {
     display: flex;
+}
+
+.blog-offer__wrapper {
+    margin-top: 25px;
+
+    &:nth-child(4) {
+        .blog__wrapper {
+            flex-wrap: wrap;
+            height: auto;
+        }
+
+        .blog__item {
+            margin-top: 15px;
+            width: 46.6%;
+            height: 250px;
+        }
+    }
+}
+
+.blog-dots {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+
+    .pp {
+        margin-left: 15px;
+
+        &:nth-child(4) {
+            margin-right: 15px;
+        }
+    }
+
+    a {
+        color: #000;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .blog-wrapp-wrapp {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .blog-offer .blog__wrapper .blog__item {
+        height: 198px;
+    }
+
+    .blog-offer__wrapper:nth-child(2) {
+        .blog__item {
+            height: 198px;
+        }
+
+        .blog__wrapper {
+            height: auto;
+            display: block;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .blog-offer h2,
+    .blog-offer h1 {
+        text-align: center;
+    }
+
+    .blog-offer__wrapper:nth-child(4) .blog__item {
+        width: 100%;
+    }
+
+    .blog-offer__wrapper:nth-child(4) .blog__wrapper {
+        justify-content: center;
+    }
 }

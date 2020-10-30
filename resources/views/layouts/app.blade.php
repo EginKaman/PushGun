@@ -2,7 +2,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -21,7 +20,9 @@
           data-mce-href="{{ asset('images/favicon/android-chrome-192x192.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-512x512.png') }}" sizes="512x512"
           data-mce-href="{{ asset('images/favicon/android-chrome-512x512.png') }}">
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <meta name="theme-color" content="#ffffff">
+    
 
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#4285f4">
@@ -35,6 +36,8 @@
 
     <!-- Яндекс.Браузер -->
     <meta name="viewport" content="ya-title=#4e69a2,ya-dock=fade">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
