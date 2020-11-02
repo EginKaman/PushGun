@@ -623,11 +623,11 @@
     </section>
 
     <section class="section3">
-        <div class="papers-images__wrapper">
-            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
-            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
-            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
-        </div>
+{{--        <div class="papers-images__wrapper">--}}
+{{--            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">--}}
+{{--            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">--}}
+{{--            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">--}}
+{{--        </div>--}}
         <div class="container">
             <h2 class="section3__title">@lang('Зарегистрируйтесь прямо сейчас')</h2>
             <h3 class="section3__descr">
