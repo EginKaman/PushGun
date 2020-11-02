@@ -7,26 +7,20 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Manual extends Resource
+class Blog extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Manual::class;
-
-    /**
-     * The logical group associated with the resource.
-     *
-     * @var string
-     */
-    public static $group = 'База знаний';
+    public static $model = \App\Blog::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -54,8 +48,8 @@ class Manual extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            BelongsTo::make('Category', 'category', Category::class)->sortable(),
             Slug::make('Slug')->from('Title')->separator('-')->hideFromIndex(),
+            Image::make('Image')->nullable(),
             Text::make('Title')->sortable(),
             NovaEditorJs::make('Text'),
             DateTime::make(__('Deleted at'), 'deleted_at')

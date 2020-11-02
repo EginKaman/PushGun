@@ -578,16 +578,16 @@ input {
         position: absolute;
         display: flex;
         align-items: flex-end;
-        .text { 
-            flex: none; 
+        .text {
+            flex: none;
             margin-right: 10px;
-           
+
         }
-        .svg { 
-            flex: none; 
-            width: 60px; 
+        .svg {
+            flex: none;
+            width: 60px;
             svg {
-                
+
             }
         }
     }
@@ -1015,7 +1015,7 @@ input {
 
 
 .section8 {
-    padding: 80px 0 0 0; 
+    padding: 80px 0 0 0;
     &__wrap {
 
         max-width: 700px;
@@ -1688,6 +1688,7 @@ body {
 .section-item__title {
     display: block;
     cursor: pointer;
+    text-decoration: none;
 
     span {
         margin-bottom: 15px;

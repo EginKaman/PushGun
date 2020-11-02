@@ -11,10 +11,6 @@ class PageController extends Controller
         return view('pages.privacy');
     }
 
-    public function blog()
-    {
-        return view('pages.blog');
-    }
     public function test()
     {
         return view('pages.test');
