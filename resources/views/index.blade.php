@@ -398,7 +398,7 @@
                         <p>@lang('Посетитель купил смартфон - через несколько дней отправляем')</p>
                         <div class="business-window">
                             <div class="business-window__inner">
-                                <img src="{{ asset('images/business/3.svg') }}" alt="image">
+                                <img src="{{ asset('images/business/2.svg') }}" alt="image">
                                 <h5>@lang('Специальное предложение на защитные стекла для смартфона')</h5>
                             </div>
                             <a href="#" target="_blank">@lang('Посмотреть предложение')</a>
