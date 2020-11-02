@@ -692,6 +692,7 @@
             </div>
         </div>
     </section>
+    @if($blogs->count())
     <section class="section-blog">
         <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
         <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
@@ -724,6 +725,7 @@
             </div>
         </div>
     </section>
+    @endif
     <section class="section6" id="faq">
         <div class="container">
             <h2 class="section6__title">FAQ</h2>
