@@ -15,5 +15,9 @@ class PageController extends Controller
     {
         return view('pages.blog');
     }
+    public function test()
+    {
+        return view('pages.test');
+    }
 
 }
