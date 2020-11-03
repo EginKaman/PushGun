@@ -536,7 +536,6 @@
             <div class="papers-images__wrapper">
                 <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
                 <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
-                <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
             </div>
             <div class="container">
                 <h2 class="section3__title">@lang('Зарегистрируйтесь прямо сейчас')</h2>

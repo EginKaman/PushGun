@@ -586,9 +586,6 @@ input {
         .svg { 
             flex: none; 
             width: 60px; 
-            svg {
-                
-            }
         }
     }
 }
@@ -692,6 +689,7 @@ input {
 }
 
 .section3 {
+    position: relative;
     text-align: center;
     padding-bottom: 110px;
     padding-top: 0;
@@ -787,6 +785,35 @@ input {
 
 .section3__form button:hover {
     background: #3B8378;
+}
+
+.papers-images__wrapper{
+    top: -58px;
+    position: absolute;
+    display: flex;
+    img{
+        &:nth-child(1){
+            margin-left: 90px;
+            width: 47px;
+            height: 160px;
+        }
+        &:nth-child(2){
+            margin-left: 180px;
+            display: block;
+        }
+    }
+}
+
+
+.section3::before{
+    content: '';
+    position: absolute;
+    left: -200px;
+    top: 120px;
+    width: 160%;
+    height: 1300px;
+    background: #fff;
+    transform: rotate(-8deg);
 }
 
 .section4 {
@@ -1722,7 +1749,7 @@ body {
     .wrp:nth-child(2) {
         width: 83px;
         transform: translate(-100%, -50%);
-        right: 10%;
+        right: 7%;
         top: 71%;
     }
 
@@ -1767,7 +1794,6 @@ body {
     .section-blog-block__wrapper {
         padding: 32px 32px 78px 32px;
         margin-top: 60px;
-        width: 100%;
         background: #fff;
         height: auto;
         display: flex;
@@ -1806,6 +1832,9 @@ body {
     .section-blog .section-blog__item:first-child img {
         width: 100%;
     }
+    .section3::before{
+        height: 1800px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -1815,5 +1844,11 @@ body {
 
     .section-blog .section-blog-block__wrapper .section-item__title p {
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 375px){
+    .business-items{
+        flex-wrap: wrap;
     }
 }
