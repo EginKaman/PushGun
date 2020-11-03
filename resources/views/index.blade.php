@@ -692,41 +692,41 @@
         </div>
     </section>
     @if($blogs->count())
-        <section class="section-blog">
-            <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
-            <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
-            <div class="container">
-                <h2 class="section-blog-title">@lang('Блог')</h2>
-                <div class="section-blog-block__wrapper">
-                    <div class="section-blog__item">
-                        <img src="{{ Storage::url($blogs->first()->image) }}" alt="{{ $blogs->first()->title }}">
-                        <a class="section-item__title" href="{{ route('blog.show', $blogs->first()) }}">
-                            <span>{{ $blogs->first()->created_at->format('m.d.Y') }}</span>
-                            <p>{{ $blogs->first()->title }}</p>
-                        </a>
+    <section class="section-blog">
+        <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
+        <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
+        <div class="container">
+            <h2 class="section-blog-title">@lang('Блог')</h2>
+            <div class="section-blog-block__wrapper">
+                <div class="section-blog__item">
+                    <img src="{{ Storage::url($blogs->first()->image) }}" alt="{{ $blogs->first()->title }}">
+                    <a class="section-item__title" href="{{ route('blog.show', $blogs->first()) }}">
+                        <span>{{ $blogs->first()->created_at->format('m.d.Y') }}</span>
+                        <p>{{ $blogs->first()->title }}</p>
+                    </a>
+                </div>
+                <div class="section-blog__item">
+                    <div class="section-blog-content__wrapper">
+                        @if($loop->first)
+                            @continue
+                        @endif
+                        @foreach($blogs as $blog)
+                            <div class="section-blog__content">
+                                <img src="{{ asset('images/testing.png') }}" alt="{{ $blog->title }}">
+                                <a class="section-item__title" href="{{ route('blog.show', $blog) }}">
+                                    <span>{{ $blog->created_at->format('m.d.Y') }}</span>
+                                    <p>{{ $blog->title }}</p>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="section-blog__item">
-                        <div class="section-blog-content__wrapper">
-                            @foreach($blogs as $blog)
-                                @if($loop->first)
-                                    @continue
-                                @endif
-                                <div class="section-blog__content">
-                                    <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}">
-                                    <a class="section-item__title" href="{{ route('blog.show', $blog) }}">
-                                        <span>{{ $blog->created_at->format('m.d.Y') }}</span>
-                                        <p>{{ $blog->title }}</p>
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-                        <a href="{{ route('blog.index') }}">
-                            <button class="btn">Все блоги</button>
-                        </a>
-                    </div>
+                    <a href="{{ route('blog.index') }}">
+                        <button class="btn">Все блоги</button>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     @endif
     <section class="section6" id="faq">
         <div class="container">

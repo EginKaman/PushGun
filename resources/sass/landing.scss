@@ -1783,8 +1783,9 @@ body {
         }
 
         img {
-            width: 47px;
-            height: 47px;
+            width: 500px;
+            object-fit: cover;
+            height: 215px;
             border-radius: 15px;
         }
     }
