@@ -53,6 +53,7 @@
                         <div class="blog__wrapper">
                             @foreach($blogs as $blog)
                                 <div class="blog__item">
+                                    <img src="{{ Storage::url($blog->image) }}" alt="">
                                     <div class="section-blog__content">
                                         <a class="section-item__title" href="{{ route('blog.show', $blog) }}">
                                             <p>{{ $blog->title }}</p>
