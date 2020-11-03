@@ -4,7 +4,7 @@
 
 <main class="main">
     <section class="item-blog">
-    <img src="{{ asset('images/testing.png') }}" alt="">
+        <img src="{{ Storage::url($blog->image) }}" alt="">
         <div class="container">
             <div class="item-blog__offer">
                 <div class="section-blog__content">
