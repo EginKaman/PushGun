@@ -707,10 +707,10 @@
                 </div>
                 <div class="section-blog__item">
                     <div class="section-blog-content__wrapper">
-                        @if($loop->first)
-                            @continue
-                        @endif
                         @foreach($blogs as $blog)
+                            @if($loop->first)
+                                @continue
+                            @endif
                             <div class="section-blog__content">
                                 <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}">
                                 <a class="section-item__title" href="{{ route('blog.show', $blog) }}">
