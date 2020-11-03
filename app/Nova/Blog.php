@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Advoor\NovaEditorJs\NovaEditorJs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -49,9 +50,15 @@ class Blog extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Slug::make('Slug')->from('Title')->separator('-')->hideFromIndex(),
-            Image::make('Image')->nullable(),
-            Text::make('Title')->sortable(),
-            NovaEditorJs::make('Text'),
+            Image::make('Image')
+                ->path('blogs')
+                ->nullable(),
+            Text::make('Title')
+                ->displayUsing(function ($value) {
+                    return Str::limit($value, 70);
+                })
+                ->sortable(),
+            NovaEditorJs::make('Text')->hideFromIndex(),
             DateTime::make(__('Deleted at'), 'deleted_at')
                 ->onlyOnDetail()
                 ->rules('nullable', 'date'),
