@@ -1,5 +1,5 @@
 .item-blog {
-    background: url(../images/testing.png);
+    overflow: hidden;
     background-size: cover;
     position: relative;
     &::before{
@@ -11,6 +11,11 @@
         top: 0;
         left: 0;
         background: #00000055;
+    }
+    img{
+        position: absolute;
+        width: 100%;
+        object-fit: cover;
     }
     .item-blog__offer {
         z-index: 2;
