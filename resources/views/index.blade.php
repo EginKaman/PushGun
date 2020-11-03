@@ -622,89 +622,94 @@
         </div>
     </section>
 
-        <section class="section3">
-            <div class="papers-images__wrapper">
-                <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
-                <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
+    <section class="section3">
+        <div class="papers-images__wrapper">
+            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
+            <img src="{{ asset('images/business/paper-planes.svg') }}" alt="image">
+        </div>
+        <div class="container">
+            <h2 class="section3__title">@lang('Зарегистрируйтесь прямо сейчас')</h2>
+            <h3 class="section3__descr">
+                @lang('Push\'ки могут уже лететь.')
+                <span>@lang('Тестовый пакет до 1000 подписчиков бесплатно.')</span>
+            </h3>
+            <register-now-form action="{{ route('register') }}"></register-now-form>
+        </div>
+    </section>
+    <section class="section4">
+        <div class="container">
+            <div class="section4__wrapper">
+                <h2 class="section4__wrapper__title">@lang('С нами уже'):</h2>
+                <p class="section4__wrapper__count">892</p>
+                <h2 class="section4__wrapper__title">@lang('клиента')</h2>
             </div>
-            <div class="container">
-                <h2 class="section3__title">@lang('Зарегистрируйтесь прямо сейчас')</h2>
-                <h3 class="section3__descr">
-                    @lang('Push\'ки могут уже лететь.')
-                    <span>@lang('Тестовый пакет до 1000 подписчиков бесплатно.')</span>
-                </h3>
-                <register-now-form action="{{ route('register') }}"></register-now-form>
-            </div>
-        </section>
-        <section class="section4">
-            <div class="container">
-                <div class="section4__wrapper">
-                    <h2 class="section4__wrapper__title">@lang('С нами уже'):</h2>
-                    <p class="section4__wrapper__count">892</p>
-                    <h2 class="section4__wrapper__title">@lang('клиента')</h2>
+        </div>
+    </section>
+    <section class="section5">
+        <div class="container">
+            <h2 class="section5__title">@lang('Наши партнеры')</h2>
+            <div class="section5__wrapper">
+                <div
+                    class="first section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_br section5__wrapper__item_mbr section5__wrapper__item_mbb">
+                    <picture>
+                        <source srcset="{{ asset('images/tinkoff.png') }}" type="image/webp">
+                        <img src="{{ asset('images/tinkoff.png') }}" alt="" class="section5__wrapper__item__logo">
+                    </picture>
+                </div>
+                <div
+                    class="second section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_br section5__wrapper__item_mbb">
+                    <picture>
+                        <source srcset="{{ asset('images/kaspersky.png') }}" type="image/webp">
+                        <img src="{{ asset('images/kaspersky.png') }}" alt="" class="section5__wrapper__item__logo">
+                    </picture>
+                </div>
+                <div
+                    class="thirth section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_mbr section5__wrapper__item_mbb">
+                    <picture>
+                        <source srcset="{{ asset('images/afisha.png') }}" type="image/webp">
+                        <img src="{{ asset('images/afisha.png') }}" alt="" class="section5__wrapper__item__logo">
+                    </picture>
+                </div>
+                <div class="fourth section5__wrapper__item section5__wrapper__item_br section5__wrapper__item_mbb">
+                    <picture>
+                        <source srcset="{{ asset('images/daily.png') }}" type="image/webp">
+                        <img src="{{ asset('images/daily.png') }}" alt="" class="section5__wrapper__item__logo">
+                    </picture>
+                </div>
+                <div class="five section5__wrapper__item section5__wrapper__item_br section5__wrapper__item_mbr">
+                    <picture>
+                        <source srcset="{{ asset('images/mtc.png') }}" type="image/webp">
+                        <img src="{{ asset('images/mtc.png') }}" alt="" class="section5__wrapper__item__logo">
+                    </picture>
+                </div>
+                <div class="six section5__wrapper__item">
+                    <picture>
+                        <source srcset="{{ asset('images/eldorado.png') }}" type="image/webp">
+                        <img src="{{ asset('images/eldorado.png') }}" alt="" class="section5__wrapper__item__logo">
+                    </picture>
                 </div>
             </div>
-        </section>
-        <section class="section5">
-            <div class="container">
-                <h2 class="section5__title">@lang('Наши партнеры')</h2>
-                <div class="section5__wrapper">
-                    <div class="first section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_br section5__wrapper__item_mbr section5__wrapper__item_mbb">
-                        <picture>
-                            <source srcset="{{ asset('images/tinkoff.png') }}" type="image/webp">
-                            <img src="{{ asset('images/tinkoff.png') }}" alt="" class="section5__wrapper__item__logo">
-                        </picture>
-                    </div>
-                    <div class="second section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_br section5__wrapper__item_mbb">
-                        <picture>
-                            <source srcset="{{ asset('images/kaspersky.png') }}" type="image/webp">
-                            <img src="{{ asset('images/kaspersky.png') }}" alt="" class="section5__wrapper__item__logo">
-                        </picture>
-                    </div>
-                    <div class="thirth section5__wrapper__item section5__wrapper__item_bb section5__wrapper__item_mbr section5__wrapper__item_mbb">
-                        <picture>
-                            <source srcset="{{ asset('images/afisha.png') }}" type="image/webp">
-                            <img src="{{ asset('images/afisha.png') }}" alt="" class="section5__wrapper__item__logo">
-                        </picture>
-                    </div>
-                    <div class="fourth section5__wrapper__item section5__wrapper__item_br section5__wrapper__item_mbb">
-                        <picture>
-                            <source srcset="{{ asset('images/daily.png') }}" type="image/webp">
-                            <img src="{{ asset('images/daily.png') }}" alt="" class="section5__wrapper__item__logo">
-                        </picture>
-                    </div>
-                    <div class="five section5__wrapper__item section5__wrapper__item_br section5__wrapper__item_mbr">
-                        <picture>
-                            <source srcset="{{ asset('images/mtc.png') }}" type="image/webp">
-                            <img src="{{ asset('images/mtc.png') }}" alt="" class="section5__wrapper__item__logo">
-                        </picture>
-                    </div>
-                    <div class="six section5__wrapper__item">
-                        <picture>
-                            <source srcset="{{ asset('images/eldorado.png') }}" type="image/webp">
-                            <img src="{{ asset('images/eldorado.png') }}" alt="" class="section5__wrapper__item__logo">
-                        </picture>
-                    </div>
+        </div>
+    </section>
+    @if($blogs->count())
+    <section class="section-blog">
+        <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
+        <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
+        <div class="container">
+            <h2 class="section-blog-title">@lang('Блог')</h2>
+            <div class="section-blog-block__wrapper">
+                <div class="section-blog__item">
+                    <img src="{{ Storage::url($blogs->first()->image) }}" alt="{{ $blogs->first()->title }}">
+                    <a class="section-item__title" href="{{ route('blog.show', $blogs->first()) }}">
+                        <span>{{ $blogs->first()->created_at->format('m.d.Y') }}</span>
+                        <p>{{ $blogs->first()->title }}</p>
+                    </a>
                 </div>
-            </div>
-        </section>
-        <section class="section-blog">
-            <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
-            <img class="wrp" src="{{ asset('images/plane.svg') }}" alt="">
-            <div class="container">
-                <h2 class="section-blog-title">Блог</h2>
-                <div class="section-blog-block__wrapper">
-                    <div class="section-blog__item">
-                        <img src="{{ asset('images/image15.png') }}" alt="">
-                        <a class="section-item__title">
-                            <span>10.12.2020</span>
-                            <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
-                        </a>
-                    </div>
-                    <div class="section-blog__item">
-                        <div class="section-blog-content__wrapper">
+                <div class="section-blog__item">
+                    <div class="section-blog-content__wrapper">
+                        @foreach($blogs as $blog)
                             <div class="section-blog__content">
-                                <img src="{{ asset('images/image14.png') }}" alt="{{ $blog->title }}">
+                                <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}">
                                 <a class="section-item__title" href="{{ route('blog.show', $blog) }}">
                                     <span>{{ $blog->created_at->format('m.d.Y') }}</span>
                                     <p>{{ $blog->title }}</p>
