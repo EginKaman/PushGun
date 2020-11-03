@@ -10,6 +10,7 @@
                 <div class="blog-offer__wrapper">
                     <div class="blog__wrapper">
                         <div class="blog__item">
+                            <img src="{{ asset('images/testing.png')}}" alt="">
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -21,6 +22,7 @@
                         </div>
                         <div class="blog-offeringer">
                             <div class="blog__item">
+                                <img src="{{ asset('images/testing.png')}}" alt="">
                                 <div class="section-blog__content">
                                     <a class="section-item__title">
                                         <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -32,6 +34,8 @@
                             </div>
                             <div class="blog-wrapp-wrapp">
                                 <div class="blog__item">
+                                <img src="{{ asset('images/testing.png')}}" alt="">
+
                                     <div class="section-blog__content">
                                         <a class="section-item__title">
                                             <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -39,6 +43,8 @@
                                     </div>
                                 </div>
                                 <div class="blog__item">
+                                <img src="{{ asset('images/testing.png')}}" alt="">
+
                                     <div class="section-blog__content">
                                         <a class="section-item__title">
                                             <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -53,6 +59,8 @@
                 <div class="blog-offer__wrapper">
                     <div class="blog__wrapper">
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -63,6 +71,8 @@
                             </div>
                         </div>
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -73,6 +83,8 @@
                             </div>
                         </div>
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -83,6 +95,8 @@
                             </div>
                         </div>
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -93,6 +107,8 @@
                             </div>
                         </div>
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -103,6 +119,8 @@
                             </div>
                         </div>
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -113,6 +131,8 @@
                             </div>
                         </div>
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
@@ -123,6 +143,8 @@
                             </div>
                         </div>
                         <div class="blog__item">
+                        <img src="{{ asset('images/testing.png')}}" alt="">
+
                             <div class="section-blog__content">
                                 <a class="section-item__title">
                                     <p>Lorem ipsum dolor sit amet cosectetur adipiscing elit</p>
