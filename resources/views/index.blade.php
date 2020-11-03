@@ -712,7 +712,7 @@
                         @endif
                         @foreach($blogs as $blog)
                             <div class="section-blog__content">
-                                <img src="{{ asset('images/testing.png') }}" alt="{{ $blog->title }}">
+                                <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}">
                                 <a class="section-item__title" href="{{ route('blog.show', $blog) }}">
                                     <span>{{ $blog->created_at->format('m.d.Y') }}</span>
                                     <p>{{ $blog->title }}</p>
