@@ -16,6 +16,7 @@
                     </p>
                     @endif
 
+                    
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 

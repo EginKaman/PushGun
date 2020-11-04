@@ -92,6 +92,7 @@ export default {
 }
 
 .row a {
+    
     display: flex;
     cursor: pointer;
     justify-content: flex-start;
