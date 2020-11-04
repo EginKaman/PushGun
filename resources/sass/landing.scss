@@ -1807,15 +1807,13 @@ body {
     }
 }
 
+
+
 @media screen and (max-width: 1024px) {
     .btn {
         display: block;
         margin: 0 auto;
         margin-top: 32px;
-    }
-
-    .section-blog .section-blog-block__wrapper .section-blog__item:first-child .section-item__title {
-        display: none;
     }
 
     .section-blog .section-blog__item:last-child {
