@@ -42,7 +42,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         });
         Route::middleware(['verified'])->group(function () {
             Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
-            Route::put('/password', 'PasswordController')->name('password.update');
+            Route::put('/password', 'PasswordController')->name('account.password');
             Route::resource('site', 'SiteController');
             Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
             Route::post('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'store'])->name('complete.store');

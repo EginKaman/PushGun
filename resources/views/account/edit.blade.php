@@ -146,7 +146,7 @@
                     </div>
                     <div class="setgen__info">
 
-                        <form action="{{ route('password.update') }}" method="post" class="set-form">
+                        <form action="{{ route('account.password') }}" method="post" class="set-form">
                             @csrf
                             @method('PUT')
                             <label for="oldPass" class="set-form__label oldPass">
