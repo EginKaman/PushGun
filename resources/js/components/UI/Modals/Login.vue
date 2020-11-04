@@ -41,7 +41,6 @@
 
 <script>
 export default {
-    
     name: "Login",
     props: {
         action: {
