@@ -11,7 +11,9 @@
                     <input type="password" v-model="password_confirmation" name="password_confirmation"
                            :placeholder="$t('Повторите пароль') + '*'"
                            required>
-                    <button type="submit" class="header-landing__wrapper__links_reg">{{ $t('Зарегистрироваться') }}
+                    <button type="submit" :disabled="is_submitted"
+                            class="header-landing__wrapper__links_reg">
+                        {{ $t('Зарегистрироваться') }}
                     </button>
                 </div>
             </form>
@@ -35,6 +37,7 @@ export default {
     },
     data() {
         return {
+            is_submitted: false,
             name: '',
             email: '',
             password: '',
@@ -46,6 +49,7 @@ export default {
     },
     methods: {
         submit() {
+            this.is_submitted = true;
             axios.post(this.action, {
                 name: this.name,
                 email: this.email,
@@ -66,6 +70,7 @@ export default {
                     text: errors,
                     icon: "error",
                 });
+                this.is_submitted = false;
             });
         }
     }
