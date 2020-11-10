@@ -1,44 +1,24 @@
 <template>
-    <div class="blocker current">
-        <div id="enter" class="modal" style="display: inline-block;">
-            <h2>{{ $t("Вход") }}</h2>
-            <form :action="action" method="POST" @submit.prevent="submit">
-                <div class="modal__inner">
-                    <input
-                        type="email"
-                        v-model="email"
-                        name="email"
-                        placeholder="E-mail"
-                        required
-                    />
-                    <input
-                        type="password"
-                        v-model="password"
-                        name="password"
-                        :placeholder="$t('Пароль')"
-                        required
-                    />
-                    <div class="row">
-                        <div class="row__button">
-                            <button
-                                type="submit"
-                                class="header-landing__wrapper__links_reg"
-                            >
-                                {{ $t("Войти") }}
-                            </button>
-                        </div>
-                        <a href="password/reset">Забыли пароль?</a>
+<div class="blocker current">
+    <div id="enter" class="modal" style="display: inline-block;">
+        <h2>{{ $t("Вход") }}</h2>
+        <form :action="action" method="POST" @submit.prevent="submit">
+            <div class="modal__inner">
+                <input type="email" v-model="email" name="email" placeholder="E-mail" required />
+                <input type="password" v-model="password" name="password" :placeholder="$t('Пароль')" required />
+                <div class="row">
+                    <div class="row__button">
+                        <button type="submit" class="header-landing__wrapper__links_reg">
+                            {{ $t("Войти") }}
+                        </button>
                     </div>
+                    <a href="password/reset">Забыли пароль?</a>
                 </div>
-            </form>
-            <a
-                href="#close-modal"
-                @click.prevent="$emit('close')"
-                class="close-modal"
-                >Close</a
-            >
-        </div>
+            </div>
+        </form>
+        <a href="#close-modal" @click.prevent="$emit('close')" class="close-modal">Close</a>
     </div>
+</div>
 </template>
 
 <script>
@@ -84,6 +64,7 @@ export default {
     }
 };
 </script>
+
 <style>
 .row {
     display: grid;
@@ -99,11 +80,13 @@ export default {
     align-items: center;
     color: #282828;
 }
-@media (min-width:481px) and (max-width:639px) {
+
+@media (min-width: 481px) and (max-width: 639px) {
     .row a {
         justify-content: flex-end;
     }
 }
+
 @media (max-width: 480px) {
     .row {
         display: flex;
@@ -111,13 +94,15 @@ export default {
         align-content: center;
         flex-direction: column;
     }
+
     .row__button {
-        display:flex;
+        display: flex;
         justify-content: center;
     }
+
     .row a {
         justify-content: center;
-        margin-top:10px;
+        margin-top: 10px;
     }
 }
 </style>
