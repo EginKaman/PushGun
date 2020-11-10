@@ -86,3 +86,24 @@
         }
     }
 }
+
+
+@media (max-width:480px) {
+    .card {
+        input {
+            width:80vw;
+        }
+        p {
+            font-size:14px;
+        }
+        &-body {
+            form {
+                button {
+                    font-size:14px;
+                    width:80vw;
+                    padding:15px 35px;
+                }
+            }
+        }
+    }
+}

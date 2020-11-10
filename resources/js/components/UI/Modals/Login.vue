@@ -19,12 +19,14 @@
                         required
                     />
                     <div class="row">
-                        <button
-                            type="submit"
-                            class="header-landing__wrapper__links_reg"
-                        >
-                            {{ $t("Войти") }}
-                        </button>
+                        <div class="row__button">
+                            <button
+                                type="submit"
+                                class="header-landing__wrapper__links_reg"
+                            >
+                                {{ $t("Войти") }}
+                            </button>
+                        </div>
                         <a href="password/reset">Забыли пароль?</a>
                     </div>
                 </div>
@@ -78,7 +80,7 @@ export default {
                         icon: "error"
                     });
                 });
-        },
+        }
     }
 };
 </script>
@@ -90,12 +92,32 @@ export default {
 }
 
 .row a {
-
     display: flex;
     cursor: pointer;
     justify-content: flex-start;
     text-decoration: none;
     align-items: center;
-    color:#282828;
+    color: #282828;
+}
+@media (min-width:481px) and (max-width:639px) {
+    .row a {
+        justify-content: flex-end;
+    }
+}
+@media (max-width: 480px) {
+    .row {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
+    .row__button {
+        display:flex;
+        justify-content: center;
+    }
+    .row a {
+        justify-content: center;
+        margin-top:10px;
+    }
 }
 </style>
