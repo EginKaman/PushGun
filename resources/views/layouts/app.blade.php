@@ -120,7 +120,7 @@
                             <p>12.11.2020<p>
                             <p>Статистика последних рассылок</p>
                         </a>
-                        <a class="notif-btn">Смотреть все</a>
+                        <a href="{{ route('notifications.index') }}" class="notif-btn">Смотреть все</a>
                     </div>
                     <div style="display: none;" class="notification__none">
                         <p>Уведомлений нет</p>
