@@ -721,7 +721,7 @@
                             @endforeach
                         </div>
                         <a href="{{ route('blog.index') }}">
-                            <button class="btn">Все блоги</button>
+                            <button class="btn">Больше статей</button>
                         </a>
                     </div>
                 </div>

@@ -48,7 +48,7 @@
                         {{--                            </div>--}}
                         {{--                        </div>--}}
                     </div>
-                    <h2>Все новости</h2>
+                    <h2>Все статьи</h2>
                     <div class="blog-offer__wrapper">
                         <div class="blog__wrapper">
                             @foreach($blogs as $blog)
