@@ -20,7 +20,14 @@ $(document).ready(function () {
             $('.account__popup').fadeToggle(300);
             $('.header__popup').fadeOut(300);
 		});
+        
+        $('.bell').click(function (e) {
+            e.preventDefault();
+            $('.notification').fadeToggle(300);
+        });
+        
 		
+
         $('.header__burger').click(function () {
             $('.header__popup').fadeToggle(300);
             $('body').toggleClass('fixer');
@@ -191,6 +198,11 @@ $(document).ready(function () {
         $(document).click(function (e) {
             if (!$(e.target).closest('#filter, .header__account, .datepicker--cell, .datepicker, .datepicker--nav, .datepicker--nav-action, .datepicker--nav-title, .filter__popup, .account__popup').length) {
                 $(".filter__popup, .account__popup").fadeOut(250);
+			}
+        });
+        $(document).click(function (e) {
+            if (!$(e.target).closest('#filter, .bell').length) {
+                $(".notification").fadeOut(250);
 			}
 		});
 		
