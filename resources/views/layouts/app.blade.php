@@ -106,21 +106,26 @@
                     @endauth
                 </div>
                 @auth
+                <div class="notification-modal">
+                    <div class="notification-modal-wrapper">
+                    </div>
+                </div>
                 <div class="notification">
                     <div class="notification__top">
-                        <a class="notif-btn">Новые уведомления</a>
+                        <a>Новые уведомления</a>
+                        <span class="close-notif">X</span>
                     </div>
                     <div class="notification__amount__left">
                         <a class="notification__item active">
                             <p>12.11.2020<p>
-                            <p>Статистика последних рассылок</p>
+                            <p>Статистика последних рассылок Статистика последних рассылокСтатистика последних рассылокСтатистика последних рассылокСтатистика последних рассылокСтатистика последних рассылокСтатистика последних рассылок</p>
                             <span>новое</span>
                         </a>
                         <a class="notification__item">
                             <p>12.11.2020<p>
                             <p>Статистика последних рассылок</p>
                         </a>
-                        <a href="{{ route('notifications.index') }}" class="notif-btn">Смотреть все</a>
+                        <a class="notif-btn">Смотреть все</a>
                     </div>
                     <div style="display: none;" class="notification__none">
                         <p>Уведомлений нет</p>
