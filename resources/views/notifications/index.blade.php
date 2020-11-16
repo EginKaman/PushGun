@@ -3,16 +3,20 @@
 @push('scripts')
 @endpush
 @section('content')
-<main class="main single-mail">
-    <section class="notifications-page">
-        <div class="container">
-            <h2>Уведомления</h2>
-            <div class="notifications-list">
-                <a class="active"><p>Ежемесячная подписка - 30 000 подписчиков</p><span>новое</span></a>
-                <a class="active"><p>Статистика последних рассылок</p><span>новое</span></a>
-                <a><p>Ежемесячная подписка - 30 000 подписчиков</p><span>новое</span></a>
+    <main class="main single-mail">
+        <section class="notifications-page">
+            <div class="container">
+                <h2>Уведомления</h2>
+                <div class="notifications-list">
+                    @foreach($system_messages as $message)
+                        <a class="active"><p>{{ $message->title }}</p>
+                            @if($message->created_at->diffInDays(now()) < 1)
+                                <span>новое</span>
+                            @endif
+                        </a>
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 @endsection
