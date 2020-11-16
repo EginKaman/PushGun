@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('system_messages', SystemMessage::limit(5)->latest()->get());
+//        View::share('system_messages', SystemMessage::limit(5)->latest()->get());
         Paginator::defaultView('pagination::default');
     }
 }
