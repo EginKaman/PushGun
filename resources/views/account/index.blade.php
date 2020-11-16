@@ -3,6 +3,14 @@
 @section('content')
     <main class="main">
         <div class="container">
+            <div class="auth-confirm">
+                <p>E-Mail успешно подтвержден!</p>
+            </div>
+            <script>
+                setTimeout(() => {
+                    let closeAuth = document.querySelector('.auth-confirm').remove()
+                }, 4000);
+            </script>
             <section class="general">
                 <div class="general__title">
                     <h1 class="title">@lang('Web Push рассылки')</h1>
