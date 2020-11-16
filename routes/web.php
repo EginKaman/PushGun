@@ -42,7 +42,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         });
         Route::middleware(['verified'])->group(function () {
             Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
-            Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
+//            Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
             Route::put('/password', 'PasswordController')->name('account.password');
             Route::resource('site', 'SiteController');
             Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
@@ -55,6 +55,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
         Route::get('manual', [\App\Http\Controllers\ManualController::class, 'index'])->name('manual.index');
         Route::get('manual/{manual}', [\App\Http\Controllers\ManualController::class, 'show'])->name('manual.show');
+
+        Route::get('system_message', [\App\Http\Controllers\SystemMessageController::class, 'index'])->name('system_message.index');
     });
 });
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {

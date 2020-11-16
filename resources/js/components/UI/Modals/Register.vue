@@ -1,23 +1,21 @@
 <template>
-    <div class="blocker current">
-        <div id="register" class="modal" style="display: inline-block;">
-            <h2>{{ $t('Регистрация') }}</h2>
-            <form :action="action" method="POST" @submit.prevent="submit">
-                <div class="modal__inner">
-                    <input type="text" v-model="name" name="name" :placeholder="$t('Имя') + '*'">
-                    <input type="email" v-model="email" name="email" placeholder="E-mail*" required>
-                    <input type="password" v-model="password" name="password" :placeholder="$t('Пароль') + '*'"
-                           required>
-                    <input type="password" v-model="password_confirmation" name="password_confirmation"
-                           :placeholder="$t('Повторите пароль') + '*'"
-                           required>
-                    <button type="submit" class="header-landing__wrapper__links_reg">{{ $t('Зарегистрироваться') }}
-                    </button>
-                </div>
-            </form>
-            <a href="#close-modal" @click.prevent="$emit('close')" class="close-modal">Close</a>
-        </div>
+<div class="blocker current">
+    <div id="register" class="modal" style="display: inline-block;">
+        <h2>{{ $t('Регистрация') }}</h2>
+        <form :action="action" method="POST" @submit.prevent="submit">
+            <div class="modal__inner">
+                <input type="text" v-model="name" name="name" :placeholder="$t('Имя') + '*'">
+                <input type="email" v-model="email" name="email" placeholder="E-mail*" required>
+                <input type="password" v-model="password" name="password" :placeholder="$t('Пароль') + '*'" required>
+                <input type="password" v-model="password_confirmation" name="password_confirmation" :placeholder="$t('Повторите пароль') + '*'" required>
+                <button type="submit" :disabled="is_submitted" class="header-landing__wrapper__links_reg">
+                    {{ $t('Зарегистрироваться') }}
+                </button>
+            </div>
+        </form>
+        <a href="#close-modal" @click.prevent="$emit('close')" class="close-modal">Close</a>
     </div>
+</div>
 </template>
 
 <script>
@@ -35,6 +33,7 @@ export default {
     },
     data() {
         return {
+            is_submitted: false,
             name: '',
             email: '',
             password: '',
@@ -46,6 +45,7 @@ export default {
     },
     methods: {
         submit() {
+            this.is_submitted = true;
             axios.post(this.action, {
                 name: this.name,
                 email: this.email,
@@ -66,6 +66,7 @@ export default {
                     text: errors,
                     icon: "error",
                 });
+                this.is_submitted = false;
             });
         }
     }
