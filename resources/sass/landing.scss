@@ -1382,6 +1382,20 @@ input {
         right: 35px;
     }
 
+    .business-dots{
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+    .business-next{
+        left: 70%;
+        transform: translate(-50%, 0) rotate(180deg);
+    }
+
+    .business-prev{
+        left: 29%;
+        transform: translate(-50%, 0);
+
+    }
     h1 {
         font-size: 48px;
     }
@@ -1400,6 +1414,14 @@ input {
         font-size: 38px;
         line-height: 38px;
     }
+}
+
+.business-next{
+    left: 78%;
+}
+
+.business-prev{
+    left: 22%;
 }
 
 body {
