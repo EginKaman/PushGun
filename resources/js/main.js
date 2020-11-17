@@ -19,7 +19,8 @@ $(document).ready(function () {
     })
 
 
-    $('.notif-btn').on('click', function () {
+    $('.notif-btn').on('click', function (e) {
+        e.preventDefault()
         $('.notification').addClass('all-active')
 
     })

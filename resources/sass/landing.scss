@@ -1437,6 +1437,13 @@ input {
         right: 35px;
     }
 
+    .business-window{
+        width: auto;
+    }
+    .business-window__inner::after{
+        top: -7px;
+    }
+
     .business-dots{
         left: 50%;
         transform: translate(-50%, 0);
