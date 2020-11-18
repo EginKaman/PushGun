@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class VerificationController extends Controller
@@ -50,13 +51,17 @@ class VerificationController extends Controller
         $user = User::findOrFail($request->route('id'));
 
         if ($user->hasVerifiedEmail()) {
-            return redirect($this->redirectPath());
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect($this->redirectPath());
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect($this->redirectPath())->with('verified', true);
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect($this->redirectPath())->with('verified', true);
     }
 }
