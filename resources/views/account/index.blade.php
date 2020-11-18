@@ -3,14 +3,16 @@
 @section('content')
     <main class="main">
         <div class="container">
-            <div class="auth-confirm">
-                <p>E-Mail успешно подтвержден!</p>
-            </div>
-            <script>
-                setTimeout(() => {
-                    let closeAuth = document.querySelector('.auth-confirm').remove()
-                }, 4000);
-            </script>
+            @if(session('verified', false))
+                <div class="auth-confirm">
+                    <p>E-Mail успешно подтвержден!</p>
+                </div>
+                <script>
+                    setTimeout(() => {
+                        let closeAuth = document.querySelector('.auth-confirm').remove()
+                    }, 4000);
+                </script>
+            @endif
             <section class="general">
                 <div class="general__title">
                     <h1 class="title">@lang('Web Push рассылки')</h1>
@@ -47,7 +49,8 @@
                             <p>@lang('Тариф') “@lang($user->tariff->name)”</p>
                         @else
                             <p>
-                                @lang('Тариф') “@lang($user->tariff->name)” @lang('будет продлен') {{ $user->tariff_expired_at }}
+                                @lang('Тариф') “@lang($user->tariff->name)
+                                ” @lang('будет продлен') {{ $user->tariff_expired_at }}
                             </p>
                         @endif
                         <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Изменить')</a>
