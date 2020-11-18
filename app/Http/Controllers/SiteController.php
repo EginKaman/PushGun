@@ -46,7 +46,7 @@ class SiteController extends Controller
     {
         $site = new Site();
         $site->fill($request->all());
-        $site->script = hash('sha256', $site->link) . '.js';
+        $site->script = hash('sha256', Str::random(32)) . '.js';
         if ($request->hasFile('image')) {
             $site->image = $request->file('image')->store('public/sites');
         }
