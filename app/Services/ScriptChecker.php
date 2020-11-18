@@ -40,6 +40,6 @@ class ScriptChecker
     protected function checkFile($url): bool
     {
         $response = Http::get("$url/pg-push-worker.js");
-        return Str::contains($response->body(), view('scripts.worker')->render());
+        return Str::contains(trim($response->body()), trim(view('scripts.worker')->render()));
     }
 }
