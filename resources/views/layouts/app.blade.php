@@ -131,7 +131,7 @@
                                 <span class="notification__item active">
                                     <p>{{ $message->created_at->format('d.m.Y') }}</p>
                                     <p>{{ $message->title }}</p>
-                                    <p style="text-decoration: none;">{!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($message->text) !!}</p>
+                                    <p style="text-decoration: none; margin-top: 15px;">{!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($message->text) !!}</p>
                                     @if($message->created_at->diffInDays(now()) < 1)
                                         <span>новое</span>
                                     @endif
