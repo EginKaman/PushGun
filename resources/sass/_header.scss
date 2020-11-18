@@ -768,20 +768,6 @@
         overflow: hidden;
         overflow-y: scroll;
         color: #fff;
-        .notif-btn{
-            cursor: pointer;
-            font-size: 14px;
-            display: block;
-            width: 125px;
-            color: #5BA4D7;
-            height: 40px;
-            background: #FFFFFF;
-            border-radius: 100px;
-            margin: 0 auto;
-            margin-top: 20px;
-            text-align: center;
-            line-height: 40px;
-        }
         .notification__item{
             transition: .5s;
             overflow: hidden;
@@ -897,4 +883,20 @@
             opacity: 1;
         }
     }
+}
+
+
+.notif-btn{
+    cursor: pointer;
+    font-size: 14px;
+    display: block;
+    width: 125px;
+    color: #5BA4D7;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 100px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: center;
+    line-height: 40px;
 }

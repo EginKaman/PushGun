@@ -137,8 +137,8 @@
                                     @endif
                                 </span>
                             @endforeach
-                            <a href="{{ route('system_message.index') }}" class="notif-btn">Смотреть все</a>
                         </div>
+                        <a href="{{ route('system_message.index') }}" class="notif-btn">Смотреть все</a>
                     @else
                         <div class="notification__none">
                             <p>Уведомлений нет</p>
