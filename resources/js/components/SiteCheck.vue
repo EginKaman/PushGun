@@ -109,7 +109,7 @@ export default {
                     text_script = this.$i18n.t('Код добавлен не корректно');
                 }
                 if (!this.checked.file) {
-                    text_script = this.$i18n.t('Файл pg-push-worker.js не установлен');
+                    text_file = this.$i18n.t('Файл pg-push-worker.js не установлен');
                 }
                 this.$swal({
                     title: title,
