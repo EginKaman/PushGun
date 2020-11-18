@@ -7,6 +7,7 @@ use App\Http\Requests\SiteStore;
 use App\Http\Requests\SiteUpdate;
 use App\Http\Resources\SitesResource;
 use App\Site;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -111,6 +112,7 @@ class SiteController extends Controller
      */
     public function destroy(SiteShow $request, Site $site)
     {
+        Storage::delete($site->script);
         $site->delete();
     }
 
