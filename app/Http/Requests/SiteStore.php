@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -37,7 +38,9 @@ class SiteStore extends FormRequest
     public function rules()
     {
         return [
-            'link' => 'required|url|unique:sites,link',
+            'link' => ['required', 'url', Rule::unique('sites', 'link')->where(function (Builder $query) {
+                return $query->whereNull('deleted_at');
+            })],
             'image' => ['nullable', 'image'],
             'request' => ['nullable', 'string', Rule::in(['visit', 'click', 'intermediate'])],
             'hint' => ['nullable', 'boolean'],
