@@ -129,7 +129,7 @@
                         <div class="notification__amount__left">
                             @foreach($system_messages as $message)
                                 <span class="notification__item active">
-                                    <p>{{ $message->created_at->format('d.m.Y') }}</p>
+                                    <p>{{ $message->created_at->format('d.m.Y') }}<a style="font-size: 12px; margin-left: 15px;">Смотреть полностью</a></p>
                                     <p>{{ $message->title }}</p>
                                     <p style="text-decoration: none; margin-top: 15px;">{!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($message->text) !!}</p>
                                     @if($message->created_at->diffInDays(now()) < 1)

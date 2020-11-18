@@ -781,11 +781,11 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             margin-top: 10px;
-            &:hover{
-                p{
-                    text-decoration: underline;
-                }
-            }
+            // &:hover{
+            //     p{
+            //         text-decoration: underline;
+            //     }
+            // }
             &:first-child{
                 margin: 0;
             }
@@ -808,6 +808,13 @@
 
 .notification__item.this-active{
     height: auto !important;
+    p{
+        a{
+            transition: .3s;
+            opacity: 0;
+            display: none;
+        }
+    }
 }
     }
     &__none{
