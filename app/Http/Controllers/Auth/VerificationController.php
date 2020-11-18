@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
 {
@@ -55,6 +56,8 @@ class VerificationController extends Controller
                 ? new JsonResponse([], 204)
                 : redirect($this->redirectPath());
         }
+
+        Auth::guard()->login($user);
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
