@@ -18,7 +18,6 @@ class SubscribeController extends Controller
             $request->authToken,
             $request->contentEncoding
         );
-        $site->user->notify(new NewSubscriber());
         return response()->json(null, 204);
     }
 
