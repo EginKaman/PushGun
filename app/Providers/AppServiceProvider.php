@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Observers\PushSubscriptionObserver;
 use App\SystemMessage;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 //        View::share('system_messages', SystemMessage::limit(5)->latest()->get());
+        \NotificationChannels\WebPush\PushSubscription::observe(PushSubscriptionObserver::class);
         Paginator::defaultView('pagination::default');
     }
 }
