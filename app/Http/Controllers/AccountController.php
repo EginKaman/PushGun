@@ -46,6 +46,16 @@ class AccountController extends Controller
         ]);
     }
 
+    public function automailing()
+    {
+        return view('account.automailing');
+    }
+
+    public function createMailing()
+    {
+        return view('account.createmailing');
+    }
+
     public function update(AccountUpdate $request)
     {
         $user = Auth::user();

@@ -769,3 +769,37 @@ textarea {
         font-size: 24px;
     }
 }
+
+.nav__menu_items{
+    position: relative;
+    padding-left: 45px;
+    text-decoration: none;
+}
+
+.nav__menu_items.one::before{
+    position: absolute;
+    background-image: url('../images/distribution.svg');
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    margin-top: 6px;
+    top: -9px;
+    left: 6px;
+    content: "";
+    opacity: 0.4;
+}
+
+.nav__menu_items.two::before{
+    position: absolute;
+    background-image: url('../images/righten.svg');
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    margin-top: 6px;
+    top: -9px;
+    left: 6px;
+    content: "";
+    opacity: 0.4;
+}
+
+
