@@ -1,18 +1,19 @@
 @extends('layouts.app')
-@section('title', __('Создание авторассылки'))
+@section('title', __('Создание авторассылки RSS'))
 @section('content')
 <main class="main savemailing">
     <div class="container">
         <div class="general__title">
             <div class="title">
-                Авторассылки
+                RSS рассылки
             </div>
         </div>
         <div class="savemailing__wrapper">
             <div class="savemailing__wrapper__head">
                 <p>Название рассылки</p>
                 <div class="savemailing__wrapper__head__button">
-                    <a>Редактировать <img src="{{asset('images/pan.svg')}}" alt=""></a>
+                    <a style="color: #3B8378;">Запустить <img src="{{asset('images/play.svg')}}" alt=""></a>
+                    <a style="color: #5ba4d7;">Редактировать <img src="{{asset('images/pan.svg')}}" alt=""></a>
                     <a>Удалить <img src="{{asset('images/basket.svg')}}" alt=""></a>
                 </div>
             </div>
@@ -21,34 +22,24 @@
                 <span>Создан 15 мая 2020г, 14:00</span>
             </div>
             <div class="savemailing__wrapper__content">
-                <div class="savemailing__wrapper__content__item">
-                    <div class="savemailing__wrapper__content__item__text">
+                <div style="width: 100%;" class="savemailing__wrapper__content__item">
+                <div class="savemailing__wrapper__content__item__text">
                         <p>Сайт:</p>
                         <span>puzzlepro.ru<p>(0 подписчиков)</p></span>
                     </div>
                     <div class="savemailing__wrapper__content__item__text">
-                        <p>Условие отправки:</p>
-                        <p>Подписка на рассылку</p>
+                        <p>URL RSS ленты:</p>
+                        <span>https://lenta.ru/rss</span>
                     </div>
                     <div class="savemailing__wrapper__content__item__text">
-                        <p>Приоритетные дни и время отправки:</p>
-                        <div>
-                            <span class="sf">Пн</span><span class="sf">Вт</span><span class="sf">Ср</span><span class="sf">Чт</span><span class="sf">Пт</span><span class="sf">Сб</span><span class="sf">Вс</span>
-                            <p>09:00</p>
-                        </div>
+                        <p>Категории</p>
+                        <p>Все</p>
                     </div>
-                    <div class="savemailing__wrapper__content__item__count">
-                        <div class="count-block">
-                            <p>2</p>
-                            <span>Подписчиков в очереди</span>
-                        </div>
-                        <div class="count-block">
-                            <p>2</p>
-                            <span>Завершенных серий</span>
-                        </div>
-                        <div class="count-block">
-                            <p>2</p>
-                            <span>Отправлено push</span>
+                    <div class="savemailing__wrapper__content__item__text">
+                        <p>Отправлять не более:</p>
+                        <div>
+                        <span class="sf">5</span>
+                            <p>раз в сутки</p>
                         </div>
                     </div>
                 </div>
