@@ -19,7 +19,8 @@ class SiteResource extends JsonResource
             'id' => $this->id,
             'link' => $this->link,
             'image' => asset(Storage::url($this->image)),
-            'url' => route('site.show', $this)
+            'url' => route('site.show', $this),
+            'push_subscriptions_count' => $this->when($this->push_subscriptions_count, $this->push_subscriptions_count)
         ];
     }
 }
