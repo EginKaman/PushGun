@@ -24,7 +24,6 @@
             :key="item.index"
             v-for="item in $store.state.sites.sites"
           >
-          {{item}}
             <input
               type="checkbox"
               :id="item.id"
@@ -32,7 +31,7 @@
               v-model="checkedNames"
               style="opacity: 0; position: absolute"
             />
-            <label :for="item.id">{{ item.link }} <span>Подписчиков (0)</span></label>
+            <label :for="item.id">{{ item.link }} <span>({{item.push_subscriptions_count}})</span></label>
           </div>
         </div>
         <div class="push__input">
