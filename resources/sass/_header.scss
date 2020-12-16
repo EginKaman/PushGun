@@ -725,7 +725,9 @@
         }
     }
 }
-
+.header__logo{
+    height: 16px;
+}
 .bell{
     position: relative;
     margin-left: 27px;
@@ -733,10 +735,14 @@
     span{
         position: absolute;
         display: block;
-        top: 0;
-        right: 0;
-        width: 10px;
-        height: 10px;
+        top: -7px;
+        right: -6px;
+        text-align: center;
+        color: #fff;
+        width: 20px;
+        line-height: 20px;
+        font-size: 12px;
+        height: 20px;
         border-radius: 100%;
         background-color: #FF4D47;
     }

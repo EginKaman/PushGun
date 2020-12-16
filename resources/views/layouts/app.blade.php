@@ -56,7 +56,7 @@
         <div class="container">
             <div class="header__inner">
                 <a href="{{ route('account.index') }}" class="header__logo">
-                    <img src="{{ asset('images/logo.svg') }}" alt="" class="header__logo_img">
+                    <img style="width: 208px;height: 16px;" src="{{ asset('images/logo.png') }}" alt="" class="header__logo_img">
                 </a>
                 <nav class="nav">
                     <a href="{{ route('account.index') }}" class="nav__item">
@@ -108,7 +108,7 @@
                                      alt="">
                             @endempty
                         </a>
-                        <a class="bell"><img src="{{ asset('images/bell.svg') }}" alt=""><span></span></a>
+                        <a class="bell"><img src="{{ asset('images/bell.svg') }}" alt=""><span>0</span></a>
                         <div class="header__burger">
                             <img src="{{ asset('images/menu.svg') }}" alt="">
                         </div>
