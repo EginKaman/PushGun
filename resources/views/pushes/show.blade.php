@@ -28,7 +28,7 @@
                 <div class="general__status">
                     <div class="general__subs mail__go">
                         <p class=""><span>{{ $push->transitions_count }}</span> @lang('переходов')</p>
-                        <p class="percent">50%</p>
+                        <p class="percent">{{ round(($push->delivered / $push->transitions_count)*100, 2) }}%</p>
                     </div>
                     <div class="progress">
                         <progress max="100" value="{{ $push->transitions_count }}"></progress>
@@ -67,7 +67,7 @@
                     {{--                    </dl>--}}
                     <dl class="mail__info_item">
                         <dt class="mail__info_title">@lang('Отправлено')</dt>
-                        <dd class="mail__info_desc">0</dd>
+                        <dd class="mail__info_desc">{{ $push->sent }}</dd>
                     </dl>
                     <dl class="mail__info_item">
                         <dt class="mail__info_title">@lang('Список получателей')</dt>
