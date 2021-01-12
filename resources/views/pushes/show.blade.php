@@ -39,19 +39,24 @@
                 </div>
                 <div class="general__stats_left">
                     <div class="general__stats_left-item" style="background: #5BA4D7;">
-                        <h3>0</h3>
+                        <h3>{{ $push->sent }}</h3>
                         <div class="mb-10">
                             <p class="medium">@lang('отправлено')</p>
                         </div>
                     </div>
                     <div class="general__stats_left-item" style="background: #9698D5;">
-                        <h3>2</h3>
-                        <p class="medium mb-10">100% @lang('доставлено')</p>
+                        <h3>{{ $push->delivered }}</h3>
+                        <p class="medium mb-10">
+                            {{ round(($push->delivered / $push->sent)*100, 2) }}% @lang('доставлено')
+                        </p>
                     </div>
                     <div class=" general__stats_left-item" style="background: #FF7226;">
                         <h3>{{ $push->transitions_count }}</h3>
                         <div class="mb-10">
-                            <p class="medium">50% @lang('переходов')</p>
+                            <p class="medium">
+                                {{ round(($push->delivered / $push->transitions_count)*100, 2) }}
+                                % @lang('переходов')
+                            </p>
                         </div>
                     </div>
                 </div>
