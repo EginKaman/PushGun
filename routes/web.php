@@ -37,6 +37,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::middleware(['auth'])->group(function () {
         Route::prefix('account')->group(function () {
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
+            Route::get('autoMailing', [\App\Http\Controllers\AccountController::class, 'automailing'])->name('account.automailing');
+            Route::get('saveMailing', [\App\Http\Controllers\AccountController::class, 'savemailing'])->name('account.savemailing');
+            Route::get('saveMailingRss', [\App\Http\Controllers\AccountController::class, 'savemailingrss'])->name('account.savemailingrss');
+            Route::get('createMailing', [\App\Http\Controllers\AccountController::class, 'createmailing'])->name('account.createmailing');
+            Route::get('createMailingRss', [\App\Http\Controllers\AccountController::class, 'createmailingrss'])->name('account.createmailingrss');
             Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
             Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
         });

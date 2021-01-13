@@ -7,13 +7,33 @@ $(document).ready(function () {
         placeholder: 'Выбрать'
     });
 
-    $('.close-notif').on('click', function(){
+    $('.close-notif').on('click', function () {
         $('.notification').removeClass('all-active')
         $('.notification').fadeOut(700)
         $('.notification__item').removeClass('this-active')
     })
 
-    $('.notification__item').on('click', function(){
+    let times = function () {
+        var input = document.querySelectorAll('.time');
+        var st
+
+        input.forEach(item => {
+            item.addEventListener('input', function () {
+
+                st = item.value + "";
+
+                if (st.length == 1) {
+                    item.value = '0' + item.value;
+                } else {
+                    item.value = '' + item.value;
+                }
+            });
+        })
+    };
+
+    times();
+
+    $('.notification__item').on('click', function () {
         $(this).toggleClass('this-active')
         $('.notification').addClass('all-active')
     })
@@ -21,6 +41,18 @@ $(document).ready(function () {
 
     $('.notif-btn').on('click', function (e) {
         $('.notification').addClass('all-active')
+    })
+
+    $('.createmailing-select__current').on('click', function () {
+        $(this).parent().children('.createmailing-select__menus').slideToggle()
+        $(this).parent().toggleClass('active')
+    })
+
+    $('.select-item').on('click', function () {
+        let setSelectCurrent = $(this).text()
+        $(this).parent().siblings('.createmailing-select__current').children('.set-select').text(setSelectCurrent)
+        $(this).parent().slideUp()
+        $(this).parent().parent().removeClass('active')
 
     })
 
@@ -42,7 +74,6 @@ $(document).ready(function () {
             e.preventDefault();
             $('.notification').fadeToggle(300);
         });
-
 
 
         $('.header__burger').click(function () {
@@ -213,8 +244,9 @@ $(document).ready(function () {
         });
 
         $(document).click(function (e) {
-            if (!$(e.target).closest('#filter, .header__account, .datepicker--cell, .datepicker, .datepicker--nav, .datepicker--nav-action, .datepicker--nav-title, .filter__popup, .account__popup').length) {
-                $(".filter__popup, .account__popup").fadeOut(250);
+            if (!$(e.target).closest('#filter, .header__account, .datepicker--cell, .datepicker, .datepicker--nav, .datepicker--nav-action, .datepicker--nav-title, .filter__popup, .account__popup, .createmailing-select__current, .createmailing-select__menus').length) {
+                $(".filter__popup, .account__popup, .createmailing-select__menus").fadeOut(250);
+                $('.createmailing-select').removeClass('active')
             }
         });
         $(document).click(function (e) {

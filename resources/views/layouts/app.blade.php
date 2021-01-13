@@ -66,12 +66,15 @@
                         </div>
                     </a>
                     @auth
-                        <a href="{{ route('push.index') }}" class="nav__item">
-                            <div class="nav__item_wrap">
-                                <span>@lang('Мои рассылки')</span>
-                                <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
-                            </div>
-                        </a>
+                        <div class="nav__wrapper">
+                            <a href="{{ route('push.index') }}" class="nav__item nav__arrow">
+                                <div class="nav__item_wrap">
+                                    <span>@lang('Мои рассылки')</span>
+                                    <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
+                                </div>
+                            </a>
+                            <header-push-component></header-push-component>
+                        </div>
 
                         <div class="nav__wrapper">
                             <a href="#" class="nav__item nav__arrow">
@@ -222,8 +225,11 @@
                             <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                         </div>
                         <div class="nav__item_wrap">
-                            <a href="#">@lang('Мои сайты')</a>
+                            {{--<a href="#">@lang('Мои сайты')</a>--}}
                             <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
+                        </div>
+                        <div class="nav__menu_item" v-if="$store.state.sites.sites.length < 1">
+                            <a class="nav__menu_link" href="{{ route('site.create') }}">@lang('Добавить сайт')</a>
                         </div>
                         <div class="nav__menu_item" v-if="$store.state.sites.sites.length < 1">
                             <a class="nav__menu_link" href="{{ route('site.create') }}">@lang('Добавить сайт')</a>

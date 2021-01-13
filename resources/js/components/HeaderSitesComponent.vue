@@ -15,7 +15,7 @@
 import {mapGetters, mapState} from "vuex";
 
 export default {
-    name: "HeaderSitesComponent",
+    name: "HeaderPushComponent",
     computed: {
         ...mapState({
             sites: state => state.sites
