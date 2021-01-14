@@ -18,7 +18,7 @@
         "jeremykenedy/laravel-roles": "3.4.0",
         "laravel-notification-channels/webpush": "^5.0",
         "laravel/framework": "^7.0",
-        "laravel/nova": "*",
+        "laravel/nova": "3.*",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "mcamara/laravel-localization": "^1.5",

@@ -12,6 +12,7 @@
       <form-panel
         class="mb-8"
         v-for="panel in panelsWithFields"
+        @field-changed="onUpdateFormStatus"
         @file-upload-started="handleFileUploadStarted"
         @file-upload-finished="handleFileUploadFinished"
         :shown-via-new-relation-modal="shownViaNewRelationModal"
@@ -67,6 +68,16 @@ import HandlesUploads from '@/mixins/HandlesUploads'
 export default {
   mixins: [InteractsWithResourceInformation, HandlesUploads],
 
+  metaInfo() {
+    if (this.shouldOverrideMeta && this.resourceInformation) {
+      return {
+        title: this.__('Create :resource', {
+          resource: this.resourceInformation.singularLabel,
+        }),
+      }
+    }
+  },
+
   props: {
     mode: {
       type: String,
@@ -84,6 +95,7 @@ export default {
       'viaResource',
       'viaResourceId',
       'viaRelationship',
+      'shouldOverrideMeta',
     ]),
   },
 
@@ -118,7 +130,21 @@ export default {
       this.relationResponse = data
 
       if (this.isHasOneRelationship && this.alreadyFilled) {
-        Nova.error(this.__('The HasOne relationship has already filled.'))
+        Nova.error(this.__('The HasOne relationship has already been filled.'))
+
+        this.$router.push({
+          name: 'detail',
+          params: {
+            resourceId: this.viaResourceId,
+            resourceName: this.viaResource,
+          },
+        })
+      }
+
+      if (this.isHasOneThroughRelationship && this.alreadyFilled) {
+        Nova.error(
+          this.__('The HasOneThrough relationship has already been filled.')
+        )
 
         this.$router.push({
           name: 'detail',
@@ -331,9 +357,16 @@ export default {
       return this.relationResponse && this.relationResponse.hasOneRelationship
     },
 
+    isHasOneThroughRelationship() {
+      return (
+        this.relationResponse && this.relationResponse.hasOneThroughRelationship
+      )
+    },
+
     shouldShowAddAnotherButton() {
       return (
-        this.inFormMode && !this.alreadyFilled && !this.isHasOneRelationship
+        Boolean(this.inFormMode && !this.alreadyFilled) &&
+        Boolean(!this.isHasOneRelationship || !this.isHasOneThroughRelationship)
       )
     },
   },
