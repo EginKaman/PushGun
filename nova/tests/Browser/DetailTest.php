@@ -40,7 +40,7 @@ class DetailTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
                     ->runAction('mark-as-active')
-                    ->pause(3000);
+                    ->waitForText('The action ran successfully!', 25);
 
             $this->assertEquals(1, User::find(1)->active);
 
@@ -77,7 +77,7 @@ class DetailTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
                     ->click('@edit-resource-button')
-                    ->pause(250)
+                    ->waitForTextIn('h1', 'Update User', 25)
                     ->assertPathIs('/nova/resources/users/1/edit');
 
             $browser->blank();
@@ -95,7 +95,7 @@ class DetailTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 3))
                     ->delete()
-                    ->waitForText('The user was deleted', 10)
+                    ->waitForText('The user was deleted', 25)
                     ->assertPathIs('/nova/resources/users');
 
             $this->assertNull(User::where('id', 3)->first());
@@ -117,7 +117,7 @@ class DetailTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@posts-index-component', 10)
+                    ->waitFor('@posts-index-component', 25)
                     ->within(new IndexComponent('posts'), function ($browser) {
                         $browser->assertSeeResource(1)
                                 ->searchFor('No Matching Posts')
@@ -141,7 +141,7 @@ class DetailTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@posts-index-component', 10)
+                    ->waitFor('@posts-index-component', 25)
                     ->within(new IndexComponent('posts'), function ($browser) {
                         $browser->click('@create-button')
                                 ->assertPathIs('/nova/resources/posts/new')
@@ -170,7 +170,7 @@ class DetailTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@posts-index-component', 10)
+                    ->waitFor('@posts-index-component', 25)
                     ->within(new IndexComponent('posts'), function ($browser) {
                         $browser->assertSeeResource(10)
                                 ->assertDontSeeResource(1)
@@ -202,7 +202,7 @@ class DetailTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@posts-index-component', 10)
+                    ->waitFor('@posts-index-component', 25)
                     ->within(new IndexComponent('posts'), function ($browser) {
                         $browser->assertSeeResource(10)
                                 ->assertSeeResource(6)
@@ -234,7 +234,7 @@ class DetailTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($post, $post2) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@posts-index-component', 10)
+                    ->waitFor('@posts-index-component', 25)
                     ->within(new IndexComponent('posts'), function ($browser) {
                         $browser->selectAllMatching()
                                 ->runAction('mark-as-active');
@@ -263,7 +263,7 @@ class DetailTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($post, $post2) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@posts-index-component', 10)
+                    ->waitFor('@posts-index-component', 25)
                     ->within(new IndexComponent('posts'), function ($browser) {
                         $browser->selectAllMatching()
                                 ->deleteSelected();

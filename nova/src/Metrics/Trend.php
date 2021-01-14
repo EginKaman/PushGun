@@ -518,8 +518,11 @@ abstract class Trend extends RangedMetric
 
         $results = $query
                 ->select(DB::raw("{$expression} as date_result, {$function}({$wrappedColumn}) as aggregate"))
-                ->whereBetween($dateColumn, [$startingDate, $endingDate])
-                ->groupBy(DB::raw($expression))
+                ->whereBetween(
+                    $dateColumn, array_map(function ($date) {
+                        return $this->asQueryDatetime($date);
+                    }, [$startingDate, $endingDate])
+                )->groupBy(DB::raw($expression))
                 ->orderBy('date_result')
                 ->get();
 
@@ -549,23 +552,30 @@ abstract class Trend extends RangedMetric
     {
         $now = Chronos::now();
 
+        $range = $request->range;
+        $ranges = array_keys($this->ranges());
+
+        if (count($ranges) > 0 && ! in_array($range, $ranges)) {
+            $range = min($range, max($ranges));
+        }
+
         switch ($unit) {
             case 'month':
-                return $now->subMonths($request->range - 1)->firstOfMonth()->setTime(0, 0);
+                return $now->subMonths($range - 1)->firstOfMonth()->setTime(0, 0);
 
             case 'week':
-                return $now->subWeeks($request->range - 1)->startOfWeek()->setTime(0, 0);
+                return $now->subWeeks($range - 1)->startOfWeek()->setTime(0, 0);
 
             case 'day':
-                return $now->subDays($request->range - 1)->setTime(0, 0);
+                return $now->subDays($range - 1)->setTime(0, 0);
 
             case 'hour':
-                return with($now->subHours($request->range - 1), function ($now) {
+                return with($now->subHours($range - 1), function ($now) {
                     return $now->setTimeFromTimeString($now->hour.':00');
                 });
 
             case 'minute':
-                return with($now->subMinutes($request->range - 1), function ($now) {
+                return with($now->subMinutes($range - 1), function ($now) {
                     return $now->setTimeFromTimeString($now->hour.':'.$now->minute.':00');
                 });
 
