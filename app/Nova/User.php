@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
@@ -76,8 +77,18 @@ class User extends Resource
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->creationRules(function () {
+                    return [
+                        Rule::unique('users', 'email')->whereNull('deleted_at')
+                    ];
+                })
+                ->updateRules(function () {
+                    return [
+                        Rule::unique('users', 'email')
+                            ->ignore($this->resource->getKey())
+                            ->whereNull('deleted_at')
+                    ];
+                }),
             Password::make('Пароль', 'password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
