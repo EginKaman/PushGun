@@ -11,21 +11,18 @@ class Update extends Page
 
     public $resourceName;
     public $resourceId;
-    public $queryParams;
 
     /**
      * Create a new page instance.
      *
      * @param  string  $resourceName
      * @param  int  $resourceId
-     * @param  array  $queryParams
      * @return void
      */
-    public function __construct($resourceName, $resourceId, $queryParams = [])
+    public function __construct($resourceName, $resourceId)
     {
-        $this->resourceName = $resourceName;
         $this->resourceId = $resourceId;
-        $this->queryParams = $queryParams;
+        $this->resourceName = $resourceName;
     }
 
     /**
@@ -35,13 +32,7 @@ class Update extends Page
      */
     public function url()
     {
-        $url = Nova::path().'/resources/'.$this->resourceName.'/'.$this->resourceId.'/edit';
-
-        if ($this->queryParams) {
-            $url .= '?'.http_build_query($this->queryParams);
-        }
-
-        return $url;
+        return Nova::path().'/resources/'.$this->resourceName.'/'.$this->resourceId.'/edit';
     }
 
     /**
@@ -49,14 +40,13 @@ class Update extends Page
      */
     public function runInlineCreate(Browser $browser, $uriKey, callable $fieldCallback)
     {
-        $browser->click("@{$uriKey}-inline-create")
-            ->elsewhere('', function ($browser) use ($fieldCallback) {
-                $browser->whenAvailable('.modal', function ($browser) use ($fieldCallback) {
-                    $fieldCallback($browser);
+        $browser->click("@{$uriKey}-inline-create")->pause(500);
 
-                    $browser->create()->pause(250);
-                });
-            });
+        $browser->elsewhere('.modal', function ($browser) use ($fieldCallback) {
+            $fieldCallback($browser);
+
+            $browser->create()->pause(250);
+        });
     }
 
     /**

@@ -18,7 +18,7 @@ abstract class MySqlIntegrationTest extends IntegrationTest
      *
      * @return void
      */
-    protected function defineDatabaseMigrations()
+    protected function loadMigrations()
     {
         $this->loadMigrationsFrom([
             '--database' => 'mysql',
@@ -33,7 +33,7 @@ abstract class MySqlIntegrationTest extends IntegrationTest
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    protected function defineEnvironment($app)
+    protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('database.default', 'mysql');
 

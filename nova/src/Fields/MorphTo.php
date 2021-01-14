@@ -10,7 +10,6 @@ use Laravel\Nova\Contracts\RelatableField;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Http\Requests\ResourceIndexRequest;
 use Laravel\Nova\Nova;
-use Laravel\Nova\Query\Builder;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Rules\Relatable;
 use Laravel\Nova\TrashedStatus;
@@ -180,20 +179,14 @@ class MorphTo extends Field implements RelatableField
         }
 
         if ($value) {
-            if (! is_string($this->resourceClass)) {
-                $this->morphToType = $value->getMorphClass();
-                $this->value = $value->getKey();
-                $this->viewable = false;
-            } else {
-                $resource = new $this->resourceClass($value);
+            $resource = new $this->resourceClass($value);
 
-                $this->value = $this->formatDisplayValue(
-                    $value, Nova::resourceForModel($value)
-                );
+            $this->value = $this->formatDisplayValue(
+                $value, Nova::resourceForModel($value)
+            );
 
-                $this->viewable = $this->viewable
-                    && $resource->authorizedToView(request());
-            }
+            $this->viewable = $this->viewable
+                && $resource->authorizedToView(request());
         }
     }
 
@@ -266,7 +259,7 @@ class MorphTo extends Field implements RelatableField
         if ($relatedResource = Nova::resourceForKey($request->{$this->attribute.'_type'})) {
             return new Relatable($request, $this->buildMorphableQuery(
                 $request, $relatedResource, $request->{$this->attribute.'_trashed'} === 'true'
-            )->toBase());
+            ));
         }
     }
 
@@ -320,17 +313,15 @@ class MorphTo extends Field implements RelatableField
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @param  string  $relatedResource
      * @param  bool  $withTrashed
-     * @return \Laravel\Nova\Query\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function buildMorphableQuery(NovaRequest $request, $relatedResource, $withTrashed = false)
     {
         $model = $relatedResource::newModel();
 
-        $query = new Builder($relatedResource);
-
-        $request->first === 'true'
-                        ? $query->whereKey($model->newQueryWithoutScopes(), $request->current)
-                        : $query->search(
+        $query = $request->first === 'true'
+                        ? $model->newQueryWithoutScopes()->whereKey($request->current)
+                        : $relatedResource::buildIndexQuery(
                                 $request, $model->newQuery(), $request->search,
                                 [], [], TrashedStatus::fromBoolean($withTrashed)
                           );
@@ -338,7 +329,7 @@ class MorphTo extends Field implements RelatableField
         return $query->tap(function ($query) use ($request, $relatedResource, $model) {
             forward_static_call(
                 $this->morphableQueryCallable($request, $relatedResource, $model),
-                $request, $query, $this
+                $request, $query
             );
         });
     }

@@ -24,12 +24,13 @@ class UpdateTest extends DuskTestCase
         $user = User::find(1);
         $user->shouldBlockFrom('post.update.'.$post->id);
 
-        $this->browse(function (Browser $browser) use ($user, $post, $post2) {
-            $browser->loginAs($user)
+        $this->browse(function (Browser $browser) use ($post, $post2) {
+            $browser->loginAs(User::find(1))
                     ->visit(new Update('posts', $post->id))
                     ->assertPathIs('/nova/403');
 
-            $browser->visit(new Update('posts', $post2->id))
+            $browser->loginAs(User::find(1))
+                    ->visit(new Update('posts', $post2->id))
                     ->assertPathIsNot('/nova/403');
 
             $browser->blank();
@@ -75,7 +76,6 @@ class UpdateTest extends DuskTestCase
                     ->visit(new Update('users', 1))
                     ->type('@name', ' ')
                     ->update()
-                    ->waitForText('There was a problem submitting the form.', 15)
                     ->assertSee('The Name field is required.');
 
             $browser->blank();

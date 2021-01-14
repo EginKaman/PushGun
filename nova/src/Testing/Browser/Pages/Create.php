@@ -10,19 +10,16 @@ class Create extends Page
     use HasSearchableRelations;
 
     public $resourceName;
-    public $queryParams;
 
     /**
      * Create a new page instance.
      *
      * @param  string  $resourceName
-     * @param  array  $queryParams
      * @return void
      */
-    public function __construct($resourceName, $queryParams = [])
+    public function __construct($resourceName)
     {
         $this->resourceName = $resourceName;
-        $this->queryParams = $queryParams;
     }
 
     /**
@@ -32,13 +29,7 @@ class Create extends Page
      */
     public function url()
     {
-        $url = Nova::path().'/resources/'.$this->resourceName.'/new';
-
-        if ($this->queryParams) {
-            $url .= '?'.http_build_query($this->queryParams);
-        }
-
-        return $url;
+        return Nova::path().'/resources/'.$this->resourceName.'/new';
     }
 
     /**
@@ -46,14 +37,13 @@ class Create extends Page
      */
     public function runInlineCreate(Browser $browser, $uriKey, callable $fieldCallback)
     {
-        $browser->click("@{$uriKey}-inline-create")
-            ->elsewhere('', function ($browser) use ($fieldCallback) {
-                $browser->whenAvailable('.modal', function ($browser) use ($fieldCallback) {
-                    $fieldCallback($browser);
+        $browser->click("@{$uriKey}-inline-create")->pause(500);
 
-                    $browser->create()->pause(250);
-                });
-            });
+        $browser->elsewhere('.modal', function ($browser) use ($fieldCallback) {
+            $fieldCallback($browser);
+
+            $browser->create()->pause(250);
+        });
     }
 
     /**

@@ -5,7 +5,6 @@ namespace Laravel\Nova\Fields;
 use Brick\Money\Context;
 use Brick\Money\Context\CustomContext;
 use Brick\Money\Money;
-use NumberFormatter;
 use Symfony\Component\Intl\Currencies;
 
 class Currency extends Number
@@ -128,18 +127,7 @@ class Currency extends Number
     {
         $money = $this->toMoneyInstance($value, $currency);
 
-        if (is_null($this->currencySymbol)) {
-            return $money->formatTo($locale ?? $this->locale);
-        }
-
-        return tap(new NumberFormatter($locale ?? $this->locale, NumberFormatter::CURRENCY), function ($formatter) use ($money) {
-            $scale = $money->getAmount()->getScale();
-
-            $formatter->setSymbol(NumberFormatter::CURRENCY_SYMBOL, $this->currencySymbol);
-            $formatter->setSymbol(NumberFormatter::INTL_CURRENCY_SYMBOL, $this->currencySymbol);
-            $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, $scale);
-            $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $scale);
-        })->format($money->getAmount()->toFloat());
+        return $money->formatTo($locale ?? $this->locale);
     }
 
     /**

@@ -124,21 +124,6 @@ export default {
     this.updateLastRetrievedAtTimestamp()
   },
 
-  beforeRouteUpdate(to, from, next) {
-    next()
-
-    if (
-      this.resourceName === to.params.resourceName &&
-      this.resourceId !== to.params.resourceId
-    ) {
-      this.resourceId = to.params.resourceId
-      this.viaResource = to.query.viaResource || null
-      this.viaResourceId = to.query.viaResourceId || null
-      this.viaRelationship = to.query.viaRelationship || null
-      this.getFields()
-    }
-  },
-
   methods: {
     /**
      * Get the available fields for the resource.
@@ -215,9 +200,7 @@ export default {
           await this.updateLastRetrievedAtTimestamp()
 
           if (this.submittedViaUpdateResource) {
-            this.$router.push({ path: redirect }, () => {
-              window.scrollTo(0, 0)
-            })
+            this.$router.push({ path: redirect })
           } else {
             // Reset the form by refetching the fields
             this.getFields()

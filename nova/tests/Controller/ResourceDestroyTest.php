@@ -128,11 +128,9 @@ class ResourceDestroyTest extends IntegrationTest
         $this->assertNotNull($user->deleted_at);
 
         $this->assertCount(2, ActionEvent::all());
-        $latestActionEvent = ActionEvent::latest('id')->first();
-
-        $this->assertEquals('Delete', $latestActionEvent->name);
-        $this->assertEquals($user->id, $latestActionEvent->target->id);
-        $this->assertTrue($user->is($latestActionEvent->target));
+        $this->assertEquals('Delete', ActionEvent::latest()->get()->last()->name);
+        $this->assertEquals($user->id, ActionEvent::latest()->get()->last()->target->id);
+        $this->assertTrue($user->is(ActionEvent::latest()->get()->last()->target));
 
         $response = $this->withExceptionHandling()
             ->putJson('/nova-api/users/restore', [
@@ -140,10 +138,9 @@ class ResourceDestroyTest extends IntegrationTest
             ])->assertOk();
 
         $this->assertCount(3, ActionEvent::all());
-        $latestActionEvent = ActionEvent::latest('id')->first();
-        $this->assertEquals('Restore', $latestActionEvent->name);
-        $this->assertEquals($user->id, $latestActionEvent->target->id);
-        $this->assertTrue($user->is($latestActionEvent->target));
+        $this->assertEquals('Restore', ActionEvent::latest()->get()->last()->name);
+        $this->assertEquals($user->id, ActionEvent::latest()->get()->last()->target->id);
+        $this->assertTrue($user->is(ActionEvent::latest()->get()->last()->target));
     }
 
     public function test_cant_destroy_resources_not_authorized_to_destroy()

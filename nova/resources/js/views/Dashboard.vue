@@ -47,14 +47,9 @@ export default {
     async fetchDashboard() {
       const {
         data: { label, cards },
-      } = await Nova.request()
-        .get(this.dashboardEndpoint, {
-          params: this.extraCardParams,
-        })
-        .catch(e => {
-          this.$router.push({ name: '404' })
-        })
-
+      } = await Nova.request().get(this.dashboardEndpoint, {
+        params: this.extraCardParams,
+      })
       this.label = label
       this.cards = cards
     },

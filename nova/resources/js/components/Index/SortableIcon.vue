@@ -37,13 +37,15 @@ export default {
      * Handle the clicke event.
      */
     handleClick() {
-      if (this.isSorted && this.isDescDirection) {
-        this.$emit('reset')
-      } else {
+      if (this.notSorted || this.isAscDirection) {
         this.$emit('sort', {
           key: this.uriKey,
           direction: this.direction,
         })
+      }
+
+      if (this.isDescDirection) {
+        this.$emit('reset')
       }
     },
   },

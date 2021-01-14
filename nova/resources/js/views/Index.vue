@@ -82,8 +82,7 @@
             shouldShowDeleteMenu ||
             softDeletes ||
             !viaResource ||
-            hasFilters ||
-            haveStandaloneActions,
+            hasFilters,
         }"
       >
         <div class="flex items-center">
@@ -187,9 +186,7 @@
             :via-has-one="viaHasOne"
             :trashed="trashed"
             :per-page="perPage"
-            :per-page-options="
-              perPageOptions || resourceInformation.perPageOptions
-            "
+            :per-page-options="perPageOptions"
             @clear-selected-filters="clearSelectedFilters"
             @filter-changed="filterChanged"
             @trashed-changed="trashedChanged"
@@ -433,13 +430,13 @@ export default {
    * Mount the component and retrieve its initial data.
    */
   async created() {
-    if (Nova.missingResource(this.resourceName))
-      return this.$router.push({ name: '404' })
-
     this.debouncer = _.debounce(
       callback => callback(),
       this.resourceInformation.debounce
     )
+
+    if (Nova.missingResource(this.resourceName))
+      return this.$router.push({ name: '404' })
 
     // Bind the keydown even listener when the router is visited if this
     // component is not a relation on a Detail page
@@ -492,7 +489,6 @@ export default {
 
   beforeRouteUpdate(to, from, next) {
     next()
-    this.initializeSearchFromQueryString()
     this.initializeState(false)
   },
 
@@ -591,9 +587,10 @@ export default {
           this.resources = data.resources
           this.softDeletes = data.softDeletes
           this.perPage = data.per_page
-          this.allMatchingResourceCount = data.total
 
           this.loading = false
+
+          this.getAllMatchingResourceCount()
 
           Nova.$emit('resources-loaded')
         })
@@ -796,7 +793,7 @@ export default {
         this.resourceResponse = data
         this.resources = [...this.resources, ...data.resources]
 
-        this.allMatchingResourceCount = data.total
+        this.getAllMatchingResourceCount()
 
         Nova.$emit('resources-loaded')
       })

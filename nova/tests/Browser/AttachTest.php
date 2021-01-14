@@ -24,12 +24,12 @@ class AttachTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($role) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@roles-index-component', 25)
+                    ->waitFor('@roles-index-component', 10)
                     ->within(new IndexComponent('roles'), function ($browser) {
                         $browser->click('@attach-button');
                     })
                     ->on(new Attach('users', 1, 'roles'))
-                    ->waitFor('.content form', 25)
+                    ->waitFor('.content form', 10)
                     ->selectAttachable($role->id)
                     ->clickAttach();
 
@@ -55,12 +55,12 @@ class AttachTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($role) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@roles-index-component', 25)
+                    ->waitFor('@roles-index-component', 10)
                     ->within(new IndexComponent('roles'), function ($browser) {
                         $browser->click('@attach-button');
                     })
                     ->on(new Attach('users', 1, 'roles'))
-                    ->waitFor('.content form', 25)
+                    ->waitFor('.content form', 10)
                     ->selectAttachable($role->id)
                     ->type('@notes', 'Test Notes')
                     ->clickAttach()
@@ -88,15 +88,14 @@ class AttachTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
                     ->visit(new Detail('users', 1))
-                    ->waitFor('@roles-index-component', 25)
+                    ->waitFor('@roles-index-component', 10)
                     ->within(new IndexComponent('roles'), function ($browser) {
                         $browser->click('@attach-button');
                     })
                     ->on(new Attach('users', 1, 'roles'))
-                    ->waitFor('.content form', 25)
+                    ->waitFor('.content form', 10)
                     ->clickAttach()
-                    ->waitForText('There was a problem submitting the form.', 15)
-                    ->assertSee('The role field is required.');
+                    ->waitForText('The role field is required.');
 
             $this->assertDatabaseMissing('role_user', [
                 'user_id' => '1',

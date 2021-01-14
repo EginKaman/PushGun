@@ -9,7 +9,6 @@ use Laravel\Nova\Contracts\ListableField;
 use Laravel\Nova\Contracts\PivotableField;
 use Laravel\Nova\Contracts\RelatableField;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Query\Builder;
 use Laravel\Nova\Rules\NotAttached;
 use Laravel\Nova\Rules\RelatableAttachment;
 use Laravel\Nova\TrashedStatus;
@@ -144,7 +143,7 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
     {
         $query = $this->buildAttachableQuery(
             $request, $request->{$this->attribute.'_trashed'} === 'true'
-        )->toBase();
+        );
 
         return array_merge_recursive(parent::getRules($request), [
             $this->attribute => ['required', new RelatableAttachment($request, $query)],
@@ -171,23 +170,21 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @param  bool  $withTrashed
-     * @return \Laravel\Nova\Query\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function buildAttachableQuery(NovaRequest $request, $withTrashed = false)
     {
         $model = forward_static_call([$resourceClass = $this->resourceClass, 'newModel']);
 
-        $query = new Builder($resourceClass);
-
-        $request->first === 'true'
-                        ? $query->whereKey($model->newQueryWithoutScopes(), $request->current)
-                        : $query->search(
-                                $request, $model->newQuery(), $request->search,
-                                [], [], TrashedStatus::fromBoolean($withTrashed)
-                          );
+        $query = $request->first === 'true'
+                            ? $model->newQueryWithoutScopes()->whereKey($request->current)
+                            : $resourceClass::buildIndexQuery(
+                                    $request, $model->newQuery(), $request->search,
+                                    [], [], TrashedStatus::fromBoolean($withTrashed)
+                              );
 
         return $query->tap(function ($query) use ($request, $model) {
-            forward_static_call($this->attachableQueryCallable($request, $model), $request, $query, $this);
+            forward_static_call($this->attachableQueryCallable($request, $model), $request, $query);
         });
     }
 
@@ -317,7 +314,7 @@ class BelongsToMany extends Field implements DeletableContract, ListableField, P
             'resourceName' => $this->resourceName,
             'searchable' => $this->searchable,
             'withSubtitles' => $this->withSubtitles,
-            'singularLabel' => $this->singularLabel ?? $this->resourceClass::singularLabel(),
+            'singularLabel' => $this->singularLabel ?? Str::singular($this->name),
         ], parent::jsonSerialize());
     }
 }

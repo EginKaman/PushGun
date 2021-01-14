@@ -123,12 +123,6 @@ export default {
    */
   mounted() {
     document.addEventListener('keydown', this.handleEscape)
-
-    Nova.$on('close-dropdowns', () => {
-      this.deleteSelectedModalOpen = false
-      this.forceDeleteSelectedModalOpen = false
-      this.restoreModalOpen = false
-    })
   },
 
   /**
@@ -136,8 +130,6 @@ export default {
    */
   destroyed() {
     document.removeEventListener('keydown', this.handleEscape)
-
-    Nova.$off('close-dropdowns')
   },
 
   methods: {

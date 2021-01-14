@@ -2,7 +2,9 @@
 
 namespace Laravel\Nova;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
+use Laravel\Nova\Events\NovaServiceProviderRegistered;
 
 class PendingRouteRegistration
 {
@@ -91,7 +93,7 @@ class PendingRouteRegistration
         if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             app()->booted($defineRouterControllerRoutes);
         } else {
-            Nova::booted($defineRouterControllerRoutes);
+            Event::listen(NovaServiceProviderRegistered::class, $defineRouterControllerRoutes);
         }
     }
 

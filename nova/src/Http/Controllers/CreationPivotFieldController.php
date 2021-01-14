@@ -15,14 +15,8 @@ class CreationPivotFieldController extends Controller
      */
     public function index(NovaRequest $request)
     {
-        $resource = $request->newResourceWith(
-            ($request->resourceId
-                ? $request->findModelQuery()->first()
-                : null) ?? $request->model()
-        );
-
         return response()->json(
-            $resource->creationPivotFields(
+            $request->newResource()->creationPivotFields(
                 $request,
                 $request->relatedResource
             )->all()

@@ -53,7 +53,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     /**
      * The underlying model resource instance.
      *
-     * @var \Illuminate\Database\Eloquent\Model|null
+     * @var \Illuminate\Database\Eloquent\Model
      */
     public $resource;
 
@@ -184,7 +184,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     /**
      * Indicates whether to show the polling toggle button inside Nova.
      *
-     * @var bool
+     * @var int
      */
     public static $showPollingToggle = false;
 
@@ -198,7 +198,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     /**
      * Create a new resource instance.
      *
-     * @param  \Illuminate\Database\Eloquent\Model|null  $resource
+     * @param  \Illuminate\Database\Eloquent\Model  $resource
      * @return void
      */
     public function __construct($resource)

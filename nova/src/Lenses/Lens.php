@@ -45,7 +45,7 @@ abstract class Lens implements ArrayAccess, JsonSerializable, UrlRoutable
     /**
      * The underlying model resource instance.
      *
-     * @var \Illuminate\Database\Eloquent\Model|stdClass
+     * @var \Illuminate\Database\Eloquent\Model
      */
     public $resource;
 

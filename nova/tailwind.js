@@ -221,7 +221,6 @@ module.exports = {
     textarea: '4.875rem',
     full: '100%',
     screen: '100vh',
-    '90px': '5.625rem',
   },
 
   maxWidth: {

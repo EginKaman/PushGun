@@ -19,8 +19,6 @@ class DashboardController extends Controller
     {
         $instance = Nova::dashboardForKey($dashboard, $request);
 
-        abort_if(is_null($instance) && $dashboard !== 'main', 404);
-
         return response()->json([
             'label' => ! $instance ? __('Dashboard') : $instance->label(),
             'cards' => $request->availableCards($dashboard),

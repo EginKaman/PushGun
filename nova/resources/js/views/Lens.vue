@@ -33,7 +33,7 @@
         >&larr;</router-link
       >
 
-      <span class="px-2 text-70">/</span> {{ lenseName }}
+      <span class="px-2 text-70">/</span> {{ resourceResponse.name }}
     </heading>
 
     <card>
@@ -112,9 +112,7 @@
             :via-has-one="viaHasOne"
             :trashed="trashed"
             :per-page="perPage"
-            :per-page-options="
-              perPageOptions || resourceInformation.perPageOptions
-            "
+            :per-page-options="perPageOptions"
             :show-trashed-option="
               authorizedToForceDeleteAnyResources ||
               authorizedToRestoreAnyResources
@@ -285,12 +283,6 @@ export default {
     InteractsWithQueryString,
   ],
 
-  metaInfo() {
-    return {
-      title: this.lenseName,
-    }
-  },
-
   props: {
     resourceName: {
       type: String,
@@ -387,16 +379,7 @@ export default {
 
   beforeRouteUpdate(to, from, next) {
     next()
-
-    if (
-      to.params.resourceName === from.params.resourceName &&
-      to.params.lens === from.params.lens
-    ) {
-      this.initializeState(this.lens)
-    } else {
-      this.initializeFilters(this.lens)
-      this.getActions()
-    }
+    this.initializeState(this.lens)
   },
 
   methods: {
@@ -962,15 +945,6 @@ export default {
     perPageOptions() {
       if (this.resourceResponse) {
         return this.resourceResponse.per_page_options
-      }
-    },
-
-    /**
-     * The Lense name.
-     */
-    lenseName() {
-      if (this.resourceResponse) {
-        return this.resourceResponse.name
       }
     },
   },

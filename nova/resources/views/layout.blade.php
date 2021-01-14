@@ -15,11 +15,7 @@
 
     <!-- Tool Styles -->
     @foreach(\Laravel\Nova\Nova::availableStyles(request()) as $name => $path)
-        @if (\Illuminate\Support\Str::startsWith($path, ['http://', 'https://']))
-            <link rel="stylesheet" href="{!! $path !!}">
-        @else
-            <link rel="stylesheet" href="/nova-api/styles/{{ $name }}">
-        @endif
+        <link rel="stylesheet" href="/nova-api/styles/{{ $name }}">
     @endforeach
 
     <!-- Custom Meta Data -->

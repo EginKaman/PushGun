@@ -27,16 +27,15 @@ class CreateWithInlineRelationButtonTest extends DuskTestCase
                         ->select('@commentable-type', 'posts')
                         ->pause(500)
                         ->runInlineCreate('commentable', function ($browser) {
-                            $browser->waitForText('Create User Post', 25)
-                                ->select('@user', 1)
+                            $browser->select('@user', 1)
                                 ->type('@title', 'Test Post')
                                 ->type('@body', 'Test Post Body')
                                 ->attach('@attachment', __DIR__.'/Fixtures/Document.pdf');
                         })
-                        ->waitForText('The user post was created!', 25)
+                        ->waitForText('The user post was created!', 10)
                         ->type('@body', 'Test Comment Body')
                         ->create()
-                        ->waitForText('The comment was created!', 25);
+                        ->waitForText('The comment was created!', 10);
 
                 $browser->blank();
 
@@ -63,16 +62,15 @@ class CreateWithInlineRelationButtonTest extends DuskTestCase
                         ->select('@commentable-type', 'posts')
                         ->pause(500)
                         ->runInlineCreate('commentable', function ($browser) {
-                            $browser->waitForText('Create User Post', 25)
-                                ->select('@user', 1)
+                            $browser->select('@user', 1)
                                 ->type('@title', 'Test Post')
                                 ->type('@body', 'Test Post Body');
                         })
-                        ->waitForText('The user post was created!', 25)
+                        ->waitForText('The user post was created!', 10)
                         ->type('@body', 'Test Comment Body')
                         ->attach('@attachment', __DIR__.'/Fixtures/Document.pdf')
                         ->create()
-                        ->waitForText('The comment was created!', 25);
+                        ->waitForText('The comment was created!', 10);
 
                 $browser->blank();
 

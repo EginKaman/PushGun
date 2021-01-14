@@ -18,7 +18,7 @@ abstract class PostgresIntegrationTest extends IntegrationTest
      *
      * @return void
      */
-    protected function defineDatabaseMigrations()
+    protected function loadMigrations()
     {
         $this->loadMigrationsFrom([
             '--database' => 'pgsql',
@@ -33,7 +33,7 @@ abstract class PostgresIntegrationTest extends IntegrationTest
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    protected function defineEnvironment($app)
+    protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('database.default', 'pgsql');
 

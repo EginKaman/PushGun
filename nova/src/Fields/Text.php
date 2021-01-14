@@ -67,10 +67,7 @@ class Text extends Field
     {
         $request = app(NovaRequest::class);
 
-        if ($request->isCreateOrAttachRequest()
-            || $request->isUpdateOrUpdateAttachedRequest()
-            || $request->isActionRequest() === true
-        ) {
+        if ($request->isCreateOrAttachRequest() || $request->isUpdateOrUpdateAttachedRequest()) {
             return array_merge(parent::jsonSerialize(), [
                 'suggestions' => $this->resolveSuggestions($request),
             ]);

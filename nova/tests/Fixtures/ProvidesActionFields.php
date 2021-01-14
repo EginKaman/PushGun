@@ -15,11 +15,7 @@ trait ProvidesActionFields
     public function fields()
     {
         return [
-            Text::make('Test', 'test')
-                ->suggestions([
-                    'Hello',
-                    'World',
-                ]),
+            Text::make('Test', 'test'),
 
             new class('Callback', 'callback') extends Text {
                 public function fill(NovaRequest $request, $model)

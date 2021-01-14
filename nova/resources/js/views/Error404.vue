@@ -322,13 +322,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  metaInfo() {
-    return {
-      title: 'Page Not Found',
-    }
-  },
-}
-</script>
