@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Nova\Metrics\ConnectedSites;
+use App\Nova\Metrics\Payments;
+use App\Nova\Metrics\UsersPerDay;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -51,10 +55,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      *
      * @return array
      */
-    protected function cards()
+    public function cards()
     {
         return [
-            new Help,
+            new UsersPerDay,
+            new ConnectedSites,
+            new Payments
         ];
     }
 
@@ -65,7 +71,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function dashboards()
     {
-        return [];
+        return [
+        ];
     }
 
     /**
