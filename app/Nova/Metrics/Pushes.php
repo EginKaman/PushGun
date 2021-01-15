@@ -2,13 +2,13 @@
 
 namespace App\Nova\Metrics;
 
-use App\Payment;
+use Illuminate\Http\Request;
+use App\Push;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Trend;
 
-class Payments extends Trend
+class Pushes extends Trend
 {
-    public $width = 'full';
     /**
      * Calculate the value of the metric.
      *
@@ -17,7 +17,7 @@ class Payments extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Payment::class, 'amount')->prefix('₽')->showSumValue();
+        return $this->countByDays($request, Push::class)->showSumValue();
     }
 
     /**
@@ -51,7 +51,7 @@ class Payments extends Trend
      */
     public function uriKey()
     {
-        return 'payments';
+        return 'Pushes';
     }
      /**
      * Get the cards available for the request.

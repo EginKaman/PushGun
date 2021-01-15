@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Nova\Metrics\ConnectedSites;
 use App\Nova\Metrics\Payments;
 use App\Nova\Metrics\UsersPerDay;
+use App\Nova\Metrics\Pushes;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -60,6 +61,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new UsersPerDay,
             new ConnectedSites,
+            new Pushes,
             new Payments
         ];
     }
