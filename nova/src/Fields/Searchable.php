@@ -19,7 +19,7 @@ trait Searchable
     public $withSubtitles = false;
 
     /**
-     * The debounce amount to use when search this field.
+     * The debounce amount to use when searching this field.
      *
      * @var int
      */

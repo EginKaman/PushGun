@@ -49,6 +49,15 @@ import {
 export default {
   mixins: [HandlesValidationErrors, FormField, InteractsWithDates],
 
+  methods: {
+    /**
+     * Update the field's internal value when it's value changes
+     */
+    handleChange(value) {
+      this.value = value
+    },
+  },
+
   computed: {
     firstDayOfWeek() {
       return this.field.firstDayOfWeek || 0
