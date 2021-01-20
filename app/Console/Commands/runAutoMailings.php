@@ -62,6 +62,7 @@ class runAutoMailings extends Command
             $message->body($push->text)
                 ->url(route('transition.store', $push));
             $push->site->notify($message);
+            
             echo 'success';
         }
         return 0;
