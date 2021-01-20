@@ -15,7 +15,6 @@ class AutoMailing extends Model
         'saturday',
         'sunday',
         'time',
-        'push'
     ];
     protected $casts = [
         'monday' => 'boolean',
