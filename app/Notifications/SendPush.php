@@ -146,6 +146,7 @@ class SendPush extends Notification implements ShouldQueue
         }
         return $message;
     }
+
     /**
      * Get the array representation of the notification.
      *
