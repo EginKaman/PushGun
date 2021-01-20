@@ -23,8 +23,7 @@ class runAutoMailings extends Command
      *
      * @var string
      */
-    protected $description = '
-    Receives push notifications every N minutes';
+    protected $description = 'Receives push notifications every N minutes';
 
     /**
      * Create a new command instance.
@@ -43,28 +42,34 @@ class runAutoMailings extends Command
      */
     public function handle()
     {
-        $dateFrom = Carbon::now();
+        $dateFrom = now();
         $week = strtolower($dateFrom->format('l'));
         echo "{$week} \n";
         $from = $dateFrom->isoFormat('hh:mm:ss');
-        $to = Carbon::now()->addMinutes(40)->isoFormat('hh:mm:ss');
-        echo "{$from} - {$to} \n";
-        // ->whereBetween('time', [$from, $to])
-        $mailings = AutoMailing::where("$week", 1)->get();
-        $pushes = [];
-        foreach ($mailings as $mailing) {
-            $push = $mailing->push()->with('site')->first();
+        $to = now()->addMinutes(40)->isoFormat('hh:mm:ss');
+        $this->info("{$from} - {$to}");
+        $mailings = AutoMailing::with([
+            'push',
+            'push.site'
+        ])
+            ->where($week, 1)
+            ->whereBetween('time', [
+                $from,
+                $to
+            ])
+            ->get();
+        $mailings->each(function ($mailing) {
             $message = new SendPush();
-            $message->title($push->title)->icon(asset(Storage::url($push->icon ?? $push->site->image)));
-            if ($push->image !== null) {
-                $message->image(asset(Storage::url($push->image)));
+            $message->title($mailing->push->title)
+                ->icon(asset(Storage::url($mailing->push->icon ?? $mailing->push->site->image)));
+            if ($mailing->push->image !== null) {
+                $message->image(asset(Storage::url($mailing->push->image)));
             }
-            $message->body($push->text)
-                ->url(route('transition.store', $push));
-            $push->site->notify($message);
-            
-            echo 'success';
-        }
+            $message->body($mailing->push->text)
+                ->url(route('transition.store', $mailing->push));
+            $mailing->push->site->notify($message);
+            $this->info('success');
+        });
         return 0;
     }
 }

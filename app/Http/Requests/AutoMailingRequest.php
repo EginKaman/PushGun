@@ -24,15 +24,15 @@ class AutoMailingRequest extends FormRequest
     public function rules()
     {
         return [
-            'push_id'=>'required|number',
-            'monday'=>'boolean',
-            'tuesday'=>'boolean',
-            'wednesday'=>'boolean',
-            'thursday'=>'boolean',
-            'friday'=>'boolean',
-            'saturday'=>'boolean',
-            'sunday'=>'boolean',
-            'time'=>'time'
+            'push_id' => 'required|number',
+            'monday' => 'boolean',
+            'tuesday' => 'boolean',
+            'wednesday' => 'boolean',
+            'thursday' => 'boolean',
+            'friday' => 'boolean',
+            'saturday' => 'boolean',
+            'sunday' => 'boolean',
+            'time' => 'time'
         ];
     }
 }

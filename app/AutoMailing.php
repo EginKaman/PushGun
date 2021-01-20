@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 class AutoMailing extends Model
 {
-    //
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'monday',
         'tuesday',
@@ -16,6 +21,12 @@ class AutoMailing extends Model
         'sunday',
         'time',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
         'monday' => 'boolean',
         'tuesday' => 'boolean',
@@ -25,6 +36,7 @@ class AutoMailing extends Model
         'saturday' => 'boolean',
         'sunday' => 'boolean'
     ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
