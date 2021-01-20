@@ -18,6 +18,7 @@ Route::post('/subscribe/{site}', [\App\Http\Controllers\SubscribeController::cla
 Route::get('/push/{push}/redirect', 'TransitionController')->name('transition.store');
 Route::post('payment/check', [\App\Http\Controllers\PaymentController::class, 'check']);
 Route::post('payment', [\App\Http\Controllers\PaymentController::class, 'store']);
+Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
 Route::get('manifest.json', function () {
     return [
         'name' => config('app.name'),

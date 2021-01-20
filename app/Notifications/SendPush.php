@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
-class SendPush extends Notification
+class SendPush extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -146,7 +146,6 @@ class SendPush extends Notification
         }
         return $message;
     }
-
     /**
      * Get the array representation of the notification.
      *

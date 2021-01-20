@@ -31,7 +31,10 @@ class Push extends Model
     {
         return $this->belongsTo(Site::class);
     }
-
+    public function autoMailings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AutoMailing::class);
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
