@@ -16,6 +16,7 @@ class CreateAutoMailingsTable extends Migration
         Schema::create('auto_mailings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('push_id')->constrained();
+            $table->string('name');
             $table->boolean('monday');
             $table->boolean('tuesday');
             $table->boolean('wednesday');

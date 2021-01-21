@@ -42,23 +42,20 @@ class runAutoMailings extends Command
      */
     public function handle()
     {
-        $dateFrom = now();
-        $week = strtolower($dateFrom->format('l'));
-        echo "{$week} \n";
-        $from = $dateFrom->isoFormat('hh:mm:ss');
-        $to = now()->addMinutes(40)->isoFormat('hh:mm:ss');
+        $dateFrom = Carbon::now();
+        $week = $dateFrom->format('l');
+        $this->info("{$week} \n");
+        $from = $dateFrom->isoFormat('HH:mm:ss');
+        $to = now()->addMinutes(50)->isoFormat('HH:mm:ss');
         $this->info("{$from} - {$to}");
-        $mailings = AutoMailing::with([
-            'push',
-            'push.site'
-        ])
-            ->where($week, 1)
+        $mailings = AutoMailing::where($week, 1)
             ->whereBetween('time', [
                 $from,
                 $to
             ])
             ->get();
         $mailings->each(function ($mailing) {
+            $mailing->push = $mailing->push()->with('site')->first();
             $message = new SendPush();
             $message->title($mailing->push->title)
                 ->icon(asset(Storage::url($mailing->push->icon ?? $mailing->push->site->image)));
@@ -67,9 +64,11 @@ class runAutoMailings extends Command
             }
             $message->body($mailing->push->text)
                 ->url(route('transition.store', $mailing->push));
-            $mailing->push->site->notify($message);
+            $when = Carbon::parse($mailing->time);
+            echo $when;
+            $mailing->push->site->notify(($message)->delay($when));
             $this->info('success');
         });
-        return 0;
+        return $from;
     }
 }

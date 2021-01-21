@@ -36,13 +36,13 @@
                             <span>Дни отправки:</span>
                         </label>
                         <div class="createmailing__wrapper__item__input">
-                            <div><input type="checkbox" name="monday"><br><span>Пн</span></div>
-                            <div><input type="checkbox" name="tuesday"><br><span>Вт</span></div>
-                            <div><input type="checkbox" name="wednesday"><br><span>Ср</span></div>
-                            <div><input type="checkbox" name="thursday"><br><span>Чт</span></div>
-                            <div><input type="checkbox" name="friday"><br><span>Пт</span></div>
-                            <div><input type="checkbox" name="saturday"><br><span>Сб</span></div>
-                            <div><input type="checkbox" name="sunday"><br><span>Вс</span></div>
+                            <div><input type="checkbox" name="days[]" value="monday"><br><span>Пн</span></div>
+                            <div><input type="checkbox" name="days[]" value="tuesday"><br><span>Вт</span></div>
+                            <div><input type="checkbox" name="days[]" value="wednesday"><br><span>Ср</span></div>
+                            <div><input type="checkbox" name="days[]" value="thursday"><br><span>Чт</span></div>
+                            <div><input type="checkbox" name="days[]" value="friday"><br><span>Пт</span></div>
+                            <div><input type="checkbox" name="days[]" value="saturday"><br><span>Сб</span></div>
+                            <div><input type="checkbox" name="days[]" value="sunday"><br><span>Вс</span></div>
                         </div>
                     </div>
                 </div>
@@ -52,9 +52,9 @@
                             <span>Вреия отправки:</span>
                         </label>
                         <div class="createmailing__wrapper__item__input trl">
-                            <input class="time" min="0" max="23" type="number" placeholder="00">
+                            <input class="time" min="0" name="hour" value="00" max="23" type="number" placeholder="00">
                             <span>:</span>
-                            <input class="time" min="0" max="59" type="number" placeholder="00">
+                            <input class="time" min="0" value="00" name="minute" max="59" type="number" placeholder="00">
                         </div>
                     </div>
                 </div>
@@ -82,9 +82,9 @@
                     <div class="createmailing__wrapper__item">
                     </div>
                     <div class="createmailing__wrapper__item">
-                        <label><span>Источник компании (utm_source)</span> <input type="text" placeholder="pushgun"></label>
-                        <label><span>Канал компании (urm_medium)</span> <input type="text" placeholder="webpush"></label>
-                        <label><span>Название компании (utm_compaign)</span> <input type="text" placeholder="compaign_id"></label>
+                        <label><span>Источник компании (utm_source)</span> <input type="text" name="utm_source" placeholder="pushgun"></label>
+                        <label><span>Канал компании (utm_medium)</span> <input type="text" name="utm_medium" placeholder="webpush"></label>
+                        <label><span>Название компании (utm_compaign)</span> <input type="text" name="utm_compaign" placeholder="compaign_id"></label>
                         <p>Используйте compaign_id для автоматической подстановки id push-рассылки</p>
                     </div>
                 </div>
