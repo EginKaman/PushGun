@@ -51,6 +51,7 @@ $(document).ready(function () {
     $('.select-item').on('click', function () {
         let setSelectCurrent = $(this).text()
         $(this).parent().siblings('.createmailing-select__current').children('.set-select').text(setSelectCurrent)
+        $(this).parent().siblings('.createmailing-select__current').children('.hidden_input_for_data').attr('value', $(this).attr('data-id'))
         $(this).parent().slideUp()
         $(this).parent().parent().removeClass('active')
 

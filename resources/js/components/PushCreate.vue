@@ -13,13 +13,17 @@
         <div>
           <div @click="selectControl = true" class="selector">
             <span
-              v-html="[].concat(checkedNames).join('<br>')"
               class="select-current"
-            ></span>
+            >
+              <span v-for="site in checkedNames" :key="site.id">
+                {{site.link}}
+                <br>
+              </span>
+            
+            </span>
           </div>
-          <div
-            v-click-outside="selectControlClose"
-            v-if="selectControl === true"
+          <div v-if="selectControl" v-click-outside="selectControlClose">
+               <div
             class="select-control"
             :key="item.index"
             v-for="item in $store.state.sites.sites"
@@ -27,11 +31,12 @@
             <input
               type="checkbox"
               :id="item.id"
-              :value="item.link"
+              :value="item"
               v-model="checkedNames"
               style="opacity: 0; position: absolute"
             />
             <label :for="item.id">{{ item.link }} <span>({{item.push_subscriptions_count}})</span></label>
+          </div>
           </div>
         </div>
         <div class="push__input">
@@ -228,7 +233,7 @@ export default {
         { value: "John", id: "john" },
         { value: "Mike", id: "mike" },
       ],
-      Ssite_id: 0,
+      site_id: 0,
       selected: {},
       title: "",
       text: "",

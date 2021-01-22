@@ -3,7 +3,7 @@
 @section('content')
 <main class="main createmailing">
     <div class="container">
-        <form action="{{ route('autoMailing.store') }}" method="POST" >
+        <form action="{{ route('autoMailing.store') }}" method="POST">
             @csrf
             @method('POST')
             <div class="general__title">
@@ -20,12 +20,13 @@
                         <span>Условие отправки:</span>
                         <div class="createmailing-select">
                             <div class="createmailing-select__current">
+                                <input type="hidden" name="shipping_conditions" class="hidden_input_for_data" value="">
                                 <p class="set-select">Подписка на рассылку</p><img src="{{asset('images/down.svg')}}" alt="">
                             </div>
                             <div class="createmailing-select__menus">
-                                <span class="select-item">Подписка на рассылку</span>
-                                <span class="select-item">Подписка на рассылку1</span>
-                                <span class="select-item">Подписка на рассылку2</span>
+                                <span class="select-item" data-type="createmailing-select-conditions" data-id="1">Подписка на рассылку</span>
+                                <span class="select-item" data-type="createmailing-select-conditions" data-id="2">Подписка на рассылку1</span>
+                                <span class="select-item" data-type="createmailing-select-conditions" data-id="3">Подписка на рассылку2</span>
                             </div>
                         </div>
                     </label>
@@ -62,13 +63,17 @@
                     <label>
                         <span>Название отправки:</span>
                         <div class="createmailing-select">
-                            <div class="createmailing-select__current">
-                                <p class="set-select">https://puzzle.pro.ru (2 подписчика)</p><img src="{{asset('images/down.svg')}}" alt="">
+                            <div class="createmailing-select__current" data-selectMode="multiple">
+                                <input type="hidden" class="hidden_input_for_data" value="" name="site">
+                                <p class="set-select" data-textType="default">Выбрать</p><img src="{{asset('images/down.svg')}}" alt="">
                             </div>
                             <div class="createmailing-select__menus">
-                                <span class="select-item">https://krutiepacani.pro.ru (2 подписчика)</span>
-                                <span class="select-item">https://kaif.pro.ru (6 подписчика)</span>
-                                <span class="select-item">https://puzzle.pro.ru (2 подписчика)</span>
+                                @foreach($sites as $site)
+                                    <span class="select-item" data-isSelected="0" data-id="{{$site->id}}">
+                                        {{$site->link}}
+                                        ( {{$site->push_subscriptions_count}} подписчика )
+                                    </span>
+                                @endforeach
                             </div>
                         </div>
                     </label>
@@ -104,45 +109,36 @@
                             <div class="createmailing-select__current">
                                 <p class="set-select">через</p><img src="{{asset('images/down.svg')}}" alt="">
                             </div>
-                            <div class="createmailing-select__menus">
+                            <!-- <div class="createmailing-select__menus">
                                 <p class="select-item">после</p>
                                 <p class="select-item">через</p>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="createmailing__wrapper__item">
                             <div class="createmailing__wrapper__item__checkbox">
                                 <div class="createmailing__wrapper__item__input trl">
-                                    <input class="min" min="0" max="23" type="number" placeholder="0">
-                                    <input class="min" value="минут" type="text" placeholder="минут">
+                                    <input class="min" name="delayNotify" min="0" max="23" value="0" type="number" placeholder="0">
+                                    <input class="min" value="минут" type="text" placeholder="минут" readonly>
                                 </div>
                             </div>
-                            <span>в</span>
+                            <!-- <span>в</span>
                             <div class="createmailing__wrapper__item__checkbox">
                                 <div class="createmailing__wrapper__item__input trl">
                                     <input class="time" min="0" max="23" type="number" placeholder="00">
                                     <span>:</span>
                                     <input class="time" min="0" max="59" type="number" placeholder="00">
                                 </div>
-                            </div>
+                            </div> -->
                             <span>после подписки</span>
                         </div>
                     </div>
                     <div class="createmailing__wrapper__two__content">
                         <div class="createmailing__wrapper__item">
-                            <label><span class="ttl">Заголовок</span> <input type="text" placeholder="до 50 символов"></label>
-                            <label><span class="ttl">Текст уведомления</span> <textarea type="text"></textarea></label>
+                            <label><span class="ttl">Заголовок</span> <input type="text" name="title" placeholder="до 50 символов"></label>
+                            <label><span class="ttl">Текст уведомления</span> <textarea type="text" name="text"></textarea></label>
                             <label>
                                 <span class="ttl">Ссылка на уведомление</span>
-                                <div class="createmailing-select">
-                                    <div class="createmailing-select__current">
-                                        <p class="set-select">htpps://example.com</p><img src="{{asset('images/down.svg')}}" alt="">
-                                    </div>
-                                    <div class="createmailing-select__menus">
-                                        <span class="select-item">htpps://example.com</span>
-                                        <span class="select-item">htpps://example.com1</span>
-                                        <span class="select-item">htpps://example.com2</span>
-                                    </div>
-                                </div>
+                                <input type="text" name="link" value="">
                             </label>
                             <div class="createmailing__wrapper__item__checkbox">
                                 <div class="createmailing__wrapper__item__input">
@@ -155,7 +151,7 @@
                                     <img src="{{asset('images/avatar.png')}}" alt="">
                                     <label class="file">
                                         Выбрать изображение
-                                        <input type="file">
+                                        <input type="file" name="image">
                                         <span>Рекомендуемый размер: 128*128px <br>
                                             JPG, PNG до 200KB
                                         </span>

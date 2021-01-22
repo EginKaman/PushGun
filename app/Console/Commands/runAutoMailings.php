@@ -46,7 +46,7 @@ class runAutoMailings extends Command
         $week = $dateFrom->format('l');
         $this->info("{$week} \n");
         $from = $dateFrom->isoFormat('HH:mm:ss');
-        $to = now()->addMinutes(50)->isoFormat('HH:mm:ss');
+        $to = now()->addMinutes(5)->isoFormat('HH:mm:ss');
         $this->info("{$from} - {$to}");
         $mailings = AutoMailing::where($week, 1)
             ->whereBetween('time', [

@@ -24,12 +24,15 @@ class AutoMailingRequest extends FormRequest
     public function rules()
     {
         return [
-            'days' => 'array',
+            'days' => 'required|array',
             'hours' => 'string',
             'minute' => 'string',
             'utm_source' => 'string',
             'utm_medium' => 'string',
-            'utm_compaign' => 'string'
+            'utm_compaign' => 'string',
+            'shipping_conditions' => 'string',
+            'site'=>'required|string',
+            'delayNotify' => 'string'
         ];
     }
 }

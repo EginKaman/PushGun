@@ -84,6 +84,7 @@ class PushController extends Controller
         }
         $message->body($request->input('text'))
             ->url(route('transition.store', $push));
+        
         $site->notify($message);
         $push->delivered = $site->pushSubscriptions()->count();
         $push->save();
