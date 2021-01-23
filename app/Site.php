@@ -72,7 +72,13 @@ class Site extends Model
             now()->endOfDay()
         ]);
     }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pushes2(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Site::class);
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */

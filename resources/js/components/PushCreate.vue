@@ -233,7 +233,7 @@ export default {
         { value: "John", id: "john" },
         { value: "Mike", id: "mike" },
       ],
-      site_id: 0,
+      selectedSites: [],
       selected: {},
       title: "",
       text: "",
@@ -263,10 +263,17 @@ export default {
   mounted() {
     this.$store.dispatch("sites/FETCH_SITES").then(() => {
       this.selected = this.sites[0];
-      this.site_id = this.selected.id;
     });
   },
   methods: {
+    selectSite(id) {
+      const candidate = this.selectedSites.indexOf(id)
+      if(!candidate) {
+        this.selectedSites.push(id)
+        return
+      }
+      this.selectedSites.splice(candidate, 1)
+    },
     selectControlClose() {
       this.selectControl = false;
     },
@@ -296,6 +303,8 @@ export default {
       this.selected.image = event.target.result;
     },
     save() {
+      const listSites = []
+      this.checkedNames.forEach(site => listSites.push(site.id))
       let form = new FormData();
       if (this.$refs.image.files[0]) {
         form.append("icon", this.$refs.image.files[0]);
@@ -306,7 +315,7 @@ export default {
       form.append("title", this.title);
       form.append("link", this.link);
       form.append("text", this.text);
-      form.append("site", this.site_id);
+      form.append("sites", listSites);
       axios
         .post(this.action, form, {
           header: {

@@ -64,7 +64,7 @@
                         <span>Название отправки:</span>
                         <div class="createmailing-select">
                             <div class="createmailing-select__current" data-selectMode="multiple">
-                                <input type="hidden" class="hidden_input_for_data" value="" name="site">
+                                <input type="hidden" class="hidden_input_for_data" value="" name="sites[]">
                                 <p class="set-select" data-textType="default">Выбрать</p><img src="{{asset('images/down.svg')}}" alt="">
                             </div>
                             <div class="createmailing-select__menus">

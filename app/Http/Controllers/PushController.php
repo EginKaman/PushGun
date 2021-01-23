@@ -65,7 +65,7 @@ class PushController extends Controller
         $push = new Push();
 
         $push->fill($request->all());
-        $push->site()->associate($request->site);
+        $push->site()->associate(1);
         $push->user()->associate(Auth::user());
         if ($request->hasFile('icon')) {
             $push->icon = $request->file('icon')->store('public/mails');
@@ -74,22 +74,23 @@ class PushController extends Controller
             $push->image = $request->file('image')->store('public/mails');
         }
         $push->save();
-        $site = $push->site;
-        $push->sent = $site->pushSubscriptions()->count();
-        $message = new SendPush();
-        $message->title($request->input('title'))
-            ->icon(asset(Storage::url($push->icon ?? $site->image)));
-        if ($push->image !== null) {
-            $message->image(asset(Storage::url($push->image)));
+        $push->sites()->attach(explode(',', $request->input('sites')));
+        foreach ($push->sites as $site) {
+            $push->sent = $site->pushSubscriptions()->count();
+            $message = new SendPush();
+            $message->title($request->input('title'))
+                ->icon(asset(Storage::url($push->icon ?? $site->image)));
+            if ($push->image !== null) {
+                $message->image(asset(Storage::url($push->image)));
+            }
+            $message->body($request->input('text'))
+                ->url(route('transition.store', $push));
+            $site->notify($message);
+            $push->delivered = $site->pushSubscriptions()->count();
+            $push->save();
         }
-        $message->body($request->input('text'))
-            ->url(route('transition.store', $push));
-        
-        $site->notify($message);
-        $push->delivered = $site->pushSubscriptions()->count();
-        $push->save();
 
-        return redirect()->route('push.index');
+        // return redirect()->route('push.index');
     }
 
     /**

@@ -29,7 +29,7 @@ class PushStore extends FormRequest
             'link' => 'required|url',
             'icon' => ['nullable', 'image', 'max:1024'],
             'image' => ['nullable', 'image', 'max:5128'],
-            'site' => 'required|exists:sites,id'
+            'sites' => 'required'
         ];
     }
 

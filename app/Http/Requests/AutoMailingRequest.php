@@ -31,7 +31,7 @@ class AutoMailingRequest extends FormRequest
             'utm_medium' => 'string',
             'utm_compaign' => 'string',
             'shipping_conditions' => 'string',
-            'site'=>'required|string',
+            'sites'=>'required|array',
             'delayNotify' => 'string'
         ];
     }

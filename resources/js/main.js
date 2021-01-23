@@ -49,9 +49,36 @@ $(document).ready(function () {
     })
 
     $('.select-item').on('click', function () {
-        let setSelectCurrent = $(this).text()
-        $(this).parent().siblings('.createmailing-select__current').children('.set-select').text(setSelectCurrent)
-        $(this).parent().siblings('.createmailing-select__current').children('.hidden_input_for_data').attr('value', $(this).attr('data-id'))
+        const container = $(this).parent().siblings('.createmailing-select__current')
+        const input = container.children('.hidden_input_for_data')
+        const id = $(this).attr('data-id')
+        const list = input.attr('value').split(',').filter(item=>item) || []
+        const text = container.children('.set-select').text().split(',').filter(item => item.toLowerCase() !== 'выбрать')
+        if(container.attr('data-selectMode') === 'multiple') {
+            const isSelected = $(this).attr('data-isSelected') === '0' ? false : true
+            if(isSelected) {
+                const candidate = list.indexOf(id)
+                const idxOfExistingText = text.indexOf($(this).text())
+                if(candidate !== -1) list.splice(candidate,1)
+                text.splice(idxOfExistingText, 1)
+                $(this).attr('data-isSelected','0')
+                container.children('.set-select').text(text.join(', '))
+            } else {
+                list.push(id)
+                text.push($(this).text())
+                container.children('.set-select').text(text.join(', '))
+                $(this).attr('data-isSelected','1')
+            }
+            console.log(list.filter(item=>item))
+
+        } else {
+            container.children('.set-select').text($(this).text())
+            list.push(id)
+        }
+        if(!text.length) {
+            container.children('.set-select').text('Выбрать')
+        }
+        input.attr('value', list)
         $(this).parent().slideUp()
         $(this).parent().parent().removeClass('active')
 

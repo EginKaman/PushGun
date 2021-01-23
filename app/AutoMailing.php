@@ -52,6 +52,14 @@ class AutoMailing extends Model
      */
     public function push(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Push::class, 'push_id','id');
+        return $this->belongsTo(Push::class, 'push_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pushes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Push::class, 'auto_mailing_push', 'automailing_id', 'push_id');
     }
 }
