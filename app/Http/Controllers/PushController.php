@@ -21,7 +21,7 @@ class PushController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $pushes = $user->pushes()->with('site')->withCount('transitions');
+        $pushes = $user->pushes()->with('sites')->withCount('transitions');
         if ($request->filled('start')) {
             $pushes->where('created_at', '>=', Carbon::make($request->start)->startOfDay());
         }
@@ -65,7 +65,6 @@ class PushController extends Controller
         $push = new Push();
 
         $push->fill($request->all());
-        $push->site()->associate(1);
         $push->user()->associate(Auth::user());
         if ($request->hasFile('icon')) {
             $push->icon = $request->file('icon')->store('public/mails');
@@ -101,8 +100,9 @@ class PushController extends Controller
      */
     public function show(PushShow $request, Push $push)
     {
-        $push->load('site')->loadCount('transitions');
-        $site = $push->site->loadCount('pushSubscriptions');
+        $push->load('sites')->loadCount('transitions');
+        $site = $push->sites[0]->loadCount('pushSubscriptions');
+        // return round(($push->delivered / $push->transitions_count)*100, 2); 
         return view('pushes.show', [
             'push' => $push,
             'site' => $site

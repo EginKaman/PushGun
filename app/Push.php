@@ -29,10 +29,10 @@ class Push extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function site(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Site::class);
-    }
+    // public function site(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    // {
+    //     return $this->belongsTo(Site::class);
+    // }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

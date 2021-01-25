@@ -55,19 +55,21 @@ class runAutoMailings extends Command
             ])
             ->get();
         $mailings->each(function ($mailing) {
-            $mailing->push = $mailing->push()->with('site')->first();
-            $message = new SendPush();
-            $message->title($mailing->push->title)
-                ->icon(asset(Storage::url($mailing->push->icon ?? $mailing->push->site->image)));
-            if ($mailing->push->image !== null) {
-                $message->image(asset(Storage::url($mailing->push->image)));
+            $mailing->push = $mailing->push()->with('sites')->first();
+            foreach ($mailing->push->sites as $site) {
+                $message = new SendPush();
+                $message->title($mailing->push->title)
+                    ->icon(asset(Storage::url($mailing->push->icon ?? $site->image)));
+                if ($mailing->push->image !== null) {
+                    $message->image(asset(Storage::url($mailing->push->image)));
+                }
+                $message->body($mailing->push->text)
+                    ->url(route('transition.store', $mailing->push));
+                $when = Carbon::parse($mailing->time);
+                echo $when;
+                $site->notify(($message)->delay($when));
+                $this->info('success');
             }
-            $message->body($mailing->push->text)
-                ->url(route('transition.store', $mailing->push));
-            $when = Carbon::parse($mailing->time);
-            echo $when;
-            $mailing->push->site->notify(($message)->delay($when));
-            $this->info('success');
         });
         return $from;
     }

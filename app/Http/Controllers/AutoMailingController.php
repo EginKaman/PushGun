@@ -31,7 +31,6 @@ class AutoMailingController extends Controller
         $push->title = $request->input('title');
         $push->text = $request->input('text');
         $push->link = $request->input('link');
-        $push->site()->associate(1);
         $push->user()->associate(Auth::user());
         if ($request->hasFile('icon')) {
             $push->icon = $request->file('icon')->store('public/mails');
@@ -55,10 +54,8 @@ class AutoMailingController extends Controller
             $push->delivered = $site->pushSubscriptions()->count();
             $push->save();
             $mailing->push_id = $push->id;
-            $mailing->save();
-            $mailing->pushes()->attach($push->id);
+            // $mailing->pushes()->attach($push->id);
         }
-        $mailing->push_id = $push->id;
         $mailing->save();
         return dd($request);
     }
