@@ -63,7 +63,6 @@ class PushController extends Controller
     public function store(PushStore $request)
     {
         $push = new Push();
-
         $push->fill($request->all());
         $push->user()->associate(Auth::user());
         if ($request->hasFile('icon')) {
@@ -73,7 +72,7 @@ class PushController extends Controller
             $push->image = $request->file('image')->store('public/mails');
         }
         $push->save();
-        $push->sites()->attach(explode(',', $request->input('sites')));
+        $push->sites()->attach($request->input('sites'));
         foreach ($push->sites as $site) {
             $push->sent = $site->pushSubscriptions()->count();
             $message = new SendPush();

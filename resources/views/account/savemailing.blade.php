@@ -19,7 +19,7 @@
                     <label>
                         <span>Условие отправки:</span>
                         <div class="createmailing-select">
-                            <div class="createmailing-select__current">
+                            <div class="createmailing-select__current" data-name="shipping_conditions">
                                 <input type="hidden" name="shipping_conditions" class="hidden_input_for_data" value="">
                                 <p class="set-select">Подписка на рассылку</p><img src="{{asset('images/down.svg')}}" alt="">
                             </div>
@@ -63,8 +63,8 @@
                     <label>
                         <span>Название отправки:</span>
                         <div class="createmailing-select">
-                            <div class="createmailing-select__current" data-selectMode="multiple">
-                                <input type="hidden" class="hidden_input_for_data" value="" name="sites[]">
+                            <div class="createmailing-select__current" data-name="sites" data-selectMode="multiple">
+                                <input type="hidden" class="hidden_input_for_data" value="">
                                 <p class="set-select" data-textType="default">Выбрать</p><img src="{{asset('images/down.svg')}}" alt="">
                             </div>
                             <div class="createmailing-select__menus">

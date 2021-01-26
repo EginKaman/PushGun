@@ -39,7 +39,7 @@ class AutoMailingController extends Controller
             $push->image = $request->file('image')->store('public/mails');
         }
         $push->save();
-        $push->sites()->attach(explode(',', $request->input('sites')[0]));
+        $push->sites()->attach($request->input('sites'));
         foreach ($push->sites as $site) {
             $push->sent = $site->pushSubscriptions()->count();
             $message = new SendPush();

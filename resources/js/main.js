@@ -54,6 +54,7 @@ $(document).ready(function () {
         const id = $(this).attr('data-id')
         const list = input.attr('value').split(',').filter(item=>item) || []
         const text = container.children('.set-select').text().split(',').filter(item => item.toLowerCase() !== 'выбрать')
+        const selectName = container.attr('data-name')
         if(container.attr('data-selectMode') === 'multiple') {
             const isSelected = $(this).attr('data-isSelected') === '0' ? false : true
             if(isSelected) {
@@ -63,22 +64,23 @@ $(document).ready(function () {
                 text.splice(idxOfExistingText, 1)
                 $(this).attr('data-isSelected','0')
                 container.children('.set-select').text(text.join(', '))
+                const deletedElem = document.getElementById(`${selectName}-${id}`)
+                deletedElem.parentNode.removeChild(deletedElem)
             } else {
                 list.push(id)
                 text.push($(this).text())
                 container.children('.set-select').text(text.join(', '))
                 $(this).attr('data-isSelected','1')
+                container.append(`<input type="hidden" data-name='${selectName}-${id}' name="${selectName}[]" value='${id}'/>`)
             }
-            console.log(list.filter(item=>item))
 
         } else {
             container.children('.set-select').text($(this).text())
-            list.push(id)
+            container.append(`<input type="hidden" data-name='${selectName}-${id}' name="${selectName}[]" value='${id}'/>`)
         }
         if(!text.length) {
             container.children('.set-select').text('Выбрать')
         }
-        input.attr('value', list)
         $(this).parent().slideUp()
         $(this).parent().parent().removeClass('active')
 
