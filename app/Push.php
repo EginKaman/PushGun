@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Push extends Model
@@ -27,11 +29,21 @@ class Push extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function site(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    // public function site(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    // {
+    //     return $this->belongsTo(Site::class);
+    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function sites(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(Site::class);
+        return $this->belongsToMany(Site::class);
     }
-
+    public function autoMailings(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+    {
+        return $this->belongsToMany(AutoMailing::class, 'auto_mailing_push', 'push_id', 'automailing_id');
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

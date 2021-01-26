@@ -13,13 +13,17 @@
         <div>
           <div @click="selectControl = true" class="selector">
             <span
-              v-html="[].concat(checkedNames).join('<br>')"
               class="select-current"
-            ></span>
+            >
+              <span v-for="site in checkedNames" :key="site.id">
+                {{site.link}}
+                <br>
+              </span>
+            
+            </span>
           </div>
-          <div
-            v-click-outside="selectControlClose"
-            v-if="selectControl === true"
+          <div v-if="selectControl" v-click-outside="selectControlClose">
+               <div
             class="select-control"
             :key="item.index"
             v-for="item in $store.state.sites.sites"
@@ -27,11 +31,12 @@
             <input
               type="checkbox"
               :id="item.id"
-              :value="item.link"
+              :value="item"
               v-model="checkedNames"
               style="opacity: 0; position: absolute"
             />
             <label :for="item.id">{{ item.link }} <span>({{item.push_subscriptions_count}})</span></label>
+          </div>
           </div>
         </div>
         <div class="push__input">
@@ -228,7 +233,7 @@ export default {
         { value: "John", id: "john" },
         { value: "Mike", id: "mike" },
       ],
-      Ssite_id: 0,
+      selectedSites: [],
       selected: {},
       title: "",
       text: "",
@@ -258,10 +263,17 @@ export default {
   mounted() {
     this.$store.dispatch("sites/FETCH_SITES").then(() => {
       this.selected = this.sites[0];
-      this.site_id = this.selected.id;
     });
   },
   methods: {
+    selectSite(id) {
+      const candidate = this.selectedSites.indexOf(id)
+      if(!candidate) {
+        this.selectedSites.push(id)
+        return
+      }
+      this.selectedSites.splice(candidate, 1)
+    },
     selectControlClose() {
       this.selectControl = false;
     },
@@ -291,6 +303,8 @@ export default {
       this.selected.image = event.target.result;
     },
     save() {
+      const listSites = []
+      this.checkedNames.forEach(site => listSites.push(site.id))
       let form = new FormData();
       if (this.$refs.image.files[0]) {
         form.append("icon", this.$refs.image.files[0]);
@@ -301,7 +315,7 @@ export default {
       form.append("title", this.title);
       form.append("link", this.link);
       form.append("text", this.text);
-      form.append("site", this.site_id);
+      form.append("sites", listSites);
       axios
         .post(this.action, form, {
           header: {

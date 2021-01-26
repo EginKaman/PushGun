@@ -716,8 +716,10 @@
         }
     }
 }
-
-.bell {
+.header__logo{
+    height: 16px;
+}
+.bell{
     position: relative;
     margin-left: 27px;
     cursor: pointer;
@@ -725,20 +727,20 @@
         right: -8px;
         position: absolute;
         display: block;
-        top: -6px;
+        top: -7px;
+        right: -6px;
         text-align: center;
         color: #fff;
-        font-weight: 600;
+        width: 18px;
         line-height: 20px;
-        font-size: 10px;
-        width: 20px;
-        height: 20px;
+        font-size: 12px;
+        height: 18px;
         border-radius: 100%;
         background-color: #ff4d47;
     }
-    img {
-        width: 26px;
-        height: 26px;
+    img{
+        width: 20px;
+        height: 20px;
     }
 }
 

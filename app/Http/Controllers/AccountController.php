@@ -31,7 +31,8 @@ class AccountController extends Controller
         $user = Auth::user();
         $user->loadCount(['pushes']);
         $sites = $user->sites;
-        $sites->loadCount('pushSubscriptions', 'todaySubscriptions', 'transitions', 'todayTransitions');
+        // $sites->loadCount('pushSubscriptions', 'todaySubscriptions', 'transitions', 'todayTransitions');
+        $sites->loadCount('pushSubscriptions', 'todaySubscriptions');
         return view('account.index', [
             'user' => $user,
             'sites' => $sites,
@@ -53,7 +54,12 @@ class AccountController extends Controller
 
     public function saveMailing()
     {
-        return view('account.savemailing');
+        $user = Auth::user();
+        $sites = $user->sites;
+        $sites->loadCount('pushSubscriptions');
+        return view('account.savemailing', [
+            'sites'=>$sites
+        ]);
     }
     public function saveMailingRss()
     {

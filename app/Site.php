@@ -45,21 +45,15 @@ class Site extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function pushes(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Push::class);
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function transitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
         return $this->hasManyThrough(Transition::class, Push::class);
+        /**
+         * Получает push id по site id, и получает transitions по push id
+         */
     }
 
     /**
@@ -72,7 +66,13 @@ class Site extends Model
             now()->endOfDay()
         ]);
     }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pushes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Push::class);
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
