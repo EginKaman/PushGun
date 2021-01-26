@@ -66,11 +66,11 @@ class runAutoMailings extends Command
                 $message->body($mailing->push->text)
                     ->url(route('transition.store', $mailing->push));
                 $when = Carbon::parse($mailing->time);
-                echo $when;
+                $this->info($when);
                 $site->notify(($message)->delay($when));
                 $this->info('success');
             }
         });
-        return $from;
+        return 0;
     }
 }

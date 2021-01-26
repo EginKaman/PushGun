@@ -14,10 +14,17 @@ class CreatePushSiteTable extends Migration
     public function up()
     {
         Schema::create('push_site', function (Blueprint $table) {
-            $table->id();
-            $table->integer('push_id');
-            $table->integer('site_id');
-            $table->timestamps();
+            $table->foreignId('push_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('site_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+        });
+        \App\Push::all()->each(function ($push) {
+            $push->sites()->attach([
+                'site_id' => $push->site_id
+            ]);
+        });
+        Schema::table('pushes', function (Blueprint $table) {
+            $table->dropForeign(['push_id']);
+            $table->dropColumn('push_id');
         });
     }
 
@@ -28,6 +35,13 @@ class CreatePushSiteTable extends Migration
      */
     public function down()
     {
+        Schema::table('pushes', function (Blueprint $table) {
+            $table->foreignId('site_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate()->after('user_id');
+        });
+        \App\Push::with('sites')->get()->each(function ($push) {
+            $push->site()->associate($push->sites->first()->id);
+            $push->save();
+        });
         Schema::dropIfExists('push_site');
     }
 }
