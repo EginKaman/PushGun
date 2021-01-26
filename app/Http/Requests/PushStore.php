@@ -31,6 +31,10 @@ class PushStore extends FormRequest
             'icon' => ['nullable', 'image', 'max:1024'],
             'image' => ['nullable', 'image', 'max:5128'],
             'sites' => ['required', 'array', 'min:1'],
+            'sites.*' => [
+                'required',
+                Rule::exists('sites', 'id')->whereNull('deleted_at')->where('user_id', $this->user()->id)
+            ],
         ];
     }
 

@@ -365,6 +365,7 @@ export default {
                     }
                 })
                 .then(response => {
+                    // console.log(response);
                     this.$swal({
                       title: this.$i18n.t("Успех!"),
                       text: response.data.message,
