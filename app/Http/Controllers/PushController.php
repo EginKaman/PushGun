@@ -87,8 +87,7 @@ class PushController extends Controller
             $push->delivered = $site->pushSubscriptions()->count();
             $push->save();
         }
-
-        // return redirect()->route('push.index');
+        return redirect()->route('push.index');
     }
 
     /**
