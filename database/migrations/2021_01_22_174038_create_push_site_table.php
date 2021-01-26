@@ -23,8 +23,8 @@ class CreatePushSiteTable extends Migration
             ]);
         });
         Schema::table('pushes', function (Blueprint $table) {
-            $table->dropForeign(['push_id']);
-            $table->dropColumn('push_id');
+            $table->dropForeign(['site_id']);
+            $table->dropColumn('site_id');
         });
     }
 

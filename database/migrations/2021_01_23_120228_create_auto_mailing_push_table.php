@@ -14,7 +14,7 @@ class CreateAutoMailingPushTable extends Migration
     public function up()
     {
         Schema::create('auto_mailing_push', function (Blueprint $table) {
-            $table->foreignId('automailing_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('auto_mailing_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('push_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

@@ -54,9 +54,8 @@ class AutoMailingController extends Controller
             $push->delivered = $site->pushSubscriptions()->count();
             $push->save();
             $mailing->push_id = $push->id;
-            // $mailing->pushes()->attach($push->id);
         }
         $mailing->save();
-        return dd($request);
+        return redirect()->route('account.index');
     }
 }
