@@ -48,9 +48,9 @@ class Site extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function transitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    public function transitions(): \Illuminate\Database\Eloquent\Relations\belongsToMany
     {
-        return $this->hasManyThrough(Transition::class, Push::class);
+        return $this->belongsToMany(Push::class);
         /**
          * Получает push id по site id, и получает transitions по push id
          */
