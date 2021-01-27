@@ -56,11 +56,7 @@
         <div class="container">
             <div class="header__inner">
                 <a href="{{ route('account.index') }}" class="header__logo">
-<<<<<<< HEAD
                     <img style="width: 208px;height: 16px;" src="{{ asset('images/logo.png') }}" alt="" class="header__logo_img">
-=======
-                    <img src="{{ asset('images/logo.png') }}" alt="" class="header__logo_img">
->>>>>>> master
                 </a>
                 <nav class="nav">
                     <a href="{{ route('account.index') }}" class="nav__item">

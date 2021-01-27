@@ -16,6 +16,6 @@ class TransitionController extends Controller
         ]);
         $transition->push()->associate($push);
         $transition->save();
-        return redirect($push->link ?? $push->site->link);
+        return redirect($push->link);
     }
 }
