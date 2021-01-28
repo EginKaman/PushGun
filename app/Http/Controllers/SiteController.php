@@ -68,7 +68,8 @@ class SiteController extends Controller
     {
         return view('sites.show', [
             'site' => $site->loadCount('pushSubscriptions', 'todaySubscriptions', 'pushes'),
-            'pushes' => $site->pushes
+            'pushes' => $site->pushes,
+            'transitions' => $site->transitions()->count()
         ]);
     }
 

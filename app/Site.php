@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class Site extends Model
@@ -48,11 +49,18 @@ class Site extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function transitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    public function transitions()
     {
-        return $this->hasManyThrough(Transition::class, Push::class);
-        /**
-         * Получает push id по site id, и получает transitions по push id
+        $transitions = [];
+        $pushes = $this->pushes()->with('transitions')->get();
+        foreach($pushes as $push) {
+            foreach($push->transitions as $transition) {
+                array_push($transitions, $transition);
+            }
+        }
+        return collect($transitions);
+       /**
+         * 
          */
     }
 
