@@ -4381,6 +4381,11 @@
   dependencies:
     "object-visit" "^1.0.0"
 
+"material-icons@^0.5.2":
+  "integrity" "sha512-4j0LzymSnpoyzuu6SK7tLA03BX6drnmBFI/2jGX1Ckfa89ykNiLoXr17c8i8YxYAl/pHQKEHaEzlx7zubmD/Bg=="
+  "resolved" "https://registry.npmjs.org/material-icons/-/material-icons-0.5.2.tgz"
+  "version" "0.5.2"
+
 "md5.js@^1.3.4":
   "integrity" "sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg=="
   "resolved" "https://registry.npmjs.org/md5.js/-/md5.js-1.3.5.tgz"

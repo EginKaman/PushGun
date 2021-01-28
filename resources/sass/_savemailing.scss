@@ -1,440 +1,438 @@
 .createmailing {
-  .createmailing-select.active {
-    img {
-      transform: rotate(180deg);
+    .createmailing-select.active {
+        img {
+            transform: rotate(180deg);
+        }
     }
-  }
-  .createmailing-select {
-    width: 100%;
-    max-width: 1045px;
-    border: 1px solid #e5e5e5;
-    border-radius: 4px;
-    position: relative;
-    &__current {
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      .set-select{
-        margin: 10px;
-      }
-      // margin: 10px;
-    }
-    &__menus {
-      z-index: 2;
-      background: #fff;
-      display: none;
-      position: absolute;
-      width: 100%;
-      top: 35px;
-      left: -1px;
-      border: 1px solid #e5e5e5;
-      border-top: none;
-      span:hover {
-        background: #5ba4d71c;
-        transition: 0.2s;
-        cursor: pointer;
-      }
-    }
-    span {
-      height: 36px;
-      line-height: 36px;
-      padding: 0px 10px;
-      font-weight: 500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-  &__wrapper {
-    background: #fff;
-    box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
-    border-radius: 10px;
-    padding: 32px 24px 44px 24px;
-    &__item {
-      &:first-child {
-        margin-top: 0px;
-      }
-      .time {
+    .createmailing-select {
         width: 100%;
-        max-width: 46px;
-        height: 36px;
+        max-width: 1045px;
         border: 1px solid #e5e5e5;
         border-radius: 4px;
-        padding: 0px 10px;
-        &::placeholder {
-          color: #000;
+        position: relative;
+        &__current {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            .set-select {
+                margin: 10px;
+            }
+            // margin: 10px;
         }
-      }
-      margin: 16px 0px;
-      label {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        &__menus {
+            z-index: 2;
+            background: #fff;
+            display: none;
+            position: absolute;
+            width: 100%;
+            top: 35px;
+            left: -1px;
+            border: 1px solid #e5e5e5;
+            border-top: none;
+            span:hover {
+                background: #5ba4d71c;
+                transition: 0.2s;
+                cursor: pointer;
+            }
+        }
         span {
-          font-weight: 600;
-          font-size: 14px;
-        }
-        input {
-          width: 100%;
-          max-width: 1025px;
-          height: 36px;
-          border: 1px solid #e5e5e5;
-          border-radius: 4px;
-          padding: 0px 10px;
-          &::placeholder {
-            color: #323441;
-            opacity: 0.5;
-            font-size: 14px;
+            height: 36px;
+            line-height: 36px;
+            padding: 0px 10px;
             font-weight: 500;
-          }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-      }
     }
-  }
+    &__wrapper {
+        background: #fff;
+        box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
+        border-radius: 10px;
+        padding: 32px 24px 44px 24px;
+        &__item {
+            &:first-child {
+                margin-top: 0px;
+            }
+            .time {
+                width: 100%;
+                max-width: 46px;
+                height: 36px;
+                border: 1px solid #e5e5e5;
+                border-radius: 4px;
+                padding: 0px 10px;
+                &::placeholder {
+                    color: #000;
+                }
+            }
+            margin: 16px 0px;
+            label {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                span {
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+                .automailings__form_selectInput {
+                    max-width: 1025px;
+                    width: 100%;
+                    padding: 0px 10px;
+                }
+                input {
+                    width: 100%;
+                    max-width: 1025px;
+                    height: 36px;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 4px;
+                    padding: 0px 10px;
+                    &::placeholder {
+                        color: #323441;
+                        opacity: 0.5;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .createmailing__wrapper__item__checkbox {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  label {
-    width: auto;
-  }
-  .createmailing__wrapper__item__input div {
     display: flex;
-    align-items: center;
-    margin-left: 18px;
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-  .createmailing__wrapper__item__input.trl {
-    span {
-      font-size: 22px;
-      color: #000;
-      margin-right: 8px;
-    }
-  }
-  .createmailing__wrapper__item__input {
+    justify-content: space-between;
     width: 100%;
-    max-width: 1045px;
-    display: flex;
-    align-items: center;
-    span {
-      color: #3b8378;
-      margin-left: 8px;
+    label {
+        width: auto;
     }
-  }
+    .createmailing__wrapper__item__input div {
+        display: flex;
+        align-items: center;
+        margin-left: 18px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    .createmailing__wrapper__item__input.trl {
+        span {
+            font-size: 22px;
+            color: #000;
+            margin-right: 8px;
+        }
+    }
+    .createmailing__wrapper__item__input {
+        width: 100%;
+        max-width: 1045px;
+        display: flex;
+        align-items: center;
+        span {
+            color: #3b8378;
+            margin-left: 8px;
+        }
+    }
 }
 
 .createmailing__wrapper__center {
-  width: 100%;
-  max-width: 1045px;
-  margin-left: auto;
-  p {
-    font-weight: 500;
-    font-size: 12px;
-    color: #323441;
-    opacity: 0.5;
-  }
-  .createmailing__wrapper__item__checkbox {
-    span {
-      color: #3b8378;
+    width: 100%;
+    max-width: 1045px;
+    margin-left: auto;
+    p {
+        font-weight: 500;
+        font-size: 12px;
+        color: #323441;
+        opacity: 0.5;
     }
-  }
-  .createmailing__wrapper__item {
-    label {
-      display: block;
-      margin-bottom: 15px;
-      span {
-        margin-bottom: 8px;
-        display: block;
-      }
+    .createmailing__wrapper__item__checkbox {
+        span {
+            color: #3b8378;
+        }
     }
-  }
+    .createmailing__wrapper__item {
+        label {
+            display: block;
+            margin-bottom: 15px;
+            span {
+                margin-bottom: 8px;
+                display: block;
+            }
+        }
+    }
 }
 
 .createmailing__wrapper__two {
-  .image__site {
-    margin-top: 25px;
-    &__block {
-      display: flex;
-      img {
-        max-width: 64px;
-        max-height: 64px;
-      }
-      .file {
-        margin-left: 18px;
-        color: #3b8378;
-        cursor: pointer;
+    .image__site {
+        margin-top: 25px;
+        &__block {
+            display: flex;
+            img {
+                max-width: 64px;
+                max-height: 64px;
+            }
+            .file {
+                margin-left: 18px;
+                color: #3b8378;
+                cursor: pointer;
+                span {
+                    margin-top: 10px;
+                    display: block;
+                    color: #979797;
+                    font-size: 12px;
+                    line-height: 12px;
+                }
+                input {
+                    width: 1px;
+                    height: 1px;
+                    display: none;
+                }
+            }
+        }
+    }
+    &__content {
+        margin-top: 25px;
+        .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input span {
+            color: #000;
+        }
+        .createmailing__wrapper__item {
+            label {
+                display: block;
+                margin-bottom: 15px;
+                textarea {
+                    max-width: 1128px;
+                    width: 100%;
+                    height: 96px;
+                    resize: none;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 4px;
+                    padding: 10px 10px;
+                }
+                .ttl {
+                    margin-bottom: 8px;
+                    display: block;
+                }
+                input {
+                    max-width: 1128px;
+                }
+            }
+        }
+        .createmailing-select {
+            max-width: none;
+            span {
+                margin-bottom: 0 !important;
+                display: flex !important;
+            }
+        }
+    }
+    &__head {
+        display: flex;
+        border-bottom: 1px solid #00000026;
+        align-items: center;
+        padding-bottom: 25px;
         span {
-          margin-top: 10px;
-          display: block;
-          color: #979797;
-          font-size: 12px;
-          line-height: 12px;
+            margin: 0px 10px;
         }
-        input {
-          width: 1px;
-          height: 1px;
-          display: none;
+        .createmailing-select {
+            max-width: none;
+            width: auto;
+            border: none;
+            span {
+                padding: 0px 0px 0px 67px;
+            }
+            .set-select {
+                text-decoration: underline;
+                color: #3b8378;
+            }
+            &__menus {
+                border: none;
+                background: none;
+                .select-item {
+                    cursor: pointer;
+                    text-align: right;
+                    padding-right: 32px;
+                    text-decoration: underline;
+                    color: #3b8378;
+                }
+            }
         }
-      }
+        .createmailing__wrapper__item {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            &__checkbox {
+                width: auto;
+                input[type="text"] {
+                    margin-left: 15px;
+                    width: 100px;
+                }
+                .min {
+                    max-width: 46px;
+                    height: 36px;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 4px;
+                    padding: 0px 10px;
+                }
+            }
+        }
     }
-  }
-  &__content {
-    margin-top: 25px;
-    .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input span {
-      color: #000;
-    }
-    .createmailing__wrapper__item {
-      label {
-        display: block;
-        margin-bottom: 15px;
-        textarea {
-          max-width: 1128px;
-          width: 100%;
-          height: 96px;
-          resize: none;
-          border: 1px solid #e5e5e5;
-          border-radius: 4px;
-          padding: 10px 10px;
-        }
-        .ttl {
-          margin-bottom: 8px;
-          display: block;
-        }
-        input {
-          max-width: 1128px;
-        }
-      }
-    }
-    .createmailing-select {
-      max-width: none;
-      span {
-        margin-bottom: 0 !important;
-        display: flex !important;
-      }
-    }
-  }
-  &__head {
-    display: flex;
-    border-bottom: 1px solid #00000026;
-    align-items: center;
-    padding-bottom: 25px;
-    span {
-      margin: 0px 10px;
-    }
-    .createmailing-select {
-      max-width: none;
-      width: auto;
-      border: none;
-      span {
-        padding: 0px 0px 0px 67px;
-      }
-      .set-select {
-        text-decoration: underline;
-        color: #3b8378;
-      }
-      &__menus {
-        border: none;
-        background: none;
-        .select-item {
-          cursor: pointer;
-          text-align: right;
-          padding-right: 32px;
-          text-decoration: underline;
-          color: #3b8378;
-        }
-      }
-    }
-    .createmailing__wrapper__item {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      &__checkbox {
-        width: auto;
-        input[type="text"] {
-          margin-left: 15px;
-          width: 100px;
-        }
-        .min {
-          max-width: 46px;
-          height: 36px;
-          border: 1px solid #e5e5e5;
-          border-radius: 4px;
-          padding: 0px 10px;
-        }
-      }
-    }
-  }
-  margin-top: 46px;
-  margin-left: auto;
-  max-width: 1150px;
-  position: relative;
-  background: #fff;
-  padding: 32px 24px 44px 24px;
+    margin-top: 46px;
+    margin-left: auto;
+    max-width: 1150px;
+    position: relative;
+    background: #fff;
+    padding: 32px 24px 44px 24px;
 }
 
 .save-block {
-  max-width: 1198px;
-  width: 100%;
-  margin-left: auto;
-  margin-top: 45px;
+    max-width: 1198px;
+    width: 100%;
+    margin-left: auto;
+    margin-top: 45px;
 }
 
 .button-create {
-  padding: 15px 30px;
-  border: 2px solid #3b8378;
-  border-radius: 100px;
-  color: #3b8378;
-  cursor: pointer;
+    padding: 15px 30px;
+    border: 2px solid #3b8378;
+    border-radius: 100px;
+    color: #3b8378;
+    cursor: pointer;
 }
 
 .contains {
-  position: relative;
-  .left__item__content {
     position: relative;
-    height: 100%;
-    width: 46px;
-  }
-  .left__item__block {
-    height: 100%;
-    width: 46px;
-    position: absolute;
-    .polosa {
-      position: absolute;
-      height: 98%;
-      width: 1px;
-      top: 10px;
-      left: 50%;
-      background: #3b8378;
+    .left__item__content {
+        position: relative;
+        height: 100%;
+        width: 46px;
     }
-    .oval {
-      z-index: 2;
-      position: absolute;
-      width: 46px;
-      height: 46px;
-      border-radius: 100%;
-      background: #3b8378;
-      text-align: center;
-      line-height: 46px;
-      color: #fff;
-      &:first-child {
-        top: 0;
-      }
-      &:last-child {
-        bottom: -10px;
-      }
+    .left__item__block {
+        height: 100%;
+        width: 46px;
+        position: absolute;
+        .polosa {
+            position: absolute;
+            height: 98%;
+            width: 1px;
+            top: 10px;
+            left: 50%;
+            background: #3b8378;
+        }
+        .oval {
+            z-index: 2;
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            border-radius: 100%;
+            background: #3b8378;
+            text-align: center;
+            line-height: 46px;
+            color: #fff;
+            &:first-child {
+                top: 0;
+            }
+            &:last-child {
+                bottom: -10px;
+            }
+        }
+        span {
+            display: block;
+        }
     }
-    span {
-      display: block;
-    }
-  }
 }
 
 .createmailing-foot {
-  margin-top: 75px;
-  display: flex;
-  padding: 25px;
-  background: #fff;
-  box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
-  border-radius: 10px;
+    margin-top: 75px;
+    display: flex;
+    padding: 25px;
+    background: #fff;
+    box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 1250px) {
-  .contains .left__item__block {
-    display: none;
-  }
+    .contains .left__item__block {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1170px) {
-  .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input {
-    width: auto;
-  }
-  .createmailing .createmailing-select {
-    width: 85%;
-  }
-  .createmailing__wrapper__item label input {
-    width: 89%;
-  }
-
-  .createmailing__wrapper__two__content .createmailing__wrapper__item label textarea {
-    width: 89%;
-  }
-  .createmailing__wrapper__item .time {
-    width: 46px;
-  }
+    .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input {
+        width: auto;
+    }
+    .createmailing .createmailing-select {
+        width: 85%;
+    }
+    .createmailing__wrapper__item label input,
+    .automailings__form_selectInput {
+        width: 89%;
+    }
+    .createmailing__wrapper__two__content .createmailing__wrapper__item label textarea {
+        width: 89%;
+    }
+    .createmailing__wrapper__item .time {
+        width: 46px;
+    }
 }
 
 @media screen and (max-width: 787px) {
-  .createmailing__wrapper__item label {
-    display: block;
-  }
-  .createmailing__wrapper__item__checkbox {
-    display: block;
-  }
-
-  .createmailing__wrapper__two__head {
-    display: block;
-  }
-
-  .createmailing__wrapper__two__head .createmailing-select span {
-    padding: 0;
-    margin: 0;
-  }
-  .createmailing__wrapper__two__head .createmailing-select__menus{
-    width: 79px;
-  }
-  .createmailing__wrapper__item label input{
-    width: 80.5%;
-  }
-  .createmailing__wrapper__two__content .createmailing__wrapper__item label textarea{
-    width: 80.5%;
-  }
+    .createmailing__wrapper__item label {
+        display: block;
+    }
+    .createmailing__wrapper__item__checkbox {
+        display: block;
+    }
+    .createmailing__wrapper__two__head {
+        display: block;
+    }
+    .createmailing__wrapper__two__head .createmailing-select span {
+        padding: 0;
+        margin: 0;
+    }
+    .createmailing__wrapper__two__head .createmailing-select__menus {
+        width: 79px;
+    }
+    .createmailing__wrapper__item label input,
+    .automailings__form_selectInput {
+        width: 80.5%;
+    }
+    .createmailing__wrapper__two__content .createmailing__wrapper__item label textarea {
+        width: 80.5%;
+    }
 }
 
-@media screen and (max-width: 480px){
-  .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input{
-    display: block;
-  }
-  .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input div{
-    margin-left: 0;
-  }
-  .createmailing__wrapper__item__input.trl{
-    span{
-      display: none;
+@media screen and (max-width: 480px) {
+    .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input {
+        display: block;
     }
-  }
-
-  .createmailing__wrapper__two__head .createmailing__wrapper__item__checkbox input[type=text]{
-    margin: 0;
-  }
-
-  .createmailing .createmailing-select span{
-    width: 300px;
-  }
-
-  .createmailing .createmailing-select__menus,
-  .createmailing .createmailing-select span{
-    overflow: hidden;
-    overflow-x: scroll;
-  }
-  .createmailing .createmailing-select__current{
-    display: block;
-  }
-
-  .createmailing-select__current{
-    overflow: hidden;
-    overflow-x: scroll;
-    img{
-      display: none;
+    .createmailing__wrapper__item__checkbox .createmailing__wrapper__item__input div {
+        margin-left: 0;
     }
-    .set-select{
-      width: 340px;
+    .createmailing__wrapper__item__input.trl {
+        span {
+            display: none;
+        }
     }
-  }
-
-  
+    .createmailing__wrapper__two__head .createmailing__wrapper__item__checkbox input[type=text] {
+        margin: 0;
+    }
+    .createmailing .createmailing-select span {
+        width: 300px;
+    }
+    .createmailing .createmailing-select__menus,
+    .createmailing .createmailing-select span {
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+    .createmailing .createmailing-select__current {
+        display: block;
+    }
+    .createmailing-select__current {
+        overflow: hidden;
+        overflow-x: scroll;
+        img {
+            display: none;
+        }
+        .set-select {
+            width: 340px;
+        }
+    }
 }
