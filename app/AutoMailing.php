@@ -13,7 +13,8 @@ class AutoMailing extends Model
         'thursday' => 0,
         'friday' => 0,
         'saturday' => 0,
-        'sunday' => 0
+        'sunday' => 0,
+        'series'=>0
     ];
     /**
      * The attributes that are mass assignable.
@@ -29,7 +30,8 @@ class AutoMailing extends Model
         'saturday',
         'sunday',
         'time',
-        "name"
+        "name",
+        'series'
     ];
     /**
      * The attributes that should be cast.
@@ -44,7 +46,8 @@ class AutoMailing extends Model
         'thursday' => 'boolean',
         'friday' => 'boolean',
         'saturday' => 'boolean',
-        'sunday' => 'boolean'
+        'sunday' => 'boolean',
+        'series' => 'integer'
     ];
 
     /**
@@ -54,11 +57,11 @@ class AutoMailing extends Model
     {
         return $this->belongsTo(Push::class, 'push_id', 'id');
     }
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    //  */
-    // public function pushes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    // {
-    //     return $this->belongsToMany(Push::class, 'auto_mailing_push', 'automailing_id', 'push_id');
-    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo 
+    {
+        return $this->belongsTo(User::class);
+    }
 }

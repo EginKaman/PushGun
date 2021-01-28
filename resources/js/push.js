@@ -1,46 +1,50 @@
-(window.onload = async function () {
+(window.onload = async function() {
 
     if ('safari' in window && 'pushNotification' in window.safari) {
-        console.log('this is safari')
+        console.log('this is safaris')
 
-        function loadScript(url, callback) {
-
-            var script = document.createElement("script")
-            script.type = "text/javascript";
-
-            if (script.readyState) {  //IE
-                script.onreadystatechange = function () {
-                    if (script.readyState == "loaded" ||
-                        script.readyState == "complete") {
-                        script.onreadystatechange = null;
-                        callback();
-                    }
-                };
-            } else {  //Others
-                script.onload = function () {
-                    callback();
-                };
+        function checkRemotePermission(permissionData) {
+            if (permissionData.permission === 'default') {
+                // This is a new web service URL and its validity is unknown.
+                window.safari.pushNotification.requestPermission(
+                    'https://awery.workreports.pro', // The web service URL.
+                    'web.pro.workreports.awery', // The Website Push ID.
+                    {}, // Data that you choose to send to your server to help you identify the user.
+                    checkRemotePermission // The callback function.
+                );
+            } else if (permissionData.permission === 'denied') {
+                console.log('user not allowed notifications')
+            } else if (permissionData.permission === 'granted') {
+                // The web service URL is a valid push provider, and the user said yes.
+                // permissionData.deviceToken is now available to use.
+                console.log(permissionData.deviceToken, 'YEAH!');
+                // $rootScope.sendTokenToServer(permissionData.deviceToken, 'safari');
             }
+        };
 
-            script.src = url;
-            document.getElementsByTagName("head")[0].appendChild(script);
+        function isTokenSentToServer(currentToken) {
+            return window.localStorage.getItem('sentFirebaseMessagingToken') == currentToken;
         }
 
+        function setTokenSentToServer(currentToken) {
+            window.localStorage.setItem(
+                'sentFirebaseMessagingToken',
+                currentToken ? currentToken : ''
+            );
+        }
 
-        loadScript('https://cdn.onesignal.com/sdks/OneSignalSDK.js', () => {
-            console.log("loaded script onesignal")
-
-            window.OneSignal = window.OneSignal || [];
-            OneSignal.push(function () {
-                OneSignal.init({
-                    appId: '346a91d6-d02e-40df-b6ff-0af4f9b8cfc9',
-                    safari_web_id: "web.com.somevertical",
-                    notifyButton: {
-                        enable: true,
-                    }
-                });
-            });
-        })
+        function sendTokenToServer(currentToken) {
+            if (!isTokenSentToServer(currentToken)) {
+                console.log('Отправка токена на сервер...');
+                var url = ''; // адрес скрипта на сервере который сохраняет ID устройства
+                // Отправка на сервер
+                setTokenSentToServer(currentToken);
+            } else {
+                console.log('Токен уже отправлен на сервер.');
+            }
+        }
+        // var permissionData = window.safari.pushNotification.permission('web.com.example.domain')
+        // checkRemotePermission(permissionData)7
 
     } else {
         console.log('Push Notifications not for Safari browser');
@@ -56,17 +60,17 @@
         }
 
         function requestPermission() {
-            return new Promise(function (resolve, reject) {
-                const permissionResult = Notification.requestPermission(function (result) {
-                    // Поддержка устаревшей версии с функцией обратного вызова.
-                    resolve(result);
-                });
+            return new Promise(function(resolve, reject) {
+                    const permissionResult = Notification.requestPermission(function(result) {
+                        // Поддержка устаревшей версии с функцией обратного вызова.
+                        resolve(result);
+                    });
 
-                if (permissionResult) {
-                    permissionResult.then(resolve, reject);
-                }
-            })
-                .then(function (permissionResult) {
+                    if (permissionResult) {
+                        permissionResult.then(resolve, reject);
+                    }
+                })
+                .then(function(permissionResult) {
                     if (permissionResult !== 'granted') {
                         throw new Error('Permission not granted.');
                     }
@@ -115,7 +119,7 @@
 
         function subscribeUserToPush() {
             return navigator.serviceWorker.register('/pg-push-worker.js')
-                .then(function (registration) {
+                .then(function(registration) {
                     var subscribeOptions = {
                         userVisibleOnly: true,
                         applicationServerKey: urlBase64ToUint8Array(
@@ -124,7 +128,7 @@
                     };
                     return registration.pushManager.subscribe(subscribeOptions);
                 })
-                .then(function (pushSubscription) {
+                .then(function(pushSubscription) {
                     return pushSubscription;
                 });
         }

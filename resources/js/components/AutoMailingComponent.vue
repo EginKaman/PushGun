@@ -58,10 +58,11 @@
         </div>
       </div>
     </div>
-    <div
+  <div v-if="automailings">
+      <div
       class="automailing__wrapper"
-      v-for="(item, index) in mailing"
-      :key="item.id"
+      v-for="(automailing, index) in automailings"
+      :key="automailing.id"
     >
       <div class="automailing__wrapper__item">
         <span @click="popupModal = index" class="popup-btn">...</span>
@@ -76,19 +77,19 @@
         <div class="automailing__wrapper__item__content">
           <div class="content__wrapp">
             <div class="content-item">
-              <p class="name">{{ item.name }}</p>
+              <p class="name">a</p>
             </div>
             <div class="content-item">
-              <span>{{ item.status }}</span>
-              <a>{{ item.url }}</a>
+              <span>Status ~~</span>
+              <a>{{automailing.name}}</a>
               <div class="content-icon">
                 <div class="content-icon-item">
                   <img src="../../images/message.svg" alt="" />
-                  <p>{{ item.message }}</p>
+                  <p>0</p>
                 </div>
                 <div class="content-icon-item">
                   <img src="../../images/calendar.svg" alt="" />
-                  <p>{{ item.data }}</p>
+                  <p>{{ new Date(automailing.created_at).toLocaleString() }}</p>
                 </div>
               </div>
             </div>
@@ -97,15 +98,15 @@
         <div class="automailing__wrapper__item__content">
           <div class="content-item-count__wrapper">
             <div class="content-item-count">
-              <span>{{ item.usersCount }}</span>
+              <span>0 ~~</span>
               <p>Подписчиков в очереди</p>
             </div>
             <div class="content-item-count">
-              <span>{{ item.seriesCount }}</span>
+              <span>{{automailing.series}}</span>
               <p>Завершенных серий</p>
             </div>
             <div class="content-item-count">
-              <span>{{ item.pushCount }}</span>
+              <span>0 ~~</span>
               <p>Отправлено push</p>
             </div>
           </div>
@@ -113,10 +114,12 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import vClickOutside from "v-click-outside";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "AutoMailingComponent",
@@ -160,6 +163,25 @@ export default {
       this.rssShow = null;
     },
   },
+   computed: {
+        ...mapState({
+            automailings: state => state.automailings.automailings
+        }),
+        ...mapGetters("automailings", {
+            automailings: "getAutomailings"
+        }),
+        automailings: {
+            get() {
+                return this.$store.state.automailings.automailings;
+            },
+            set(value) {
+                this.$store.commit("automailings/setAutomailings", value);
+            }
+        }
+    },
+    mounted() {
+        this.$store.dispatch("automailings/FETCH_AUTOMAILINGS").then((res)=>console.log(res));
+    },
 };
 </script>
 

@@ -10,12 +10,16 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\AutomailingsResource;
 
 class AutoMailingController extends Controller
 {
+    
+    
     public function store(AutoMailingRequest $request)
     {
         $mailing = new AutoMailing;
+        $mailing->user()->associate(Auth::user());
         foreach ($request->input('days') as $day) {
             if ($day === 'monday' || $day === 'tuesday' || $day === 'wednesday' || $day === 'thursday' || $day === 'friday' || $day === 'saturday' || $day === 'sunday') {
                 $mailing[$day] = true;

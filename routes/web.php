@@ -70,6 +70,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 });
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
     Route::get('site', 'Api\SiteController');
+    Route::get('automailings', 'Api\AutoMailingController');
     Route::post('site/{site}/check', 'Api\CheckScriptController');
     Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
     Route::get('statistics', 'Api\StatisticController');

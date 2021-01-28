@@ -259,7 +259,7 @@ export default {
         action: {
             type: String,
             default: ""
-        }
+        },
     },
     data() {
         return {

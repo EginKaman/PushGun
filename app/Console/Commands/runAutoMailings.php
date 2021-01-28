@@ -70,6 +70,8 @@ class runAutoMailings extends Command
                 $site->notify(($message)->delay($when));
                 $this->info('success');
             }
+            $mailing->series+=1;
+            $mailing->save();
         });
         return 0;
     }
