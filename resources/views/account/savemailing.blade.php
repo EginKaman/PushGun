@@ -15,22 +15,27 @@
                 <div class="createmailing__wrapper__item">
                     <label><span>Название рассылки:</span> <input type="text" name="name" placeholder="Введите название рассылки"></label>
                 </div>
+                <!--  -->
                 <div class="createmailing__wrapper__item">
                     <label>
                         <span>Условие отправки:</span>
                         <div class="createmailing-select">
-                            <div class="createmailing-select__current" data-name="shipping_conditions">
-                                <input type="hidden" name="shipping_conditions" class="hidden_input_for_data" value="">
-                                <p class="set-select">Подписка на рассылку</p><img src="{{asset('images/down.svg')}}" alt="">
+                            <div class="createmailing-select__current" data-name="sites" data-selectMode="multiple">
+                                <input type="hidden" class="hidden_input_for_data" value="">
+                                <p class="set-select" data-textType="default">Выбрать</p><img src="{{asset('images/down.svg')}}" alt="">
                             </div>
                             <div class="createmailing-select__menus">
-                                <span class="select-item" data-type="createmailing-select-conditions" data-id="1">Подписка на рассылку</span>
-                                <span class="select-item" data-type="createmailing-select-conditions" data-id="2">Подписка на рассылку1</span>
-                                <span class="select-item" data-type="createmailing-select-conditions" data-id="3">Подписка на рассылку2</span>
+                                @foreach($sites as $site)
+                                    <span class="select-item" data-isSelected="0" data-id="{{$site->id}}">
+                                        {{$site->link}}
+                                        ( {{$site->push_subscriptions_count}} подписчика )
+                                    </span>
+                                @endforeach
                             </div>
                         </div>
                     </label>
                 </div>
+                <!--  -->
                 <div class="createmailing__wrapper__item">
                     <div class="createmailing__wrapper__item__checkbox">
                         <label class="trc">
@@ -58,25 +63,6 @@
                             <input class="time" min="0" value="00" name="minute" max="59" type="number" placeholder="00">
                         </div>
                     </div>
-                </div>
-                <div class="createmailing__wrapper__item">
-                    <label>
-                        <span>Название отправки:</span>
-                        <div class="createmailing-select">
-                            <div class="createmailing-select__current" data-name="sites" data-selectMode="multiple">
-                                <input type="hidden" class="hidden_input_for_data" value="">
-                                <p class="set-select" data-textType="default">Выбрать</p><img src="{{asset('images/down.svg')}}" alt="">
-                            </div>
-                            <div class="createmailing-select__menus">
-                                @foreach($sites as $site)
-                                    <span class="select-item" data-isSelected="0" data-id="{{$site->id}}">
-                                        {{$site->link}}
-                                        ( {{$site->push_subscriptions_count}} подписчика )
-                                    </span>
-                                @endforeach
-                            </div>
-                        </div>
-                    </label>
                 </div>
                 <div class="createmailing__wrapper__center">
                     <div class="createmailing__wrapper__item__checkbox">
