@@ -64,4 +64,11 @@ class AutoMailing extends Model
     {
         return $this->belongsTo(User::class);
     }
+    /**
+         * 
+     */
+    public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo 
+    {
+        return $this->belongsTo(AutoMailingStatus::class, 'status_id', 'id');
+    }
 }

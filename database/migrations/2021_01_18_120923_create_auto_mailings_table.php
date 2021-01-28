@@ -17,6 +17,7 @@ class CreateAutoMailingsTable extends Migration
             $table->id();
             $table->foreignId('push_id')->constrained();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->integer('status_id');
             $table->integer('series');
             $table->string('name');
             $table->boolean('monday');
