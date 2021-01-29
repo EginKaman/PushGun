@@ -64,6 +64,11 @@ class AccountController extends Controller
         return view('account.createmailing');
     }
 
+    public function referal()
+    {
+        return view('account.referal');
+    }
+
     public function createMailingRss()
     {
         return view('account.createmailingrss');
