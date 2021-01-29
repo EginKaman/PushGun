@@ -63,7 +63,6 @@ class AutoMailingController extends Controller
             }
         }
         $mailing->save();
-        return;
         return redirect()->route('account.index');
     }
 }
