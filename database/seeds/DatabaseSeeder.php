@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(BlogsTableSeeder::class);
         $this->call(AutoMailingStatusesTableSeeder::class);
+        $this->call(TimeSeeder::class);
     }
 }

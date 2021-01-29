@@ -2,6 +2,9 @@
   <div>
     <div
       class="v-select"
+      :style="{
+        maxWidth: `${maxWidth.size}${maxWidth.unit}`
+      }"
       :class="positionLabelClass"
     >
       <label v-if="label.show">
@@ -11,7 +14,7 @@
       @click="switchSelect"
         ref="selectText"
       >
-        {{ text}} <span class="material-icons">keyboard_arrow_down </span>
+        {{ text}} <span v-if="isShowIcon" class="material-icons">keyboard_arrow_down </span>
       </p>
 
       <ul
@@ -25,7 +28,7 @@
           </label>
         </li>
         <li v-for="item in data" :key="item[keyName]" @click="select(item)" class="v-select_li__hover">
-          <input type="checkbox" :checked="isSelected(item[keyName])" :id="`selectItem${item[keyName]}`"/>
+          <input v-if="isShowCheckbox" type="checkbox" :checked="isSelected(item[keyName])" :id="`selectItem${item[keyName]}`"/>
           <label ref="selectItem" class="v-select__optionName pointer">
             {{item[optionName]}}
             {{additionalOptionName.isShow ? `${item[additionalOptionName.optionName]} ${additionalOptionName.label}` : '' }}
@@ -50,6 +53,32 @@ export default {
         clickOutside: vClickOutside.directive
     },
  props: {
+   defaultValue: {
+     type: Object,
+     default() {
+       return {
+         isActive: false,
+         key: null
+       }
+     }
+   },
+   isShowCheckbox: {
+     type: Boolean,
+      default: true
+   },
+   isShowIcon: {
+     type: Boolean,
+     default: true
+   },
+    maxWidth: {
+      type: Object,
+      default() {
+        return {
+          size: 100,
+          unit: '%',
+        }
+      }
+    },
      mode: {
          type: String,
          default: 'Single'
@@ -121,7 +150,8 @@ export default {
         this.selectText.push(item[this.optionName])
       },
       selectInModeSingle(item) {
-
+        this.selected = item[this.keyName]
+        this.selectText = item[this.optionName]
       },
       reset() {
         this.isMultipleMode ? this.resetInModeMultiple() : resetInModeSingle()

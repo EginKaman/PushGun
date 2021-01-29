@@ -74,5 +74,6 @@ Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
     Route::post('site/{site}/check', 'Api\CheckScriptController');
     Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
     Route::get('statistics', 'Api\StatisticController');
+    Route::get('times','Api\TimeController');
 });
 

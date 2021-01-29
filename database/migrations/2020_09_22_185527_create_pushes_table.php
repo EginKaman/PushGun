@@ -17,6 +17,9 @@ class CreatePushesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('site_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('time_id')->nullable();
+            $table->integer('delay')->nullable();
+            $table->integer('prev_push_id')->nullable();
             $table->string('title');
             $table->string('icon')->nullable();
             $table->string('image')->nullable();

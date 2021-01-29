@@ -185,15 +185,11 @@
             <div class="createmailing__wrapper__two">
                 <div class="createmailing__wrapper__two__head">
                     <p>Отправить push</p>
-                    <div class="createmailing-select">
-                        <div class="createmailing-select__current">
-                            <p class="set-select">через</p>
-                            <!-- <img src="{{asset('images/down.svg')}}" alt="" /> -->
-                        </div>
-                        <!-- <div class="createmailing-select__menus">
-                                <p class="select-item">после</p>
-                                <p class="select-item">через</p>
-                            </div> -->
+                    <div class="createmailing__select_delayMode">
+                        <p>Через<span class="material-icons">keyboard_arrow_down</span></p>
+                        <!-- <ul>
+                            <li>Сразу</li>
+                        </ul> -->
                     </div>
                     <div class="createmailing__wrapper__item">
                         <div class="createmailing__wrapper__item__checkbox">
@@ -210,13 +206,25 @@
                                     type="number"
                                     placeholder="0"
                                 />
-                                <input
-                                    class="min"
-                                    value="минут"
-                                    type="text"
-                                    placeholder="минут"
-                                    readonly
-                                />
+                                <vSelect
+                                    v-if="times"
+                                    mode="Single"
+                                    :data="times"
+                                    optionName="title"
+                                    :defaultValue="{
+                                        isActive: true,
+                                        key: 1
+                                    }"
+                                    keyName="id"
+                                    :isShowIcon="false"
+                                    :isShowCheckbox="false"
+                                    class="selectTimeClass"
+                                    :maxWidth="{
+                                        size: 120,
+                                        unit: 'px'
+                                    }"
+                                    @selected="(time)=>{form.pushes[index].delay.time = time}"
+                                 />
                             </div>
                         </div>
                         <!-- <span>в</span>
@@ -227,10 +235,14 @@
                                     <input class="time" min="0" max="59" type="number" placeholder="00">
                                 </div>
                             </div> -->
-                        <span>после подписки</span>
+                        <span>
+                            {{
+                                index > 0 ? 'После отправки предыдущего сообщения' : 'После подписки'
+                            }}
+                        </span>
                     </div>
-                    <div class="deletePush" v-if="form.pushes.length > 1">
-                            <span class="material-icons" @click="deletePush(index)">close</span>
+                    <div class="deletePush" v-if="index > 0">
+                            <span class="material-icons pointer" @click="deletePush(index)">close</span>
                         </div>
                 </div>
                 <div class="createmailing__wrapper__two__content">
@@ -283,7 +295,7 @@
                 </div>
             </div>
             <div class="save-block">
-                <a class="button-create" @click="createBlockForNewPush">Новое уведомление</a>
+                <a class="button-create" @click="createBlockForNewPush" v-if="form.pushes.length === index +1">Новое уведомление</a>
             </div>
         </div>
         <div class="createmailing-foot">
@@ -307,6 +319,16 @@ import axios from "axios";
 export default {
     name: "AutoMailingCreate",
     data: () => ({
+        delayModes: [
+        {
+            text: 'Через',
+            id: 1
+        },
+        {
+            text: 'Сразу',
+            id: 2
+        }
+    ],
         pushNumber: 0,
         form: {
             name: "",
@@ -324,19 +346,25 @@ export default {
             pushes: [
                 {
                     delay: {
-                        after: 'minute',
-                        value: 0
+                        time: 1,
+                        value: 0,
+                        isNow: false,
+                        previousPush: ''
                     },
                     title: '',
                     text: '',
                     link: '',
-                    image: null
+                    image: null,
+                    icon: null,
                 }
             ]
         },
         selectedSites: null,
         isShowMarkInputs: false
     }),
+    directives: {
+        clickOutside: vClickOutside.directive
+    },
     props: {
         action: {
             type: String,
@@ -346,7 +374,6 @@ export default {
     methods: {
         submit() {
             const form = new FormData()
-
             form.append('name', this.form.name)
             form.append('hours', this.form.time.hours)
             form.append('minute', this.form.time.minute)
@@ -364,9 +391,11 @@ export default {
                 form.append(`pushes[${index}][title]`, push.title)
                 form.append(`pushes[${index}][text]`, push.text)
                 form.append(`pushes[${index}][link]`, push.link)
-                form.append(`pushes[${index}][delay][after]`, push.delay.after)
+                form.append(`pushes[${index}][delay][time]`, push.delay.time)
                 form.append(`pushes[${index}][delay][value]`, push.delay.value)
-                form.append(`pushes[${index}][image]`, this.$refs.imagePush[index].files[0] || null)
+                form.append(`pushes[${index}][delay][previousPush]`, push.delay.previousPush)
+                form.append(`pushes[${index}][image]`, this.$refs.imagePush[index].files[0] || '')
+                form.append(`pushes[${index}][icon]`, '')
             })
             axios.post(this.action,form, {
                 header: {
@@ -382,16 +411,19 @@ export default {
             const file = event.target.files.item(0);
             this.form.pushes[index].image = file
         },
-        createBlockForNewPush() {
+        createBlockForNewPush(index) {
             this.form.pushes.push({
                 delay: {
-                        after: 'minute',
-                        value: 0
+                        time: 1,
+                        value: 0,
+                        previousPush: '',
+                        isNow: false,
                     },
                 title: '',
                 text: '',
                 link: '',
-                image: null
+                image: null,
+                icon: null
             })
         }
     },
@@ -410,19 +442,27 @@ export default {
     },
     computed: {
         ...mapState({
-            sites: state => state.sites.sites
+            sites: state => state.sites.sites,
+            times: state => state.times.times
         }),
         ...mapGetters("sites", {
-            sites: "getSites"
+            sites: "getSites",
+            times: 'getTimes'
         }),
         sites: {
             get() {
                 return this.$store.state.sites.sites;
             }
+        },
+        times: {
+            get() {
+                return this.$store.state.times.times
+            }
         }
     },
     mounted() {
         this.$store.dispatch("sites/FETCH_SITES");
+        this.$store.dispatch("times/FETCH_TIMES");
     }
 };
 </script>

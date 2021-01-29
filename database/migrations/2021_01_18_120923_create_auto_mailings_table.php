@@ -15,7 +15,6 @@ class CreateAutoMailingsTable extends Migration
     {
         Schema::create('auto_mailings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('push_id')->constrained();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('status_id');
             $table->integer('series');

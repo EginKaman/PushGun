@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class AutoMailing extends Model
 {
     protected $attributes = [
@@ -49,14 +50,6 @@ class AutoMailing extends Model
         'sunday' => 'boolean',
         'series' => 'integer'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function push(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Push::class, 'push_id', 'id');
-    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -69,6 +62,13 @@ class AutoMailing extends Model
      */
     public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo 
     {
-        return $this->belongsTo(AutoMailingStatus::class, 'status_id', 'id');
+        return $this->belongsTo(AutoMailingStatuses::class, 'status_id', 'id');
+    }
+    /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsToMan
+     */
+    public function pushes(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+    {
+        return $this->belongsToMany(Push::class, 'auto_mailing_push', 'auto_mailing_id', 'push_id');
     }
 }

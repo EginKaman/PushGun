@@ -21,7 +21,9 @@ class Push extends Model
         'icon',
         'image',
         'text',
-        'link'
+        'link',
+        'delay',
+        'prev_push_id'
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -61,5 +63,11 @@ class Push extends Model
     public function transitions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Transition::class);
+    }
+    /**
+         * @return
+     */
+    public function time() {
+        return $this->belongsTo(Time::class);
     }
 }

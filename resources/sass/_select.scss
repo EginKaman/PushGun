@@ -4,11 +4,17 @@
     grid-column-gap: 65px;
 }
 
+.selectTimeClass {
+    p,
+    ul>li {
+        font-size: 13px;
+    }
+}
+
 .v-select {
     &_li__hover:hover {
         background-color: rgb(240, 240, 240);
     }
-    max-width: 100%;
     position: relative;
     p {
         border: 1px solid #e5e5e5;
