@@ -1,6 +1,7 @@
 .referal {
     .payment {
         display: none;
+        z-index: 9999999;
     }
     .rss__wrapper__block {
         max-width: 550px;
@@ -37,7 +38,7 @@
                 }
             }
             .visa.active {
-                background: #5BA4D7;
+                background: #5ba4d7;
                 border-radius: 100px;
             }
         }
@@ -82,5 +83,32 @@
                 margin: 16px 0px 32px 0px;
             }
         }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .referal {
+        margin-top: 105px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .referal {
+        padding-top: 0;
+        .general__stats_left {
+            display: block;
+        }
+        .general__stats_left-item {
+            margin: 20px auto auto auto;
+        }
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .referal .rss__wrapper__block .rss__wrapper__block__content__btn {
+        display: block;
+    }
+    .referal .rss__wrapper__block .rss__wrapper__block__content__btn a {
+        margin: 10px auto auto auto;
     }
 }
