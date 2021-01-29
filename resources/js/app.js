@@ -14,7 +14,8 @@ from '@kirschbaum-development/laravel-translations-loader/json!@kirschbaum-devel
 import VueI18n from 'vue-i18n';
 import VModal from 'vue-js-modal';
 import VueSwal from 'vue-swal';
-
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 Vue.use(VueI18n);
 Vue.use(VModal, {
     dynamic: true,

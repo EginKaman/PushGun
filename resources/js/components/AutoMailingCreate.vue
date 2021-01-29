@@ -276,6 +276,13 @@
                                 v-model="form.pushes[index].title"
                                 placeholder="до 50 символов"
                         /></label>
+                        <p
+                            class="input_validation_text"
+                            v-if="form.pushes[index].title.length > 50"
+                        >
+                            Превышения рекомендованной длины сообщения в 50
+                            символов
+                        </p>
                         <label
                             ><span class="ttl">Текст уведомления</span>
                             <textarea
@@ -284,6 +291,13 @@
                                 name="text"
                             ></textarea
                         ></label>
+                        <p
+                            class="input_validation_text"
+                            v-if="form.pushes[index].text.length > 125"
+                        >
+                            Превышения рекомендованной длины сообщения в 125
+                            символов
+                        </p>
                         <label>
                             <span class="ttl">Ссылка на уведомление</span>
                             <input
@@ -355,6 +369,7 @@
 <script>
 import { mapGetters, mapState } from "vuex";
 import vClickOutside from "v-click-outside";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 import axios from "axios";
 export default {
     name: "AutoMailingCreate",
@@ -405,6 +420,36 @@ export default {
     directives: {
         clickOutside: vClickOutside.directive
     },
+    validations: {
+        form: {
+            name: {
+                required
+            },
+            time: {
+                hours: {
+                    required
+                },
+                minute: {
+                    required
+                }
+            },
+            pushes: {
+                $each: {
+                    title: {
+                        required,
+                        maxLength: maxLength(50)
+                    },
+                    text: {
+                        required,
+                        maxLength: maxLength(125)
+                    },
+                    link: {
+                        required
+                    }
+                }
+            }
+        }
+    },
     props: {
         action: {
             type: String,
@@ -413,42 +458,53 @@ export default {
     },
     methods: {
         submit() {
-            const form = new FormData();
-            form.append("name", this.form.name);
-            form.append("hours", this.form.time.hours);
-            form.append("minute", this.form.time.minute);
-            form.append("utm_source", this.form.marks.utm_source);
-            form.append("utm_medium", this.form.marks.utm_medium);
-            form.append("utm_compaign", this.form.marks.utm_compaign);
-            this.form.sites.forEach(site => {
-                form.append("sites[]", site);
-            });
-            this.form.days.forEach(day => {
-                form.append("days[]", day);
-            });
-            this.form.pushes.forEach((push, index) => {
-                console.log(index);
-                form.append(`pushes[${index}][title]`, push.title);
-                form.append(`pushes[${index}][text]`, push.text);
-                form.append(`pushes[${index}][link]`, push.link);
-                form.append(`pushes[${index}][delay][time]`, push.delay.time);
-                form.append(`pushes[${index}][delay][value]`, push.delay.value);
-                form.append(
-                    `pushes[${index}][delay][previousPush]`,
-                    push.delay.previousPush
-                );
-                form.append(
-                    `pushes[${index}][image]`,
-                    this.$refs.imagePush[index].files[0] || ""
-                );
-                form.append(`pushes[${index}][icon]`, "");
-            });
-            axios.post(this.action, form, {
-                header: {
-                    "Content-Type": "multipart/form-data",
-                    "Cache-Control": "no-cache"
-                }
-            });
+            this.$v.form.$touch();
+            if (!this.$v.form.$invalid) {
+                const form = new FormData();
+                form.append("name", this.form.name);
+                form.append("hours", this.form.time.hours);
+                form.append("minute", this.form.time.minute);
+                form.append("utm_source", this.form.marks.utm_source);
+                form.append("utm_medium", this.form.marks.utm_medium);
+                form.append("utm_compaign", this.form.marks.utm_compaign);
+                this.form.sites.forEach(site => {
+                    form.append("sites[]", site);
+                });
+                this.form.days.forEach(day => {
+                    form.append("days[]", day);
+                });
+                this.form.pushes.forEach((push, index) => {
+                    console.log(index);
+                    form.append(`pushes[${index}][title]`, push.title);
+                    form.append(`pushes[${index}][text]`, push.text);
+                    form.append(`pushes[${index}][link]`, push.link);
+                    form.append(
+                        `pushes[${index}][delay][time]`,
+                        push.delay.time
+                    );
+                    form.append(
+                        `pushes[${index}][delay][value]`,
+                        push.delay.value
+                    );
+                    form.append(
+                        `pushes[${index}][delay][previousPush]`,
+                        push.delay.previousPush
+                    );
+                    form.append(
+                        `pushes[${index}][image]`,
+                        this.$refs.imagePush[index].files[0] || ""
+                    );
+                    form.append(`pushes[${index}][icon]`, "");
+                });
+                axios.post(this.action, form, {
+                    header: {
+                        "Content-Type": "multipart/form-data",
+                        "Cache-Control": "no-cache"
+                    }
+                });
+            } else {
+                alert('error')
+            }
         },
         deletePush(index) {
             this.form.pushes.splice(index, 1);
@@ -508,12 +564,6 @@ export default {
     mounted() {
         this.$store.dispatch("sites/FETCH_SITES");
         this.$store.dispatch("times/FETCH_TIMES");
-        axios.post("http://127.0.0.1:8000/subscribe/1", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
     }
 };
 </script>
