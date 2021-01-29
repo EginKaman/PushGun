@@ -27,9 +27,9 @@ class AutoMailingRequest extends FormRequest
             'days' => 'required|array',
             'hours' => 'string',
             'minute' => 'string',
-            'utm_source' => 'string',
-            'utm_medium' => 'string',
-            'utm_compaign' => 'string',
+            'utm_source' => 'string|nullable',
+            'utm_medium' => 'string|nullable',
+            'utm_compaign' => 'string|nullable',
             'sites'=>'required|array',
             'pushes'=>'required|array',
         ];

@@ -39,13 +39,12 @@
                     show: true,
                     text: 'Условие отправки'
                 }"
-                @selected="(sites)=>form.sites=sites"
+                @selected="sites => (form.sites = sites)"
                 :resetOption="{
                     isShow: true,
                     text: 'Сбросить',
-                    isSendRequestAfterReset: false,
+                    isSendRequestAfterReset: false
                 }"
-
             />
             <div class="createmailing__wrapper__item">
                 <div class="createmailing__wrapper__item__checkbox">
@@ -137,7 +136,10 @@
                 <div class="createmailing__wrapper__item__checkbox">
                     <div class="createmailing__wrapper__item__input">
                         <div>
-                            <input type="checkbox" v-model="isShowMarkInputs" /><br /><span
+                            <input
+                                type="checkbox"
+                                v-model="isShowMarkInputs"
+                            /><br /><span
                                 >Добавить метки для Google Analytics и Яндекс
                                 метрики</span
                             >
@@ -145,7 +147,10 @@
                     </div>
                 </div>
                 <div class="createmailing__wrapper__item"></div>
-                <div class="createmailing__wrapper__item" v-if="isShowMarkInputs">
+                <div
+                    class="createmailing__wrapper__item"
+                    v-if="isShowMarkInputs"
+                >
                     <label
                         ><span>Источник компании (utm_source)</span>
                         <input
@@ -177,7 +182,7 @@
         <div class="contains" v-for="(push, index) in form.pushes" :key="index">
             <div class="left__item__block">
                 <div class="left__item__content">
-                    <span class="oval">{{index+1}}</span>
+                    <span class="oval">{{ index + 1 }}</span>
                     <span class="polosa"></span>
                     <span class="oval">+</span>
                 </div>
@@ -186,7 +191,11 @@
                 <div class="createmailing__wrapper__two__head">
                     <p>Отправить push</p>
                     <div class="createmailing__select_delayMode">
-                        <p>Через<span class="material-icons">keyboard_arrow_down</span></p>
+                        <p>
+                            Через<span class="material-icons"
+                                >keyboard_arrow_down</span
+                            >
+                        </p>
                         <!-- <ul>
                             <li>Сразу</li>
                         </ul> -->
@@ -223,8 +232,14 @@
                                         size: 120,
                                         unit: 'px'
                                     }"
-                                    @selected="(time)=>{form.pushes[index].delay.time = time}"
-                                 />
+                                    @selected="
+                                        time => {
+                                            form.pushes[
+                                                index
+                                            ].delay.time = time;
+                                        }
+                                    "
+                                />
                             </div>
                         </div>
                         <!-- <span>в</span>
@@ -237,13 +252,19 @@
                             </div> -->
                         <span>
                             {{
-                                index > 0 ? 'После отправки предыдущего сообщения' : 'После подписки'
+                                index > 0
+                                    ? "После отправки предыдущего сообщения"
+                                    : "После подписки"
                             }}
                         </span>
                     </div>
                     <div class="deletePush" v-if="index > 0">
-                            <span class="material-icons pointer" @click="deletePush(index)">close</span>
-                        </div>
+                        <span
+                            class="material-icons pointer"
+                            @click="deletePush(index)"
+                            >close</span
+                        >
+                    </div>
                 </div>
                 <div class="createmailing__wrapper__two__content">
                     <div class="createmailing__wrapper__item">
@@ -257,11 +278,20 @@
                         /></label>
                         <label
                             ><span class="ttl">Текст уведомления</span>
-                            <textarea type="text" v-model="form.pushes[index].text" name="text"></textarea
+                            <textarea
+                                type="text"
+                                v-model="form.pushes[index].text"
+                                name="text"
+                            ></textarea
                         ></label>
                         <label>
                             <span class="ttl">Ссылка на уведомление</span>
-                            <input type="text" name="link" v-model="form.pushes[index].link" value="" />
+                            <input
+                                type="text"
+                                name="link"
+                                v-model="form.pushes[index].link"
+                                value=""
+                            />
                         </label>
                         <div class="createmailing__wrapper__item__checkbox">
                             <div class="createmailing__wrapper__item__input">
@@ -283,7 +313,12 @@
                                 /> -->
                                 <label class="file">
                                     Выбрать изображение
-                                    <input type="file" ref="imagePush" name="image" @change="uploadPushImage(index)" />
+                                    <input
+                                        type="file"
+                                        ref="imagePush"
+                                        name="image"
+                                        @change="uploadPushImage(index)"
+                                    />
                                     <span
                                         >Рекомендуемый размер: 128*128px <br />
                                         JPG, PNG до 200KB
@@ -295,7 +330,12 @@
                 </div>
             </div>
             <div class="save-block">
-                <a class="button-create" @click="createBlockForNewPush" v-if="form.pushes.length === index +1">Новое уведомление</a>
+                <a
+                    class="button-create"
+                    @click="createBlockForNewPush"
+                    v-if="form.pushes.length === index + 1"
+                    >Новое уведомление</a
+                >
             </div>
         </div>
         <div class="createmailing-foot">
@@ -320,15 +360,15 @@ export default {
     name: "AutoMailingCreate",
     data: () => ({
         delayModes: [
-        {
-            text: 'Через',
-            id: 1
-        },
-        {
-            text: 'Сразу',
-            id: 2
-        }
-    ],
+            {
+                text: "Через",
+                id: 1
+            },
+            {
+                text: "Сразу",
+                id: 2
+            }
+        ],
         pushNumber: 0,
         form: {
             name: "",
@@ -349,13 +389,13 @@ export default {
                         time: 1,
                         value: 0,
                         isNow: false,
-                        previousPush: ''
+                        previousPush: ""
                     },
-                    title: '',
-                    text: '',
-                    link: '',
+                    title: "",
+                    text: "",
+                    link: "",
                     image: null,
-                    icon: null,
+                    icon: null
                 }
             ]
         },
@@ -373,70 +413,75 @@ export default {
     },
     methods: {
         submit() {
-            const form = new FormData()
-            form.append('name', this.form.name)
-            form.append('hours', this.form.time.hours)
-            form.append('minute', this.form.time.minute)
-            form.append('utm_source', this.form.marks.utm_source)
-            form.append('utm_medium', this.form.marks.utm_medium)
-            form.append('utm_compaign', this.form.marks.utm_compaign)
+            const form = new FormData();
+            form.append("name", this.form.name);
+            form.append("hours", this.form.time.hours);
+            form.append("minute", this.form.time.minute);
+            form.append("utm_source", this.form.marks.utm_source);
+            form.append("utm_medium", this.form.marks.utm_medium);
+            form.append("utm_compaign", this.form.marks.utm_compaign);
             this.form.sites.forEach(site => {
-                form.append('sites[]', site)
-            })
+                form.append("sites[]", site);
+            });
             this.form.days.forEach(day => {
-                form.append('days[]', day)
-            })
+                form.append("days[]", day);
+            });
             this.form.pushes.forEach((push, index) => {
-                console.log(index)
-                form.append(`pushes[${index}][title]`, push.title)
-                form.append(`pushes[${index}][text]`, push.text)
-                form.append(`pushes[${index}][link]`, push.link)
-                form.append(`pushes[${index}][delay][time]`, push.delay.time)
-                form.append(`pushes[${index}][delay][value]`, push.delay.value)
-                form.append(`pushes[${index}][delay][previousPush]`, push.delay.previousPush)
-                form.append(`pushes[${index}][image]`, this.$refs.imagePush[index].files[0] || '')
-                form.append(`pushes[${index}][icon]`, '')
-            })
-            axios.post(this.action,form, {
+                console.log(index);
+                form.append(`pushes[${index}][title]`, push.title);
+                form.append(`pushes[${index}][text]`, push.text);
+                form.append(`pushes[${index}][link]`, push.link);
+                form.append(`pushes[${index}][delay][time]`, push.delay.time);
+                form.append(`pushes[${index}][delay][value]`, push.delay.value);
+                form.append(
+                    `pushes[${index}][delay][previousPush]`,
+                    push.delay.previousPush
+                );
+                form.append(
+                    `pushes[${index}][image]`,
+                    this.$refs.imagePush[index].files[0] || ""
+                );
+                form.append(`pushes[${index}][icon]`, "");
+            });
+            axios.post(this.action, form, {
                 header: {
                     "Content-Type": "multipart/form-data",
                     "Cache-Control": "no-cache"
                 }
-            })
+            });
         },
         deletePush(index) {
-            this.form.pushes.splice(index, 1)
+            this.form.pushes.splice(index, 1);
         },
         uploadPushImage(index) {
             const file = event.target.files.item(0);
-            this.form.pushes[index].image = file
+            this.form.pushes[index].image = file;
         },
         createBlockForNewPush(index) {
             this.form.pushes.push({
                 delay: {
-                        time: 1,
-                        value: 0,
-                        previousPush: '',
-                        isNow: false,
-                    },
-                title: '',
-                text: '',
-                link: '',
+                    time: 1,
+                    value: 0,
+                    previousPush: "",
+                    isNow: false
+                },
+                title: "",
+                text: "",
+                link: "",
                 image: null,
                 icon: null
-            })
+            });
         }
     },
-    components: {
-    },
+    components: {},
     watch: {
         isShowMarkInputs() {
-            if(this.isShowMarkInputs === false) {
+            if (this.isShowMarkInputs === false) {
                 this.form.marks = {
                     utm_source: "",
                     utm_medium: "",
                     utm_compaign: ""
-                }
+                };
             }
         }
     },
@@ -447,7 +492,7 @@ export default {
         }),
         ...mapGetters("sites", {
             sites: "getSites",
-            times: 'getTimes'
+            times: "getTimes"
         }),
         sites: {
             get() {
@@ -456,13 +501,19 @@ export default {
         },
         times: {
             get() {
-                return this.$store.state.times.times
+                return this.$store.state.times.times;
             }
         }
     },
     mounted() {
         this.$store.dispatch("sites/FETCH_SITES");
         this.$store.dispatch("times/FETCH_TIMES");
+        axios.post("http://127.0.0.1:8000/subscribe/1", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
     }
 };
 </script>

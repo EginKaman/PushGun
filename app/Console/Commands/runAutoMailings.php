@@ -55,23 +55,52 @@ class runAutoMailings extends Command
             ])
             ->get();
         $mailings->each(function ($mailing) {
-            $mailing->push = $mailing->push()->with('sites')->first();
-            foreach ($mailing->push->sites as $site) {
-                $message = new SendPush();
-                $message->title($mailing->push->title)
-                    ->icon(asset(Storage::url($mailing->push->icon ?? $site->image)));
-                if ($mailing->push->image !== null) {
-                    $message->image(asset(Storage::url($mailing->push->image)));
-                }
-                $message->body($mailing->push->text)
-                    ->url(route('transition.store', $mailing->push));
-                $when = Carbon::parse($mailing->time);
-                $this->info($when);
-                $site->notify(($message)->delay($when));
-                $this->info('success');
-            }
-            $mailing->series+=1;
+            $pushes = $mailing->pushes()->with('sites')->get();
+            $mailing->series += 1;
             $mailing->save();
+            $prevSendTime = null;
+            foreach ($pushes as $push) {
+                // тут создается messange
+                $message = new SendPush();
+                if ($push->image !== null) {
+                    $message->image(asset(Storage::url($push->image)));
+                }
+                $message->body($push->text)
+                    ->url(route('transition.store', $push));
+                $when = null;
+                if ($prevSendTime !== null) {
+                    $when = $prevSendTime;
+                    if ($push->time_id === 1) {
+                        $when->addMinutes($push->delay);
+                    } else if ($push->time_id === 2) {
+                        $when->addHours($push->delay);
+                    } else if ($push->time_id === 3) {
+                        $when->addDays($push->delay);
+                    }
+                } else {
+                    if ($push->time_id === 1) {
+                        $when = Carbon::parse($mailing->time)->addMinutes($push->delay);
+                    } else if ($push->time_id === 2) {
+                        $when = Carbon::parse($mailing->time)->addHours($push->delay);
+                    } else if ($push->time_id === 3) {
+                        $when = Carbon::parse($mailing->time)->addDays($push->delay);
+                    }
+                }
+                $prevSendTime = $when;
+                // $this->info("prev: {$prevSendTime}");
+                // $this->info("when: {$when}");
+                foreach ($push->sites as $site) {
+                    // оправляется
+                    $message->title($push->title)
+                        ->icon(asset(Storage::url($push->icon ?? $site->image)));
+                    $site->notify(($message)->delay($when));
+                    $this->info("
+                        Site_id: {$site->id}
+                        Push_id: {$push->id}
+                        Time: {$when}
+                    ");
+                }
+            }
         });
         return 0;
     }
