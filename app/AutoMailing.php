@@ -58,17 +58,25 @@ class AutoMailing extends Model
         return $this->belongsTo(User::class);
     }
     /**
-         * 
+         * @return Illuminate\Database\Eloquent\Relations\BelongsTo 
      */
     public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo 
     {
         return $this->belongsTo(AutoMailingStatuses::class, 'status_id', 'id');
     }
     /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsToMan
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function pushes(): \Illuminate\Database\Eloquent\Relations\belongsToMany
     {
         return $this->belongsToMany(Push::class, 'auto_mailing_push', 'auto_mailing_id', 'push_id');
     }
+     /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function sites(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+    {
+        return $this->belongsToMany(Site::class);
+    }
+
 }

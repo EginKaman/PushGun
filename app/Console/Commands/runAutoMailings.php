@@ -56,6 +56,7 @@ class runAutoMailings extends Command
             ->get();
         $mailings->each(function ($mailing) {
             $pushes = $mailing->pushes()->with('sites')->get();
+            $sites = $mailing->sites()->get();
             $mailing->series += 1;
             $mailing->save();
             $prevSendTime = null;
@@ -89,7 +90,7 @@ class runAutoMailings extends Command
                 $prevSendTime = $when;
                 // $this->info("prev: {$prevSendTime}");
                 // $this->info("when: {$when}");
-                foreach ($push->sites as $site) {
+                foreach ($sites as $site) {
                     // оправляется
                     $message->title($push->title)
                         ->icon(asset(Storage::url($push->icon ?? $site->image)));

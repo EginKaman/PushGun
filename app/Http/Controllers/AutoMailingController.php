@@ -63,6 +63,8 @@ class AutoMailingController extends Controller
             }
         }
         $mailing->save();
+        $mailing->sites()->attach($request->input('sites'));
+        $mailing->save();
         return redirect()->route('account.index');
     }
 }

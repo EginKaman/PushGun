@@ -91,4 +91,11 @@ class Site extends Model
             now()->endOfDay()
         ]);
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function automailings(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(AutoMailing::class);
+    }
 }
