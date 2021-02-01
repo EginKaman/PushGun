@@ -4,10 +4,25 @@
     grid-column-gap: 65px;
 }
 
-.selectTimeClass {
+.selectTimeClass,
+.selectModeDelay {
     p,
     ul>li {
         font-size: 13px;
+    }
+}
+
+.selectModeDelay {
+    ul {
+        grid-column: 1/2 !important;
+        color: #3b8378;
+    }
+    p {
+        border: 0 !important;
+        color: #3b8378;
+    }
+    .select_label__left {
+        grid-gap: 0;
     }
 }
 

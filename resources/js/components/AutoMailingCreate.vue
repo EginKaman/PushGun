@@ -113,21 +113,18 @@
                         <input
                             class="time"
                             min="0"
-                            value="00"
                             v-model="form.time.hours"
                             max="23"
+                            v-mask="'##'"
                             type="number"
-                            placeholder="00"
                         />
                         <span>:</span>
                         <input
                             class="time"
                             min="0"
-                            value="00"
                             v-model="form.time.minute"
                             max="59"
                             type="number"
-                            placeholder="00"
                         />
                     </div>
                 </div>
@@ -190,17 +187,37 @@
             <div class="createmailing__wrapper__two">
                 <div class="createmailing__wrapper__two__head">
                     <p>Отправить push</p>
-                    <div class="createmailing__select_delayMode">
+                    <!-- <div class="createmailing__select_delayMode">
                         <p>
                             Через<span class="material-icons"
                                 >keyboard_arrow_down</span
                             >
                         </p>
-                        <!-- <ul>
-                            <li>Сразу</li>
-                        </ul> -->
-                    </div>
-                    <div class="createmailing__wrapper__item">
+                        <ul>
+                            <li @click="toggleInputVisibilityToSelectDelay(index)">Сразу</li>
+                        </ul>
+                    </div> -->
+                    <vSelect
+                        v-if="delayModes"
+                        mode="Single"
+                        :data="delayModes"
+                        optionName="text"
+                        :defaultValue="{
+                            isActive: true,
+                            key: 1
+                        }"
+                        keyName="id"
+                        :isShowCheckbox="false"
+                        class="selectModeDelay"
+                        :maxWidth="{
+                            size: 200,
+                            unit: 'px'
+                        }"
+                        @selected="mode => (push.delay.mode = mode)"
+                    />
+                    <div
+                        class="createmailing__wrapper__item"
+                    >
                         <div class="createmailing__wrapper__item__checkbox">
                             <div
                                 class="createmailing__wrapper__item__input trl"
@@ -211,7 +228,7 @@
                                     min="0"
                                     max="23"
                                     value="0"
-                                    v-model="form.pushes[index].delay.value"
+                                    v-model="push.delay.value"
                                     type="number"
                                     placeholder="0"
                                 />
@@ -232,24 +249,10 @@
                                         size: 120,
                                         unit: 'px'
                                     }"
-                                    @selected="
-                                        time => {
-                                            form.pushes[
-                                                index
-                                            ].delay.time = time;
-                                        }
-                                    "
+                                    @selected="time => (push.delay.time = time)"
                                 />
                             </div>
                         </div>
-                        <!-- <span>в</span>
-                            <div class="createmailing__wrapper__item__checkbox">
-                                <div class="createmailing__wrapper__item__input trl">
-                                    <input class="time" min="0" max="23" type="number" placeholder="00">
-                                    <span>:</span>
-                                    <input class="time" min="0" max="59" type="number" placeholder="00">
-                                </div>
-                            </div> -->
                         <span>
                             {{
                                 index > 0
@@ -273,12 +276,12 @@
                             <input
                                 type="text"
                                 name="title"
-                                v-model="form.pushes[index].title"
+                                v-model="push.title"
                                 placeholder="до 50 символов"
                         /></label>
                         <p
                             class="input_validation_text"
-                            v-if="form.pushes[index].title.length > 50"
+                            v-if="push.title.length > 50"
                         >
                             Превышения рекомендованной длины сообщения в 50
                             символов
@@ -287,13 +290,13 @@
                             ><span class="ttl">Текст уведомления</span>
                             <textarea
                                 type="text"
-                                v-model="form.pushes[index].text"
+                                v-model="push.text"
                                 name="text"
                             ></textarea
                         ></label>
                         <p
                             class="input_validation_text"
-                            v-if="form.pushes[index].text.length > 125"
+                            v-if="push.text.length > 125"
                         >
                             Превышения рекомендованной длины сообщения в 125
                             символов
@@ -303,7 +306,7 @@
                             <input
                                 type="text"
                                 name="link"
-                                v-model="form.pushes[index].link"
+                                v-model="push.link"
                                 value=""
                             />
                         </label>
@@ -321,10 +324,7 @@
                         <label class="image__site">
                             <span class="ttl">Изображение сайта</span>
                             <div class="image__site__block">
-                                <!-- <img
-                                    src="{{asset('images/avatar.png')}}"
-                                    alt=""
-                                /> -->
+                                <img :src="push.previewImage" alt="" />
                                 <label class="file">
                                     Выбрать изображение
                                     <input
@@ -384,14 +384,15 @@ export default {
                 id: 2
             }
         ],
+        defaultImage: "../../images/site.svg",
         pushNumber: 0,
         form: {
             name: "",
             sites: [],
             days: [],
             time: {
-                hours: "",
-                minute: ""
+                hours: "00",
+                minute: "00"
             },
             marks: {
                 utm_source: "",
@@ -403,14 +404,15 @@ export default {
                     delay: {
                         time: 1,
                         value: 0,
-                        isNow: false,
+                        mode: 1,
                         previousPush: ""
                     },
                     title: "",
                     text: "",
                     link: "",
                     image: null,
-                    icon: null
+                    icon: null,
+                    previewImage: "../../images/site.svg"
                 }
             ]
         },
@@ -503,7 +505,7 @@ export default {
                     }
                 });
             } else {
-                alert('error')
+                alert("error");
             }
         },
         deletePush(index) {
@@ -512,6 +514,11 @@ export default {
         uploadPushImage(index) {
             const file = event.target.files.item(0);
             this.form.pushes[index].image = file;
+            const reader = new FileReader();
+            reader.addEventListener("load", (e) => {
+                this.form.pushes[index].previewImage = e.target.result;
+            });
+            reader.readAsDataURL(file);
         },
         createBlockForNewPush(index) {
             this.form.pushes.push({
@@ -525,7 +532,8 @@ export default {
                 text: "",
                 link: "",
                 image: null,
-                icon: null
+                icon: null,
+                previewImage: this.defaultImage
             });
         }
     },

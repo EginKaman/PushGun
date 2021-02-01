@@ -85,9 +85,7 @@ export default {
      },
      data: {
          type: Array,
-         default() {
-             return []
-         }
+         required: true
      },
      optionName: {
          type: String,
@@ -202,6 +200,10 @@ export default {
       }
   },
   mounted() {
+    if(this.defaultValue.isActive) {
+      const defaultValue = this.data.find(item => item[this.keyName] === this.defaultValue.key)
+      if(defaultValue) this.select(defaultValue)
+    }
   },
 };
 </script>
