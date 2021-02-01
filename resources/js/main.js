@@ -1,6 +1,34 @@
 'use strict';
 
 $(document).ready(function () {
+
+    $('.payment-btn').on('click', function () {
+        $('.payment').css('display', 'block')
+    })
+    $('.close-payment').on('click', function () {
+        $('.payment').css('display', 'none')
+    })
+
+    $('.visa').each(function () {
+        $(this).on('click', function () {
+            console.log($('.visa.active').length)
+            if ($('.visa.active').length > 0) {
+                $('.visa').removeClass('active')
+            }
+            $(this).addClass('active')
+            if ($('.visa').hasClass('active')) {
+                $('.rss__wrapper__block__content__last').css('display', 'block')
+            } else {
+                $('.rss__wrapper__block__content__last').css('display', 'none')
+            }
+        })
+    })
+
+    $(document).on('click', function (e) {
+        if (e.target.classList.contains('payment')) {
+            $('.payment').css('display', 'none')
+        }
+    })
     $('.stats__selector, .set-form__select, .sup-form__select, .site_domain_select').select2({
         // $('.stats__selector, .filter__selector, .set-form__select, .sup-form__select, .site_domain_select').select2({
         minimumResultsForSearch: -1,

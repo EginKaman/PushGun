@@ -46,6 +46,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
             //TODO: REFACTORING!!!!
             Route::get('autoMailing', [\App\Http\Controllers\AccountController::class, 'automailing'])->name('account.automailing');
+            Route::get('referal', [\App\Http\Controllers\AccountController::class, 'referal'])->name('account.referal');
             Route::get('saveMailing', [\App\Http\Controllers\AccountController::class, 'savemailing'])->name('account.savemailing');
             Route::get('saveMailingRss', [\App\Http\Controllers\AccountController::class, 'savemailingrss'])->name('account.savemailingrss');
             Route::get('createMailing', [\App\Http\Controllers\AccountController::class, 'createmailing'])->name('account.createmailing');
