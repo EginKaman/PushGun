@@ -14,7 +14,6 @@ deploy_staging:
     name: staging
     url: https://pushgun.eginkaman.com
   script:
-    - ssh www-root@80.82.222.33 "cd ./www/pushgun.eginkaman.com && git checkout master && git pull origin master && composer install && npm install && npm run prod && php artisan migrate && exit"
+    - ssh www-root@80.82.222.33 "cd ./www/pushgun.eginkaman.com && git checkout master && git pull origin dev && composer install && npm install && npm run prod && php artisan migrate && exit"
   only:
-    - master
     - dev
