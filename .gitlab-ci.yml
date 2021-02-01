@@ -16,4 +16,4 @@ deploy_staging:
   script:
     - ssh www-root@80.82.222.33 "cd ./www/pushgun.eginkaman.com && git checkout master && git pull origin dev && /opt/php74/bin/php /var/www/www-root/data/bin/composer install && npm install && npm run prod && /opt/php74/bin/php artisan migrate --force && exit"
   only:
-    - master
+    - dev
