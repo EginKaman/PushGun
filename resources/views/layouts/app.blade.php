@@ -195,6 +195,11 @@
                                         @lang('Тех. поддержка')
                                     </a>
                                 </div>
+                                <div class="account__link_wrapper">
+                                    <a href="/account/referal" class="account__bottom_link">
+                                    @lang("Реферальная программа")
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="account__link_exit">

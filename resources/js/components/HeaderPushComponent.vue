@@ -9,11 +9,6 @@
           $t("Авторассылки")
         }}</a>
       </li>
-      <li class="nav__menu_items three">
-        <a class="nav__menu_link" href="/account/referal">{{
-          $t("Реферальная программа")
-        }}</a>
-      </li>
     </ul>
   </div>
 </template>
