@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -68,10 +69,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Log::error(session()->pull('referrer'));
+        $referrer = User::where('refferal_token', session()->pull('referrer'))->first();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'referrer_id' => $referrer ? $referrer->id : null,
             'password' => Hash::make($data['password']),
+            'refferal_token' => str_random(16)
         ]);
     }
 }
