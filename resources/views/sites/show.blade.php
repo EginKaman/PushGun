@@ -70,7 +70,7 @@
                 <div class="button_white">
                     <span class="white_button_circle"></span>
                     <a href="{{ route('site.edit', $site) }}" class="button_white_inner">
-                        <p class="button_text_container">
+                        <p class="button_text_container black">
                             <img class="button-img" src="{{ asset('images/settingsDark.svg') }}"
                                  alt="">@lang('Настройки сайта')
                         </p>

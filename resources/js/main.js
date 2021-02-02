@@ -424,6 +424,7 @@ $(document).ready(function() {
             const input = $(
                 `input.copy_command__text[data-id=${inputAttr}]`
             ).select();
+            $(this).find('.button_text_container').text('Скопировано')
             document.execCommand("copy");
         });
         $(".setgen__buttons_link").click(function() {
