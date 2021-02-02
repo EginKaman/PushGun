@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AccountUpdate;
 use App\Site;
+use App\User;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,7 +73,13 @@ class AccountController extends Controller
 
     public function referal()
     {
-        return view('account.referal');
+        $user = Auth::user();
+        $referral_link = $user->getReferralLinkAttribute();
+        $referral_count = $user->referrals()->count();
+        return view('account.referal',[
+            'refferal_link'=>$referral_link,
+            'referral_count' => $referral_count
+        ]);
     }
 
     public function createMailingRss()
