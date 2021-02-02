@@ -70,13 +70,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $referrer = User::where('refferal_token', $data['referrer'])->first();
+        $referrer = User::where('referral_token', $data['referrer'])->first();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'referrer_id' => $referrer ? $referrer->id : null,
             'password' => Hash::make($data['password']),
-            'refferal_token' => str_random(16)
+            'referral_token' => str_random(16)
         ]);
     }
 }

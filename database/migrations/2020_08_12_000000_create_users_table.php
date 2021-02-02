@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('balance')->default(0);
             $table->unsignedBigInteger('referrer_id')->nullable();
             $table->foreign('referrer_id')->references('id')->on('users');
-            $table->string('refferal_token')->unique();
+            $table->string('referral_token')->unique();
             $table->foreignId('tariff_id')->default(1)->constrained();
             $table->timestamp('tariff_expired_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();

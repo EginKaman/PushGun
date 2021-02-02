@@ -29,7 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'country',
         'city',
         'referrer_id',
-        'refferal_token',
+        'referral_token',
         'address',
         'postcode',
         'photo',
@@ -162,6 +162,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function getReferralLinkAttribute()
     {
-        return $this->referral_link = route('index', ['ref' => $this->refferal_token]);
+        return $this->referral_link = route('index', ['ref' => $this->referral_token]);
     }
 }
