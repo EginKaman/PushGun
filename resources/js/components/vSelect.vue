@@ -30,8 +30,10 @@
         <li v-for="item in data" :key="item[keyName]" @click="select(item)" class="v-select_li__hover">
           <input v-if="isShowCheckbox" type="checkbox" :checked="isSelected(item[keyName])" :id="`selectItem${item[keyName]}`"/>
           <label ref="selectItem" class="v-select__optionName pointer">
-            {{item[optionName]}}
-            {{additionalOptionName.isShow ? `${item[additionalOptionName.optionName]} ${additionalOptionName.label}` : '' }}
+            {{
+              translate.use ? $t(item[optionName], translate.lang) : item[optionName]
+            }}
+           {{additionalOptionName.isShow ? `( ${item[additionalOptionName.optionName]} ${additionalOptionName.label} )` : '' }}
           </label>
         </li>
       </ul>
@@ -69,6 +71,10 @@ export default {
    isShowIcon: {
      type: Boolean,
      default: true
+   },
+   translate: {
+     type: Boolean,
+     default: false
    },
     maxWidth: {
       type: Object,

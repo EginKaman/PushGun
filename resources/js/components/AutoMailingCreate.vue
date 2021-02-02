@@ -236,6 +236,10 @@
                                     v-if="times"
                                     mode="Single"
                                     :data="times"
+                                    :translate="{
+                                        use: true,
+                                        lang: 'ru'
+                                    }"
                                     optionName="title"
                                     :defaultValue="{
                                         isActive: true,
@@ -313,7 +317,7 @@
                         <div class="createmailing__wrapper__item__checkbox">
                             <div class="createmailing__wrapper__item__input">
                                 <div>
-                                    <input type="checkbox" /><br /><span
+                                    <input type="checkbox" v-model="push.showImageBlock" /><br /><span
                                         style="color: 000;"
                                         >Заменить стандартную картинку
                                         сайта</span
@@ -321,7 +325,7 @@
                                 </div>
                             </div>
                         </div>
-                        <label class="image__site">
+                        <label class="image__site" v-show="push.showImageBlock">
                             <span class="ttl">Изображение сайта</span>
                             <div class="image__site__block">
                                 <img :src="push.previewImage" alt="" />
@@ -361,7 +365,7 @@
                     </button>
                 </button>
             </div>
-            <a class="button-create">Сохранить и запустить</a>
+            <button type="submit" class="button-create">Сохранить и запустить</button>
         </div>
     </form>
 </template>
@@ -411,11 +415,13 @@ export default {
                     text: "",
                     link: "",
                     image: null,
+                    showImageBlock: false,
                     icon: null,
                     previewImage: "../../images/site.svg"
                 }
             ]
         },
+
         selectedSites: null,
         isShowMarkInputs: false
     }),
@@ -505,7 +511,7 @@ export default {
                     }
                 });
             } else {
-                alert("error");
+                alert("Заполните");
             }
         },
         deletePush(index) {
@@ -535,7 +541,7 @@ export default {
                 icon: null,
                 previewImage: this.defaultImage
             });
-        }
+        },
     },
     components: {},
     watch: {
