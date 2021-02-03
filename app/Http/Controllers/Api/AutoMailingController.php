@@ -16,7 +16,7 @@ class AutoMailingController extends Controller
         $subscribesCount = 0;
         foreach($automailings as $mailing) {
             $mailing->getNumberSentPush();
-            // $sites = $mailing->sites()->with('pushSubscriptions')->get();
+            $mailing->pushCount = $mailing->pushes()->count();
         }
         return $automailings;
     }

@@ -106,7 +106,7 @@
                                             src="../../images/message.svg"
                                             alt=""
                                         />
-                                        <p>0</p>
+                                        <p>{{automailing.pushCount}}</p>
                                     </div>
                                     <div class="content-icon-item">
                                         <img
