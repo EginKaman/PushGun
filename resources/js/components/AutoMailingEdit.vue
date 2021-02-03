@@ -24,7 +24,7 @@
             </div>
             <!--  -->
             <vSelect
-                v-if="sites"
+                v-if="sites.length"
                 mode="Multiple"
                 :data="sites"
                 optionName="link"
@@ -38,6 +38,10 @@
                     position: 'left',
                     show: true,
                     text: 'Условие отправки'
+                }"
+                :defaultValue="{
+                    isActive: true,
+                    keys: Object.values(form.sites)
                 }"
                 @selected="sites => (form.sites = sites)"
                 :resetOption="{
