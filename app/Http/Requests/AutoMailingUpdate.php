@@ -33,6 +33,7 @@ class AutoMailingUpdate extends FormRequest
             'sites'=>'sometimes|required|array',
             'status_id'=>'sometimes|integer',
             'pushes'=>'sometimes|required|array',
+            'name'=>'sometimes|required|string'
         ];
     }
 }

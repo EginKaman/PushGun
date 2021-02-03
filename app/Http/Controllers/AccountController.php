@@ -52,6 +52,14 @@ class AccountController extends Controller
     {
         return view('account.automailing');
     }
+    public function automailingEdit($id)
+    {
+        $user = Auth::user();
+        $automailing = $user->automailings()->where('id', $id)->with(['pushes','sites'])->first();
+        return view('account.automailingEdit', [
+            'automailing'=>$automailing
+        ]);
+    }
 
     public function saveMailing()
     {

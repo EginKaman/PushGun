@@ -18,6 +18,7 @@ import Vuelidate from 'vuelidate'
 import VueMask from 'v-mask'
 Vue.use(VueMask)
 Vue.use(Vuelidate)
+Vue.mixin({ methods: { route } });
 Vue.use(VueI18n);
 Vue.use(VModal, {
     dynamic: true,
@@ -55,6 +56,7 @@ Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').def
 Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default);
 Vue.component('push-create', require('./components/PushCreate.vue').default);
 Vue.component('auto-mailing-create', require('./components/AutoMailingCreate.vue').default);
+Vue.component('auto-mailing-edit', require('./components/AutoMailingEdit.vue').default);
 Vue.component('site-check', require('./components/SiteCheck.vue').default);
 
 Vue.component('login-button', require('./components/Index/LoginButton.vue').default);

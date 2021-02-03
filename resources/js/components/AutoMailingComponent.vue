@@ -86,9 +86,10 @@
                         class="popup-block"
                     >
                         <a
+                        :href="route('account.automailingEdit', automailing.id)"
                             >Редактировать<img src="../../images/pan.svg" alt=""
                         /></a>
-                        <a @click.prevent="deleteAutomailing(automailing.id)"
+                        <a @click.prevent="deleteAutomailing(automailing)"
                             >Удалить<img src="../../images/basket.svg" alt=""
                         /></a>
                     </div>
@@ -212,7 +213,8 @@ export default {
             ]
         };
     },
-    props: {},
+    props: {
+    },
     methods: {
         popupClose() {
             this.popupModal = null;
@@ -220,19 +222,23 @@ export default {
         rssClose() {
             this.rssShow = null;
         },
-        deleteAutomailing(id) {
-            axios.delete(`/autoMailing/${id}`).then(() => {
-                this.popupClose();
-                this.$store.dispatch("automailings/FETCH_AUTOMAILINGS");
+        deleteAutomailing(automailing) {
+            axios.delete(route("autoMailing.destroy", automailing)).then(res => {
+                if (res.status === 204) {
+                    this.popupClose();
+                    this.$store.dispatch("automailings/FETCH_AUTOMAILINGS");
+                }
             });
         },
         changeStatus({ statusId, automailing }) {
-            axios.put(route('autoMailing.update', automailing), {
-                status_id: statusId
-            }).then(res => {
-                window.location.reload()
-                // console.log(res.status)
-            });
+            axios
+                .put(route("autoMailing.update", automailing), {
+                    status_id: statusId
+                })
+                .then(res => {
+                    window.location.reload();
+                    // console.log(res.status)
+                });
         }
     },
     computed: {

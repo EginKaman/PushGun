@@ -8,7 +8,7 @@
     >
         <div class="general__title">
             <div class="title">
-                Новая авторассылка
+                Редактирование авторассылки
             </div>
         </div>
         <div class="createmailing__wrapper">
@@ -231,7 +231,7 @@
                                     placeholder="0"
                                 />
                                 <vSelect
-                                    v-if="times"
+                                    v-if="times.length"
                                     mode="Single"
                                     :data="times"
                                     :translate="{
@@ -241,7 +241,7 @@
                                     optionName="title"
                                     :defaultValue="{
                                         isActive: true,
-                                        key: 1
+                                        key: push.delay.time
                                     }"
                                     keyName="id"
                                     :isShowIcon="false"
@@ -361,16 +361,13 @@
                 <span class="green_button_circle"></span>
                 <button type="submit" class="button_green_inner">
                     <button
-                        @click="submit('stopped')"
+                        @click="submit('active')"
                         class="button_text_container"
                     >
                         Сохранить
                     </button>
                 </button>
             </div>
-            <button @click="submit('active')" class="button-create">
-                Сохранить и запустить
-            </button>
         </div>
     </form>
 </template>
@@ -381,7 +378,7 @@ import vClickOutside from "v-click-outside";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
 import axios from "axios";
 export default {
-    name: "AutoMailingCreate",
+    name: "AutoMailingEdit",
     data: () => ({
         delayModes: [
             {
@@ -408,23 +405,7 @@ export default {
                 utm_medium: "",
                 utm_compaign: ""
             },
-            pushes: [
-                {
-                    delay: {
-                        time: 1,
-                        value: 0,
-                        mode: 1,
-                        previousPush: ""
-                    },
-                    title: "",
-                    text: "",
-                    link: "",
-                    image: null,
-                    showImageBlock: false,
-                    icon: null,
-                    previewImage: "../../images/site.svg"
-                }
-            ]
+            pushes: []
         },
 
         selectedSites: null,
@@ -476,15 +457,15 @@ export default {
         submit(status = "active") {
             this.$v.form.$touch();
             if (this.$v.form.$invalid) {
-                alert('заполните')
+                alert("заполните");
                 return;
             }
-            const s = this.statuses.find(item => item.title === status)
+            const s = this.statuses.find(item => item.title === status);
             const form = new FormData();
             form.append("name", this.form.name);
             form.append("hours", this.form.time.hours);
             form.append("minute", this.form.time.minute);
-            form.append("status", s.id);
+            form.append("status_id", Number(s.id));
             form.append("utm_source", this.form.marks.utm_source);
             form.append("utm_medium", this.form.marks.utm_medium);
             form.append("utm_compaign", this.form.marks.utm_compaign);
@@ -501,6 +482,7 @@ export default {
                 form.append(`pushes[${index}][link]`, push.link);
                 form.append(`pushes[${index}][delay][time]`, push.delay.time);
                 form.append(`pushes[${index}][delay][value]`, push.delay.value);
+                form.append(`pushes[${index}][id]`, push.id);
                 form.append(
                     `pushes[${index}][delay][previousPush]`,
                     push.delay.previousPush
@@ -511,13 +493,15 @@ export default {
                 );
                 form.append(`pushes[${index}][icon]`, "");
             });
-            axios.post(this.action, form, {
-                header: {
+            axios.post(route("autoMailing.update", this.automailing), form, {
+                headers: {
                     "Content-Type": "multipart/form-data",
                     "Cache-Control": "no-cache"
                 }
-            }).then(res => {
-                if(res.status === 200) window.location.replace(route('account.automailing'))
+            }).then(res=>{
+                if(res.status === 201) {
+                    window.location.replace(route('account.automailing'))
+                }
             });
         },
         deletePush(index) {
@@ -534,6 +518,7 @@ export default {
         },
         createBlockForNewPush(index) {
             this.form.pushes.push({
+                id: null,
                 delay: {
                     time: 1,
                     value: 0,
@@ -591,6 +576,38 @@ export default {
         this.$store.dispatch("sites/FETCH_SITES");
         this.$store.dispatch("times/FETCH_TIMES");
         this.$store.dispatch("automailingStatuses/FETCH_AUTOMAILING_STATUSES");
+        // set default value to form
+        this.form.name = this.automailing.name;
+        this.automailing.sites.forEach(site => this.form.sites.push(site.id));
+        if (this.automailing.monday === true) this.form.days.push("monday");
+        if (this.automailing.tuesday === true) this.form.days.push("tuesday");
+        if (this.automailing.wednesday === true)
+            this.form.days.push("wednesday");
+        if (this.automailing.thursday === true) this.form.days.push("thursday");
+        if (this.automailing.friday === true) this.form.days.push("friday");
+        if (this.automailing.saturday === true) this.form.days.push("saturday");
+        if (this.automailing.sunday === true) this.form.days.push("sunday");
+        const time = this.automailing.time.split(":");
+        this.form.time.hours = time[0];
+        this.form.time.minute = time[1];
+        this.automailing.pushes.forEach(push => {
+            this.form.pushes.push({
+                id: push.id,
+                delay: {
+                    time: push.time_id,
+                    value: push.delay,
+                    mode: 1,
+                    previousPush: ""
+                },
+                title: push.title,
+                text: push.text,
+                link: push.link,
+                image: push.image,
+                showImageBlock: push.image ? true : false,
+                icon: push.icon,
+                previewImage: push.image || "../../images/site.svg"
+            });
+        });
     }
 };
 </script>

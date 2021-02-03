@@ -29,8 +29,10 @@ Route::get('manifest.json', function () {
         'gcm_sender_id' => config('webpush.gcm.sender_id')
     ];
 });
-Route::group(['prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+], function () {
     Route::get('/', 'IndexController')->name('index')->middleware(['guest']);
     Route::get('/privacy', [\App\Http\Controllers\PageController::class, 'privacy'])->name('page.privacy');
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
@@ -42,12 +44,22 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::middleware(['auth'])->group(function () {
         //TODO: REFACTORING!!!!
         Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
-        Route::delete('/autoMailing/{id}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
-        Route::put('autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'update'])->name('autoMailing.update');
+        Route::delete('/autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
+        Route::put(
+            'autoMailing/{automailing}',
+            [\App\Http\Controllers\AutoMailingController::class, 'update']
+        )
+            ->name('autoMailing.update');
+        Route::post(
+            'autoMailing/{automailing}',
+            [\App\Http\Controllers\AutoMailingController::class, 'update']
+        )
+            ->name('autoMailing.update');
         Route::prefix('account')->group(function () {
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
             //TODO: REFACTORING!!!!
             Route::get('autoMailing', [\App\Http\Controllers\AccountController::class, 'automailing'])->name('account.automailing');
+            Route::get('autoMailing/{id}', [\App\Http\Controllers\AccountController::class, 'automailingEdit'])->name('account.automailingEdit');
             Route::get('referal', [\App\Http\Controllers\AccountController::class, 'referal'])->name('account.referal');
             Route::get('saveMailing', [\App\Http\Controllers\AccountController::class, 'savemailing'])->name('account.savemailing');
             Route::get('saveMailingRss', [\App\Http\Controllers\AccountController::class, 'savemailingrss'])->name('account.savemailingrss');
@@ -83,6 +95,5 @@ Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
     Route::post('site/{site}/check', 'Api\CheckScriptController');
     Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
     Route::get('statistics', 'Api\StatisticController');
-    Route::get('times','Api\TimeController');
+    Route::get('times', 'Api\TimeController');
 });
-
