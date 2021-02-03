@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AutoMailing;
 use App\Http\Requests\AutoMailingRequest;
+use App\Http\Requests\AutoMailingUpdate;
 use App\Notifications\SendPush;
 use App\Push;
 use Carbon\Carbon;
@@ -66,6 +67,12 @@ class AutoMailingController extends Controller
         $mailing->sites()->attach($request->input('sites'));
         $mailing->save();
         return redirect()->route('account.index');
+    }
+    public function update(AutoMailingUpdate $request, AutoMailing $automailing){
+        $data = $request->validated();
+        $automailing->fill($data); 
+        $automailing->save();
+        return response('updated',201);
     }
     public function destroy($id) {
         $user = Auth::user();

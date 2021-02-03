@@ -125,7 +125,12 @@
                                 <div class="change_status_mailing">
                                     <p
                                         v-if="automailing.status.id === 2"
-                                        @click="changeStatus(1)"
+                                        @click="
+                                            changeStatus({
+                                                statusId: 1,
+                                                automailing
+                                            })
+                                        "
                                         class="active"
                                     >
                                         Активировать
@@ -133,7 +138,12 @@
                                     <p
                                         v-else
                                         class="stopped"
-                                        @click="changeStatus(2)"
+                                        @click="
+                                            changeStatus({
+                                                statusId: 2,
+                                                automailing
+                                            })
+                                        "
                                     >
                                         Остановить
                                     </p>
@@ -212,11 +222,18 @@ export default {
         },
         deleteAutomailing(id) {
             axios.delete(`/autoMailing/${id}`).then(() => {
-                this.popupClose()
+                this.popupClose();
                 this.$store.dispatch("automailings/FETCH_AUTOMAILINGS");
             });
         },
-        changeStatus(statusId) {}
+        changeStatus({ statusId, automailing }) {
+            axios.put(route('autoMailing.update', automailing), {
+                status_id: statusId
+            }).then(res => {
+                window.location.reload()
+                // console.log(res.status)
+            });
+        }
     },
     computed: {
         ...mapState({

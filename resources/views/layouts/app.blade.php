@@ -42,6 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
+    @routes
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 @stack('scripts')

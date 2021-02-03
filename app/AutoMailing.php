@@ -33,7 +33,8 @@ class AutoMailing extends Model
         'sunday',
         'time',
         "name",
-        'series'
+        'series',
+        'status_id'
     ];
     /**
      * The attributes that should be cast.

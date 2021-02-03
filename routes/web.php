@@ -43,6 +43,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         //TODO: REFACTORING!!!!
         Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
         Route::delete('/autoMailing/{id}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
+        Route::put('autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'update'])->name('autoMailing.update');
         Route::prefix('account')->group(function () {
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
             //TODO: REFACTORING!!!!
