@@ -41,25 +41,7 @@ $(document).ready(function () {
         $('.notification__item').removeClass('this-active')
     })
 
-    let times = function () {
-        var input = document.querySelectorAll('.time');
-        var st
-
-        input.forEach(item => {
-            item.addEventListener('input', function () {
-
-                st = item.value + "";
-
-                if (st.length == 1) {
-                    item.value = '0' + item.value;
-                } else {
-                    item.value = '' + item.value;
-                }
-            });
-        })
-    };
-
-    times();
+    $('.time').mask('00');
 
     $('.notification__item').on('click', function () {
         $(this).toggleClass('this-active')
