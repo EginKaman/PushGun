@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('postcode')->nullable();
             $table->string('photo')->nullable();
             $table->unsignedBigInteger('balance')->default(0);
+            $table->unsignedBigInteger('bonus_balance')->default(0);
             $table->foreignId('tariff_id')->default(1)->constrained();
             $table->timestamp('tariff_expired_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();

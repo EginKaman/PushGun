@@ -34,11 +34,11 @@
                     </div>
                 </div>
                 <div class="general__stats_left-item" style="background: #5BA4D7;">
-                    <h3>0</h3>
+                    <h3>{{$payments_made}}</h3>
                     <p class="medium mb-10">Совершивших платеж</p>
                 </div>
                 <div class=" general__stats_left-item" style="background: #FF7226;">
-                    <h3>0</h3>
+                    <h3>{{$bonus_balance}}</h3>
                     <div class="mb-10">
                         <p class="medium mb-10">Рублей ваш бонус</p>
                     </div>
