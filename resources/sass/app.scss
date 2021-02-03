@@ -1,5 +1,8 @@
 @charset "UTF-8";
 // Fonts
+$material-icons-font-path: '~material-icons/iconfont/';
+@import "_select.scss";
+@import '~material-icons/iconfont/material-icons.scss';
 @import "_fonts.scss";
 @import "~normalize.css";
 @import "~jquery-modal";
@@ -34,6 +37,9 @@
 @import "push";
 @import "landing";
 @import "newstyles";
+.pointer {
+    cursor: pointer;
+}
 
 .card {
     &-header,
@@ -82,11 +88,9 @@
             letter-spacing: 0.25px;
             color: #323441;
         }
-
         &:hover {
             transition: all 0.3s ease-in-out;
             border: 1px solid #3b8378;
-
             &::placeholder {
                 color: #3b8378;
             }
@@ -94,22 +98,20 @@
     }
 }
 
-
 @media (max-width:480px) {
     .card {
-
         input {
-            width:80vw;
+            width: 80vw;
         }
         p {
-            font-size:14px;
+            font-size: 14px;
         }
         &-body {
             form {
                 button {
-                    font-size:14px;
-                    width:80vw;
-                    padding:15px 35px;
+                    font-size: 14px;
+                    width: 80vw;
+                    padding: 15px 35px;
                 }
             }
         }

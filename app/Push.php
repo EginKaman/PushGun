@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Push extends Model
@@ -19,7 +21,9 @@ class Push extends Model
         'icon',
         'image',
         'text',
-        'link'
+        'link',
+        'delay',
+        'prev_push_id'
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -27,9 +31,30 @@ class Push extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Legacy relationship for backward compatibility
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function site(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Site::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function sites(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Site::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function autoMailings(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+    {
+        return $this->belongsToMany(AutoMailing::class, 'auto_mailing_push', 'push_id', 'automailing_id');
     }
 
     /**
@@ -38,5 +63,11 @@ class Push extends Model
     public function transitions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Transition::class);
+    }
+    /**
+         * @return
+     */
+    public function time() {
+        return $this->belongsTo(Time::class);
     }
 }

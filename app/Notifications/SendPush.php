@@ -4,14 +4,16 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Queue\InteractsWithQueue;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
-class SendPush extends Notification
+class SendPush extends Notification implements ShouldQueue
 {
-    use Queueable;
+    use Queueable, InteractsWithQueue, Dispatchable;
 
     /**
      * @var string
@@ -146,7 +148,16 @@ class SendPush extends Notification
         }
         return $message;
     }
-
+    /**
+     * Execute the job.
+     *
+     * @param  App\Services\AudioProcessor  $processor
+     * @return void
+     */
+    public function handle()
+    {
+        // Process uploaded podcast...
+    }
     /**
      * Get the array representation of the notification.
      *

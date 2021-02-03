@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class Site extends Model
@@ -45,21 +46,22 @@ class Site extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function pushes(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Push::class);
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function transitions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    public function transitions()
     {
-        return $this->hasManyThrough(Transition::class, Push::class);
+        $transitions = [];
+        $pushes = $this->pushes()->with('transitions')->get();
+        foreach($pushes as $push) {
+            foreach($push->transitions as $transition) {
+                array_push($transitions, $transition);
+            }
+        }
+        return collect($transitions);
+       /**
+         * 
+         */
     }
 
     /**
@@ -72,7 +74,13 @@ class Site extends Model
             now()->endOfDay()
         ]);
     }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pushes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Push::class);
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -82,5 +90,12 @@ class Site extends Model
             now()->startOfDay(),
             now()->endOfDay()
         ]);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function automailings(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(AutoMailing::class);
     }
 }

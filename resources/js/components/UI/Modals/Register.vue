@@ -30,6 +30,9 @@ export default {
             type: String,
             default: ''
         },
+        referrer: {
+            default: null
+        }
     },
     data() {
         return {
@@ -50,7 +53,8 @@ export default {
                 name: this.name,
                 email: this.email,
                 password: this.password,
-                password_confirmation: this.password_confirmation
+                password_confirmation: this.password_confirmation,
+                referrer: this.referrer
             }).then(response => {
                 location.reload();
             }).catch(error => {

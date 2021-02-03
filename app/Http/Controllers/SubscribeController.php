@@ -18,6 +18,11 @@ class SubscribeController extends Controller
             $request->authToken,
             $request->contentEncoding
         );
+        $pushes = $site->pushes()->where('prev_push_id', null)->get();
+        /**
+             * Получить все пуши где превпушайди равно нулл, они отправляются после пуша с задержкой делай
+             * Поставить пуши в очередь
+         */
         return response()->json(null, 204);
     }
 

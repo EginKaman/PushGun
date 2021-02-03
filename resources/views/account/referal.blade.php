@@ -15,8 +15,8 @@
             <div class="referal__block">
                 <div class="referal__block__wrapper">
                     <p>Ваша реферальная ссылка</p>
-                    <input placeholder="https://" type="text">
-                    <div class="button_green mr-24">
+                    <input placeholder="https://" data-id="refferal_link__text" class="copy_command__text" readonly value="{{$refferal_link}}" type="text">
+                    <div class="button_green mr-24 copy_command__button" data-input-id="refferal_link__text">
                         <span class="green_button_circle"></span>
                         <a class="button_green_inner">
                             <p class="button_text_container">
@@ -28,7 +28,7 @@
             </div>
             <div class="general__stats_left">
                 <div class="general__stats_left-item" style="background: #3B8378;">
-                    <h3>0</h3>
+                    <h3>{{$referral_count}}</h3>
                     <div class="mb-10">
                         <p class="medium">Зарегестрировавшихся</p>
                     </div>

@@ -42,6 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
+    @routes
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 @stack('scripts')
@@ -193,6 +194,11 @@
                                 <div class="account__link_wrapper icon icon-support">
                                     <a href="{{ route('ticket.index') }}" class="account__bottom_link">
                                         @lang('Тех. поддержка')
+                                    </a>
+                                </div>
+                                <div class="account__link_wrapper">
+                                    <a href="/account/referal" class="account__bottom_link">
+                                    @lang("Реферальная программа")
                                     </a>
                                 </div>
                             </div>

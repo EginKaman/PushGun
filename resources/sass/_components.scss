@@ -11,7 +11,6 @@ $lime: #4AB731;
 $shadow-inset: inset 0px 1px 4px rgba(134, 140, 144, 0.2);
 $shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
 $blue-gradient: linear-gradient(170deg, #D6E9F5 -0.37%, #ADD2EB 97%);
-
 *,
 *:after,
 *:before {
@@ -87,7 +86,7 @@ html {
 
 @for $i from 0 through 100 {
     .progress progress[value="#{$i}"] {
-        & ~ .progress_bg .progress_bar {
+        &~.progress_bg .progress_bar {
             width: $i * 1%
         }
     }
@@ -107,7 +106,6 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     outline: 0;
     cursor: pointer;
-
     &::before {
         position: absolute;
         content: '';
@@ -123,12 +121,10 @@ input[type="checkbox"] {
         opacity: 0;
         transition: all .1s ease;
     }
-
     &:checked {
         color: $white;
         border-color: $green;
         background: $white;
-
         &::before {
             opacity: 1;
         }
@@ -149,7 +145,6 @@ input[type="radio"] {
     -webkit-appearance: none;
     outline: 0;
     cursor: pointer;
-
     &::before {
         position: absolute;
         content: '';
@@ -165,12 +160,10 @@ input[type="radio"] {
         opacity: 0;
         transition: all .1s ease;
     }
-
     &:checked {
         color: $white;
         border-color: $green;
         background: $white;
-
         &::before {
             opacity: 1;
         }
@@ -196,7 +189,6 @@ input[type="radio"] {
     margin: 18px 0;
     border-radius: 100px;
     z-index: 1;
-
     progress {
         position: absolute;
         width: 0;
@@ -204,14 +196,12 @@ input[type="radio"] {
         overflow: hidden;
         left: -7777px;
     }
-
     &_bg {
         position: relative;
         height: 16px;
         border-radius: 5px;
         overflow: hidden;
     }
-
     &_bar {
         overflow: hidden;
         max-width: 100%;
@@ -226,7 +216,6 @@ input[type="radio"] {
 
 .checkmark {
     position: relative;
-
     &:before {
         position: absolute;
         right: -24px;
@@ -286,7 +275,6 @@ input[type="radio"] {
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 0.25px;
-
     & img {
         margin-right: 10px;
     }
@@ -298,7 +286,6 @@ input[type="radio"] {
 
 .desplode-circle {
     animation: desplode 0.5s forwards;
-
 }
 
 @keyframes explode {
@@ -309,7 +296,6 @@ input[type="radio"] {
         margin-top: 0px;
         background-color: $green;
     }
-
     100% {
         width: 500px;
         height: 500px;
@@ -323,12 +309,10 @@ input[type="radio"] {
     0% {
         width: 400px;
         height: 400px;
-
         margin-left: -200px;
         margin-top: -200px;
         background-color: $darkblue;
     }
-
     100% {
         width: 0px;
         height: 0px;
@@ -379,11 +363,9 @@ input[type="radio"] {
     padding: 19px 46px;
     transition: color .3s ease;
     z-index: 100000;
-
     &:hover {
         color: $white;
     }
-
     &:hover .button-img {
         filter: invert(100%) sepia(62%) saturate(0%) hue-rotate(208deg) brightness(108%) contrast(101%);
     }
@@ -397,9 +379,10 @@ input[type="radio"] {
     align-items: center;
     justify-content: space-between;
     font-weight: 600;
+    background-color: transparent;
+    color: #fff;
     font-size: 14px;
     letter-spacing: 0.25px;
-
     & img {
         margin-right: 10px;
     }
@@ -421,7 +404,6 @@ input[type="radio"] {
         margin-top: 0px;
         background-color: $white;
     }
-
     100% {
         width: 600px;
         height: 600px;
@@ -439,7 +421,6 @@ input[type="radio"] {
         margin-top: -200px;
         background-color: $green;
     }
-
     100% {
         width: 0px;
         height: 0px;
@@ -459,17 +440,13 @@ input[type="radio"] {
     color: $darkblue;
     border-radius: 4px;
     transition: all .3s ease;
-
     &:hover {
         cursor: pointer;
     }
-
-
     &_left-btn {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
-
     &_right-btn {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
@@ -479,7 +456,6 @@ input[type="radio"] {
 button {
     border: 0;
     font-family: 'Gilroy', Arial, sans-serif;
-
     &:hover {
         cursor: pointer;
     }
@@ -501,7 +477,6 @@ textarea {
 .activated {
     display: flex !important;
 }
-
 
 .button_lb {
     overflow: hidden;
@@ -544,7 +519,6 @@ textarea {
     width: 110px;
     transition: color .3s ease;
     z-index: 100000;
-
     &:hover {
         color: $darkblue;
     }
@@ -578,7 +552,6 @@ textarea {
         margin-top: 0px;
         background-color: rgba(248, 249, 252, 0.2);
     }
-
     100% {
         width: 600px;
         height: 600px;
@@ -596,7 +569,6 @@ textarea {
         margin-top: -200px;
         background-color: $white;
     }
-
     100% {
         width: 0px;
         height: 0px;
@@ -645,7 +617,6 @@ textarea {
     width: 110px;
     transition: color .3s ease;
     z-index: 100000;
-
     &:hover {
         color: $white;
     }
@@ -678,10 +649,12 @@ textarea {
     max-width: 220px;
     text-align: center;
 }
+
 .setgen__down-buttons.small-btn {
     position: unset;
     left: unset;
 }
+
 .button_green_inner.small-btn {
     padding: 10px 25px;
     width: 100%;
@@ -698,7 +671,6 @@ textarea {
         margin-top: 0px;
         background-color: $white;
     }
-
     100% {
         width: 600px;
         height: 600px;
@@ -716,7 +688,6 @@ textarea {
         margin-top: -200px;
         background-color: $darkblue;
     }
-
     100% {
         width: 0px;
         height: 0px;
@@ -727,32 +698,26 @@ textarea {
 }
 
 @media screen and (max-width: 600px) {
-
     .button_green,
     .button_white {
         width: 230px;
         display: block;
         margin: 12px auto !important;
     }
-
     .button_green_inner {
         // padding: 14px 28px !important;
         display: block;
     }
-
     .button_white_inner {
         padding: 14px 28px;
         display: block;
     }
-
     .button_text_container {
         justify-content: center;
     }
-
     .header__popup {
         overflow: scroll;
     }
-
 }
 
 @media screen and (max-width: 500px) {
@@ -760,23 +725,21 @@ textarea {
         padding-left: 10px;
         padding-right: 10px;
     }
-
     .label-checkbox {
         width: auto;
     }
-
     .title {
         font-size: 24px;
     }
 }
 
-.nav__menu_items{
+.nav__menu_items {
     position: relative;
     padding-left: 45px;
     text-decoration: none;
 }
 
-.nav__menu_items.one::before{
+.nav__menu_items.one::before {
     position: absolute;
     background-image: url('../images/distribution.svg');
     background-size: contain;
@@ -789,7 +752,7 @@ textarea {
     opacity: 0.4;
 }
 
-.nav__menu_items.two::before{
+.nav__menu_items.two::before {
     position: absolute;
     background-image: url('../images/righten.svg');
     background-size: contain;
@@ -801,7 +764,8 @@ textarea {
     content: "";
     opacity: 0.4;
 }
-.nav__menu_items.three::before{
+
+.nav__menu_items.three::before {
     position: absolute;
     background-image: url('../images/distribution.svg');
     background-size: contain;
@@ -813,6 +777,3 @@ textarea {
     content: "";
     opacity: 0.4;
 }
-
-
-

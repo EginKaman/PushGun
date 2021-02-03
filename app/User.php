@@ -28,6 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'timezone',
         'country',
         'city',
+        'referrer_id',
+        'referral_token',
         'address',
         'postcode',
         'photo',
@@ -45,7 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
-
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['referral_link'];
     /**
      * The attributes that should be cast to native types.
      *
@@ -89,6 +96,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function automailings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AutoMailing::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function payment(): \Illuminate\Database\Eloquent\Relations\HasOne
@@ -120,5 +135,33 @@ class User extends Authenticatable implements MustVerifyEmail
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    /**
+     * A user has a referrer.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referrer_id', 'id');
+    }
+    /**
+     * A user has many referrals.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referrer_id', 'id');
+    }
+    /**
+     * Get the user's referral link.
+     *
+     * @return string
+     */
+    public function getReferralLinkAttribute()
+    {
+        return $this->referral_link = route('index', ['ref' => $this->referral_token]);
     }
 }

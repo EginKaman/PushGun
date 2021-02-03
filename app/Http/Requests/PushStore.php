@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PushStore extends FormRequest
 {
@@ -29,7 +30,11 @@ class PushStore extends FormRequest
             'link' => 'required|url',
             'icon' => ['nullable', 'image', 'max:1024'],
             'image' => ['nullable', 'image', 'max:5128'],
-            'site' => 'required|exists:sites,id'
+            'sites' => ['required', 'array', 'min:1'],
+            'sites.*' => [
+                'required',
+                Rule::exists('sites', 'id')->whereNull('deleted_at')->where('user_id', $this->user()->id)
+            ],
         ];
     }
 

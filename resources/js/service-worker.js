@@ -72,7 +72,7 @@
          * @param  {String} subscription.endpoint
          * @return {Response}
          */
-        dismissNotification({notification}, {endpoint}) {
+        dismissNotification({ notification }, { endpoint }) {
             if (!notification.data || !notification.data.id) {
                 return
             }

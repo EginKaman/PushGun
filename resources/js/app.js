@@ -10,11 +10,15 @@ require('./main');
 
 window.Vue = require('vue');
 import languageBundle
-    from '@kirschbaum-development/laravel-translations-loader/json!@kirschbaum-development/laravel-translations-loader';
+from '@kirschbaum-development/laravel-translations-loader/json!@kirschbaum-development/laravel-translations-loader';
 import VueI18n from 'vue-i18n';
 import VModal from 'vue-js-modal';
 import VueSwal from 'vue-swal';
-
+import Vuelidate from 'vuelidate'
+import VueMask from 'v-mask'
+Vue.use(VueMask)
+Vue.use(Vuelidate)
+Vue.mixin({ methods: { route } });
 Vue.use(VueI18n);
 Vue.use(VModal, {
     dynamic: true,
@@ -51,6 +55,8 @@ Vue.component('statistic-individual-chart-component', require('./components/Site
 Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').default);
 Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default);
 Vue.component('push-create', require('./components/PushCreate.vue').default);
+Vue.component('auto-mailing-create', require('./components/AutoMailingCreate.vue').default);
+Vue.component('auto-mailing-edit', require('./components/AutoMailingEdit.vue').default);
 Vue.component('site-check', require('./components/SiteCheck.vue').default);
 
 Vue.component('login-button', require('./components/Index/LoginButton.vue').default);
@@ -64,11 +70,12 @@ Vue.component('photo-component', require('./components/UI/Photo.vue').default);
 Vue.component('image-component', require('./components/UI/Image.vue').default);
 Vue.component('site-button-delete', require('./components/SitesPage/ButtonDelete.vue').default);
 Vue.component('tariff-form', require('./components/TariffForm.vue').default);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.component('vSelect', require('./components/vSelect.vue').default)
+    /**
+     * Next, we will create a fresh Vue application instance and attach it to
+     * the page. Then, you may begin adding components to this application
+     * or customize the JavaScript scaffolding to fit your unique needs.
+     */
 import store from './store'
 
 const app = new Vue({
