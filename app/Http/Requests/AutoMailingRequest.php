@@ -31,6 +31,7 @@ class AutoMailingRequest extends FormRequest
             'utm_medium' => 'string|nullable',
             'utm_compaign' => 'string|nullable',
             'sites'=>'required|array',
+            'status'=>'string',
             'pushes'=>'required|array',
         ];
     }

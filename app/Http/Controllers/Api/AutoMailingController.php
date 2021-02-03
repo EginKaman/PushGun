@@ -12,7 +12,10 @@ class AutoMailingController extends Controller
     public function __invoke()
     {
         $user =  Auth::user();
-        $automailings = $user->automailings()->get();
+        $automailings = $user->automailings()->with('status')->get();
+        foreach($automailings as $mailing) {
+            $mailing->getNumberSentPush();
+        }
         return $automailings;
     }
 }

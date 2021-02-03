@@ -52,7 +52,7 @@ class AutoMailingController extends Controller
             } else {
                 $prevPushId = $push->id;
             }
-            $mailing->status()->associate(1);
+            $mailing->status()->associate($request->input('status'));
             $mailing->save();
             $mailing->pushes()->attach($push->id);
             $push->sites()->attach($request->input('sites'));
@@ -66,5 +66,10 @@ class AutoMailingController extends Controller
         $mailing->sites()->attach($request->input('sites'));
         $mailing->save();
         return redirect()->route('account.index');
+    }
+    public function destroy($id) {
+        $user = Auth::user();
+        $user->automailings()->where('id', $id)->delete();
+        return true;
     }
 }

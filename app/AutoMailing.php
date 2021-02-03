@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class AutoMailing extends Model
 {
@@ -78,5 +79,20 @@ class AutoMailing extends Model
     {
         return $this->belongsToMany(Site::class);
     }
-
+    /**
+     * @return integer
+     */
+    public function getNumberSentPush() {
+        $pushes = $this->pushes()->get();
+        $count = 0;
+        foreach($pushes as $push) {
+            $count += $push->sent;
+        }
+        $this->countSentPushes = $count;
+    }
+    // public function destroy($id) {
+    //     $user = Auth::user();
+    //     $user->automailings()->where('id', $id)->delete();
+    //     return 1;
+    // }
 }

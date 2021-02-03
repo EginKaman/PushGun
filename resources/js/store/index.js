@@ -4,6 +4,7 @@ import services from './modules/services'
 import sites from './modules/sites'
 import automailings from './modules/automailings'
 import times from './modules/times'
+import automailingStatuses from './modules/automailingStatuses'
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
         services,
         sites,
         automailings,
-        times
+        times,
+        automailingStatuses
     }
 })

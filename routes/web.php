@@ -42,6 +42,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::middleware(['auth'])->group(function () {
         //TODO: REFACTORING!!!!
         Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
+        Route::delete('/autoMailing/{id}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
         Route::prefix('account')->group(function () {
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
             //TODO: REFACTORING!!!!
@@ -77,6 +78,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
     Route::get('site', 'Api\SiteController');
     Route::get('automailings', 'Api\AutoMailingController');
+    Route::get('automailingStatuses', 'Api\AutoMailingStatusController');
     Route::post('site/{site}/check', 'Api\CheckScriptController');
     Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
     Route::get('statistics', 'Api\StatisticController');

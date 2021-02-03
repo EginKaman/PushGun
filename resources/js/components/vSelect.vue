@@ -73,8 +73,13 @@ export default {
      default: true
    },
    translate: {
-     type: Boolean,
-     default: false
+     type: Object,
+     default() {
+       return {
+         use: false,
+         lang: 'ru'
+       }
+     }
    },
     maxWidth: {
       type: Object,

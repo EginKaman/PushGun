@@ -2,8 +2,8 @@
     <form
         :actions="action"
         enctype="multipart/form-data"
-        @submit.prevent="submit"
         method="POST"
+        @submit.prevent
         class="automailings__form"
     >
         <div class="general__title">
@@ -215,9 +215,7 @@
                         }"
                         @selected="mode => (push.delay.mode = mode)"
                     />
-                    <div
-                        class="createmailing__wrapper__item"
-                    >
+                    <div class="createmailing__wrapper__item">
                         <div class="createmailing__wrapper__item__checkbox">
                             <div
                                 class="createmailing__wrapper__item__input trl"
@@ -317,8 +315,10 @@
                         <div class="createmailing__wrapper__item__checkbox">
                             <div class="createmailing__wrapper__item__input">
                                 <div>
-                                    <input type="checkbox" v-model="push.showImageBlock" /><br /><span
-                                        style="color: 000;"
+                                    <input
+                                        type="checkbox"
+                                        v-model="push.showImageBlock"
+                                    /><br /><span style="color: 000;"
                                         >Заменить стандартную картинку
                                         сайта</span
                                     >
@@ -360,12 +360,17 @@
             <div class="button_green mr-24">
                 <span class="green_button_circle"></span>
                 <button type="submit" class="button_green_inner">
-                    <button type="submit" class="button_text_container">
+                    <button
+                        @click="submit('stopped')"
+                        class="button_text_container"
+                    >
                         Сохранить
                     </button>
                 </button>
             </div>
-            <button type="submit" class="button-create">Сохранить и запустить</button>
+            <button @click="submit('active')" class="button-create">
+                Сохранить и запустить
+            </button>
         </div>
     </form>
 </template>
@@ -465,54 +470,50 @@ export default {
         }
     },
     methods: {
-        submit() {
+        submit(status = "active") {
             this.$v.form.$touch();
-            if (!this.$v.form.$invalid) {
-                const form = new FormData();
-                form.append("name", this.form.name);
-                form.append("hours", this.form.time.hours);
-                form.append("minute", this.form.time.minute);
-                form.append("utm_source", this.form.marks.utm_source);
-                form.append("utm_medium", this.form.marks.utm_medium);
-                form.append("utm_compaign", this.form.marks.utm_compaign);
-                this.form.sites.forEach(site => {
-                    form.append("sites[]", site);
-                });
-                this.form.days.forEach(day => {
-                    form.append("days[]", day);
-                });
-                this.form.pushes.forEach((push, index) => {
-                    console.log(index);
-                    form.append(`pushes[${index}][title]`, push.title);
-                    form.append(`pushes[${index}][text]`, push.text);
-                    form.append(`pushes[${index}][link]`, push.link);
-                    form.append(
-                        `pushes[${index}][delay][time]`,
-                        push.delay.time
-                    );
-                    form.append(
-                        `pushes[${index}][delay][value]`,
-                        push.delay.value
-                    );
-                    form.append(
-                        `pushes[${index}][delay][previousPush]`,
-                        push.delay.previousPush
-                    );
-                    form.append(
-                        `pushes[${index}][image]`,
-                        this.$refs.imagePush[index].files[0] || ""
-                    );
-                    form.append(`pushes[${index}][icon]`, "");
-                });
-                axios.post(this.action, form, {
-                    header: {
-                        "Content-Type": "multipart/form-data",
-                        "Cache-Control": "no-cache"
-                    }
-                });
-            } else {
-                alert("Заполните");
+            if (this.$v.form.$invalid) {
+                alert('заполните')
+                return;
             }
+            const s = this.statuses.find(item => item.title === status)
+            const form = new FormData();
+            form.append("name", this.form.name);
+            form.append("hours", this.form.time.hours);
+            form.append("minute", this.form.time.minute);
+            form.append("status", s.id);
+            form.append("utm_source", this.form.marks.utm_source);
+            form.append("utm_medium", this.form.marks.utm_medium);
+            form.append("utm_compaign", this.form.marks.utm_compaign);
+            this.form.sites.forEach(site => {
+                form.append("sites[]", site);
+            });
+            this.form.days.forEach(day => {
+                form.append("days[]", day);
+            });
+            this.form.pushes.forEach((push, index) => {
+                console.log(index);
+                form.append(`pushes[${index}][title]`, push.title);
+                form.append(`pushes[${index}][text]`, push.text);
+                form.append(`pushes[${index}][link]`, push.link);
+                form.append(`pushes[${index}][delay][time]`, push.delay.time);
+                form.append(`pushes[${index}][delay][value]`, push.delay.value);
+                form.append(
+                    `pushes[${index}][delay][previousPush]`,
+                    push.delay.previousPush
+                );
+                form.append(
+                    `pushes[${index}][image]`,
+                    this.$refs.imagePush[index].files[0] || ""
+                );
+                form.append(`pushes[${index}][icon]`, "");
+            });
+            axios.post(this.action, form, {
+                header: {
+                    "Content-Type": "multipart/form-data",
+                    "Cache-Control": "no-cache"
+                }
+            });
         },
         deletePush(index) {
             this.form.pushes.splice(index, 1);
@@ -521,7 +522,7 @@ export default {
             const file = event.target.files.item(0);
             this.form.pushes[index].image = file;
             const reader = new FileReader();
-            reader.addEventListener("load", (e) => {
+            reader.addEventListener("load", e => {
                 this.form.pushes[index].previewImage = e.target.result;
             });
             reader.readAsDataURL(file);
@@ -541,7 +542,7 @@ export default {
                 icon: null,
                 previewImage: this.defaultImage
             });
-        },
+        }
     },
     components: {},
     watch: {
@@ -558,7 +559,8 @@ export default {
     computed: {
         ...mapState({
             sites: state => state.sites.sites,
-            times: state => state.times.times
+            times: state => state.times.times,
+            statuses: state => state.state.automailingStatuses.statuses
         }),
         ...mapGetters("sites", {
             sites: "getSites",
@@ -573,11 +575,17 @@ export default {
             get() {
                 return this.$store.state.times.times;
             }
+        },
+        statuses: {
+            get() {
+                return this.$store.state.automailingStatuses.statuses;
+            }
         }
     },
     mounted() {
         this.$store.dispatch("sites/FETCH_SITES");
         this.$store.dispatch("times/FETCH_TIMES");
+        this.$store.dispatch("automailingStatuses/FETCH_AUTOMAILING_STATUSES");
     }
 };
 </script>
