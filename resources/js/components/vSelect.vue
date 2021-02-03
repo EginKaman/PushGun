@@ -252,9 +252,11 @@ export default {
                 if (defaultValue) this.select(defaultValue);
             } else {
                 this.defaultValue.keys.forEach(key => {
-                  const defaultValue = this.data.find(item => item[this.keyName] === key)
-                  this.select(defaultValue)
-                })
+                    const defaultValue = this.data.find(
+                        item => item[this.keyName] === key
+                    );
+                    this.select(defaultValue);
+                });
             }
         }
     }

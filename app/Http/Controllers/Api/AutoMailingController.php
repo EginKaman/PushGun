@@ -13,8 +13,10 @@ class AutoMailingController extends Controller
     {
         $user =  Auth::user();
         $automailings = $user->automailings()->with('status')->get();
+        $subscribesCount = 0;
         foreach($automailings as $mailing) {
             $mailing->getNumberSentPush();
+            // $sites = $mailing->sites()->with('pushSubscriptions')->get();
         }
         return $automailings;
     }

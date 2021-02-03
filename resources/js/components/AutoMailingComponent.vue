@@ -99,7 +99,6 @@
                                 <p class="name">a</p>
                             </div>
                             <div class="content-item">
-                                <span>Status ~~</span>
                                 <a>{{ automailing.name }}</a>
                                 <div class="content-icon">
                                     <div class="content-icon-item">
@@ -155,7 +154,7 @@
                     <div class="automailing__wrapper__item__content">
                         <div class="content-item-count__wrapper">
                             <div class="content-item-count">
-                                <span>0 ~~</span>
+                                <span>0</span>
                                 <p>Подписчиков в очереди</p>
                             </div>
                             <div class="content-item-count">
