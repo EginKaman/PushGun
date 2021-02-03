@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\BonusPercent;
 use App\Http\Requests\AccountUpdate;
+use App\Payment;
 use App\Site;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -84,9 +86,12 @@ class AccountController extends Controller
         $user = Auth::user();
         $referral_link = $user->getReferralLinkAttribute();
         $referral_count = $user->referrals()->count();
+        $payments_made = Payment::all()->load('user')->where('referrer_id', $user->id)->count();
         return view('account.referal',[
             'refferal_link'=>$referral_link,
-            'referral_count' => $referral_count
+            'referral_count' => $referral_count,
+            'bonus_balance'=>$user->bonus_balance,
+            'payments_made'=>$payments_made,
         ]);
     }
 

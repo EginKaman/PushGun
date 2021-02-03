@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BonusPercent;
 use App\Http\Resources\PaymentResource;
 use App\Tariff;
 use App\User;
@@ -98,6 +99,8 @@ class PaymentController extends Controller
             $expired->addMonth();
         }
         $user->tariff_expired_at = $expired;
+        $bonus_percent = BonusPercent::all()->first()->percent;
+        $user->bonus_balance = $user->bonus_balance + ((float)$request->Amount * $bonus_percent / 100);
         $user->save();
         return response()->json([
             'code' => 0
