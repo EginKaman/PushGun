@@ -77,7 +77,7 @@ export default {
             const cardNumber = this.card.replace(/\s+/g, "").toUpperCase();
             const form = new FormData()
             form.append('card_number', cardNumber)
-            form.append('amount', 500)
+            form.append('amount', 55500)
             form.append('wallet_name', 'qiwi')
             axios.post(route('bonus.withdrawal'), form).then(res => console.log(res))
         }

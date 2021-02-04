@@ -9,12 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class BonusController extends Controller
 {
-    public function store(BonusHistoryRequest $request) {
+    public function store(BonusHistoryRequest $request)
+    {
+        $user = Auth::user();
+        if ($user->bonus_balance < $request->input('amount')) {
+            return response('insufficient funds', 403);
+        }
         $bonus = new BonusHistory();
         $bonus->fill($request->all());
-        $bonus->user()->associate(Auth::user());
+        $bonus->user()->associate($user);
+        $user->bonus_balance = $user->bonus_balance - $request->input('amount');
         $bonus->save();
-        return response('created', 201);
+        $user->save();
+        return response('withdrawal request created
+        ', 201);
     }
-
 }
