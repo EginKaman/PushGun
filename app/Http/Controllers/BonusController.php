@@ -13,7 +13,10 @@ class BonusController extends Controller
     {
         $user = Auth::user();
         if ($user->bonus_balance < $request->input('amount')) {
-            return response('insufficient funds', 403);
+            return response()->json([
+                'message' => __('Недостаточно средств'),
+                'type' => 'error'
+            ]);
         }
         $bonus = new BonusHistory();
         $bonus->fill($request->all());
@@ -21,7 +24,9 @@ class BonusController extends Controller
         $user->bonus_balance = $user->bonus_balance - $request->input('amount');
         $bonus->save();
         $user->save();
-        return response('withdrawal request created
-        ', 201);
+        return response()->json([
+            'message' => __('Запрос на снятие бонуса обрабатывается'),
+            'type' => 'success'
+        ]);
     }
 }

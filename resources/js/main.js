@@ -1,12 +1,6 @@
 "use strict";
 
 $(document).ready(function() {
-    $(".payment-btn").on("click", function() {
-        $(".payment").css("display", "block");
-    });
-    $(".close-payment").on("click", function() {
-        $(".payment").css("display", "none");
-    });
     $(".visa").each(function() {
         $(this).on("click", function() {
             console.log($(".visa.active").length);
@@ -23,12 +17,6 @@ $(document).ready(function() {
                 $(".rss__wrapper__block__content__last").css("display", "none");
             }
         });
-    });
-
-    $(document).on("click", function(e) {
-        if (e.target.classList.contains("payment")) {
-            $(".payment").css("display", "none");
-        }
     });
     $(
         ".stats__selector, .set-form__select, .sup-form__select, .site_domain_select"
