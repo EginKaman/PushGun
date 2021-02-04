@@ -14,6 +14,7 @@ try {
     require('jquery-ui/ui/widgets/slider');
     require('jquery-ui-touch-punch');
     require('slick-carousel');
+    require('jquery-mask-plugin');
     require('select2');
     require('tooltipster');
 } catch (e) {
