@@ -18,6 +18,8 @@ class CreateBonusHistoriesTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->boolean('status');
             $table->float('amount');
+            $table->string('wallet_name');
+            $table->string('card_number');
             $table->timestamps();
         });
     }

@@ -15,7 +15,9 @@ class BonusHistory extends Model
      * @var array
      */
     protected $fillable = [
-
+        'wallet_name',
+        'amount',
+        'card_number'
     ];
 
     /**
@@ -27,7 +29,7 @@ class BonusHistory extends Model
         'status'=>'boolean'
     ];
 
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
