@@ -71,6 +71,7 @@ Vue.component('image-component', require('./components/UI/Image.vue').default);
 Vue.component('site-button-delete', require('./components/SitesPage/ButtonDelete.vue').default);
 Vue.component('tariff-form', require('./components/TariffForm.vue').default);
 Vue.component('vSelect', require('./components/vSelect.vue').default)
+Vue.component('withdrawal-bonus', require('./components/UI/Modals/WithdrawalBonus').default)
     /**
      * Next, we will create a fresh Vue application instance and attach it to
      * the page. Then, you may begin adding components to this application
