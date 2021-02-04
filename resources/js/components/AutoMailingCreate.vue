@@ -244,11 +244,11 @@
                                         key: 1
                                     }"
                                     keyName="id"
-                                    :isShowIcon="false"
+                                    :isShowIcon="true"
                                     :isShowCheckbox="false"
                                     class="selectTimeClass"
                                     :maxWidth="{
-                                        size: 120,
+                                        size: 140,
                                         unit: 'px'
                                     }"
                                     @selected="time => (push.delay.time = time)"

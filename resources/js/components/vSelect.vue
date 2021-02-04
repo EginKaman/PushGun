@@ -12,8 +12,10 @@
             </label>
             <p @click="switchSelect" ref="selectText">
                 {{ text }}
-                <span v-if="isShowIcon" class="material-icons"
-                    >keyboard_arrow_down
+                <span v-if="isShowIcon" class="material-icons">
+                    {{
+                        isActive ? 'expand_less' : 'expand_more'
+                    }}
                 </span>
             </p>
 
@@ -232,7 +234,13 @@ export default {
         },
         text() {
             if (this.selectText.length) {
-                return `${this.selectText}`;
+                let selectText = null
+                if(this.translate.use && this.selectText instanceof Array) {
+                    selectText = this.selectText.map(text => this.$t(text, this.translate.lang))
+                } else {
+                    selectText = this.$t(this.selectText, this.translate.lang)
+                }
+                return `${selectText}`;
             }
             return "Выбрать";
         },
