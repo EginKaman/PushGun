@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     name: "WithdrawalBonus",
     data: () => ({
@@ -74,6 +75,9 @@ export default {
         },
         submit() {
             const cardNumber = this.card.replace(/\s+/g, "").toUpperCase();
+            const form = new FormData()
+            form.append('cardNumber', cardNumber)
+            axios.post(route('bonus.withdrawal'), form).then(res => console.log(res))
         }
     }
 };

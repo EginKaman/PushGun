@@ -19,6 +19,7 @@ Route::post('/subscribe/{site}', [\App\Http\Controllers\SubscribeController::cla
 Route::get('/push/{push}/redirect', 'TransitionController')->name('transition.store');
 Route::post('payment/check', [\App\Http\Controllers\PaymentController::class, 'check']);
 Route::post('payment', [\App\Http\Controllers\PaymentController::class, 'store']);
+Route::post('bonus', [\App\Http\Controllers\BonusController::class, 'store'])->name('bonus.withdrawal');
 // Route::get('/v1/pushPackages/{website}', [\App\Http\Controllers\Api\iOSRegister::class, 'pushPackages']);
 // Route::post('/v1/devices/{device}/registrations/{website}', [\App\Http\Controllers\Api\iOSRegister::class, 'registrations']);
 // Route::delete('/v1/devices/{device}/registrations/{website}', [\App\Http\Controllers\Api\iOSRegister::class, 'delete']);
