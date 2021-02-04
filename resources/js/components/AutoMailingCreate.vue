@@ -231,7 +231,7 @@
                                     placeholder="0"
                                 />
                                 <vSelect
-                                    v-if="times"
+                                    v-if="times.length"
                                     mode="Single"
                                     :data="times"
                                     :translate="{
