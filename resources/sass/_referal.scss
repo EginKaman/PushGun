@@ -1,6 +1,15 @@
 .referal {
+    #custom-option-select-wallet-name {
+        display: flex;
+        text-decoration: none;
+        p {
+            cursor: pointer;
+            padding: 16px 0px;
+        }
+    }
     .payment {
         z-index: 9999999;
+        cursor: default;
     }
     .rss__wrapper__block {
         max-width: 550px;

@@ -25,7 +25,20 @@
                             ><img src="../../../../images/payer3.svg" alt=""
                         /></a>
                     </div>
+                    <a
+                        class="visa"
+                        id="custom-option-select-wallet-name"
+                    >
+                        <p @click="select(null)">Свой Вариант</p>
+                    </a>
                     <div class="rss__wrapper__block__content__last">
+                        <div v-if="isShowInputForCustomWalletName">
+                            <p>Как вы хотите получить деньги</p>
+                            <input
+                                type="text"
+                                v-model="wallet_name"
+                            />
+                        </div>
                         <p>Номер счета</p>
                         <input
                             type="text"
@@ -34,12 +47,8 @@
                             :key="mask"
                         />
                         <p>Сумма</p>
-                        <input
-                            type="number"
-                            min="0"
-                            v-model="amount"
-                        />
-                        <span v-if="message">{{message.message}}</span>
+                        <input type="number" min="0" v-model="amount" />
+                        <span v-if="message">{{ message.message }}</span>
                         <div class="button_green mr-24">
                             <span class="green_button_circle"></span>
                             <a
@@ -71,11 +80,18 @@ export default {
         amount: 0,
         message: null, // message, type,
         isActive: false,
-        wallet_name: null
+        wallet_name: null,
+        isShowInputForCustomWalletName: false
     }),
     methods: {
         select(type) {
-            this.wallet_name = type
+            if (type === null) {
+                this.isShowInputForCustomWalletName = true;
+                this.mask = ''
+            } else {
+                this.isShowInputForCustomWalletName = false
+            }
+            this.wallet_name = type;
             this.card = null;
             if (type === "Money") {
                 this.mask = "#### #### #### ####";
@@ -87,24 +103,24 @@ export default {
         },
         submit() {
             const cardNumber = this.card.replace(/\s+/g, "").toUpperCase();
-            const form = new FormData()
-            form.append('card_number', cardNumber)
-            form.append('amount', this.amount)
-            form.append('wallet_name', this.wallet_name)
-            axios.post(route('bonus.withdrawal'), form).then(res => {
-                this.message = res.data
+            const form = new FormData();
+            form.append("card_number", cardNumber);
+            form.append("amount", this.amount);
+            form.append("wallet_name", this.wallet_name);
+            axios.post(route("bonus.withdrawal"), form).then(res => {
+                this.message = res.data;
                 setTimeout(() => {
-                    this.close()
-                }, 1500)
-            })
+                    this.close();
+                }, 1500);
+            });
         },
         open() {
-            this.isActive = true
+            this.isActive = true;
         },
         close() {
-            this.isActive = false
-            this.amount = 0
-            this.card = null
+            this.isActive = false;
+            this.amount = 0;
+            this.card = null;
         }
     }
 };
