@@ -98,10 +98,13 @@ class PaymentController extends Controller
         } else {
             $expired->addMonth();
         }
+        $referrer = $user->referrer()->first();
+        if ($referrer) {
+            $bonus_percent = BonusPercent::all()->first()->percent;
+            $referrer->bonus_balance = $user->bonus_balance + ((float)$request->Amount * $bonus_percent / 100);
+            $referrer->save();
+        }
         $user->tariff_expired_at = $expired;
-        $bonus_percent = BonusPercent::all()->first()->percent;
-        $user->save();
-        $user->bonus_balance = $user->bonus_balance + ((float)$request->Amount * $bonus_percent / 100);
         $user->save();
         return response()->json([
             'code' => 0
