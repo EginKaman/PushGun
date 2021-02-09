@@ -16,15 +16,24 @@ class SiteController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return SitesResource
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function index(): SitesResource
+    public function index()
     {
         $user = Auth::user();
         $sites = $user->sites;
         $sites->loadCount('pushSubscriptions', 'transitions', 'todaySubscriptions');
-        return new SitesResource($sites);
+        // return new SitesResource($sites);
+        return view('sites.index', [
+            'sites' => $sites
+        ]);
+    }
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     */
+    public function list()
+    {
+        return view('sites.index');
     }
 
     /**
@@ -36,7 +45,6 @@ class SiteController extends Controller
     {
         return view('sites.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -138,5 +146,4 @@ class SiteController extends Controller
     {
         return '/storage/push' . $site->script;
     }
-
 }
