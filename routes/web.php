@@ -31,6 +31,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
     Route::get('/blog/{blog}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
     Route::get('/test', [\App\Http\Controllers\PageController::class, 'test'])->name('page.test');
+    Route::get('/mysite', [\App\Http\Controllers\MysitesController::class, 'index'])->name('mysites.index');
     Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);

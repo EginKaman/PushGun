@@ -74,13 +74,14 @@
                         </a>
 
                         <div class="nav__wrapper">
-                            <a href="#" class="nav__item nav__arrow">
+                            <a href="{{ route('mysites.index') }}" class="nav__item nav__arrow">
                                 <div class="nav__item_wrap">
                                     <span>@lang('Мои сайты')</span>
                                     <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                                 </div>
                             </a>
                             <header-sites-component></header-sites-component>
+                            
                         </div>
                     @endauth
                     <a href="{{ route('tariff.index') }}" class="nav__item">
