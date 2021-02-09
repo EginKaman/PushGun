@@ -23,19 +23,10 @@ class SiteController extends Controller
         $user = Auth::user();
         $sites = $user->sites;
         $sites->loadCount('pushSubscriptions', 'transitions', 'todaySubscriptions');
-        // return new SitesResource($sites);
         return view('sites.index', [
             'sites' => $sites
         ]);
     }
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     */
-    public function list()
-    {
-        return view('sites.index');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

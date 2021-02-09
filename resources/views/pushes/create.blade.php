@@ -7,7 +7,7 @@
             <div class="push__title">
                 <h1>@lang('Отправить push-уведомление')</h1>
             </div>
-            <push-create action="{{ route('push.store') }}">
+            <push-create action="{{ route('push.store') }}" :tariff_id="{{$tariff_id}}">
                 <errors>
                     @if($errors->any())
                     <div class="alert alert-danger">

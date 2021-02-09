@@ -28,7 +28,7 @@
                 <div class="agree">
                     <input type="checkbox" v-model="change" name="change" id="changeIcon">
                     <label for="changeIcon">{{ $t('Заменить стандартную картинку сайта') }}</label>
-                    <a href="/tariff" class="tarrifs tar">Купите тариф PRO, что-бы удалить логотип "Предоставлено Push.Gun"</a>
+                    <a href="/tariff" v-if="tariff_id <= 1" class="tarrifs tar">Купите тариф PRO, что-бы удалить логотип "Предоставлено Push.Gun"</a>
                     <div class="site_set_avatar" id="site_set_avatar" v-show="change">
                         <input type="file" ref="image" name="image" id="siteimage" accept="image/*"
                                @change="uploadImage">
@@ -129,6 +129,10 @@ export default {
         action: {
             type: String,
             default: ''
+        },
+        tariff_id: {
+            type: Number,
+            required: true
         }
     },
     data() {
