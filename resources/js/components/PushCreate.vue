@@ -83,7 +83,7 @@
                 <div class="chrome">
                     <div class="chrome__large" v-if="big_image"><img :src="big_image" alt=""></div>
                     <div class="chrome__block">
-                        <div class="chrome__small"><img :src="selected.image || default_image" alt="avatar"></div>
+                        <div class="chrome__small"><img src="../../images/chrome.svg" alt="avatar"></div>
                         <div class="chrome__text">
                             <p class="res">{{ title || $t('Заголовок') }}</p>
                             <p class="txt">{{ text || $t('Текст вашего сообщения') }}</p>
@@ -94,7 +94,7 @@
                     <p>Firefox, Windows</p>
                     <div class="firefox">
                         <!--                        <img src="../../images/avatar.svg" alt="avatar">-->
-                        <img :src="selected.image || default_image" alt="avatar">
+                        <img src="../../images/browsers/firefox.png" alt="avatar">
                         <div class="firefox__text">
                             <p class="res">{{ title || $t('Заголовок') }}</p>
                             <p class="txt">{{ text || $t('Текст вашего сообщения') }}</p>
@@ -109,7 +109,6 @@
                             <p class="res">{{ title || $t('Заголовок') }}</p>
                             <p class="txt">{{ text || $t('Текст вашего сообщения') }}</p>
                         </div>
-                        <img class="macos__avatar" :src="selected.image || default_image" alt="avatar">
                         <div class="macos__settings">
                             <span>{{ $t('Закрыть') }}</span>
                             <span>{{ $t('Настройки') }}</span>
