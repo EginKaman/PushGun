@@ -501,6 +501,15 @@
     }
 }
 
+.icon-referral {
+    &:before {
+        background-image: url("../images/link.svg");
+        width: 12px;
+        height: 12px;
+        background-repeat: no-repeat;
+    }
+}
+
 .icon-exit {
     margin-bottom: 0;
     &:before {
