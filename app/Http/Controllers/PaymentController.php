@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\BonusPercent;
 use App\Http\Resources\PaymentResource;
 use App\Tariff;
 use App\User;
@@ -100,7 +99,7 @@ class PaymentController extends Controller
         }
         $referrer = $user->referrer()->first();
         if ($referrer) {
-            $bonus_percent = BonusPercent::first()->percent;
+            $bonus_percent = config('app.bonus_percent');
             $referrer->bonus_balance = (float)$request->Amount * $bonus_percent / 100;
             $referrer->save();
         }
