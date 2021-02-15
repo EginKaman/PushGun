@@ -100,8 +100,8 @@ class PaymentController extends Controller
         }
         $referrer = $user->referrer()->first();
         if ($referrer) {
-            $bonus_percent = BonusPercent::all()->first()->percent;
-            $referrer->bonus_balance = $user->bonus_balance + ((float)$request->Amount * $bonus_percent / 100);
+            $bonus_percent = BonusPercent::first()->percent;
+            $referrer->bonus_balance = (float)$request->Amount * $bonus_percent / 100;
             $referrer->save();
         }
         $user->tariff_expired_at = $expired;
