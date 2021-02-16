@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\BonusHistory;
 use App\Http\Requests\BonusHistoryRequest;
+use App\Mail\Bonus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BonusController extends Controller
 {
@@ -24,6 +26,7 @@ class BonusController extends Controller
         $user->bonus_balance = $user->bonus_balance - $request->input('amount');
         $bonus->save();
         $user->save();
+        Mail::to(config('mail.from.address'))->send(new Bonus("$user->lastname $user->name", $request->input('amount')));
         return response()->json([
             'message' => __('Запрос на снятие бонуса обрабатывается'),
             'type' => 'success'
