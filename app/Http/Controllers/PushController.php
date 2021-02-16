@@ -50,7 +50,8 @@ class PushController extends Controller
         $sites = $user->sites;
         $sites->loadCount('pushSubscriptions');
         return view('pushes.create', [
-            'sites' => $sites
+            'sites' => $sites,
+            'tariff_id' => $user->tariff_id
         ]);
     }
 
