@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -68,7 +69,7 @@ class BonusHistory extends Resource
             Text::make('Название карты', 'wallet_name')
                 ->sortable()
                 ->rules('required', 'max:255'),
-            Boolean::make(__('Статус'), 'status')->sortable()->rules('required','boolean'),
+            Boolean::make(__('Статус'), 'status')->sortable()->rules('required', 'boolean'),
             Text::make('Номер карты', 'card_number')->sortable()->rules('required', 'string'),
             Number::make('Бонус', 'amount')
                 ->sortable()
@@ -81,6 +82,7 @@ class BonusHistory extends Resource
             DateTime::make(__('Updated at'), 'updated_at')
                 ->onlyOnDetail()
                 ->rules('nullable', 'date'),
+            Button::make('Одобрить')->event('App\Events\NovaButton\Events\NotifiedUserAboutBonusWithdrawal')->loadingText('Загрузка')->successText('Одобрено')->visible(!$this->status)->reload()
         ];
     }
 

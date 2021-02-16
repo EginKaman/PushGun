@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\NovaButton\Events\NotifiedUserAboutBonusWithdrawal;
+use App\Listeners\NotifyUserAboutBonusWithdrawal;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        '\NovaButton\Events\NotifiedUserAboutBonusWithdrawal' => [
+            '\App\Listeners\NotifyUserAboutBonusWithdrawal'
+        ]
     ];
 
     /**
@@ -28,7 +33,9 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
+        Event::listen(
+            NotifiedUserAboutBonusWithdrawal::class,
+            [NotifyUserAboutBonusWithdrawal::class, 'handle']
+        );
     }
 }
