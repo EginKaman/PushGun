@@ -24,8 +24,10 @@ Route::get('manifest.json', function () {
         'gcm_sender_id' => config('webpush.gcm.sender_id')
     ];
 });
-Route::group(['prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+], function () {
     Route::get('/', 'IndexController')->name('index')->middleware(['guest']);
     Route::get('/privacy', [\App\Http\Controllers\PageController::class, 'privacy'])->name('page.privacy');
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
@@ -35,12 +37,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);
     Route::middleware(['auth'])->group(function () {
-        Route::prefix('account')->group(function () {
-            Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
-            Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
-            Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
-        });
+        Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
         Route::middleware(['verified'])->group(function () {
+            Route::prefix('account')->group(function () {
+                Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
+                Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
+            });
             Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
             Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
             Route::put('/password', 'PasswordController')->name('account.password');
@@ -65,4 +67,3 @@ Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
     Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
     Route::get('statistics', 'Api\StatisticController');
 });
-
