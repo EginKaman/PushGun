@@ -37,7 +37,7 @@ Route::group([
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);
     Route::middleware(['auth'])->group(function () {
-        Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
+        Route::get('account/edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
         Route::middleware(['verified'])->group(function () {
             Route::prefix('account')->group(function () {
                 Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
