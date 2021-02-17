@@ -7,7 +7,9 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -68,10 +70,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $referrer = User::where('referral_token', $data['referrer'])->first();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'referrer_id' => $referrer ? $referrer->id : null,
             'password' => Hash::make($data['password']),
+            'referral_token' => str_random(16)
         ]);
     }
 }

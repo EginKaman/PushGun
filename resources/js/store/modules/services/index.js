@@ -6,6 +6,7 @@ export default {
         statistics: {},
         individual_statistick: {},
         current_page_statistick: undefined,
+        subscription: 0,
         statisticsParam: {
             mails: { color: "#36C2CF", title: "рассылок", count: 0 },
             sent: { color: "#5BA4D7", title: "отправлено", count: 0 },

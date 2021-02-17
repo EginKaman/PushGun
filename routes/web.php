@@ -18,6 +18,7 @@ Route::post('/subscribe/{site}', [\App\Http\Controllers\SubscribeController::cla
 Route::get('/push/{push}/redirect', 'TransitionController')->name('transition.store');
 Route::post('payment/check', [\App\Http\Controllers\PaymentController::class, 'check']);
 Route::post('payment', [\App\Http\Controllers\PaymentController::class, 'store']);
+Route::post('bonus', [\App\Http\Controllers\BonusController::class, 'store'])->name('bonus.withdrawal');
 Route::get('manifest.json', function () {
     return [
         'name' => config('app.name'),
@@ -38,6 +39,34 @@ Route::group([
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);
     Route::middleware(['auth'])->group(function () {
+        //TODO: REFACTORING!!!!
+        Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
+        Route::delete('/autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
+        Route::put(
+            'autoMailing/{automailing}',
+            [\App\Http\Controllers\AutoMailingController::class, 'update']
+        )
+            ->name('autoMailing.update');
+        Route::post(
+            'autoMailing/{automailing}',
+            [\App\Http\Controllers\AutoMailingController::class, 'update']
+        )
+            ->name('autoMailing.update');
+        Route::prefix('account')->group(function () {
+            Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
+            //TODO: REFACTORING!!!!
+            Route::get('autoMailing', [\App\Http\Controllers\AccountController::class, 'automailing'])->name('account.automailing');
+            Route::get('autoMailing/{id}', [\App\Http\Controllers\AccountController::class, 'automailingEdit'])->name('account.automailingEdit');
+            Route::get('referal', [\App\Http\Controllers\AccountController::class, 'referal'])->name('account.referal');
+            Route::get('saveMailing', [\App\Http\Controllers\AccountController::class, 'savemailing'])->name('account.savemailing');
+            Route::get('saveMailingRss', [\App\Http\Controllers\AccountController::class, 'savemailingrss'])->name('account.savemailingrss');
+            Route::get('createMailing', [\App\Http\Controllers\AccountController::class, 'createmailing'])->name('account.createmailing');
+            Route::get('createMailingRss', [\App\Http\Controllers\AccountController::class, 'createmailingrss'])->name('account.createmailingrss');
+
+            Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
+            Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
+        });
+        Route::middleware(['verified'])->group(function () {
         Route::get('account/edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
         Route::middleware(['verified'])->group(function () {
             Route::prefix('account')->group(function () {
@@ -64,7 +93,10 @@ Route::group([
 });
 Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
     Route::get('site', 'Api\SiteController');
+    Route::get('automailings', 'Api\AutoMailingController');
+    Route::get('automailingStatuses', 'Api\AutoMailingStatusController');
     Route::post('site/{site}/check', 'Api\CheckScriptController');
     Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
     Route::get('statistics', 'Api\StatisticController');
+    Route::get('times', 'Api\TimeController');
 });

@@ -14,7 +14,7 @@ class SiteController extends Controller
      *
      * @return SitesResource
      */
-    public function __invoke(): SitesResource
+    public function __invoke()
     {
         $user = Auth::user();
         $sites = $user->sites;

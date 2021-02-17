@@ -1,5 +1,8 @@
 @charset "UTF-8";
 // Fonts
+$material-icons-font-path: '~material-icons/iconfont/';
+@import "_select.scss";
+@import '~material-icons/iconfont/material-icons.scss';
 @import "_fonts.scss";
 @import "~normalize.css";
 @import "~jquery-modal";
@@ -10,12 +13,17 @@
 @import "_general.scss";
 @import "_footer.scss";
 @import "_mails.scss";
+@import "_savemailingrss.scss";
 @import "_mail.scss";
+@import "_automailing.scss";
 @import "_privacy.scss";
 @import "_blog.scss";
 @import "_notifications.scss";
 @import "_test.scss";
 @import "_site.scss";
+@import "_savemailing.scss";
+@import "_createmailingrss.scss";
+@import "_createmailing.scss";
 @import "_site-settings-1.scss";
 @import "_site-settings-2.scss";
 @import "_site-settings-3.scss";
@@ -24,10 +32,14 @@
 @import "_account.scss";
 @import "_support.scss";
 @import "_ticket.scss";
+@import "_referal.scss";
 @import "_add-site";
 @import "push";
 @import "landing";
 @import "newstyles";
+.pointer {
+    cursor: pointer;
+}
 
 .card {
     &-header,
@@ -76,11 +88,9 @@
             letter-spacing: 0.25px;
             color: #323441;
         }
-
         &:hover {
             transition: all 0.3s ease-in-out;
             border: 1px solid #3b8378;
-
             &::placeholder {
                 color: #3b8378;
             }
@@ -88,22 +98,20 @@
     }
 }
 
-
 @media (max-width:480px) {
     .card {
-
         input {
-            width:80vw;
+            width: 80vw;
         }
         p {
-            font-size:14px;
+            font-size: 14px;
         }
         &-body {
             form {
                 button {
-                    font-size:14px;
-                    width:80vw;
-                    padding:15px 35px;
+                    font-size: 14px;
+                    width: 80vw;
+                    padding: 15px 35px;
                 }
             }
         }

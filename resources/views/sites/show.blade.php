@@ -32,11 +32,11 @@
                         @endif
                     </div>
                     <div class=" general__stats_left-item" style="background: #FF7226;">
-                        <h3>{{ $site->transitions_count }}</h3>
+                        <h3>{{ $transitions }}</h3>
                         <div class="mb-10">
                             @if($pushes->sum('delivered') > 0)
                                 <p class="medium">
-                                    {{ round($site->transitions_count / $pushes->sum('delivered'), 2) * 100 }}
+                                    {{ round($transitions / $pushes->sum('delivered'), 2) * 100 }}
                                     % @lang('переходов')
                                 </p>
                             @else
@@ -70,7 +70,7 @@
                 <div class="button_white">
                     <span class="white_button_circle"></span>
                     <a href="{{ route('site.edit', $site) }}" class="button_white_inner">
-                        <p class="button_text_container">
+                        <p class="button_text_container black">
                             <img class="button-img" src="{{ asset('images/settingsDark.svg') }}"
                                  alt="">@lang('Настройки сайта')
                         </p>

@@ -39,6 +39,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
+    @routes
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->
@@ -85,9 +86,8 @@
                 <div class="header-landing__wrapper__links">
                     <login-button classes="header-landing__wrapper__links_enter" action="{{ route('login') }}">
                     </login-button>
-                    <register-button classes="header-landing__wrapper__links_reg" action="{{ route('register') }}">
+                    <register-button classes="header-landing__wrapper__links_reg" referrer="{{session()->pull('referrer')}}" action="{{ route('register') }}">
                     </register-button>
-
                     <div class="arrow">
                         <div class="text">@lang('До 1000 подписчиков бесплатно')</div>
                         <div class="svg">

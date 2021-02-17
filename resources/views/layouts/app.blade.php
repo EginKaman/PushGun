@@ -11,12 +11,18 @@
 
     <!-- Фавиконы и иконки сайта -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}" data-mce-href="{{ asset('images/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-32x32.png') }}" sizes="32x32" data-mce-href="{{ asset('images/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-16x16.png') }}" sizes="16x16" data-mce-href="{{ asset('images/favicon/favicon-16x16.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-192x192.png') }}" sizes="192x192" data-mce-href="{{ asset('images/favicon/android-chrome-192x192.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-512x512.png') }}" sizes="512x512" data-mce-href="{{ asset('images/favicon/android-chrome-512x512.png') }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}"
+          data-mce-href="{{ asset('images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-32x32.png') }}" sizes="32x32"
+          data-mce-href="{{ asset('images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-16x16.png') }}" sizes="16x16"
+          data-mce-href="{{ asset('images/favicon/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-192x192.png') }}" sizes="192x192"
+          data-mce-href="{{ asset('images/favicon/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-512x512.png') }}" sizes="512x512"
+          data-mce-href="{{ asset('images/favicon/android-chrome-512x512.png') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <meta name="theme-color" content="#ffffff">
 
 
@@ -36,6 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
+    @routes
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     @stack('scripts')
@@ -45,36 +52,31 @@
 </head>
 
 <body>
-    <div id="app">
-        <header class="header">
-            <div class="container">
-                <div class="header__inner">
-                    <a href="{{ route('account.index') }}" class="header__logo">
-                        <img style="width: 208px;height: 16px;" src="{{ asset('images/logo.png') }}" alt="" class="header__logo_img">
+<div id="app">
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="{{ route('account.index') }}" class="header__logo">
+                    <img style="width: 208px;height: 16px;" src="{{ asset('images/logo.png') }}" alt="" class="header__logo_img">
+                </a>
+                <nav class="nav">
+                    <a href="{{ route('account.index') }}" class="nav__item">
+                        <div class="nav__item_wrap">
+                            <span>@lang('Главная')</span>
+                            <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
+                        </div>
                     </a>
-                    <nav class="nav">
-                        <a href="{{ route('account.index') }}" class="nav__item">
-                            <div class="nav__item_wrap">
-                                <span>@lang('Главная')</span>
-                                <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
-                            </div>
-                        </a>
-                        @auth
+                    @auth
                         <div class="nav__wrapper">
-                            <a href="{{route('push.index')}}" class="nav__item nav__arrow">
+                            <a href="{{ route('push.index') }}" class="nav__item nav__arrow">
                                 <div class="nav__item_wrap">
                                     <span>@lang('Мои рассылки')</span>
                                     <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                                 </div>
                             </a>
-                            <div class="nav__menu">
-                                <ul class="nav__menu_inner">
-                                    <li class="nav__menu_item">
-                                        <a class="nav__menu_link" href="{{route('push.create')}}">@lang('Отправить Push')</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <header-push-component></header-push-component>
                         </div>
+
                         <div class="nav__wrapper">
                             <a href="{{ route('mysites.index') }}" class="nav__item nav__arrow">
                                 <div class="nav__item_wrap">
@@ -83,7 +85,7 @@
                                 </div>
                             </a>
                             <header-sites-component></header-sites-component>
-                            
+
                         </div>
                         @endauth
                         <a href="{{ route('tariff.index') }}" class="nav__item">
@@ -186,6 +188,11 @@
                                         @lang('Тех. поддержка')
                                     </a>
                                 </div>
+                                <div class="account__link_wrapper icon icon-referral">
+                                    <a href="/account/referal" class="account__bottom_link">
+                                    @lang("Реферальная программа")
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="account__link_exit">
@@ -215,8 +222,11 @@
                             <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                         </div>
                         <div class="nav__item_wrap">
-                            <a href="#">@lang('Мои сайты')</a>
+                            {{--<a href="#">@lang('Мои сайты')</a>--}}
                             <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
+                        </div>
+                        <div class="nav__menu_item" v-if="$store.state.sites.sites.length < 1">
+                            <a class="nav__menu_link" href="{{ route('site.create') }}">@lang('Добавить сайт')</a>
                         </div>
                         <div class="nav__menu_item" v-if="$store.state.sites.sites.length < 1">
                             <a class="nav__menu_link" href="{{ route('site.create') }}">@lang('Добавить сайт')</a>

@@ -1,0 +1,122 @@
+.referal {
+    #custom-option-select-wallet-name {
+        display: flex;
+        text-decoration: none;
+        p {
+            cursor: pointer;
+            padding: 16px 0px;
+        }
+    }
+    .payment {
+        z-index: 9999999;
+        cursor: default;
+    }
+    .rss__wrapper__block {
+        max-width: 550px;
+        height: auto;
+        .rss__wrapper__block__content__last {
+            display: none;
+            input {
+                display: block;
+                width: 100%;
+                border-radius: 4px;
+                padding: 10px;
+                border: 1px solid #eeecea;
+                box-sizing: border-box;
+                margin: 8px 0px 27px 0px;
+            }
+        }
+        .rss__wrapper__block__content__btn {
+            margin: 20px 0px;
+            display: flex;
+            align-items: center;
+            a {
+                cursor: pointer;
+                display: block;
+                text-align: center;
+                width: 165px;
+                height: 50px;
+                position: relative;
+                margin: 0px 10px;
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+            .visa.active {
+                background: #5ba4d7;
+                border-radius: 100px;
+            }
+        }
+    }
+    .general__stats_left {
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 47px 0px;
+        &-item {
+            max-width: 375px;
+            width: 100%;
+            max-height: 120px;
+            height: 100%;
+            margin: 0;
+            h3 {
+                color: #fff;
+            }
+        }
+    }
+    .general__title {
+        display: block;
+        margin-bottom: 46px;
+        .sub-title {
+            padding: 24px 0px 0px 0px;
+            max-width: 828px;
+        }
+    }
+    .referal__block {
+        width: 100%;
+        max-height: 285px;
+        height: 285px;
+        background: url(../images/referal-bg.png) no-repeat center top;
+        background-size: cover;
+        &__wrapper {
+            padding: 39px 46px;
+            input {
+                display: block;
+                max-width: 804px;
+                width: 100%;
+                padding: 16px;
+                border: none;
+                margin: 16px 0px 32px 0px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .referal {
+        margin-top: 105px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .referal {
+        padding-top: 0;
+        .general__stats_left {
+            display: block;
+        }
+        .general__stats_left-item {
+            margin: 20px auto auto auto;
+        }
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .referal .rss__wrapper__block .rss__wrapper__block__content__btn {
+        display: block;
+    }
+    .referal .rss__wrapper__block .rss__wrapper__block__content__btn a {
+        margin: 10px auto auto auto;
+    }
+}

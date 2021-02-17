@@ -15,6 +15,9 @@ export default {
         classes: {
             type: String,
             default: '/login'
+        },
+        referrer: {
+            default: null
         }
     },
     methods: {
@@ -22,7 +25,8 @@ export default {
             this.$modal.show(
                 RegisterModal,
                 {
-                    action: this.action
+                    action: this.action,
+                    referrer: this.referrer
                 },
                 {
                     height: 'auto',

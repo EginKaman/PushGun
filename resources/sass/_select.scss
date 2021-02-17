@@ -1,0 +1,96 @@
+.select_label__left {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 65px;
+}
+
+.selectTimeClass,
+.selectModeDelay {
+    p,
+    ul>li {
+        font-size: 13px;
+    }
+}
+
+.selectModeDelay {
+    ul {
+        grid-column: 1/2 !important;
+        color: #3b8378;
+    }
+    p {
+        border: 0 !important;
+        color: #3b8378;
+    }
+    .select_label__left {
+        grid-gap: 0;
+    }
+}
+
+.v-select {
+    &_li__hover:hover {
+        background-color: rgb(240, 240, 240);
+    }
+    position: relative;
+    p {
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        padding: 0px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 16px;
+        position: relative;
+        min-height: 36px;
+        word-break: break-all;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        span.material-icons {
+            color: #dfdfdf;
+        }
+        &::after {
+            content: "";
+            //   background-image: url("../../images/icons/select-arrow.svg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            right: 16px;
+            top: 12px;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+    p.active {
+        transition: all 0.3s ease-in-out;
+        &::after {
+            transition: all 0.3s ease-in-out;
+            transform: rotate(180deg);
+        }
+    }
+    ul {
+        overflow-x: hidden;
+        position: absolute;
+        background-color: #fff;
+        max-width: 100%;
+        width: 100%;
+        top: 35px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        grid-column: 2/3;
+        min-height: auto;
+        max-height: 200px;
+        z-index: 1000;
+        li {
+            padding: 8px 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            label.v-select__optionName {
+                margin-left: 8px;
+            }
+        }
+    }
+}

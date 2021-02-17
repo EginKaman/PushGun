@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
-
+    'bonus_percent' => env('BONUS_PERCENT', 5),
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        App\Providers\NovaServiceProvider::class,
         /*
          * Application Service Providers...
          */
