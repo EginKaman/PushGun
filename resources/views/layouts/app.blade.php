@@ -42,7 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
-    @routes
+    @routes()
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     @stack('scripts')
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="nav__wrapper">
-                            <a href="{{ route('mysites.index') }}" class="nav__item nav__arrow">
+                            <a href="{{ route('site.index') }}" class="nav__item nav__arrow">
                                 <div class="nav__item_wrap">
                                     <span>@lang('Мои сайты')</span>
                                     <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
