@@ -67,36 +67,37 @@ Route::group([
             Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
         });
         Route::middleware(['verified'])->group(function () {
-        Route::get('account/edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
-        Route::middleware(['verified'])->group(function () {
-            Route::prefix('account')->group(function () {
-                Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
-                Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
+            Route::get('account/edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
+            Route::middleware(['verified'])->group(function () {
+                Route::prefix('account')->group(function () {
+                    Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
+                    Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
+                });
+                Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
+                Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
+                Route::put('/password', 'PasswordController')->name('account.password');
+                Route::resource('site', 'SiteController');
+                Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
+                Route::post('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'store'])->name('complete.store');
+                Route::resource('push', 'PushController');
+                Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
+                Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
+                Route::get('/tariff', 'TariffController')->name('tariff.index');
             });
-            Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
-            Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
-            Route::put('/password', 'PasswordController')->name('account.password');
-            Route::resource('site', 'SiteController');
-            Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
-            Route::post('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'store'])->name('complete.store');
-            Route::resource('push', 'PushController');
-            Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
-            Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
-            Route::get('/tariff', 'TariffController')->name('tariff.index');
+
+            Route::get('manual', [\App\Http\Controllers\ManualController::class, 'index'])->name('manual.index');
+            Route::get('manual/{manual}', [\App\Http\Controllers\ManualController::class, 'show'])->name('manual.show');
+
+            Route::get('system_message', [\App\Http\Controllers\SystemMessageController::class, 'index'])->name('system_message.index');
         });
-
-        Route::get('manual', [\App\Http\Controllers\ManualController::class, 'index'])->name('manual.index');
-        Route::get('manual/{manual}', [\App\Http\Controllers\ManualController::class, 'show'])->name('manual.show');
-
-        Route::get('system_message', [\App\Http\Controllers\SystemMessageController::class, 'index'])->name('system_message.index');
     });
-});
-Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
-    Route::get('site', 'Api\SiteController');
-    Route::get('automailings', 'Api\AutoMailingController');
-    Route::get('automailingStatuses', 'Api\AutoMailingStatusController');
-    Route::post('site/{site}/check', 'Api\CheckScriptController');
-    Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
-    Route::get('statistics', 'Api\StatisticController');
-    Route::get('times', 'Api\TimeController');
+    Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
+        Route::get('site', 'Api\SiteController');
+        Route::get('automailings', 'Api\AutoMailingController');
+        Route::get('automailingStatuses', 'Api\AutoMailingStatusController');
+        Route::post('site/{site}/check', 'Api\CheckScriptController');
+        Route::get('site/{site}/statistics', 'Api\SiteStatisticController');
+        Route::get('statistics', 'Api\StatisticController');
+        Route::get('times', 'Api\TimeController');
+    });
 });
