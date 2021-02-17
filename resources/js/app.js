@@ -44,6 +44,7 @@ const i18n = new VueI18n({
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('header-sites-component', require('./components/HeaderSitesComponent.vue').default);
+Vue.component('my-sites-component', require('./components/MysitesComponent.vue').default);
 Vue.component('statistic-chart-component', require('./components/MainPage/StatisticChart.vue').default);
 Vue.component('statistic-individual-chart-component', require('./components/SitesPage/StatisticChart.vue').default)
 Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').default);
