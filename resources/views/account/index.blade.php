@@ -124,17 +124,26 @@
                         </ul>
 
                     </div>
-                    <a href="{{ route('site.show', ['site' => $site]) }}">
-                        @empty($site->image)
-                        <img class="general__sites_item-img" src="{{ asset('images/site.svg') }}" alt="{{ $site->link }}">
-                        @else
-                        <img class="general__sites_item-img" src="{{ asset( Storage::url($site->image) ) }}" alt="{{ $site->link }}">
-                        @endempty
-                    </a>
-                    <div class="general__sites_info @if($site->installed)checkmark @endif">
-                        <a href="{{ route('site.show', $site) }}" class="account__bottom_subscribe general__sites_title">{{ $site->link }}</a>
-                        <p>@lang('Подписчиков'): <span>{{ $site->push_subscriptions_count }}</span></p>
+                    <div style="display: flex; align-items: center">
+                        <a href="{{ route('site.show', ['site' => $site]) }}">
+                            @empty($site->image)
+                            <img class="general__sites_item-img" src="{{ asset('images/site.svg') }}" alt="{{ $site->link }}">
+                            @else
+                            <img class="general__sites_item-img" src="{{ asset( Storage::url($site->image) ) }}" alt="{{ $site->link }}">
+                            @endempty
+                        </a>
+                        <div class="general__sites_info @if($site->installed)checkmark @endif">
+                            <a href="{{ route('site.show', $site) }}" class="account__bottom_subscribe general__sites_title">{{ $site->link }}</a>
+                            <p>@lang('Подписчиков'): <span>{{ $site->push_subscriptions_count }}</span></p>
+                        </div>
                     </div>
+                    <ul class="general__sites_ul">
+                        <li><a href="{{ route('push.create') }}"><img src="{{ asset('images/send-black.svg') }}" alt="">@lang('Отправить PUSH')</a></li>
+                        <li><a href="{{ route('site.edit', $site) }}"><img src="{{ asset('images/setting.svg') }}" alt="">@lang('Настройки сайта')</a></li>
+                        <li>
+                            <site-button-delete action="{{ route('site.destroy', $site) }}"></site-button-delete>
+                        </li>
+                    </ul>
                 </div>
                 @endforeach
             </div>
