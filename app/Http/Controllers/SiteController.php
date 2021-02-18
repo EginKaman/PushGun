@@ -21,8 +21,7 @@ class SiteController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $sites = $user->sites;
-        $sites->loadCount('pushSubscriptions', 'transitions', 'todaySubscriptions');
+        $sites = $user->sites()->withCount('pushSubscriptions')->get();
         return view('sites.index', [
             'sites' => $sites
         ]);
