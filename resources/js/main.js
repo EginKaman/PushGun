@@ -1,8 +1,8 @@
 "use strict";
 
-$(document).ready(function() {
-    $(".visa").each(function() {
-        $(this).on("click", function() {
+$(document).ready(function () {
+    $(".visa").each(function () {
+        $(this).on("click", function () {
             console.log($(".visa.active").length);
             if ($(".visa.active").length > 0) {
                 $(".visa").removeClass("active");
@@ -26,7 +26,7 @@ $(document).ready(function() {
         placeholder: "Выбрать"
     });
 
-    $(".close-notif").on("click", function() {
+    $(".close-notif").on("click", function () {
         $(".notification").removeClass("all-active");
         $(".notification").fadeOut(700);
         $(".notification__item").removeClass("this-active");
@@ -34,16 +34,16 @@ $(document).ready(function() {
 
     $('.time').mask('00');
 
-    $(".notification__item").on("click", function() {
+    $(".notification__item").on("click", function () {
         $(this).toggleClass("this-active");
         $(".notification").addClass("all-active");
     });
 
-    $(".notif-btn").on("click", function(e) {
+    $(".notif-btn").on("click", function (e) {
         $(".notification").addClass("all-active");
     });
 
-    $(".createmailing-select__current").on("click", function() {
+    $(".createmailing-select__current").on("click", function () {
         $(this)
             .parent()
             .children(".createmailing-select__menus")
@@ -53,7 +53,7 @@ $(document).ready(function() {
             .toggleClass("active");
     });
 
-    $(".select-item").on("click", function() {
+    $(".select-item").on("click", function () {
         const container = $(this)
             .parent()
             .siblings(".createmailing-select__current");
@@ -61,9 +61,9 @@ $(document).ready(function() {
         const id = $(this).attr("data-id");
         const list =
             input
-            .attr("value")
-            .split(",")
-            .filter(item => item) || [];
+                .attr("value")
+                .split(",")
+                .filter(item => item) || [];
         const text = container
             .children(".set-select")
             .text()
@@ -111,7 +111,7 @@ $(document).ready(function() {
             .removeClass("active");
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(".tooltip").tooltipster({
             side: ["left", "bottom"],
             trigger: "click",
@@ -119,23 +119,23 @@ $(document).ready(function() {
             interactive: true
         });
 
-        $(".header__account").click(function(e) {
+        $(".header__account").click(function (e) {
             e.preventDefault();
             $(".account__popup").fadeToggle(300);
             $(".header__popup").fadeOut(300);
         });
 
-        $(".bell").click(function(e) {
+        $(".bell").click(function (e) {
             e.preventDefault();
             $(".notification").fadeToggle(300);
         });
 
-        $(".header__burger").click(function() {
+        $(".header__burger").click(function () {
             $(".header__popup").fadeToggle(300);
             $("body").toggleClass("fixer");
         });
 
-        $(".button_green_inner").mouseenter(function(e) {
+        $(".button_green_inner").mouseenter(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -152,7 +152,7 @@ $(document).ready(function() {
                 .prev(".green_button_circle")
                 .addClass("explode-circle");
         });
-        $(".button_green_inner").mouseleave(function(e) {
+        $(".button_green_inner").mouseleave(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -170,7 +170,7 @@ $(document).ready(function() {
                 .addClass("desplode-circle");
         });
 
-        $(".button_lb_inner").mouseenter(function(e) {
+        $(".button_lb_inner").mouseenter(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -187,7 +187,7 @@ $(document).ready(function() {
                 .prev(".lb_button_circle")
                 .addClass("explode-circle-lb");
         });
-        $(".button_lb_inner").mouseleave(function(e) {
+        $(".button_lb_inner").mouseleave(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -205,7 +205,7 @@ $(document).ready(function() {
                 .addClass("desplode-circle-lb");
         });
 
-        $(".button_rb_inner").mouseenter(function(e) {
+        $(".button_rb_inner").mouseenter(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -222,7 +222,7 @@ $(document).ready(function() {
                 .prev(".rb_button_circle")
                 .addClass("explode-circle-rb");
         });
-        $(".button_rb_inner").mouseleave(function(e) {
+        $(".button_rb_inner").mouseleave(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -240,7 +240,7 @@ $(document).ready(function() {
                 .addClass("desplode-circle-rb");
         });
 
-        $(".button_white_inner").mouseenter(function(e) {
+        $(".button_white_inner").mouseenter(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -257,7 +257,7 @@ $(document).ready(function() {
                 .prev(".white_button_circle")
                 .addClass("explode-circle-w");
         });
-        $(".button_white_inner").mouseleave(function(e) {
+        $(".button_white_inner").mouseleave(function (e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
@@ -275,15 +275,15 @@ $(document).ready(function() {
                 .addClass("desplode-circle-w");
         });
 
-        $(".button").click(function() {
+        $(".button").click(function () {
             $(".button").removeClass("selected");
             $(this).addClass("selected");
         });
 
-        $("#filter").click(function() {
+        $("#filter").click(function () {
             $(".filter__popup").fadeToggle(300);
         });
-        $("#btn_select").click(function() {
+        $("#btn_select").click(function () {
             $(".filter__popup").fadeToggle(300);
             if (
                 $("#firstDate-input").val() !== "" &&
@@ -311,24 +311,24 @@ $(document).ready(function() {
             }
         }
 
-        $(".mails__reset").click(function() {
+        $(".mails__reset").click(function () {
             $("#firstDate").removeClass("activated");
             $("#lastDate").removeClass("activated");
             $(".filter__input").val("");
             $(this).fadeOut(300);
         });
 
-        $(".button_lb").click(function() {
+        $(".button_lb").click(function () {
             $(".filter__input").val("");
         });
 
-        $("#first-date-del").click(function() {
+        $("#first-date-del").click(function () {
             $("#firstDate").removeClass("activated");
             $("#firstDate-input").val("");
             checkEmpty();
         });
 
-        $("#last-date-del").click(function() {
+        $("#last-date-del").click(function () {
             $("#lastDate").removeClass("activated");
             $("#lastDate-input").val("");
             checkEmpty();
@@ -367,30 +367,30 @@ $(document).ready(function() {
         var dataDelivery = [1, 30, 45, 60, 55, 54, 12, 38, 3, 15];
         var dataGo = [1, 22, 45, 39, 59, 12, 12, 38, 3, 15];
 
-        document.addEventListener("keydown", function(e) {
+        document.addEventListener("keydown", function (e) {
             if (e.keyCode === 27) {
                 $(".account__popup").fadeOut(300);
                 $(".filter__popup").fadeOut(300);
             }
         });
 
-        $(document).click(function(e) {
+        $(document).click(function (e) {
             if (!$(e.target).closest(
-                    "#filter, .header__account, .datepicker--cell, .datepicker, .datepicker--nav, .datepicker--nav-action, .datepicker--nav-title, .filter__popup, .account__popup, .createmailing-select__current, .createmailing-select__menus"
-                ).length) {
+                "#filter, .header__account, .datepicker--cell, .datepicker, .datepicker--nav, .datepicker--nav-action, .datepicker--nav-title, .filter__popup, .account__popup, .createmailing-select__current, .createmailing-select__menus"
+            ).length) {
                 $(
                     ".filter__popup, .account__popup, .createmailing-select__menus"
                 ).fadeOut(250);
                 $(".createmailing-select").removeClass("active");
             }
         });
-        $(document).click(function(e) {
+        $(document).click(function (e) {
             if (!$(e.target).closest("#filter, .bell, .notification").length) {
                 $(".notification").fadeOut(250);
                 $(".notification").removeClass("all-active");
             }
         });
-        $(".copy_command__button").on("click", function() {
+        $(".copy_command__button").on("click", function () {
             const inputAttr = $(this).attr("data-input-id");
             const input = $(
                 `input.copy_command__text[data-id=${inputAttr}]`
@@ -398,13 +398,13 @@ $(document).ready(function() {
             $(this).find('.button_text_container').text('Скопировано')
             document.execCommand("copy");
         });
-        $(".setgen__buttons_link").click(function() {
+        $(".setgen__buttons_link").click(function () {
             let id = $(this).attr("id");
             $("section").removeClass("choosen");
             $("#" + id + "-sec").addClass("choosen");
         });
 
-        $("#sale").change(function() {
+        $("#sale").change(function () {
             $(this).toggleClass("true");
             //          let price = $('#tariff-price').text();
             //          sale(price);
@@ -422,7 +422,7 @@ $(document).ready(function() {
             $(".followsCount").val(e);
         }
 
-        $(".change-email").on("click", function() {
+        $(".change-email").on("click", function () {
             $(".set-change").fadeOut(400);
             $(".email input")
                 .removeAttr("disabled")
@@ -438,7 +438,7 @@ $(document).ready(function() {
                     min: 0,
                     max: 3,
                     step: 1,
-                    change: function(event, ui) {
+                    change: function (event, ui) {
                         let item = $(".tariff-slider__item ").eq(ui.value);
                         let price = item.data("price");
                         let text = item.data("text");
@@ -447,7 +447,7 @@ $(document).ready(function() {
                         sale(price);
                     }
                 })
-                .each(function() {
+                .each(function () {
                     var opt = $(this).data().uiSlider.options;
                     var vals = opt.max - opt.min;
 
@@ -459,7 +459,7 @@ $(document).ready(function() {
                     }
                 });
 
-            $(".tariff-slider__item ").on("click", function() {
+            $(".tariff-slider__item ").on("click", function () {
                 console.log("click some item slider");
                 let index = $(this).index();
                 let slider = $(".tariff-slider");
@@ -476,8 +476,8 @@ $(document).ready(function() {
             }
             var reader = new FileReader();
             // Closure to capture the file information.
-            reader.onload = (function(theFile) {
-                return function(e) {
+            reader.onload = (function (theFile) {
+                return function (e) {
                     // Render thumbnail.
                     var figure = document.createElement("figure");
                     figure.innerHTML = [
@@ -503,7 +503,7 @@ $(document).ready(function() {
         }
 
         let h = $(".push-check").height();
-        $("#radio1, #radio2").change(function() {
+        $("#radio1, #radio2").change(function () {
             if ($("#radio2").prop("checked")) {
                 $(".push-check").css({
                     "max-height": h
@@ -516,7 +516,7 @@ $(document).ready(function() {
             }
         });
 
-        $(".file-img-remove").click(function(e) {
+        $(".file-img-remove").click(function (e) {
             e.preventDefault();
             $("#ticketFile").val("");
             $(".ticket-fileName").text("");
@@ -524,7 +524,7 @@ $(document).ready(function() {
             $(this).fadeOut(0);
         });
 
-        $("#ticketFile").on("change", function() {
+        $("#ticketFile").on("change", function () {
             var splittedFakePath = this.value.split("\\");
             $(".ticket-fileName").text(
                 splittedFakePath[splittedFakePath.length - 1]
@@ -569,30 +569,27 @@ $(document).ready(function() {
     });
 
     // Lang-toggle
-    $(".lang-toggle").on("click", function() {
+    $(".lang-toggle").on("click", function () {
         $(this).toggleClass("active");
         $(".lang-toggle ul").slideToggle();
     });
-    $(".lang-toggle li").on("click", function() {
+    $(".lang-toggle li").on("click", function () {
         let lang = $(this).attr("data-lang");
         $(".lang-toggle span").html(lang);
     });
-    $(".lang--toggle").on("click", function() {
+    $(".lang--toggle").on("click", function () {
         $(this)
             .find("ul")
             .slideToggle();
     });
 
     //mysitepop
-    $(".general__sites_item-more").on(
-        "click",
-        ".general__sites_item-more_imgcontsd",
-        function() {
-            let active = $(".general__sites_item-more.active");
-            let menu = $(this).closest(".general__sites_item-more");
+    $(".general__sites_item-more").on("click", ".general__sites_item-more_imgcontsd", function () {
+        let active = $(".general__sites_item-more.active");
+        let menu = $(this).closest(".general__sites_item-more");
 
-            menu.toggleClass("active");
-            active.removeClass("active");
-        }
+        menu.toggleClass("active");
+        active.removeClass("active");
+    }
     );
 });

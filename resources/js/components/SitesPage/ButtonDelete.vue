@@ -1,5 +1,5 @@
 <template>
-    <a :href="action" :class="buttonClass" @click.prevent="destroy">{{ $t('Удалить сайт') }}</a>
+    <a :href="action" :class="buttonClass" @click.prevent="destroy"><img src="../../../images/basket-blue.svg" alt="">{{ $t('Удалить сайт') }}</a>
 </template>
 
 <script>
