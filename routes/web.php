@@ -34,7 +34,9 @@ Route::group([
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
     Route::get('/blog/{blog}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
     Route::get('/test', [\App\Http\Controllers\PageController::class, 'test'])->name('page.test');
-    Route::get('/mysite', [\App\Http\Controllers\MysitesController::class, 'index'])->name('mysites.index');
+    Route::get('/email', [\App\Http\Controllers\EmailPageController::class, 'index'])->name('email.index');
+    Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+    Route::get('/contact/create', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
     Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);

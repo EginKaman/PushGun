@@ -1,6 +1,17 @@
 "use strict";
 
 $(document).ready(function () {
+    $('.tabs').on('click', function () {
+        $('.tabs').removeClass('active')
+        $(this).addClass('active')
+        let array = $(this).attr('tab-name')
+        $('.tab-item').removeClass('active')
+        $('.tab-item').each(function () {
+            if ($(this).hasClass(array)) {
+                $(this).addClass('active')
+            }
+        })
+    })
     $(".visa").each(function () {
         $(this).on("click", function () {
             console.log($(".visa.active").length);
