@@ -80,7 +80,7 @@
                 </select>
             </div>
         </div>
-        <contact-component></contact-component>
+        <contact-component :addressbooks="{{$addressbooks}}"></contact-component>
     </div>
 </div>
 @endsection
