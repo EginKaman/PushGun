@@ -61,7 +61,7 @@ Vue.component('push-create', require('./components/PushCreate.vue').default);
 Vue.component('auto-mailing-create', require('./components/AutoMailingCreate.vue').default);
 Vue.component('auto-mailing-edit', require('./components/AutoMailingEdit.vue').default);
 Vue.component('site-check', require('./components/SiteCheck.vue').default);
-
+Vue.component('new-address-book-button', require('./components/UI/ButtonNewAdressbook.vue').default)
 Vue.component('login-button', require('./components/Index/LoginButton.vue').default);
 Vue.component('register-button', require('./components/Index/RegisterButton.vue').default);
 Vue.component('support-button', require('./components/Index/SupportButton.vue').default);
@@ -81,6 +81,8 @@ Vue.component('withdrawal-bonus', require('./components/UI/Modals/WithdrawalBonu
      * or customize the JavaScript scaffolding to fit your unique needs.
      */
 import store from './store'
+import vueSwalCommon from 'vue-swal';
+import Vue from 'vue';
 
 const app = new Vue({
     el: '#app',

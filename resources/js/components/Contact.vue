@@ -3,10 +3,13 @@
         <div v-for="addressbook in addressbooks" :key="addressbook.id">
             <div class="contact-block">
                 <div class="contact-block__wrapper">
-                    <span>{{ new Date(addressbook.created_at).toLocaleDateString() }}</span>
+                    <span>{{
+                        new Date(addressbook.created_at).toLocaleDateString()
+                    }}</span>
                     <a>{{ addressbook.name }}</a>
                     <p>
-                        Подписчиков: <span>{{ addressbook.contacts_count }}</span>
+                        Подписчиков:
+                        <span>{{ addressbook.contacts_count }}</span>
                     </p>
                 </div>
                 <div class="contact-block__wrapper right">
@@ -32,51 +35,23 @@
                 </a>
             </div>
         </div>
-        <div v-if="show === true" class="contact-popup">
-            <div v-click-outside="closePopup" class="contact-popup__block">
-                <div @click="show = false" class="contact-popup__block__head">
-                    <p>Новая адресная книга</p>
-                    <img src="../../images/business-close.svg" alt="" />
-                </div>
-                <div class="contact-popup__block__sect">
-                    <p>Введите название</p>
-                    <input type="text" placeholder="Новый список 18" />
-                </div>
-                <div class="contact-popup__block__foot">
-                    <div class="button_green mr-24">
-                        <span class="green_button_circle"></span>
-                        <a
-                            :href="route('contact.create')"
-                            class="button_green_inner"
-                        >
-                            <p class="button_text_container">
-                                <img src="" alt="" />Добавить
-                            </p>
-                        </a>
-                    </div>
-                    <div style="backgorund: #fafafa" class="button_white">
-                        <span class="white_button_circle"></span>
-                        <a
-                            style="background: rgb(222 222 222 / 1)"
-                            class="button_white_inner"
-                        >
-                            <p class="button_text_container">
-                                <img class="button-img" src="" alt="" />Отмена
-                            </p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <NewAddressBook v-if="show" @close="closePopup" :action="action"/>
     </main>
 </template>
 
 <script>
 import vClickOutside from "v-click-outside";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import axios from "axios";
+import NewAddressBook from './UI/Modals/NewAddressBook'
+
 export default {
     name: "Contact",
     directives: {
         clickOutside: vClickOutside.directive
+    },
+    components: {
+        NewAddressBook
     },
     props: {
         addressbooks: {
@@ -84,29 +59,19 @@ export default {
             default() {
                 return [];
             }
+        },
+        action: {
+            type: String,
+            required: true
         }
     },
     data: () => ({
         show: false,
-        items: [
-            {
-                id: 1,
-                data: "03.02.2021 15:00",
-                name: "Название адресной книги",
-                count: "9 568"
-            },
-            {
-                id: 2,
-                data: "03.02.2021 15:00",
-                name: "Название адресной книги",
-                count: "9 568"
-            }
-        ]
     }),
     methods: {
         closePopup() {
             this.show = false;
-        }
+        },
     }
 };
 </script>
