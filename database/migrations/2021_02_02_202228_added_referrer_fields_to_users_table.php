@@ -16,7 +16,7 @@ class AddedReferrerFieldsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('referrer_id')->nullable()->after('balance');
             $table->foreign('referrer_id')->references('id')->on('users');
-            $table->string('referral_token')->unique()->after('referrer_id');
+            $table->string('referral_token')->nullable()->unique()->after('referrer_id');
         });
     }
 
