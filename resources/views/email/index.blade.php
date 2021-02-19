@@ -20,7 +20,7 @@
             <div class="email-btn">
                 <div class="button_green mr-24">
                     <span class="green_button_circle"></span>
-                    <a href="{{ route('addressbook.create') }}" class="button_green_inner">
+                    <a href="{{ route('contact.create') }}" class="button_green_inner">
                         <p class="button_text_container">
                             <img src="{{ asset('images/book.svg') }}" alt="">@lang('Новая адресная книга')
                         </p>

@@ -67,7 +67,7 @@
                                 <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
                             </div>
                         </a>
-                        <a href="{{ route('addressbook.index') }}" class="nav__item">
+                        <a href="{{ route('contact.index') }}" class="nav__item">
                             <div class="nav__item_wrap">
                                 <span>@lang('Адресная книга')</span>
                                 <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">

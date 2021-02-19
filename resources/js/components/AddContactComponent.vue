@@ -38,7 +38,7 @@
       </div>
       <div class="button_green mr-24">
         <span class="green_button_circle"></span>
-        <a :href="route('addressbook.create')" class="button_green_inner">
+        <a :href="route('contact.create')" class="button_green_inner">
           <p class="button_text_container"><img src="" alt="" />Добавить</p>
         </a>
       </div>
