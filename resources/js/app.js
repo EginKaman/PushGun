@@ -52,6 +52,8 @@ Vue.component('my-sites-component', require('./components/MysitesComponent.vue')
 Vue.component('header-push-component', require('./components/HeaderPushComponent.vue').default);
 Vue.component('auto-mailing-component', require('./components/AutoMailingComponent.vue').default);
 Vue.component('statistic-chart-component', require('./components/MainPage/StatisticChart.vue').default);
+Vue.component('contact-component', require('./components/Contact.vue').default);
+Vue.component('add-contact-component', require('./components/AddContactComponent.vue').default);
 Vue.component('statistic-individual-chart-component', require('./components/SitesPage/StatisticChart.vue').default)
 Vue.component('chart-nav-component', require('./components/UI/ChartNav.vue').default);
 Vue.component('current-statistic-component', require('./components/MainPage/CurrentStatus.vue').default);
@@ -59,7 +61,7 @@ Vue.component('push-create', require('./components/PushCreate.vue').default);
 Vue.component('auto-mailing-create', require('./components/AutoMailingCreate.vue').default);
 Vue.component('auto-mailing-edit', require('./components/AutoMailingEdit.vue').default);
 Vue.component('site-check', require('./components/SiteCheck.vue').default);
-
+Vue.component('new-address-book-button', require('./components/UI/ButtonNewAdressbook.vue').default)
 Vue.component('login-button', require('./components/Index/LoginButton.vue').default);
 Vue.component('register-button', require('./components/Index/RegisterButton.vue').default);
 Vue.component('support-button', require('./components/Index/SupportButton.vue').default);
@@ -79,6 +81,8 @@ Vue.component('withdrawal-bonus', require('./components/UI/Modals/WithdrawalBonu
      * or customize the JavaScript scaffolding to fit your unique needs.
      */
 import store from './store'
+import vueSwalCommon from 'vue-swal';
+import Vue from 'vue';
 
 const app = new Vue({
     el: '#app',

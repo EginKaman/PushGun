@@ -1,16 +1,16 @@
 $black: #060607;
 $darkblue: #323441;
-$gray: #F8F9FC;
+$gray: #f8f9fc;
 $white: #fff;
-$blue: #5BA4D7;
-$light-blue: #D6E9F5;
-$blue-hover: #6FB0DC;
-$green: #3B8378;
-$bg: #F8F9FC;
-$lime: #4AB731;
+$blue: #5ba4d7;
+$light-blue: #d6e9f5;
+$blue-hover: #6fb0dc;
+$green: #3b8378;
+$bg: #f8f9fc;
+$lime: #4ab731;
 $shadow-inset: inset 0px 1px 4px rgba(134, 140, 144, 0.2);
 $shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
-$blue-gradient: linear-gradient(170deg, #D6E9F5 -0.37%, #ADD2EB 97%);
+$blue-gradient: linear-gradient(170deg, #d6e9f5 -0.37%, #add2eb 97%);
 *,
 *:after,
 *:before {
@@ -40,7 +40,7 @@ html {
     font-weight: 600;
     overflow-x: hidden;
     letter-spacing: 0.25px;
-    font-family: 'Gilroy', sans-serif;
+    font-family: "Gilroy", sans-serif;
 }
 
 .container {
@@ -86,8 +86,8 @@ html {
 
 @for $i from 0 through 100 {
     .progress progress[value="#{$i}"] {
-        &~.progress_bg .progress_bar {
-            width: $i * 1%
+        & ~ .progress_bg .progress_bar {
+            width: $i * 1%;
         }
     }
 }
@@ -108,9 +108,9 @@ input[type="checkbox"] {
     cursor: pointer;
     &::before {
         position: absolute;
-        content: '';
+        content: "";
         display: block;
-        top: .5px;
+        top: 0.5px;
         left: 4px;
         width: 2.5px;
         height: 7px;
@@ -119,7 +119,7 @@ input[type="checkbox"] {
         border-width: 0 2px 2px 0;
         transform: rotate(45deg);
         opacity: 0;
-        transition: all .1s ease;
+        transition: all 0.1s ease;
     }
     &:checked {
         color: $white;
@@ -147,7 +147,7 @@ input[type="radio"] {
     cursor: pointer;
     &::before {
         position: absolute;
-        content: '';
+        content: "";
         display: block;
         top: 2px;
         left: 2px;
@@ -158,7 +158,7 @@ input[type="radio"] {
         background-color: $green;
         transform: rotate(45deg);
         opacity: 0;
-        transition: all .1s ease;
+        transition: all 0.1s ease;
     }
     &:checked {
         color: $white;
@@ -220,11 +220,11 @@ input[type="radio"] {
         position: absolute;
         right: -24px;
         margin-top: 4px;
-        content: '';
+        content: "";
         top: 0;
         background-size: contain;
         background-repeat: no-repeat;
-        background-image: url('../images/mark.svg');
+        background-image: url("../images/mark.svg");
         width: 12px;
         height: 12px;
     }
@@ -268,7 +268,7 @@ input[type="radio"] {
 
 .button_text_container {
     position: relative;
-    z-index: 10000;
+    z-index: 50;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -318,7 +318,7 @@ input[type="radio"] {
         height: 0px;
         margin-left: 0px;
         margin-top: 0px;
-        background-color: $green
+        background-color: $green;
     }
 }
 
@@ -331,10 +331,18 @@ input[type="radio"] {
     box-shadow: $shadow;
     color: $darkblue;
     cursor: pointer;
+    p {
+        color: #000;
+    }
+    &:hover {
+        p {
+            color: #fff;
+        }
+    }
 }
 
 .button-img {
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 .white_button_circle {
@@ -361,7 +369,7 @@ input[type="radio"] {
     transition: 400ms;
     text-decoration: none;
     padding: 19px 46px;
-    transition: color .3s ease;
+    transition: color 0.3s ease;
     z-index: 100000;
     &:hover {
         color: $white;
@@ -426,20 +434,20 @@ input[type="radio"] {
         height: 0px;
         margin-left: 0px;
         margin-top: 0px;
-        background-color: $white
+        background-color: $white;
     }
 }
 
 .button {
-    background: #F8F9FC;
-    border: 1px solid #F2F2F2;
+    background: #f8f9fc;
+    border: 1px solid #f2f2f2;
     padding: 8px 24px;
     font-family: inherit;
     font-size: 12px;
     font-weight: 500;
     color: $darkblue;
     border-radius: 4px;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     &:hover {
         cursor: pointer;
     }
@@ -455,7 +463,7 @@ input[type="radio"] {
 
 button {
     border: 0;
-    font-family: 'Gilroy', Arial, sans-serif;
+    font-family: "Gilroy", Arial, sans-serif;
     &:hover {
         cursor: pointer;
     }
@@ -463,7 +471,7 @@ button {
 
 input,
 textarea {
-    font-family: 'Gilroy', Arial, sans-serif;
+    font-family: "Gilroy", Arial, sans-serif;
 }
 
 .selected {
@@ -517,7 +525,7 @@ textarea {
     padding: 11px 0;
     margin: 0 auto;
     width: 110px;
-    transition: color .3s ease;
+    transition: color 0.3s ease;
     z-index: 100000;
     &:hover {
         color: $darkblue;
@@ -615,7 +623,7 @@ textarea {
     padding: 11px 0;
     margin: 0 auto;
     width: 110px;
-    transition: color .3s ease;
+    transition: color 0.3s ease;
     z-index: 100000;
     &:hover {
         color: $white;
@@ -741,7 +749,7 @@ textarea {
 
 .nav__menu_items.one::before {
     position: absolute;
-    background-image: url('../images/distribution.svg');
+    background-image: url("../images/distribution.svg");
     background-size: contain;
     width: 25px;
     height: 25px;
@@ -754,7 +762,7 @@ textarea {
 
 .nav__menu_items.two::before {
     position: absolute;
-    background-image: url('../images/righten.svg');
+    background-image: url("../images/righten.svg");
     background-size: contain;
     width: 25px;
     height: 25px;
@@ -767,7 +775,7 @@ textarea {
 
 .nav__menu_items.three::before {
     position: absolute;
-    background-image: url('../images/distribution.svg');
+    background-image: url("../images/distribution.svg");
     background-size: contain;
     width: 25px;
     height: 25px;
