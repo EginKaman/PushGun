@@ -49,8 +49,7 @@
     <div id="app">
         <div class="pre-header">
             <div class="container">
-                <a class="{{ (request()->is('*/email*')) ? 'active' : '' }}" href="{{ route('email.index') }}">E-mail</a>
-                <a>SMS</a>
+                <a class="{{ (request()->is('*/email*')) ? 'active' : '' }}" href="{{ route('email.index') }}">E-mail/SMS</a>
                 <a>Push</a>
             </div>
         </div>

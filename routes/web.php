@@ -37,6 +37,7 @@ Route::group([
     Route::get('/email', [\App\Http\Controllers\EmailPageController::class, 'index'])->name('email.index');
     Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
     Route::get('/contact/create', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
+    Route::get('/contact/show', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
     Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);

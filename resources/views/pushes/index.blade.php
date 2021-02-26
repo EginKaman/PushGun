@@ -50,13 +50,21 @@
             <div class="general__title">
                 <h1 class="title">@lang('Мои рассылки')</h1>
             </div>
-            <div class="create-mail">
+            <div style="margin-bottom: 15px;" class="create-mail">
                 <div class="button_green mr-24">
                     <span class="green_button_circle desplode-circle" style="left: 51px; top: 43.125px;">
                     </span>
                     <a href="http://www.pushgun.ru/ru/contact/create" class="button_green_inner">
                         <img src="{{ asset('images/plusik.svg') }}" alt="">
-                        <p class="button_text_container"><img src="" alt="">Создать e-mail рассылки</p>
+                        <p class="button_text_container"><img src="" alt="">Создать e-mail компанию</p>
+                    </a>
+                </div>
+                <div class="button_green mr-24">
+                    <span class="green_button_circle desplode-circle" style="left: 51px; top: 43.125px;">
+                    </span>
+                    <a href="http://www.pushgun.ru/ru/contact/create" class="button_green_inner">
+                        <img src="{{ asset('images/plusik.svg') }}" alt="">
+                        <p class="button_text_container"><img src="" alt="">Создать SMS рассылку</p>
                     </a>
                 </div>
             </div>
