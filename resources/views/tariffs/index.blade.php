@@ -102,14 +102,14 @@
                                 <span class="follows-text">{{ $user->tariff_expired_at }}</span>
                             </div>
                         </div>
-                        <div class="follows-row bb-1">
-                            <div class="follows-left">
-                                <span class="follows-text">@lang('Пакет активирован'):</span>
-                            </div>
-                            <div class="follows-right">
-                                <span class="follows-text">{{ $user->payment->created_at }}</span>
-                            </div>
-                        </div>
+{{--                        <div class="follows-row bb-1">--}}
+{{--                            <div class="follows-left">--}}
+{{--                                <span class="follows-text">@lang('Пакет активирован'):</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="follows-right">--}}
+{{--                                <span class="follows-text">{{ $user->payment->created_at }}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     @endif
                     @if($tariff->price > 0)
                         <div class="follows-row bb-1">
