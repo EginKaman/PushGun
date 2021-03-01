@@ -11,16 +11,16 @@
           <li @click="func(item)">...</li>
         </ul>
         <div v-if="showModal === item" class="contact-table__modal">
-            <div @click="showModal = null" class="contact-table__modal__close">
-                x
-            </div>
+          <div @click="showModal = null" class="contact-table__modal__close">
+            x
+          </div>
         </div>
       </div>
       <div class="contact-table__pagination">
-          <span class="active">1</span>
-          <span>2</span>
-          <span>3</span>
-          <img src="../../images/right.svg" />
+        <span class="active">1</span>
+        <span>2</span>
+        <span>3</span>
+        <img src="../../images/right.svg" />
       </div>
     </div>
   </main>
@@ -33,7 +33,7 @@ export default {
   }),
   methods: {
     func(item) {
-        this.showModal = item
+      this.showModal = item;
     },
   },
 };

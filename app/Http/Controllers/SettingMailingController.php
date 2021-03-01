@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use NotificationChannels\WebPush\PushSubscription;
 
-class EmailPageController extends Controller
+class SettingMailingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +13,8 @@ class EmailPageController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $user->loadCount(['pushes']);
-        $sites = $user->sites;
-        // $sites->loadCount('pushSubscriptions', 'todaySubscriptions', 'transitions', 'todayTransitions');
-        $sites->loadCount('pushSubscriptions', 'todaySubscriptions');
-        return view('email.index', [
-            'user' => $user,
-            'sites' => $sites,
-            'pushes' => $user->pushes,
-        ]);
+        return view('setting.index');
+        
     }
 
     /**
@@ -32,9 +22,9 @@ class EmailPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function push()
+    public function create()
     {
-        return view('email.push',);
+        return view('setting.create');
     }
 
     /**
@@ -51,12 +41,12 @@ class EmailPageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        return view('email.show',);
+        //
     }
 
     /**

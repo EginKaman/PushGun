@@ -35,6 +35,10 @@ Route::group([
     Route::get('/blog/{blog}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
     Route::get('/test', [\App\Http\Controllers\PageController::class, 'test'])->name('page.test');
     Route::get('/email', [\App\Http\Controllers\EmailPageController::class, 'index'])->name('email.index');
+    Route::get('/email/push', [\App\Http\Controllers\EmailPageController::class, 'Push'])->name('email.push');
+    Route::get('/email/push/show', [\App\Http\Controllers\EmailPageController::class, 'Show'])->name('email.show');
+    Route::get('/setting', [\App\Http\Controllers\SettingMailingController::class, 'index'])->name('setting.index');
+    Route::get('/setting/registration', [\App\Http\Controllers\SettingMailingController::class, 'create'])->name('setting.create');
     Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
     Route::get('/contact/create', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
     Route::get('/contact/show', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');

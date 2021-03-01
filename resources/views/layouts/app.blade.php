@@ -49,8 +49,21 @@
     <div id="app">
         <div class="pre-header">
             <div class="container">
-                <a class="{{ (request()->is('*/email*')) ? 'active' : '' }}" href="{{ route('email.index') }}">E-mail/SMS</a>
-                <a>Push</a>
+                <div style="display: flex; justify-content: space-between; align-items:center;">
+                    <div>
+                        <a class="{{ (request()->is('*/email*')) ? 'active' : '' }}" href="{{ route('email.index') }}">E-mail/SMS</a>
+                        <a>Push</a>
+                    </div>
+                    <div class="nav__wrapper">
+                        <a href="{{ route('push.index') }}" class="nav__item nav__arrow">
+                            <div class="nav__item_wrap">
+                                <span>@lang('Настройки')</span>
+                                <img class="nav__item_img" src="{{ asset('images/internet.svg') }}" alt="">
+                            </div>
+                        </a>
+                        <setting-push-component></setting-push-component>
+                    </div>
+                </div>
             </div>
         </div>
         <header class="header">
@@ -82,6 +95,7 @@
                             </a>
                             <header-push-component></header-push-component>
                         </div>
+
 
                         <div class="nav__wrapper">
                             <a href="{{ route('site.index') }}" class="nav__item nav__arrow">

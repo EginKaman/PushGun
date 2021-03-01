@@ -772,6 +772,18 @@ textarea {
     content: "";
     opacity: 0.4;
 }
+.nav__menu_items.for::before {
+    position: absolute;
+    background-image: url("../images/message.svg");
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+    top: -4px;
+    left: 10px;
+    content: "";
+    opacity: 0.4;
+}
 
 .nav__menu_items.three::before {
     position: absolute;
