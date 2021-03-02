@@ -288,17 +288,16 @@
     }
 }
 
-
-.send-name{
-    input[type=checkbox]:checked{
+.send-name {
+    input[type="checkbox"]:checked {
         background: #3b8378;
     }
-    input[type=checkbox]{
+    input[type="checkbox"] {
         margin-top: 6px;
         padding: 0px 5px;
         margin-right: 15px;
     }
-    input[type=checkbox]::before{
+    input[type="checkbox"]::before {
         border-color: #fff;
         top: 1.5px;
     }
@@ -344,4 +343,8 @@
     .contact-block__wrapper.right {
         justify-content: center;
     }
+}
+
+@media screen and (max-width: 450px){
+
 }

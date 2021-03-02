@@ -1,8 +1,8 @@
 @charset "UTF-8";
 // Fonts
-$material-icons-font-path: '~material-icons/iconfont/';
+$material-icons-font-path: "~material-icons/iconfont/";
 @import "_select.scss";
-@import '~material-icons/iconfont/material-icons.scss';
+@import "~material-icons/iconfont/material-icons.scss";
 @import "_fonts.scss";
 @import "~normalize.css";
 @import "~jquery-modal";
@@ -27,6 +27,7 @@ $material-icons-font-path: '~material-icons/iconfont/';
 @import "_site-settings-1.scss";
 @import "_site-settings-2.scss";
 @import "_site-settings-3.scss";
+@import "_settings.scss";
 @import "_tariffs.scss";
 @import "_payment.scss";
 @import "_account.scss";
@@ -34,6 +35,7 @@ $material-icons-font-path: '~material-icons/iconfont/';
 @import "_ticket.scss";
 @import "_referal.scss";
 @import "_contact.scss";
+@import "_calendar.scss";
 @import "_add-site";
 @import "push";
 @import "landing";
@@ -99,7 +101,7 @@ $material-icons-font-path: '~material-icons/iconfont/';
     }
 }
 
-@media (max-width:480px) {
+@media (max-width: 480px) {
     .card {
         input {
             width: 80vw;

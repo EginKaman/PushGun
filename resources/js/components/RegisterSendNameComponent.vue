@@ -99,7 +99,13 @@
             <option>Значение</option>
             <option>Значение</option>
           </select>
-          <div style="display: flex; justify-content: space-between; margin-top: 10px">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-top: 10px;
+            "
+          >
             <input type="checkbox" />
             <p>
               Я гарантирую отправку sms уведомлений только в собственных целях

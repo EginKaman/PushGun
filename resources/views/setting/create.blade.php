@@ -7,6 +7,7 @@
             <div class="general__title">
                 <h1 class="title">@lang('Регистрация имени отправителя')</h1>
             </div>
+            
             <register-send-name-component></register-send-name-component>
         </section>
     </div>

@@ -24,8 +24,7 @@
         ></span>
         <a href="#" class="button_green_inner"
           ><img src="http://www.pushgun.ru/images/telephoune.svg" alt="" />
-          <p class="button_text_container">Имя отправителя смс
-          </p></a
+          <p class="button_text_container">Имя отправителя смс</p></a
         >
       </div>
     </div>
@@ -94,6 +93,102 @@
         <img src="../../images/right.svg" />
       </div>
     </div>
+    <form v-if="show === 2">
+      <div class="authentic-block">
+        <p>
+          По умолчанию, ваши email-сообщения подписаны цифровыми подписями
+          SendPulse. Это помогает обеспечивать высокий уровень доставки и при
+          этом не требует от вас умения редактировать DNS-записи. Тем не менее,
+          мы рекомендуем настроить собственные SPF и DKIM записи.
+        </p>
+        <div class="authentic-block__item">
+          <div>
+            <h3>Аутентификация(SPF и DKIM записи)</h3>
+            <p>
+              Добавьте SPF и DKIM записи для своего домена. Это может улучшить
+              доставляемость рссылок.
+            </p>
+          </div>
+          <div class="authentic-block__item__domain">
+            <p>домен.ру</p>
+            <span>Ожидает подтверждения <a>Отключить</a></span>
+          </div>
+        </div>
+        <div class="authentic-block__input">
+          <p>Имя домена отправки</p>
+          <input type="text" placeholder="https://example.com" />
+          <button>Получить SPF И DKIM записи</button>
+          <a>Скрыть настройки для домен.ру</a>
+        </div>
+        <div class="authentic-block__alert">
+          <span></span>
+          <p>
+            Важно! Вы должны добавить следующие записи в панели управления
+            вашего хостинга<br />
+            как создать текстовую запись вы можете прочитать <a>здесь</a><br />
+            Обновление DNS может занимать до 24 часов
+          </p>
+        </div>
+        <div class="authentic-block__info">
+          <p>
+            Пропишите DKIM запись
+            <span>sign_domainkey.beribiletik.ru,</span> тип
+            <span>TXT,</span> значение:
+          </p>
+          <input
+            readonly
+            :value="'v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCx4Nb1V6Tt1ya42eHvGjG03nDiSBH3/riCS8yDKjo4hCdii/5i5NoNBWX7OeoJwP9VgdeyKJM0KUyfPt7GJXQ3LhHnKbZ0enk+oo6Japr9D1uG12n/Zify5IS8GYmJsgXzN2YrDH2SOmoeU5TXArWphjSU9u8BQ0d4LjdR8feluQIDAQAB'"
+            type="text"
+          />
+        </div>
+        <div class="authentic-block__info">
+          <p>
+            Пропишите SPF запись <span>beribiletik.ru,</span> тип
+            <span>TXT,</span> значение:
+          </p>
+          <input
+            readonly
+            :value="'v=spf1 include:_spf.timeweb.ru include:mxsspf.sendpulse.com ~all'"
+            type="text"
+          />
+        </div>
+        <button>Проверить DNS записи</button>
+      </div>
+      <div class="authentic-block">
+        <div class="authentic-block__item">
+          <div>
+            <h3>Политика DMARC</h3>
+            <p>
+              Настройте политику <a>DMARC</a>, чтобы уменьшить вероятность
+              отправки фишинговых писем со своего домена. Обязательно нужно
+              настроить для отправки AMP писем.
+            </p>
+          </div>
+        </div>
+        <div class="authentic-block__input">
+          <a>Скрыть настройки для домен.ру</a>
+        </div>
+        <div class="authentic-block__info">
+          <p>
+            Пропишите DMARC запись <span>_dmarc.beribiletik.ru,</span> тип
+            <span>TXT,</span> значение:
+          </p>
+          <input readonly :value="'v=DMARC1; p=quarantine;'" type="text" />
+        </div>
+        <button>Проверить DNS записи</button>
+      </div>
+      <div class="authentic-block">
+        <div class="authentic-block__item">
+          <div>
+            <h3>Свой домен для отслеживания</h3>
+            <p>
+              Используйте собственный домен для отслеживания переходовы по ссылкам.
+            </p>
+          </div>
+        </div>
+        <button>Подключить</button>
+      </div>
+    </form>
     <div v-if="showPopup === true" class="contact-popup">
       <div v-click-outside="closePopup" class="contact-popup__block">
         <div @click="showPopup = false" class="contact-popup__block__head">
@@ -142,7 +237,7 @@ export default {
   data: () => ({
     showPopup: false,
     showModal: null,
-    show: 1,
+    show: 2,
     items: [
       {
         id: 1,

@@ -121,7 +121,6 @@ $(document).ready(function () {
             .parent()
             .removeClass("active");
     });
-
     $(document).ready(function () {
         $(".tooltip").tooltipster({
             side: ["left", "bottom"],
@@ -604,3 +603,4 @@ $(document).ready(function () {
     }
     );
 });
+

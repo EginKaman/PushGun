@@ -51,25 +51,6 @@
       <div style="display: block" class="email-push-show__wrapper-item">
         <div>
           <img src="../../images/shablon.png" alt="" />
-          <input
-            :class="{ active: headerText != '' }"
-            v-model="headerText"
-            class="input-header"
-            type="text"
-          />
-          <textarea
-            :class="{ active: titleText != '' }"
-            class="input-title"
-            v-model="titleText"
-            type="text"
-          />
-          <button>Button</button>
-          <input
-            :class="{ active: footerText != '' }"
-            class="input-footer"
-            v-model="footerText"
-            type="text"
-          />
         </div>
       </div>
     </div>

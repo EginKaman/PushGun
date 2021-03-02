@@ -7,7 +7,7 @@
             <img class="general__sites_item-img" src="/../../images/site.svg" />
           </a>
           <div class="general__sites_info mails__sites_info">
-            <a href="/email/push/show">Название рассылки</a>
+            <a href="/email/show">Название рассылки</a>
             <p>
               <img src="/../../images/mark.svg" alt="" />
               Отправлено: 15 мая 2020 г, 14:00
