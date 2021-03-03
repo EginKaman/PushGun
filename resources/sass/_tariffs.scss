@@ -58,7 +58,7 @@
     }
 
     &-title {
-        font-family: 'Gilroy';
+        font-family: "Gilroy";
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
@@ -69,7 +69,7 @@
     }
 
     &-subtitle {
-        font-family: 'Gilroy';
+        font-family: "Gilroy";
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
@@ -85,7 +85,7 @@
         margin-left: 0;
 
         & li {
-            font-family: 'Gilroy';
+            font-family: "Gilroy";
             font-style: normal;
             font-weight: 500;
             font-size: 14px;
@@ -104,7 +104,7 @@
     &-price {
         display: block;
         margin-bottom: 27px;
-        font-family: 'Gilroy';
+        font-family: "Gilroy";
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
@@ -128,7 +128,7 @@
         border-radius: 100px;
         color: $white;
         text-align: center;
-        font-family: 'Gilroy';
+        font-family: "Gilroy";
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -169,7 +169,7 @@
         top: 0;
         width: calc(100% - 16px);
         height: 6px;
-        background: #C4C4C4;
+        background: #c4c4c4;
         z-index: 9;
         cursor: pointer;
 
@@ -187,10 +187,10 @@
             display: flex;
             width: calc(100% - 16px);
             margin-top: -32px;
-            
         }
 
-        &__point, & .ui-slider-handle {
+        &__point,
+        & .ui-slider-handle {
             display: block;
             border-radius: 50%;
             top: -6px;
@@ -200,14 +200,14 @@
             box-shadow: $shadow;
             transition: 0.3s;
             // background: #C4C4C4;
-            background: linear-gradient(141.16deg, #D6E9F5 -0.37%, #ADD2EB 96.94%);
+            background: linear-gradient(141.16deg, #d6e9f5 -0.37%, #add2eb 96.94%);
             border: none;
             z-index: 9;
             cursor: pointer;
         }
 
         &__point {
-            background: linear-gradient(141.16deg, #C4C4C4 -0.37%, #C4C4C4 96.94%);
+            background: linear-gradient(141.16deg, #c4c4c4 -0.37%, #c4c4c4 96.94%);
             width: 16px;
             height: 16px;
             position: static;
@@ -216,7 +216,7 @@
         &__text {
             display: block;
             // padding-top: 19px;
-            font-family: 'Gilroy';
+            font-family: "Gilroy";
             font-style: normal;
             font-weight: 500;
             font-size: 12px;
@@ -243,7 +243,7 @@
         }
 
         &__text {
-            font-family: 'Gilroy';
+            font-family: "Gilroy";
             font-style: normal;
             font-weight: 500;
             font-size: 14px;
@@ -276,16 +276,14 @@
     }
 }
 
-
 .general__title.sec {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-
 .follows {
     &-wrap {
-        background: #FFFFFF;
+        background: #ffffff;
         box-shadow: $shadow;
         border-radius: 10px;
         display: flex;
@@ -300,7 +298,7 @@
         padding-bottom: 9px;
 
         &.bb-1 {
-            border-bottom: 1px solid #E5E5E5;
+            border-bottom: 1px solid #e5e5e5;
         }
 
         &:first-child {
@@ -313,7 +311,7 @@
         }
 
         .green {
-            color: #68B781;
+            color: #68b781;
         }
     }
 
@@ -326,7 +324,7 @@
     }
 
     &-text {
-        font-family: 'Gilroy';
+        font-family: "Gilroy";
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -348,7 +346,7 @@
 
         &__hero {
             display: block;
-            font-family: 'Gilroy';
+            font-family: "Gilroy";
             font-style: normal;
             font-weight: 500;
             font-size: 14px;
@@ -403,6 +401,64 @@
         }
     }
 }
+.tariffs-fake {
+    .subscribe-info {
+        padding-top: 32px;
+        span {
+            color: #3b8378;
+            margin-left: 10px;
+        }
+    }
+}
+
+.tariffs-block {
+    background: #ffffff;
+    box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
+    border-radius: 10px;
+    padding: 24px;
+    .tariffs-table {
+        &__wrapper {
+            &-head {
+                font-weight: 700;
+                margin-top: 24px;
+            }
+            ul {
+                align-items: center;
+                border-bottom: 1px solid #e5e5e5;
+                text-align: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 0.1fr;
+                a {
+                    color: #3b8378;
+                    margin-left: 10px;
+                }
+                span {
+                    display: none;
+                }
+                div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    p {
+                        text-decoration: line-through;
+                    }
+                }
+                li {
+                    padding: 10px;
+                    &:first-child {
+                        text-align: left;
+                    }
+                    list-style: none;
+                }
+            }
+        }
+        &__title {
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+}
 
 @media (max-width: 786px) {
     .tariff-wrap {
@@ -415,7 +471,8 @@
         margin-right: 0;
         box-sizing: border-box;
     }
-    .follows-left, .follows-right {
+    .follows-left,
+    .follows-right {
         width: 50%;
     }
 }
@@ -424,7 +481,8 @@
     .follows-row {
         flex-wrap: wrap;
     }
-    .follows-left, .follows-right {
+    .follows-left,
+    .follows-right {
         width: 100%;
     }
     .follows-top {

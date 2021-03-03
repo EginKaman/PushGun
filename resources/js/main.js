@@ -12,6 +12,25 @@ $(document).ready(function () {
             }
         })
     })
+
+    function textCount() {
+        if ($('body').find('.trumbowyg-editor')) {
+            $(document).on('keyup', function (e) {
+                let sum = 0
+                let array = []
+                $('.trumbowyg-editor p').each(function () {
+                    array.push($(this).text().length)
+                })
+                for (var i = 0; i < array.length; i++) {
+                    sum = sum + parseInt(array[i]);
+                }
+                $('.trumbowyg-count').text(sum)
+            })
+        }
+    }
+    textCount()
+
+
     $(".visa").each(function () {
         $(this).on("click", function () {
             console.log($(".visa.active").length);

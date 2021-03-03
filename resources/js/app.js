@@ -59,7 +59,9 @@ Vue.component('statistic-chart-component', require('./components/MainPage/Statis
 Vue.component('show-contact-component', require('./components/ShowContactComponent.vue').default);
 Vue.component('contact-component', require('./components/Contact.vue').default);
 Vue.component('email-push-component', require('./components/EmailPushComponent.vue').default);
+Vue.component('tariffs-component', require('./components/TariffsComponent.vue').default);
 Vue.component('email-push-show-component', require('./components/EmailPushShowComponent.vue').default);
+Vue.component('sms-create-component', require('./components/SmsCreateComponent.vue').default);
 Vue.component('setting-mailing-component', require('./components/SettingMailingComponent.vue').default);
 Vue.component('setting-push-component', require('./components/SettingPushComponent.vue').default);
 Vue.component('register-send-name-component', require('./components/RegisterSendNameComponent.vue').default);

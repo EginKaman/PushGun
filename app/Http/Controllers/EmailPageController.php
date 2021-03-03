@@ -36,6 +36,15 @@ class EmailPageController extends Controller
     {
         return view('email.push',);
     }
+        /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sms()
+    {
+        return view('email.sms',);
+    }
     /**
      * Show the form for creating a new resource.
      *

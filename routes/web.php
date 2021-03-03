@@ -38,6 +38,7 @@ Route::group([
     Route::get('/email/push', [\App\Http\Controllers\EmailPageController::class, 'Push'])->name('email.push');
     Route::get('/email/show', [\App\Http\Controllers\EmailPageController::class, 'Show'])->name('email.show');
     Route::get('/email/create', [\App\Http\Controllers\EmailPageController::class, 'create'])->name('email.create');
+    Route::get('/email/sms/create', [\App\Http\Controllers\EmailPageController::class, 'sms'])->name('email.sms');
     Route::get('/redactor', [\App\Http\Controllers\RedactorController::class, 'index'])->name('redactor.index');
     Route::get('/setting', [\App\Http\Controllers\SettingMailingController::class, 'index'])->name('setting.index');
     Route::get('/setting/registration', [\App\Http\Controllers\SettingMailingController::class, 'create'])->name('setting.create');
