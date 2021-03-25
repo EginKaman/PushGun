@@ -132,6 +132,17 @@ class User extends Authenticatable implements MustVerifyEmail
             ]);
     }
 
+    /**
+     * Get all of the addressbooks for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addressBooks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AddressBook::class);
+    }
+
+
     public function tickets()
     {
         return $this->hasMany(Ticket::class);

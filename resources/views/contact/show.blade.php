@@ -12,7 +12,7 @@
         <div class="email-btn">
             <div class="button_green mr-24">
                 <span class="green_button_circle"></span>
-                <a href="{{ route('contact.create') }}" class="button_green_inner">
+                <a class="button_green_inner">
                     <p class="button_text_container">
                         <img src="{{ asset('images/book.svg') }}" alt="">@lang('Новая адресная книга')
                     </p>
@@ -27,7 +27,7 @@
                 </a>
             </div>
         </div>
-        <show-contact-component></show-contact-component>
+        <show-contact-component :addressBook="{{json_encode($addressBook)}}"></show-contact-component>
     </div>
 </div>
 @endsection

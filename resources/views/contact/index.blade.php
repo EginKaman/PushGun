@@ -80,7 +80,7 @@
                 </select>
             </div>
         </div>
-        <contact-component></contact-component>
+        <contact-component :addressBooks="{{json_encode($addressBooks)}}"></contact-component>
     </div>
 </div>
 @endsection

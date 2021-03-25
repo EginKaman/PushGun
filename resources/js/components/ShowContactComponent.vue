@@ -1,40 +1,79 @@
 <template>
-  <main>
-    <div class="contact-table">
-      <a class="contact-table__btn">Экспорт</a>
-      <div v-for="item in 7" :key="item.id" class="contact-table__wrapper">
-        <ul>
-          <li>Email адрес</li>
-          <li>Телефон</li>
-          <li>Имя</li>
-          <li>Дата добавления</li>
-          <li @click="func(item)">...</li>
-        </ul>
-        <div v-if="showModal === item" class="contact-table__modal">
-          <div @click="showModal = null" class="contact-table__modal__close">
-            x
-          </div>
+    <main>
+        <div class="contact-table">
+            <a class="contact-table__btn">Экспорт</a>
+            <div
+                v-for="(contact, index) in book.contacts"
+                :key="index"
+                class="contact-table__wrapper"
+            >
+                <ul>
+                    <li>{{ contact.address }}</li>
+                    <li>Телефон</li>
+                    <li>Имя</li>
+                    <li>
+                        {{
+                            new Date(contact.created_at).toLocaleString("en-GB")
+                        }}
+                    </li>
+                    <li @click="func(contact.id)">...</li>
+                </ul>
+                <div
+                    v-if="showModal === contact.id"
+                    class="contact-table__modal"
+                >
+                    <div
+                        @click="showModal = null"
+                        class="contact-table__modal__close"
+                    >
+                        x
+                    </div>
+                    <div class="contact-table__modal__body pointer">
+                        <p @click="deleteContact(contact.id)">Удалить</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-table__pagination">
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <img src="../../images/right.svg" />
+            </div>
         </div>
-      </div>
-      <div class="contact-table__pagination">
-        <span class="active">1</span>
-        <span>2</span>
-        <span>3</span>
-        <img src="../../images/right.svg" />
-      </div>
-    </div>
-  </main>
+    </main>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  data: () => ({
-    showModal: null,
-  }),
-  methods: {
-    func(item) {
-      this.showModal = item;
+    data: () => ({
+        showModal: null,
+        book: {
+            contacts: []
+        }
+    }),
+    props: ["addressbook"],
+    methods: {
+        func(item) {
+            this.showModal = item;
+        },
+        deleteContact(id) {
+            axios
+                .delete(route("contact.destroy"), {
+                    params: {
+                        addressbook_id: this.addressbook.id,
+                        contact_id: id
+                    }
+                })
+                .then(res => {
+                    if (res.status === 202) {
+                        this.book = res.data.addressbook;
+                    }
+                });
+        }
     },
-  },
+    mounted() {
+        this.book = this.addressbook;
+    }
 };
 </script>
