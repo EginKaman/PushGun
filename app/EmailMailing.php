@@ -1,0 +1,35 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class EmailMailing extends Model
+{
+    protected $fillable = [
+        'subject',
+        'sender_name',
+        'date_send'
+
+    ];
+
+    /**
+     * Get the addressbook that owns the Contact
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function addressBook(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(AddressBook::class, 'address_book_id', 'id');
+    }
+
+    /**
+     * Get the emailMessage that owns the EmailMailing
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function emailMessage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(EmailMessage::class, 'email_message_id', 'id');
+    }
+}

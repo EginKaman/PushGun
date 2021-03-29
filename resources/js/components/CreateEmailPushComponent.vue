@@ -218,6 +218,9 @@ export default {
   components: {
     Calendar,
   },
+  props: {
+    
+  }, 
   data: () => ({
     imgModal: false,
     show: 1,

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\EmailMailing;
+use App\EmailMessage;
+use App\Http\Requests\EmailMailingCreateRequest;
+use App\Http\Resources\AddressBooksResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use NotificationChannels\WebPush\PushSubscription;
@@ -36,7 +40,7 @@ class EmailPageController extends Controller
     {
         return view('email.push',);
     }
-        /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -52,7 +56,10 @@ class EmailPageController extends Controller
      */
     public function create()
     {
-        return view('email.create',);
+        $addressBooks = Auth::user()->addressBooks()->get();
+        return view('email.create', [
+            'addressBook' => new AddressBooksResource($addressBooks)
+        ]);
     }
 
     /**
@@ -61,9 +68,20 @@ class EmailPageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmailMailingCreateRequest $request)
     {
-        //
+        $input = $request->validated();
+
+        $emailMailing = new EmailMailing;
+        $emailMessage = new EmailMessage;
+        $emailMessage->subject = $input['preheader'];
+        $emailMessage->image = $input['image']->store('public/mails');
+        $emailMessage->save();
+        $emailMailing->fill($input);
+        $emailMailing->addressBook()->associate($input['address_book_id']);
+        $emailMailing->emailMessage()->associate($emailMessage);
+        $emailMailing->save();
+        return redirect()->back();
     }
 
     /**

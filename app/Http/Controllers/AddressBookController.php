@@ -9,18 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AddressBookController extends Controller
 {
-    public function index()
-    {
-        $addressbooks = Auth::user()->addressBooks()->withCount('contacts')->get();
-        foreach ($addressbooks as $addressbook) {
-            $addressbook->mailsCount = $addressbook->contacts()->where('is_email', true)->count();
-            $addressbook->numbersCount = $addressbook->contacts()->where('is_email', false)->count();
-        }
-        return view('contact.index', [
-            'addressbooks' => $addressbooks
-        ]);
-    }
-
     public function store(AddressBookStoreRequest $request)
     {
         $input = $request->validated();
