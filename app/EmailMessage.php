@@ -12,6 +12,18 @@ class EmailMessage extends Model
     ];
 
 
+
+    /**
+     * Get the user that owns the EmailMailing
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
     /**
      * Get all of the emailMailings for the EmailMessage
      *

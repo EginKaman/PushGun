@@ -6,6 +6,8 @@ use App\EmailMailing;
 use App\EmailMessage;
 use App\Http\Requests\EmailMailingCreateRequest;
 use App\Http\Resources\AddressBooksResource;
+use App\Http\Resources\EmailMailingResource;
+use App\Http\Resources\EmailMailingsResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use NotificationChannels\WebPush\PushSubscription;
@@ -38,7 +40,10 @@ class EmailPageController extends Controller
      */
     public function push()
     {
-        return view('email.push',);
+        $emailMailings = Auth::user()->emailMailings()->with(['addressBook'])->get();
+        return view('email.push', [
+            'emailMailings' => new EmailMailingsResource($emailMailings)
+        ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -58,7 +63,7 @@ class EmailPageController extends Controller
     {
         $addressBooks = Auth::user()->addressBooks()->get();
         return view('email.create', [
-            'addressBook' => new AddressBooksResource($addressBooks)
+            'addressBooks' => new AddressBooksResource($addressBooks)
         ]);
     }
 
@@ -70,18 +75,22 @@ class EmailPageController extends Controller
      */
     public function store(EmailMailingCreateRequest $request)
     {
+        $user = Auth::user();
         $input = $request->validated();
-
         $emailMailing = new EmailMailing;
         $emailMessage = new EmailMessage;
-        $emailMessage->subject = $input['preheader'];
+        $emailMailing->user()->associate($user);
+        $emailMessage->user()->associate($user);
+        $emailMessage->preheader = $input['preheader'];
         $emailMessage->image = $input['image']->store('public/mails');
         $emailMessage->save();
         $emailMailing->fill($input);
         $emailMailing->addressBook()->associate($input['address_book_id']);
         $emailMailing->emailMessage()->associate($emailMessage);
         $emailMailing->save();
-        return redirect()->back();
+        return response()->json([
+            'msg' => 'success'
+        ], 201);
     }
 
     /**
@@ -90,9 +99,12 @@ class EmailPageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        return view('email.show',);
+        $emailMailing = Auth::user()->emailMailings()->with(['addressBook', 'addressBook.contacts', 'emailMessage'])->findOrFail($id);
+        return view('email.show', [
+            'emailMailing' => new EmailMailingResource($emailMailing)
+        ]);
     }
 
     /**

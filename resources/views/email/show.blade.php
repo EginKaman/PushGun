@@ -7,7 +7,7 @@
             <div class="general__title">
                 <h1 class="title">@lang('Название рассылки')</h1>
             </div>
-            <email-push-show-component></email-push-show-component>
+            <email-push-show-component :emailMailing="{{json_encode($emailMailing)}}"></email-push-show-component>
         </section>
     </div>
 </main>

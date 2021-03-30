@@ -15,6 +15,7 @@ class CreateEmailMessagesTable extends Migration
     {
         Schema::create('email_messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('preheader');
             $table->string('image');
             $table->timestamps();

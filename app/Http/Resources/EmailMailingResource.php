@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Laravel\Nova\Tests\Fixtures\UserResource;
 
 class EmailMailingResource extends JsonResource
 {
@@ -17,6 +18,7 @@ class EmailMailingResource extends JsonResource
         return [
             'id' => $this->id,
             'email_message_id' => $this->email_message_id,
+            'user_id' => $this->user_id,
             'email_message' => new EmailMessageResource($this->whenLoaded('emailMessage')),
             'address_book_id' => $this->address_book_id,
             'address_book' => new AddressBookResource($this->whenLoaded('addressBook')),

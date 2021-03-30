@@ -34,11 +34,14 @@ Route::group([
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
     Route::get('/blog/{blog}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
     Route::get('/test', [\App\Http\Controllers\PageController::class, 'test'])->name('page.test');
-    Route::get('/email', [\App\Http\Controllers\EmailPageController::class, 'index'])->name('email.index');
-    Route::get('/email/push', [\App\Http\Controllers\EmailPageController::class, 'Push'])->name('email.push');
-    Route::get('/email/show', [\App\Http\Controllers\EmailPageController::class, 'Show'])->name('email.show');
-    Route::get('/email/create', [\App\Http\Controllers\EmailPageController::class, 'create'])->name('email.create');
-    Route::get('/email/sms/create', [\App\Http\Controllers\EmailPageController::class, 'sms'])->name('email.sms');
+    Route::prefix('email')->group(function () {
+        Route::post('/', [\App\Http\Controllers\EmailPageController::class, 'store'])->name('email.store');
+        Route::get('/', [\App\Http\Controllers\EmailPageController::class, 'index'])->name('email.index');
+        Route::get('/push', [\App\Http\Controllers\EmailPageController::class, 'Push'])->name('email.push');
+        Route::get('/details/{id}', [\App\Http\Controllers\EmailPageController::class, 'show'])->name('email.show');
+        Route::get('/create', [\App\Http\Controllers\EmailPageController::class, 'create'])->name('email.create');
+        Route::get('/sms/create', [\App\Http\Controllers\EmailPageController::class, 'sms'])->name('email.sms');
+    });
     Route::get('/redactor', [\App\Http\Controllers\RedactorController::class, 'index'])->name('redactor.index');
     Route::get('/setting', [\App\Http\Controllers\SettingMailingController::class, 'index'])->name('setting.index');
     Route::get('/setting/registration', [\App\Http\Controllers\SettingMailingController::class, 'create'])->name('setting.create');

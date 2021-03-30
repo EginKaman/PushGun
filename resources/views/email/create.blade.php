@@ -7,7 +7,7 @@
             <div style="margin-top: 20px;" class="general__title">
                 <h1 class="title">@lang('')</h1>
             </div>
-            <create-email-push-component></create-email-push-component>
+            <create-email-push-component :addressBooks="{{json_encode($addressBooks)}}"></create-email-push-component>
         </section>
     </div>
 </main>

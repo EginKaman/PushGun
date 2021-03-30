@@ -13,6 +13,22 @@ class EmailMailing extends Model
 
     ];
 
+    protected $casts = [
+        'date_send' => 'datetime'
+    ];
+
+
+
+    /**
+     * Get the user that owns the EmailMailing
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * Get the addressbook that owns the Contact
      *

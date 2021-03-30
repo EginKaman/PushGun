@@ -94,7 +94,7 @@
                     <p>ошибки</p>
                 </div>
             </div>
-            <email-push-component></email-push-component>
+            <email-push-component :emailMailings="{{json_encode($emailMailings)}}"></email-push-component>
         </section>
     </div>
 </main>
