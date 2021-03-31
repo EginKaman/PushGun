@@ -89,7 +89,7 @@ class EmailPageController extends Controller
         $emailMailing->emailMessage()->associate($emailMessage);
         $emailMailing->save();
         return response()->json([
-            'msg' => 'success'
+            'id' => $emailMailing->id
         ], 201);
     }
 

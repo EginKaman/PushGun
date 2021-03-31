@@ -14,7 +14,9 @@
                         />
                     </a>
                     <div class="general__sites_info mails__sites_info">
-                        <a href="/email/show">{{ emailmailing.subject }}</a>
+                        <a :href="route('email.show', emailmailing.id)">{{
+                            emailmailing.subject
+                        }}</a>
                         <p>
                             <img src="/../../images/mark.svg" alt="" />
                             Отправлено:

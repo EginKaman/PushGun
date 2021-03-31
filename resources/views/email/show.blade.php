@@ -5,7 +5,7 @@
     <div class="container">
         <section class="mails">
             <div class="general__title">
-                <h1 class="title">@lang('Название рассылки')</h1>
+                <h1 class="title">{{$emailMailing->subject}}</h1>
             </div>
             <email-push-show-component :emailMailing="{{json_encode($emailMailing)}}"></email-push-show-component>
         </section>

@@ -396,7 +396,9 @@ export default {
                     }
                 })
                 .then(res => {
-                    console.log(res);
+                    if (res.status === 201) {
+                        window.location.href = route("email.show", res.data.id);
+                    }
                 });
         }
     }

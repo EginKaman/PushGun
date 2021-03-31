@@ -23,6 +23,7 @@ class EmailMailingResource extends JsonResource
             'address_book_id' => $this->address_book_id,
             'address_book' => new AddressBookResource($this->whenLoaded('addressBook')),
             'subject' => $this->subject,
+            'is_sent' => $this->is_sent,
             'sender_name' => $this->sender_name,
             'date_send' => $this->date_send,
             'created_at' => $this->created_at,
