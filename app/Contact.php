@@ -8,7 +8,8 @@ class Contact extends Model
 {
     protected $fillable = [
         'address',
-        'is_email'
+        'is_email',
+        'address_book_id'
     ];
     /**
      * Get the addressbook that owns the Contact

@@ -2,10 +2,14 @@
 
 namespace App;
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class AddressBook extends Model
 {
+
+    use Filterable;
+    
     protected $fillable = [
         'name'
     ];

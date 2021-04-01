@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AddressBook;
 use App\Contact;
+use App\Http\Requests\AddressBookFilterRequest;
 use App\Http\Requests\ContactDestroyRequest;
 use App\Http\Requests\ContactStoreRequest;
 use App\Http\Resources\AddressBookResource;
@@ -18,9 +19,10 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AddressBookFilterRequest $request)
     {
-        $addressBooks = Auth::user()->addressBooks()->withCount('contacts')->get();
+        $input = $request->validated();
+        $addressBooks = Auth::user()->addressBooks()->withCount('contacts')->filter($input)->get();
         foreach ($addressBooks as $addressbook) {
             $addressbook->mailsCount = $addressbook->contacts()->where('is_email', true)->count();
             $addressbook->numbersCount = $addressbook->contacts()->where('is_email', false)->count();
