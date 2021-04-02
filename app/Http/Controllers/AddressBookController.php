@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\AddressBook;
+use App\Exports\AddressBookExport;
 use App\Http\Requests\AddressBookStoreRequest;
+use App\Http\Requests\ExportAddressbookRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AddressBookController extends Controller
 {
@@ -19,5 +22,12 @@ class AddressBookController extends Controller
         return response()->json([
             'addressbook' => $addressbook
         ], 201);
+    }
+
+    public function exportAddressbook(ExportAddressbookRequest $request): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        $input = $request->validated();
+        $addressbook = AddressBook::findOrFail($input['id']);
+        return Excel::download(new AddressBookExport($addressbook), 'addressbook.xlsx');
     }
 }

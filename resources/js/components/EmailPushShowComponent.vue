@@ -92,7 +92,16 @@
                         <p class="button_text_container">Фильтр</p>
                     </div>
                 </div>
-                <a class="contact-table__btn">Экспорт</a>
+                <a
+                    class="contact-table__btn"
+                    :href="
+                        route('addressbook.export', {
+                            id: emailmailing.address_book.id
+                        })
+                    "
+                    target="_blank"
+                    >Экспорт</a
+                >
             </div>
             <div class="contact-table__wrapper">
                 <div class="contact-table__wrapper head">

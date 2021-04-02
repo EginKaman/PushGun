@@ -109,6 +109,7 @@ Route::group([
         });
         Route::prefix('addressbook')->group(function () {
             Route::post('/', [\App\Http\Controllers\AddressBookController::class, 'store'])->name('addressbook.store');
+            Route::get('/addressbook.xlsx', [\App\Http\Controllers\AddressBookController::class, 'exportAddressbook'])->name('addressbook.export');
         });
     });
     Route::group(['prefix' => 'web-api', 'middleware' => 'auth'], function () {
