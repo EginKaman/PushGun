@@ -27,7 +27,7 @@ class AddressBookController extends Controller
     public function exportAddressbook(ExportAddressbookRequest $request): \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
         $input = $request->validated();
-        $addressbook = AddressBook::findOrFail($input['id']);
+        $addressbook = Auth::user()->addressBooks()->findOrFail($input['id']);
         return Excel::download(new AddressBookExport($addressbook), 'addressbook.xlsx');
     }
 }

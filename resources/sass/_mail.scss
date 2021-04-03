@@ -3,90 +3,73 @@
         margin: 0;
         position: absolute;
         right: 0;
-
         &_inner {
             padding: 15px 42px;
             width: auto;
         }
     }
-
     .progress_bar {
         background-color: $lime;
     }
-
     &__go span {
         color: $lime;
     }
-
     & .general__stats_left {
         flex-direction: row;
         margin-right: 0;
         justify-content: space-between;
         margin-top: 26px;
-
         &-item {
             margin: 0;
             flex-basis: 23.5%;
-
             & h3 {
                 height: 65%;
             }
         }
     }
-
     & .mb-10 {
         height: 35%;
     }
-
     &__time-sent {
         display: flex;
         align-items: center;
         margin-bottom: 26px;
-
         & img {
             width: 32px;
             height: 32px;
             border-radius: 4px;
         }
-
         & p {
             margin-left: 13px;
             font-weight: 500;
             color: $black;
         }
     }
-
     &__info {
         background-color: $white;
         box-shadow: $shadow;
         border-radius: 10px;
         margin-top: 45px;
-
         &_item {
             font-weight: 500;
             display: flex;
             color: $black;
             padding: 24px;
-
             &:first-child {
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;
             }
-
             &:last-child {
                 border-bottom-left-radius: 10px;
                 border-bottom-right-radius: 10px;
             }
-
             &:nth-child(odd) {
                 background-color: $light-blue;
             }
         }
-
         &_title {
             flex-basis: 30%;
         }
-
         &_desc {
             flex-basis: 70%;
         }
@@ -99,27 +82,22 @@
             &_title {
                 font-weight: 600;
             }
-
             &_desc {
                 margin-top: 8px;
             }
-
             &_item {
                 flex-direction: column;
             }
         }
-
         &__button {
             margin-top: 12px;
             position: relative;
         }
     }
-
     .single-mail {
         & .general__title {
             align-items: flex-start;
             flex-direction: column;
-
             & .title {
                 max-width: 100%;
             }
@@ -132,20 +110,16 @@
         &__info_desc {
             word-break: break-all;
         }
-
         & .general__stats_left-item {
             flex-basis: 49%;
             margin-bottom: 13px;
-
             &:nth-child(3) {
                 margin-bottom: 0;
             }
-
             &:last-child {
                 margin-bottom: 0;
             }
         }
-
         .medium {
             padding-left: 5px;
             padding-right: 5px;
@@ -174,11 +148,13 @@
         z-index: 999;
     }
 }
+
 .mailpush {
     .general__sites {
         margin-bottom: 15px;
     }
 }
+
 .general__sites {
     position: relative;
     &__item-modal {
@@ -407,14 +383,12 @@
                 box-shadow: inset 0px 1px 4px rgba(134, 140, 144, 0.1);
                 border-radius: 100px;
             }
-
             input[type="range"]::-webkit-slider-runnable-track {
                 height: 16px;
                 -webkit-appearance: none;
                 color: #13bba4;
                 margin-top: -1px;
             }
-
             input[type="range"]::-webkit-slider-thumb {
                 width: 10px;
                 -webkit-appearance: none;
@@ -423,7 +397,6 @@
                 background: #434343;
                 box-shadow: -1900px 0 0 1900px #fb9d46;
             }
-
             input[type="range"]::-moz-range-progress {
                 background-color: #43e5f7;
             }
@@ -509,6 +482,7 @@
         }
     }
 }
+
 .create-mail {
     .button_green {
         img {
@@ -517,6 +491,7 @@
         }
     }
 }
+
 .setting-mailing .create-mail {
     .button_green {
         &:last-child {
@@ -625,7 +600,7 @@
             display: block;
         }
     }
-    button {
+    .button-cm {
         font-weight: 600;
         margin-top: 24px;
         padding: 12px 20px;
@@ -778,7 +753,7 @@
         a {
             display: block;
             color: #fff;
-            padding: 20px 199px 20px 24px;
+            padding: 20px 130px 20px 24px;
             text-align: left;
             border-radius: 100px;
             &.active {
@@ -868,7 +843,7 @@
             justify-content: space-between;
             align-items: center;
             text-align: left;
-            p{
+            p {
                 text-align: right;
             }
         }

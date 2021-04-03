@@ -1,7 +1,16 @@
 <template>
     <main>
         <div class="contact-table">
-            <a class="contact-table__btn">Экспорт</a>
+            <a
+                :href="
+                    route('addressbook.export', {
+                        id: book.id
+                    })
+                "
+                target="_blank"
+                class="contact-table__btn"
+                >Экспорт</a
+            >
             <div
                 v-for="(contact, index) in book.contacts"
                 :key="index"

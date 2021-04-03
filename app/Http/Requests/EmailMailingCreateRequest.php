@@ -30,7 +30,8 @@ class EmailMailingCreateRequest extends FormRequest
             'address_book_id' => ['required', 'exists:address_books,id'],
             'subject' => ['required', 'string'],
             'sender_name' => ['required', 'string'],
-            'date_send' => ['nullable', 'date']
+            'date_send' => ['nullable', 'date'],
+            'body' => ['nullable', 'string']
         ];
     }
 }

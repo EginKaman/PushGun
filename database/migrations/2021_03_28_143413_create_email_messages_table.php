@@ -18,6 +18,7 @@ class CreateEmailMessagesTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('preheader');
             $table->string('image');
+            $table->text('body');
             $table->timestamps();
         });
     }

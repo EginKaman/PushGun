@@ -8,8 +8,11 @@
                 <a :class="{ active: show === 2 }"
                     >2<span>.Контент письма</span></a
                 >
+                <a :class="{ active: show === 4 }"
+                    >3<span>.Тело письма</span></a
+                >
                 <a :class="{ active: show === 3 }"
-                    >3<span>.Предпросмотр и отправка</span></a
+                    >4<span>.Предпросмотр и отправка</span></a
                 >
             </div>
             <form v-if="show === 1">
@@ -67,7 +70,12 @@
                         />
                     </div>
                 </div>
-                <button @click.prevent="step((stepCurrent = 1))">Далее</button>
+                <button
+                    class="button-cm"
+                    @click.prevent="step((stepCurrent = 1))"
+                >
+                    Далее
+                </button>
             </form>
             <form v-if="show === 2">
                 <div class="create-push-mail__title">
@@ -95,7 +103,9 @@
                                     placeholder="Значение"
                                 />
                             </div>
-                            <button>Редактировать шаблон</button>
+                            <button class="button-cm">
+                                Редактировать шаблон
+                            </button>
                             <div class="create-push-mail__block__item label">
                                 <p>
                                     Прикрепить файл
@@ -112,7 +122,12 @@
                         </div>
                     </div>
                 </div>
-                <button @click.prevent="step((stepCurrent = 2))">Далее</button>
+                <button
+                    class="button-cm"
+                    @click.prevent="step((stepCurrent = 2))"
+                >
+                    Далее
+                </button>
             </form>
             <form v-if="show === 3">
                 <div class="create-push-mail__title">
@@ -171,7 +186,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <button>Тестовая рассылка</button>
+                            <button class="button-cm">Тестовая рассылка</button>
                         </div>
                     </div>
                 </div>
@@ -233,14 +248,48 @@
                     </div>
                 </div>
                 <button
+                    class="button-cm"
                     v-if="show != 3"
                     @click.prevent="step((stepCurrent = 3))"
                 >
                     Далее
                 </button>
-                <button v-if="show === 3" @click.prevent="createEmailMailing">
+                <button
+                    class="button-cm"
+                    v-if="show === 3"
+                    @click.prevent="createEmailMailing"
+                >
                     Начать рассылку
                 </button>
+            </form>
+            <form v-if="show === 4">
+                <div class="create-push-mail__title">
+                    <h2>HTML редактор</h2>
+                </div>
+                <div class="create-push-mail__blockj">
+                    <vue-editor v-model="form.body"></vue-editor>
+                    <div class="trumbowyg-inform">
+                        <p>
+                            Количество слов:
+                            <span class="trumbowyg-count">0</span>
+                        </p>
+                        <div>
+                            <p>
+                                В теле письма необходимо указать информацию о
+                                том, как получатель подписался на вашу рассылку,
+                                например:"Вы получили это письмо, так как
+                                <br />подписались на рассылку на сайте
+                                https://example.com"
+                            </p>
+                            <p>
+                                В шаблоне отсутствует ссылка на страницу
+                                отписки. Вставьте ее спользуя шорткод:
+                                {(unsubscribe_url}} или она будет добавлена
+                                автоматически
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <div
@@ -266,14 +315,18 @@
 import axios from "axios";
 import Calendar from "./UI/Calendar.vue";
 
+// Import editor css
+import { VueEditor } from "vue2-editor";
+
 export default {
     components: {
-        Calendar
+        Calendar,
+        VueEditor
     },
     props: ["addressbooks"],
     data: () => ({
         imgModal: false,
-        show: 1,
+        show: 4,
         unsubscribe: "{{unsubscribe_url}}",
         alert: {
             title: "",
@@ -299,9 +352,11 @@ export default {
             address_book_id: null,
             subject: "",
             sender_name: "",
-            date_send: null
+            date_send: null,
+            body: null
         },
-        modeSend: null
+        modeSend: null,
+        editorConfig: {}
     }),
     watch: {
         modeSend(n, o) {
