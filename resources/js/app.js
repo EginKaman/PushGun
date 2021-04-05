@@ -10,7 +10,7 @@ require('./main');
 
 window.Vue = require('vue');
 import languageBundle
-    from '@kirschbaum-development/laravel-translations-loader/json!@kirschbaum-development/laravel-translations-loader';
+from '@kirschbaum-development/laravel-translations-loader/json!@kirschbaum-development/laravel-translations-loader';
 import VueI18n from 'vue-i18n';
 import VModal from 'vue-js-modal';
 import VueSwal from 'vue-swal';
@@ -88,11 +88,11 @@ Vue.component('site-button-delete', require('./components/SitesPage/ButtonDelete
 Vue.component('tariff-form', require('./components/TariffForm.vue').default);
 Vue.component('vSelect', require('./components/vSelect.vue').default)
 Vue.component('withdrawal-bonus', require('./components/UI/Modals/WithdrawalBonus').default)
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+    /**
+     * Next, we will create a fresh Vue application instance and attach it to
+     * the page. Then, you may begin adding components to this application
+     * or customize the JavaScript scaffolding to fit your unique needs.
+     */
 import store from './store'
 
 const app = new Vue({

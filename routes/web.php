@@ -69,6 +69,14 @@ Route::group([
             [\App\Http\Controllers\AutoMailingController::class, 'update']
         )
             ->name('autoMailing.update');
+        Route::prefix('addressbook')->group(function () {
+            Route::get('/', [\App\Http\Controllers\AddressBookController::class, 'index'])->name('addressbook.index');
+            Route::post('/', [\App\Http\Controllers\AddressBookController::class, 'store'])->name('addressbook.store');
+            Route::get('/create/{id}', [\App\Http\Controllers\AddressBookController::class, 'create'])->name('addressbook.create');
+        });
+        Route::prefix('contact')->group(function () {
+            Route::post('/', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+        });
         Route::prefix('account')->group(function () {
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
             //TODO: REFACTORING!!!!

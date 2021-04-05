@@ -108,7 +108,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Push::class);
     }
-
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addressbooks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AddressBook::class);
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
