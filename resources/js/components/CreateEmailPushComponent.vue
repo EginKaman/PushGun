@@ -103,7 +103,7 @@
                                     placeholder="Значение"
                                 />
                             </div>
-                            <button class="button-cm">
+                            <button class="button-cm" @click.prevent="show = 4">
                                 Редактировать шаблон
                             </button>
                             <div class="create-push-mail__block__item label">
@@ -122,10 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <button
-                    class="button-cm"
-                    @click.prevent="step((stepCurrent = 2))"
-                >
+                <button class="button-cm" @click.prevent="step(3)">
                     Далее
                 </button>
             </form>
@@ -266,7 +263,7 @@
                 <div class="create-push-mail__title">
                     <h2>HTML редактор</h2>
                 </div>
-                <div class="create-push-mail__blockj">
+                <div class="create-push-mail__block">
                     <vue-editor v-model="form.body"></vue-editor>
                     <div class="trumbowyg-inform">
                         <p>
@@ -289,6 +286,9 @@
                             </p>
                         </div>
                     </div>
+                    <button class="button-cm" @click.prevent="step(4)">
+                        Далее
+                    </button>
                 </div>
             </form>
         </div>
@@ -326,7 +326,7 @@ export default {
     props: ["addressbooks"],
     data: () => ({
         imgModal: false,
-        show: 4,
+        show: 1,
         unsubscribe: "{{unsubscribe_url}}",
         alert: {
             title: "",
@@ -413,7 +413,7 @@ export default {
                     }, 4000);
                 }
             }
-            if (stepCurrent === 2) {
+            if (stepCurrent === 3) {
                 if (this.form.preheader != "") {
                     this.show = 3;
                 } else {
@@ -423,6 +423,9 @@ export default {
                         this.alert.accept = 0;
                     }, 4000);
                 }
+            }
+            if (stepCurrent === 4) {
+                this.show = 2;
             }
         },
         selectImage() {
@@ -440,6 +443,7 @@ export default {
             form.append("address_book_id", this.form.address_book_id);
             form.append("subject", this.form.subject);
             form.append("sender_name", this.form.sender_name);
+            form.append("body", this.form.body);
             if (this.form.date_send !== null) {
                 form.append("date_send", this.form.date_send);
             }

@@ -83,6 +83,7 @@ class EmailPageController extends Controller
         $emailMessage->user()->associate($user);
         $emailMessage->preheader = $input['preheader'];
         $emailMessage->image = $input['image']->store('public/mails');
+        $emailMessage->body = $input['body'];
         $emailMessage->save();
         $emailMailing->fill($input);
         $emailMailing->addressBook()->associate($input['address_book_id']);

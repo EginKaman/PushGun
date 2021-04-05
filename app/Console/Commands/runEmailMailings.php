@@ -51,7 +51,7 @@ class runEmailMailings extends Command
         foreach ($emailmailings as $emailmailing) {
             foreach ($emailmailing->addressbook->contacts as $contact) {
                 if ($contact->is_email) {
-                    Mail::to($contact->address)->send(new MailEmailMailing($emailmailing->emailmessage->preheader, $emailmailing->emailmessage->image, ''));
+                    Mail::to($contact->address)->send(new MailEmailMailing($emailmailing->emailmessage->preheader, $emailmailing->emailmessage->image, $emailmailing->emailmessage->body));
                 }
             }
             // Mail::to($)->send(new MailableClass);
