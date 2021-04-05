@@ -24,8 +24,11 @@ class ContactStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'contacts.*' => ['required', 'email'],
-            'addressbook_id' => ['required', 'integer']
+            'emails' => ['nullable', 'array'],
+            'emails.*' => ['email'],
+            'numbers' => ['nullable', 'array'],
+            'numbers.*' => ['integer'],
+            'addressbook_id' => ['required', 'exists:address_books,id']
         ];
     }
 }

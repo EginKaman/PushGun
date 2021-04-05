@@ -1,0 +1,124 @@
+.authentic-block {
+    margin-top: 24px;
+    padding: 24px;
+    background: #fff;
+    box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
+    border-radius: 10px;
+    &:nth-child(2){
+        .authentic-block__input{
+            a{
+                margin-top: 0;
+                margin-bottom: 32px;
+            }
+        }
+        .authentic-block__item{
+            p{
+                a{
+                    color: #3b8378;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    a {
+        cursor: pointer;
+    }
+    button {
+        font-weight: 600;
+        margin-top: 24px;
+        padding: 12px 20px;
+        background: #3b8378;
+        border-radius: 100px;
+        color: #fff;
+        transition: 0.2s linear;
+        &:hover {
+            background: #3b8378b5;
+        }
+    }
+    &__info {
+        p {
+            margin-bottom: 16px;
+            span {
+                color: #e56043;
+            }
+        }
+        input {
+            padding: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            background: #fbfbfb;
+            border-radius: 4px;
+            border: none;
+            margin-bottom: 24px;
+        }
+    }
+    &__alert {
+        padding: 8px 16px;
+        background: rgba(251, 157, 70, 0.1);
+        box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        margin: 32px 0px;
+        span {
+            display: block;
+            width: 8px;
+            height: 100%;
+            background: #fb9d46;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        a {
+            color: #3b8378;
+            text-decoration: underline;
+        }
+    }
+    &__input {
+        p {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        input {
+            border: 1px solid #e5e5e5;
+            box-sizing: border-box;
+            border-radius: 4px;
+            width: 100%;
+            padding: 10px;
+        }
+        a {
+            text-decoration: underline;
+            margin-top: 34px;
+            display: block;
+        }
+    }
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 32px 0px;
+        &__domain {
+            padding: 24px 32px;
+            background: #f8f9fc;
+            text-align: center;
+            span {
+                color: #fb9d46;
+                a {
+                    margin-left: 10px;
+                    color: rgba(0, 0, 0, 0.5);
+                    text-decoration: underline;
+                }
+            }
+        }
+        h3 {
+            text-align: left;
+            padding-bottom: 24px;
+        }
+    }
+}
+
+@media screen and (max-width: 460px){
+    .authentic-block__item{
+        display: block;
+    }
+}

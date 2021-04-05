@@ -63,6 +63,28 @@ class User extends Authenticatable implements MustVerifyEmail
         'tariff_expired_at' => 'datetime',
     ];
 
+
+    /**
+     * Get all of the emailMailings for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function emailMailings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EmailMailing::class);
+    }
+
+    /**
+     * Get all of the emailMessages for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function emailMessages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EmailMessage::class);
+    }
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -137,6 +159,17 @@ class User extends Authenticatable implements MustVerifyEmail
                 now()->endOfDay()
             ]);
     }
+
+    /**
+     * Get all of the addressbooks for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addressBooks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AddressBook::class);
+    }
+
 
     public function tickets()
     {

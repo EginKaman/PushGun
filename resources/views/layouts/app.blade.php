@@ -16,7 +16,8 @@
     <link rel="icon" type="image/png" href="{{ asset('images/favicon/favicon-16x16.png') }}" sizes="16x16" data-mce-href="{{ asset('images/favicon/favicon-16x16.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-192x192.png') }}" sizes="192x192" data-mce-href="{{ asset('images/favicon/android-chrome-192x192.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon/android-chrome-512x512.png') }}" sizes="512x512" data-mce-href="{{ asset('images/favicon/android-chrome-512x512.png') }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/ui/trumbowyg.min.css" integrity="sha512-iw/TO6rC/bRmSOiXlanoUCVdNrnJBCOufp2s3vhTPyP1Z0CtTSBNbEd5wIo8VJanpONGJSyPOZ5ZRjZ/ojmc7g==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/trumbowyg.min.js" integrity="sha512-sffB9/tXFFTwradcJHhojkhmrCj0hWeaz8M05Aaap5/vlYBfLx5Y7woKi6y0NrqVNgben6OIANTGGlojPTQGEw==" crossorigin="anonymous"></script>
     <meta name="theme-color" content="#ffffff">
 
 
@@ -49,9 +50,21 @@
     <div id="app">
         <div class="pre-header">
             <div class="container">
-                <a class="{{ (request()->is('*/email*')) ? 'active' : '' }}" href="{{ route('email.index') }}">E-mail</a>
-                <a>SMS</a>
-                <a>Push</a>
+                <div style="display: flex; justify-content: space-between; align-items:center;">
+                    <div>
+                        <a class="{{ (request()->is('*/email*')) ? 'active' : '' }}" href="{{ route('email.index') }}">E-mail/SMS</a>
+                        <a>Push</a>
+                    </div>
+                    <div class="nav__wrapper">
+                        <a href="{{ route('push.index') }}" class="nav__item nav__arrow">
+                            <div class="nav__item_wrap">
+                                <span>@lang('Настройки')</span>
+                                <img class="nav__item_img" src="{{ asset('images/internet.svg') }}" alt="">
+                            </div>
+                        </a>
+                        <setting-push-component></setting-push-component>
+                    </div>
+                </div>
             </div>
         </div>
         <header class="header">
@@ -83,6 +96,7 @@
                             </a>
                             <header-push-component></header-push-component>
                         </div>
+
 
                         <div class="nav__wrapper">
                             <a href="{{ route('site.index') }}" class="nav__item nav__arrow">
