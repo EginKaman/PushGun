@@ -2,10 +2,14 @@
 
 namespace App;
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class AddressBook extends Model
 {
+
+    use Filterable;
+    
     protected $fillable = [
         'name'
     ];
@@ -20,9 +24,8 @@ class AddressBook extends Model
         return $this->belongsTo(User::class);
     }
 
-    
     /**
-     * Get all of the contacts for the AddressBook
+     * Get all of the contacts for the Contact
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

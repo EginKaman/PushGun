@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Главная'))
+@section('title', __('Главная E-Mail'))
 @section('content')
 <main class="main">
     <div class="container">
@@ -18,7 +18,14 @@
                 <p data-tooltip-content="#tooltip_content" class="pointBlock__circle-2 general__info tooltip">!</p>
             </div>
             <div class="email-btn">
-                <new-address-book-button></new-address-book-button>
+                <div class="button_green mr-24">
+                    <span class="green_button_circle"></span>
+                    <a href="{{ route('email.create') }}" class="button_green_inner">
+                        <p class="button_text_container">
+                            <img src="{{ asset('images/book.svg') }}" alt="">@lang('Новая адресная книга')
+                        </p>
+                    </a>
+                </div>
                 <div class="button_white">
                     <span class="white_button_circle"></span>
                     <a href="{{ route('site.create') }}" class="button_white_inner">

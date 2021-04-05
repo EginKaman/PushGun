@@ -39,9 +39,9 @@
                         <label>
                             <textarea
                                 name=""
-                                v-model="contacts"
                                 id=""
                                 cols="30"
+                                v-model="contacts"
                                 rows="10"
                                 placeholder="@pushgun"
                             ></textarea>
@@ -51,7 +51,7 @@
             </div>
             <div class="button_green mr-24">
                 <span class="green_button_circle"></span>
-                <a @click.prevent="submit" class="button_green_inner">
+                <a class="button_green_inner" @click="submit">
                     <p class="button_text_container">
                         <img src="" alt="" />Добавить
                     </p>
@@ -68,42 +68,43 @@ export default {
         show: false,
         contacts: ""
     }),
-    props: {
-        action: {
-            type: String,
-            default: ""
-        },
-        addressbook: {
-            type: Object,
-            required: true
-        }
-    },
+    props: ["addressbook"],
     methods: {
         isEmail(emailAddress) {
             const pattern = new RegExp(
                 /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
             );
+
             return pattern.test(emailAddress);
         },
+        isPhoneNumber(phoneNumber) {
+            const pattern = new RegExp(/^[0-9]+$/);
+            return pattern.test(phoneNumber);
+        },
         submit() {
-            const contacts = this.contacts
-                .split("\n")
-                .map(contact => {
-                    contact = contact.replace(/\s+/g, "");
-                    if (this.isEmail(contact)) {
-                        return contact;
-                    }
+            const emails = [];
+            const numbers = [];
+            this.contacts.split("\n").forEach(contact => {
+                if (this.isEmail(contact)) {
+                    emails.push(contact);
+                } else if (this.isPhoneNumber(contact)) {
+                    numbers.push(contact);
+                }
+            });
+            axios
+                .post(route("contact.store"), {
+                    emails,
+                    numbers,
+                    addressbook_id: this.addressbook.id
                 })
-                .filter(contact => contact);
-            axios.post(this.action, {
-                contacts,
-                addressbook_id: this.addressbook.id
-            })
-            .then(res => {
-              if(res.status) {
-                window.location.replace(route('addressbook.index'))
-              }
-            })
+                .then(res => {
+                    if (res.status === 201) {
+                        window.location.href = route(
+                            "contact.show",
+                            res.data.addressBook.id
+                        );
+                    }
+                });
         }
     }
 };

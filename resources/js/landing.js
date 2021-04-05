@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     const count = 892; // Устанавливаем значение счетчика
 
@@ -12,6 +12,7 @@ $(document).ready(function () {
             arrows: false,
         });
     }
+    $('#trumbowyg-demo').trumbowyg();
 
 
     $('.menu__btn').on('click', () => {
@@ -38,11 +39,11 @@ $(document).ready(function () {
         nextArrow: '<button type="button" class="slick-next business-next"></button>'
     };
     $('.business-content.active').slick(slickSettings);
-    $('.business-items li').on('click', function(){
+    $('.business-items li').on('click', function() {
         let tab = $(this).attr('data-tab');
         $(this).addClass("active").siblings(".active").removeClass("active");
         $('.business-content.active').hide().removeClass('active').filter('.slick-initialized').slick('unslick');
-        $(".business-content[data-content="+tab+"]").show().addClass('active').slick(slickSettings);
+        $(".business-content[data-content=" + tab + "]").show().addClass('active').slick(slickSettings);
     });
 
     function anim(top) {
@@ -110,7 +111,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.faq__item').on('click', function () {
+    $('.faq__item').on('click', function() {
         $(this).toggleClass('active');
         $(this).find('p').toggle('300');
     });
