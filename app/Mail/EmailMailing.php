@@ -16,10 +16,8 @@ class EmailMailing extends Mailable
      *
      * @return void
      */
-    public function __construct(string $preheader, string $image, string $body)
+    public function __construct(string $body)
     {
-        $this->preheader = $preheader;
-        $this->image = $image;
         $this->body = $body;
     }
 
@@ -31,8 +29,6 @@ class EmailMailing extends Mailable
     public function build()
     {
         return $this->subject('Email mailing')->view('mails.emailmailing', [
-            'preheader' => $this->preheader,
-            'image' => $this->image,
             'body' => $this->body
         ]);
     }

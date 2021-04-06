@@ -12,7 +12,7 @@
                 >Экспорт</a
             >
             <div
-                v-for="(contact, index) in book.contacts"
+                v-for="(contact, index) in book_contacts.data"
                 :key="index"
                 class="contact-table__wrapper"
             >
@@ -42,12 +42,12 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-table__pagination">
+            <!-- <div class="contact-table__pagination">
                 <span class="active">1</span>
                 <span>2</span>
                 <span>3</span>
                 <img src="../../images/right.svg" />
-            </div>
+            </div> -->
         </div>
     </main>
 </template>
@@ -57,11 +57,12 @@ import axios from "axios";
 export default {
     data: () => ({
         showModal: null,
-        book: {
-            contacts: []
+        book: {},
+        book_contacts: {
+            data: []
         }
     }),
-    props: ["addressbook"],
+    props: ["addressbook", "contacts"],
     methods: {
         func(item) {
             this.showModal = item;
@@ -83,6 +84,7 @@ export default {
     },
     mounted() {
         this.book = this.addressbook;
+        this.book_contacts = this.contacts;
     }
 };
 </script>

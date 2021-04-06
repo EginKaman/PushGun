@@ -17,10 +17,14 @@
                     <div>
                         <span>Поддерживаемые форматы: TXT, CSV, XLS, XLSX</span>
                         <label>
-                            <input class="file" type="file" />
+                            <input
+                                class="file"
+                                type="file"
+                                @change="uploadContacts"
+                            />
                             <p>
-                                <img src="../../images/plusik.svg" />Добавить
-                                файл
+                                <img src="../../images/plusik.svg" />
+                                {{ uploadText }}
                             </p>
                         </label>
                     </div>
@@ -66,10 +70,27 @@ import axios from "axios";
 export default {
     data: () => ({
         show: false,
-        contacts: ""
+        contacts: "",
+        uploadForm: {
+            file: null
+        },
+        uploadText: "Добавить файл"
     }),
     props: ["addressbook"],
+    watch: {
+        show() {
+            this.contacts = "";
+            this.uploadForm = {
+                file: null
+            };
+            this.uploadText = "Добавить файл";
+        }
+    },
     methods: {
+        uploadContacts(event) {
+            this.uploadForm.file = event.target.files.item(0);
+            this.uploadText = this.uploadForm.file.name;
+        },
         isEmail(emailAddress) {
             const pattern = new RegExp(
                 /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
@@ -82,6 +103,21 @@ export default {
             return pattern.test(phoneNumber);
         },
         submit() {
+            if (!this.show) {
+                const form = new FormData();
+                form.append("contacts_list", this.uploadForm.file);
+                form.append("addressbook_id", this.addressbook.id);
+                axios
+                    .post(route("contact.upload"), form, {
+                        header: {
+                            "Content-Type": "multipart/form-data",
+                            "Cache-Control": "no-cache"
+                        }
+                    })
+                    .then(res => console.log(res))
+                    .catch(e => console.log(e));
+                return;
+            }
             const emails = [];
             const numbers = [];
             this.contacts.split("\n").forEach(contact => {

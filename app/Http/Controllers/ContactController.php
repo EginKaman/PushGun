@@ -7,10 +7,13 @@ use App\Contact;
 use App\Http\Requests\AddressBookFilterRequest;
 use App\Http\Requests\ContactDestroyRequest;
 use App\Http\Requests\ContactStoreRequest;
+use App\Http\Requests\ContactUploadRequest;
 use App\Http\Resources\AddressBookResource;
 use App\Http\Resources\AddressBooksResource;
+use App\Imports\ContactImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ContactController extends Controller
 {
@@ -43,6 +46,16 @@ class ContactController extends Controller
         return view('contact.create', [
             'addressBook' => new AddressBookResource($addressBook)
         ]);
+    }
+
+
+    public function upload(ContactUploadRequest $request)
+    {
+        $input = $request->validated();
+        Excel::queueImport(new ContactImport($input['addressbook_id']), $input['contacts_list']);
+        return response()->json([
+            'message' => 'uploaded'
+        ], 201);
     }
 
     /**
@@ -81,9 +94,11 @@ class ContactController extends Controller
      */
     public function show($addressBookId)
     {
-        $addressBook = Auth::user()->addressBooks()->with(['contacts'])->findOrFail($addressBookId);
+        $addressBook = Auth::user()->addressBooks()->findOrFail($addressBookId);
+        $contacts = $addressBook->contacts()->paginate(20);
         return view('contact.show', [
-            'addressBook' => new AddressBookResource($addressBook)
+            'addressBook' => new AddressBookResource($addressBook),
+            'contacts' => $contacts
         ]);
     }
 
@@ -110,7 +125,7 @@ class ContactController extends Controller
         //
     }
 
-    
+
 
     /**
      * Remove the specified resource from storage.

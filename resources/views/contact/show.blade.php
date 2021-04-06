@@ -27,7 +27,8 @@
                 </a>
             </div>
         </div>
-        <show-contact-component :addressBook="{{json_encode($addressBook)}}"></show-contact-component>
+        <show-contact-component :addressBook="{{json_encode($addressBook)}}" :contacts="{{json_encode($contacts)}}"></show-contact-component>
+        {{$contacts->links()}}
     </div>
 </div>
 @endsection

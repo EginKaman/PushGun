@@ -45,13 +45,6 @@ Route::group([
     Route::get('/redactor', [\App\Http\Controllers\RedactorController::class, 'index'])->name('redactor.index');
     Route::get('/setting', [\App\Http\Controllers\SettingMailingController::class, 'index'])->name('setting.index');
     Route::get('/setting/registration', [\App\Http\Controllers\SettingMailingController::class, 'create'])->name('setting.create');
-    Route::prefix('contact')->group(function () {
-        Route::get('/', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
-        Route::get('/create/{id}', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
-        Route::get('/{addressBookId}', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
-        Route::post('/', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
-        Route::delete('/', [\App\Http\Controllers\ContactController::class, 'destroy'])->name('contact.destroy');
-    });
     Route::post('support', [\App\Http\Controllers\MailController::class, 'support'])->name('mail.support');
     Route::post('question', [\App\Http\Controllers\MailController::class, 'question'])->name('mail.question');
     Auth::routes(['verify' => true]);
@@ -75,7 +68,12 @@ Route::group([
             Route::get('/create/{id}', [\App\Http\Controllers\AddressBookController::class, 'create'])->name('addressbook.create');
         });
         Route::prefix('contact')->group(function () {
+            Route::get('/', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+            Route::get('/create/{id}', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
+            Route::get('/{addressBookId}', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
             Route::post('/', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+            Route::delete('/', [\App\Http\Controllers\ContactController::class, 'destroy'])->name('contact.destroy');
+            Route::post('/upload', [\App\Http\Controllers\ContactController::class, 'upload'])->name('contact.upload');
         });
         Route::prefix('account')->group(function () {
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');

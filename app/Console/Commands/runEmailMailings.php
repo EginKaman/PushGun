@@ -42,16 +42,22 @@ class runEmailMailings extends Command
     public function handle()
     {
         $now = Carbon::now();
-        $to = Carbon::now()->addMinutes(30);
+        $to = Carbon::now()->addMinutes(5);
         // $this->info("$now - $to");
         $emailmailings = EmailMailing::where('is_sent', 0)->whereBetween('date_send', [
             $now,
             $to
-        ])->with(['emailMessage', 'addressBook'])->get();
+        ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook'])->get();
         foreach ($emailmailings as $emailmailing) {
             foreach ($emailmailing->addressbook->contacts as $contact) {
                 if ($contact->is_email) {
-                    Mail::to($contact->address)->send(new MailEmailMailing($emailmailing->emailmessage->preheader, $emailmailing->emailmessage->image, $emailmailing->emailmessage->body));
+                    $when = $emailmailing->date_send === null ?  $now : $emailmailing->date_send;
+                    $this->info($when);
+                    Mail::to($contact->address)->send(new MailEmailMailing(
+                        $emailmailing->emailmessage->preheader,
+                        $emailmailing->emailmessage->image,
+                        $emailmailing->emailmessage->body
+                    ));
                 }
             }
             // Mail::to($)->send(new MailableClass);
