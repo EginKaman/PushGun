@@ -9,7 +9,8 @@ class EmailMailing extends Model
     protected $fillable = [
         'subject',
         'sender_name',
-        'date_send'
+        'date_send',
+        'is_sent'
 
     ];
 

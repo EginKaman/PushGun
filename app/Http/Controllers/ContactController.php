@@ -138,7 +138,6 @@ class ContactController extends Controller
         $addressBook = Auth::user()->addressBooks()->findOrFail($input['addressbook_id']);
         $contact = $addressBook->contacts()->findOrFail($input['contact_id']);
         $contact->delete();
-        $addressBook->load('contacts');
-        return response()->json(['addressbook' => new AddressBookResource($addressBook)], 202);
+        return response()->json(['msg' => 'deleted'], 202);
     }
 }

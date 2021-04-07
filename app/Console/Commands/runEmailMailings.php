@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\EmailMailing;
 use App\Mail\EmailMailing as MailEmailMailing;
+use App\SentLetter;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -47,21 +48,23 @@ class runEmailMailings extends Command
         $emailmailings = EmailMailing::where('is_sent', 0)->whereBetween('date_send', [
             $now,
             $to
-        ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook'])->get();
+        ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook', 'user'])->get();
         foreach ($emailmailings as $emailmailing) {
             foreach ($emailmailing->addressbook->contacts as $contact) {
                 if ($contact->is_email) {
                     $when = $emailmailing->date_send === null ?  $now : $emailmailing->date_send;
-                    $this->info($when);
                     Mail::to($contact->address)->send(new MailEmailMailing(
-                        $emailmailing->emailmessage->preheader,
-                        $emailmailing->emailmessage->image,
                         $emailmailing->emailmessage->body
                     ));
+                    $sentLetter = new SentLetter;
+                    $sentLetter->user()->associate($emailmailing->user);
+                    $sentLetter->contact()->associate($contact);
+                    $sentLetter->emailMessage()->associate($emailmailing->emailmessage);
+                    $sentLetter->save();
                 }
             }
             // Mail::to($)->send(new MailableClass);
-            // $emailmailing->is_sent = true;
+            $emailmailing->is_sent = true;
             $emailmailing->save();
         }
         return 1;
