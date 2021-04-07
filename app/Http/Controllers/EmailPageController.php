@@ -40,9 +40,12 @@ class EmailPageController extends Controller
      */
     public function push()
     {
-        $emailMailings = Auth::user()->emailMailings()->with(['addressBook'])->get();
+        $user = Auth::user();
+        $emailMailings = $user->emailMailings()->with(['addressBook'])->withCount(['sentLetters'])->get();
+        $sentLettersCount = $user->sentLetters()->count();
         return view('email.push', [
-            'emailMailings' => new EmailMailingsResource($emailMailings)
+            'emailMailings' => new EmailMailingsResource($emailMailings),
+            'sentLettersCount' => $sentLettersCount
         ]);
     }
     /**

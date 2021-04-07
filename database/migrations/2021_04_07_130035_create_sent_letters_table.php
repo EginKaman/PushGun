@@ -16,7 +16,7 @@ class CreateSentLettersTable extends Migration
         Schema::create('sent_letters', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('email_message_id')->constrained('email_messages');
+            $table->foreignId('email_mailing_id')->constrained('email_mailings');
             $table->foreignId('contact_id')->constrained();
             $table->timestamps();
         });

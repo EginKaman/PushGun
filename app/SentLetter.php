@@ -23,9 +23,9 @@ class SentLetter extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function emailMessage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function emalMailing(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(EmailMessage::class, 'email_message_id', 'id');
+        return $this->belongsTo(EmailMailing::class, 'email_mailing_id', 'id');
     }
 
     /**

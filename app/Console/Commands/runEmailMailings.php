@@ -59,11 +59,10 @@ class runEmailMailings extends Command
                     $sentLetter = new SentLetter;
                     $sentLetter->user()->associate($emailmailing->user);
                     $sentLetter->contact()->associate($contact);
-                    $sentLetter->emailMessage()->associate($emailmailing->emailmessage);
+                    $sentLetter->emalMailing()->associate($emailmailing);
                     $sentLetter->save();
                 }
             }
-            // Mail::to($)->send(new MailableClass);
             $emailmailing->is_sent = true;
             $emailmailing->save();
         }

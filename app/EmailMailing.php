@@ -21,6 +21,16 @@ class EmailMailing extends Model
 
 
     /**
+     * Get all of the sentLetters for the EmailMailing
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sentLetters(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SentLetter::class);
+    }
+
+    /**
      * Get the user that owns the EmailMailing
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

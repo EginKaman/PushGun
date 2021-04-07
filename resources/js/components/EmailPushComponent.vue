@@ -41,11 +41,15 @@
                 </div>
                 <div class="mails__sites_stats">
                     <div class="mails__sites_stats-item">
-                        <h3>2</h3>
+                        <h3>
+                            {{ emailmailing.sent_letters_count }}
+                        </h3>
                         <p>отправлено</p>
                     </div>
                     <div class="mails__sites_stats-item">
-                        <h3>2</h3>
+                        <h3>
+                             {{ emailmailing.sent_letters_count }}
+                        </h3>
                         <p>доставлено</p>
                     </div>
                     <div class="mails__sites_stats-item">

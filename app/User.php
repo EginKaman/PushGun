@@ -133,6 +133,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get all of the sentLetters for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sentLetters(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SentLetter::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function subscriptions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
