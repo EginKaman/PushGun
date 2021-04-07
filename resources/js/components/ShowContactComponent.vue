@@ -67,6 +67,11 @@ export default {
         func(item) {
             this.showModal = item;
         },
+        getIndexContactById(id) {
+            return this.book_contacts.data.findIndex(
+                contact => contact.id === id
+            );
+        },
         deleteContact(id) {
             axios
                 .delete(route("contact.destroy"), {
@@ -77,7 +82,10 @@ export default {
                 })
                 .then(res => {
                     if (res.status === 202) {
-                        this.book = res.data.addressbook;
+                        const index = this.getIndexContactById(id);
+                        if (index !== -1) {
+                            this.book_contacts.data.splice(index, 1);
+                        }
                     }
                 });
         }
