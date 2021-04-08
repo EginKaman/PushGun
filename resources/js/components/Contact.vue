@@ -65,6 +65,7 @@
                     <div style="backgorund: #fafafa" class="button_white">
                         <span class="white_button_circle"></span>
                         <a
+                            @click="show = false"
                             style="background: rgb(222 222 222 / 1)"
                             class="button_white_inner"
                         >

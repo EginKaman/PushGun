@@ -32,6 +32,7 @@
                             <a
                                 style="background: rgb(222 222 222 / 1)"
                                 class="button_white_inner"
+                                @click="close"
                             >
                                 <p class="button_text_container">
                                     <img

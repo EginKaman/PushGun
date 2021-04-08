@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Contact;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
@@ -25,7 +26,12 @@ class ContactImport implements ToModel, ShouldQueue, WithChunkReading
         if (!isset($row[0])) {
             return null;
         }
-
+        $validator = Validator::make(['email' => $row[0]], [
+            'email' => ['required', 'email']
+        ]);
+        if (!$validator->passes()) {
+            return;
+        }
         return new Contact([
             'address' => $row[0],
             'is_email' => true,

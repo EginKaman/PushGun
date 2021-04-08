@@ -74,7 +74,8 @@ export default {
         uploadForm: {
             file: null
         },
-        uploadText: "Добавить файл"
+        uploadText: "Добавить файл",
+        loading: false
     }),
     props: ["addressbook"],
     watch: {
@@ -107,6 +108,7 @@ export default {
                 const form = new FormData();
                 form.append("contacts_list", this.uploadForm.file);
                 form.append("addressbook_id", this.addressbook.id);
+                this.loading = true;
                 axios
                     .post(route("contact.upload"), form, {
                         header: {
@@ -114,8 +116,22 @@ export default {
                             "Cache-Control": "no-cache"
                         }
                     })
-                    .then(res => console.log(res))
-                    .catch(e => console.log(e));
+                    .then(res => {
+                        this.loading = false;
+                        if (res.status === 201) {
+                            window.location.href = route(
+                                "contact.show",
+                                res.data.addressBook.id
+                            );
+                        }
+                    })
+                    .catch(e => {
+                        this.loading = false;
+                        window.location.href = route(
+                            "contact.show",
+                            res.data.addressBook.id
+                        );
+                    });
                 return;
             }
             const emails = [];

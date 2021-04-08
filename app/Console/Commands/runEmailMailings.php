@@ -50,12 +50,11 @@ class runEmailMailings extends Command
             $to
         ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook', 'user'])->get();
         foreach ($emailmailings as $emailmailing) {
+            $emails = [];
             foreach ($emailmailing->addressbook->contacts as $contact) {
                 if ($contact->is_email) {
                     $when = $emailmailing->date_send === null ?  $now : $emailmailing->date_send;
-                    Mail::to($contact->address)->send(new MailEmailMailing(
-                        $emailmailing->emailmessage->body
-                    ));
+                    $emails[] = $contact->address;
                     $sentLetter = new SentLetter;
                     $sentLetter->user()->associate($emailmailing->user);
                     $sentLetter->contact()->associate($contact);
@@ -63,6 +62,8 @@ class runEmailMailings extends Command
                     $sentLetter->save();
                 }
             }
+            $this->info(count($emails));
+            Mail::cc($emails)->send(new MailEmailMailing(($emailmailing->emailmessage->body)));
             $emailmailing->is_sent = true;
             $emailmailing->save();
         }
