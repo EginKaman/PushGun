@@ -20,7 +20,7 @@
             </div>
             <div class="button_white">
                 <span class="white_button_circle"></span>
-                <a href="{{ route('site.create') }}" class="button_white_inner">
+                <a href="{{ route('email.create') }}" class="button_white_inner">
                     <p class="button_text_container">
                         <img class="button-img" src="{{ asset('images/plusik.svg') }}" alt="">@lang('Создать рассылку')
                     </p>
