@@ -57,7 +57,8 @@
                 <span class="green_button_circle"></span>
                 <a class="button_green_inner" @click="submit">
                     <p class="button_text_container">
-                        <img src="" alt="" />Добавить
+                        <img src="" alt="" />
+                        {{ !loading ? "Добавить" : "Загрузка..." }}
                     </p>
                 </a>
             </div>
@@ -108,30 +109,29 @@ export default {
                 const form = new FormData();
                 form.append("contacts_list", this.uploadForm.file);
                 form.append("addressbook_id", this.addressbook.id);
-                this.loading = true;
-                axios
-                    .post(route("contact.upload"), form, {
-                        header: {
-                            "Content-Type": "multipart/form-data",
-                            "Cache-Control": "no-cache"
-                        }
-                    })
-                    .then(res => {
-                        this.loading = false;
-                        if (res.status === 201) {
-                            window.location.href = route(
-                                "contact.show",
-                                res.data.addressBook.id
-                            );
-                        }
-                    })
-                    .catch(e => {
-                        this.loading = false;
-                        window.location.href = route(
-                            "contact.show",
-                            res.data.addressBook.id
-                        );
-                    });
+                if (!this.loading) {
+                    this.loading = true;
+                    axios
+                        .post(route("contact.upload"), form, {
+                            header: {
+                                "Content-Type": "multipart/form-data",
+                                "Cache-Control": "no-cache"
+                            }
+                        })
+                        .then(res => {
+                            this.loading = false;
+                            if (res.status === 201) {
+                                window.location.href = route(
+                                    "contact.show",
+                                    res.data.addressBook.id
+                                );
+                            }
+                        })
+                        .catch(e => {
+                            this.loading = false;
+                            window.location.href = route("contact.index");
+                        });
+                }
                 return;
             }
             const emails = [];
