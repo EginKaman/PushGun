@@ -1003,3 +1003,16 @@
         }
     }
 }
+.icon_wrapper {
+    height: 256px;
+    width: 256px;
+    background-color: #fefefe;
+    border: dashed 1px #ccc;
+}
+.icon_wrapper div {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}

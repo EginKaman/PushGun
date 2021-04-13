@@ -81,6 +81,7 @@
                 <div class="create-push-mail__title">
                     <h2>Контент письма</h2>
                 </div>
+
                 <div class="create-push-mail__block">
                     <div class="create-push-mail__content">
                         <div @click="imgModal = true" class="image__wrapper">
@@ -89,7 +90,9 @@
                                 src="../../images/search.svg"
                                 alt=""
                             />
-                            <img :src="src" />
+                            <div v-for="(image, i) in images">
+                                <img :src="image" />
+                            </div>
                         </div>
                         <div>
                             <div
@@ -112,7 +115,7 @@
                                     <img src="../../images/link.svg" alt="" />
                                 </p>
                                 <label>
-                                    <input type="file" @change="selectImage" />
+                                    <input type="file" @change="onFileChange" />
                                     <span
                                         >Перетащите файл сюда или кликните,
                                         чтобы загрузить их</span
@@ -157,7 +160,9 @@
                                 src="../../images/search.svg"
                                 alt=""
                             />
-                            <img :src="src" />
+                            <div v-for="(image, i) in images">
+                                <img :src="image" />
+                            </div>
                         </div>
                         <div>
                             <div
@@ -302,7 +307,9 @@
                     <div @click="imgModal = false" class="img-popup__close">
                         <img src="../../images/cancel.svg" alt="" />
                     </div>
-                    <img :src="src" alt="" />
+                    <div v-for="(image, i) in images">
+                        <img :src="image" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,6 +332,7 @@ export default {
     },
     props: ["addressbooks"],
     data: () => ({
+        images: [],
         imgModal: false,
         show: 1,
         unsubscribe: "{{unsubscribe_url}}",
@@ -374,6 +382,19 @@ export default {
         }
     },
     methods: {
+        onFileChange(e) {
+            this.createImages(e.target.files || e.dataTransfer.files);
+        },
+        createImages(files) {
+            [...files].forEach(file => {
+                const reader = new FileReader();
+                reader.onload = e => this.images.push(e.target.result);
+                reader.readAsDataURL(file);
+            });
+        },
+        removeImage(index) {
+            this.images.splice(index, 1);
+        },
         adressCurrent(selectedIndex) {
             if (selectedIndex[0] != undefined && selectedIndex[1] === 1) {
                 this.item.adressBook.index = selectedIndex[0];
