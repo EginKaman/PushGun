@@ -2,16 +2,16 @@
     <main>
         <div class="create-push-mail">
             <div class="create-push-mail__btn">
-                <a :class="{ active: show === 1 }"
+                <a @click="show = 1" :class="{ active: show === 1 }"
                     >1<span>.Информация о рассылке</span></a
                 >
-                <a :class="{ active: show === 2 }"
+                <a @click="show = 2" :class="{ active: show === 2 }"
                     >2<span>.Контент письма</span></a
                 >
-                <a :class="{ active: show === 4 }"
+                <a @click="show = 4" :class="{ active: show === 4 }"
                     >3<span>.Тело письма</span></a
                 >
-                <a :class="{ active: show === 3 }"
+                <a @click="show = 3" :class="{ active: show === 3 }"
                     >4<span>.Предпросмотр и отправка</span></a
                 >
             </div>
@@ -130,8 +130,15 @@
                 </button>
             </form>
             <form v-if="show === 3">
-                <div class="create-push-mail__title">
+                <div class="create-push-mail__title editor">
                     <h2>Информация о рассылке</h2>
+                    <a v-if="editContent === 1" @click="editContent = null"
+                        >Сохранить</a
+                    >
+                    <a v-if="editContent != 1" @click="editContent = 1"
+                        ><span>Редактировать</span>
+                        <img src="../../images/pan.svg" alt=""
+                    /></a>
                 </div>
                 <div class="create-push-mail__block">
                     <div class="create-push-mail__block__item wrapp">
@@ -142,26 +149,66 @@
                     </div>
                     <div class="create-push-mail__block__item wrapp">
                         <p>Отправитель:</p>
-                        <span>{{ form.sender_name }}</span>
+                        <span v-if="editContent != 1">{{
+                            form.sender_name
+                        }}</span>
+                        <input
+                            v-if="editContent === 1"
+                            v-model="form.sender_name"
+                            type="text"
+                            placeholder="Значение"
+                        />
                     </div>
                     <div class="create-push-mail__block__item wrapp">
                         <p>Тема сообщения:</p>
-                        <span>{{ form.subject }}</span>
+                        <span v-if="editContent != 1">{{ form.subject }}</span>
+                        <input
+                            v-if="editContent === 1"
+                            v-model="form.sender_name"
+                            type="text"
+                            placeholder="Значение"
+                        />
                     </div>
                 </div>
-                <div class="create-push-mail__title">
+                <div class="create-push-mail__title editor">
                     <h2>Контент письма</h2>
+                    <a @click="editContent = null" v-if="editContent === 2"
+                        >Сохранить</a
+                    >
+                    <a v-if="editContent != 2" @click="editContent = 2"
+                        ><span>Редактировать</span>
+                        <img src="../../images/pan.svg" alt=""
+                    /></a>
                 </div>
                 <div class="create-push-mail__block">
                     <div class="create-push-mail__content">
                         <div @click="imgModal = true" class="image__wrapper">
                             <img
+                                v-if="editContent != 2"
                                 class="image-before"
                                 src="../../images/search.svg"
                                 alt=""
                             />
-                            <div v-for="(image, i) in images">
+                            <div
+                                v-if="editContent != 2"
+                                v-for="(image, i) in images"
+                            >
                                 <img :src="image" />
+                            </div>
+                            <div
+                                v-if="editContent === 2"
+                                class="create-push-mail__block__item label"
+                            >
+                                <p>
+                                    Прикрепить файл
+                                </p>
+                                <label>
+                                    <input type="file" @change="onFileChange" />
+                                    <span
+                                        >Перетащите файл сюда или кликните,
+                                        чтобы загрузить их</span
+                                    >
+                                </label>
                             </div>
                         </div>
                         <div>
@@ -175,6 +222,40 @@
                                 <a style="font-weight: 400; cursor: pointer"
                                     >Отказаться от рассылки</a
                                 >
+                            </div>
+                            <div class="create-push-mail__block__item">
+                                <p style="font-weight: 400; cursor: pointer">
+                                    <img
+                                        style="max-width: 15px"
+                                        src="../../images/alert1.svg"
+                                        alt=""
+                                    />
+
+                                    Ссылка на сайт Pushgun будет добавлена внизу
+                                    письма.<br />
+                                    Чтобы отключить упоминание Pushgun в ваших
+                                    рассылках,<br />
+                                    подключите один из
+                                    <a
+                                        style="color: #02acfd; text-decoration: underline"
+                                        >платных тарифных планов</a
+                                    >
+                                </p>
+                            </div>
+                            <div class="create-push-mail__block__item">
+                                <p style="font-weight: 400; cursor: pointer">
+                                    <img
+                                        style="max-width: 15px"
+                                        src="../../images/alert2.svg"
+                                        alt=""
+                                    />
+                                    Почтовые сервисы могут отнести данную
+                                    рассылку к спаму.
+                                    <a
+                                        style="color: #02acfd; text-decoration: underline"
+                                        >Получите рекомендации</a
+                                    ><br />По улучшению доставляемости
+                                </p>
                             </div>
                             <div class="create-push-mail__block__item">
                                 <div
@@ -198,12 +279,13 @@
                 <div class="create-push-mail__block__item info inform">
                     <span></span>
                     <p>
-                        Вы собираетесь отправить <a>1 письмо.</a> Из них уникальных
-                        подписчиков, которым вы уже отправляли рассылки: <a>0.</a> <br>
+                        Вы собираетесь отправить <a>1 письмо.</a> Из них
+                        уникальных подписчиков, которым вы уже отправляли
+                        рассылки: <a>0.</a> <br />
                         Общий размер одного письма: <a>748 B</a>
                     </p>
                 </div>
-                <div class="create-push-mail__title">
+                <div class="create-push-mail__title editor">
                     <h2>Отправка рассылки</h2>
                 </div>
                 <div class="create-push-mail__block">
@@ -231,7 +313,6 @@
                                 </p>
                             </label>
                             <calendar
-                                v-if="modeSend === 2"
                                 calendarType="simple"
                                 placeholder="Выберите дату"
                                 :key="modeSend"
@@ -245,7 +326,7 @@
                             ></calendar>
                         </div>
                     </div>
-                    <div class="create-push-mail__block__item checkbox">
+                    <div style="display: none" class="create-push-mail__block__item checkbox">
                         <label>
                             <input name="send" type="checkbox" />
                             <p>Переотправить рассылку по непрочитанным</p>
@@ -335,6 +416,7 @@ export default {
     },
     props: ["addressbooks"],
     data: () => ({
+        editContent: null,
         images: [],
         imgModal: false,
         show: 1,

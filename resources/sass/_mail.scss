@@ -698,8 +698,8 @@
                         padding: 8px;
                     }
                     input[type="radio"]::before {
-                        width: 12px;
-                        height: 12px;
+                        width: 10px;
+                        height: 10px;
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%, -50%);
@@ -738,7 +738,7 @@
             textarea {
                 resize: none;
                 width: 60%;
-                border: 1px solid #e5e5e5;
+                border: 2px solid #e5e5e5;
                 box-sizing: border-box;
                 border-radius: 4px;
                 padding: 10px;
@@ -747,6 +747,16 @@
     }
     &__title {
         margin: 32px 0px;
+        &.editor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            a {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+            }
+        }
         h2 {
             font-weight: normal;
             font-style: italic;
