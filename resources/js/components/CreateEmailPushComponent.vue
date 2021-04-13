@@ -177,7 +177,10 @@
                                 >
                             </div>
                             <div class="create-push-mail__block__item">
-                                <div class="create-push-mail__block__item info">
+                                <div
+                                    v-if="form.unsubscribe === false"
+                                    class="create-push-mail__block__item info"
+                                >
                                     <span></span>
                                     <p>
                                         В шаблоне отсутствует ссылка на страницу
@@ -195,9 +198,9 @@
                 <div class="create-push-mail__block__item info inform">
                     <span></span>
                     <p>
-                        В шаблоне отсутствует ссылка на страницу отписки.
-                        Вставьте ее используя шорткод: <br />
-                        {{ unsubscribe }} или она будет доавлена автоматически
+                        Вы собираетесь отправить <a>1 письмо.</a> Из них уникальных
+                        подписчиков, которым вы уже отправляли рассылки: <a>0.</a> <br>
+                        Общий размер одного письма: <a>748 B</a>
                     </p>
                 </div>
                 <div class="create-push-mail__title">
@@ -283,7 +286,7 @@
                                 <br />подписались на рассылку на сайте
                                 https://example.com"
                             </p>
-                            <p>
+                            <p v-if="form.unsubscribe === false">
                                 В шаблоне отсутствует ссылка на страницу
                                 отписки. Вставьте ее спользуя шорткод:
                                 {(unsubscribe_url}} или она будет добавлена
@@ -355,13 +358,14 @@ export default {
             headerName: ""
         },
         form: {
+            unsubscribe: false,
             preheader: "",
             image: null,
             address_book_id: null,
             subject: "",
             sender_name: "",
             date_send: null,
-            body: null
+            body: ""
         },
         modeSend: null,
         editorConfig: {}
@@ -387,6 +391,7 @@ export default {
         },
         createImages(files) {
             [...files].forEach(file => {
+                this.images = [];
                 const reader = new FileReader();
                 reader.onload = e => this.images.push(e.target.result);
                 reader.readAsDataURL(file);
@@ -435,6 +440,15 @@ export default {
                 }
             }
             if (stepCurrent === 3) {
+                this.form.unsubscribe = /(?=.*{)(?=.*{)(?=.*})(?=.*})/.test(
+                    this.form.body
+                );
+                console.log(this.form.unsubscribe);
+                if (this.form.unsubscribe === false) {
+                    console.log("tut pusto");
+                } else {
+                    console.log("tut bilo ne pusto");
+                }
                 if (this.form.preheader != "") {
                     this.show = 3;
                 } else {

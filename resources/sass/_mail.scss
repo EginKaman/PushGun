@@ -558,6 +558,10 @@
     .image__wrapper {
         position: relative;
         transition: 0.2s ease-out;
+        img {
+            max-width: 325px;
+            margin: 0 auto;
+        }
         .image-before {
             position: absolute;
             top: 50%;
@@ -643,6 +647,11 @@
                 background: rgba(59, 131, 120, 0.05);
                 box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
                 border-radius: 10px;
+                p {
+                    a {
+                        color: #3b8378;
+                    }
+                }
                 span {
                     opacity: 1;
                     background: #3b8378;

@@ -64,19 +64,18 @@ $(document).ready(function () {
     function textCount() {
         if ($('body').find('.trumbowyg-editor')) {
             $(document).on('keyup', function (e) {
-                let sum = 0
-                let array = []
+                let text = ''
+                let textCount = ''
                 $('.trumbowyg-editor p').each(function () {
-                    array.push($(this).text().length)
+                    text = $(this).text()
                 })
-                for (var i = 0; i < array.length; i++) {
-                    sum = sum + parseInt(array[i]);
-                }
-                $('.trumbowyg-count').text(sum)
+                textCount = text.match(/\S+?\s|\S+?$/g).length;
+                $('.trumbowyg-count').text(textCount)
             })
         }
     }
     textCount()
+
 
 
     $(".visa").each(function () {
