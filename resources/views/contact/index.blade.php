@@ -7,7 +7,7 @@
                 <h1 class="title">@lang('Адресная книга')</h1>
             </div>
             <div class="filter__popup">
-                <form action="{{ route('push.index') }}">
+                <form action="{{ route('contact.index') }}">
                     <div class="filter__popup__inner">
                         <div class="filter__popup_block w-50">
                             <label class="filter__popup_label" for="firstDate-input">@lang('Начальная дата')</label>
@@ -20,17 +20,9 @@
                                 value="{{ request('end') }}">
                         </div>
                         <div class="filter__popup_block">
-                            <label class="filter__popup_label" for="text-input">@lang('Текст')</label>
-                            <input id="text-input" class="filter__input" name="text" type="text"
-                                value="{{ request('text') }}">
-                        </div>
-                        <div class="filter__popup_block">
-                            <label class="filter__popup_label" for="site">@lang('Сайт')</label>
-                            <select id="site" class="filter__input filter__selector" name="site" type="text">
-                                <option v-for="site in $store.state.sites.sites" :key="site.id" @if (request('site')) :selected="site.id === {{ request('site') }}" @endif
-                                    :value="site.id">@{{ site . link }}
-                                </option>
-                            </select>
+                            <label class="filter__popup_label" for="text-input">@lang('Название')</label>
+                            <input id="text-input" class="filter__input" name="name" type="text"
+                                value="{{ request('name') }}">
                         </div>
                         <div class="button_lb">
                             <span class="lb_button_circle">

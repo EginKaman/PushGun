@@ -32,4 +32,9 @@ class AddressBookFilter extends ModelFilter
         }
         return $this;
     }
+
+    public function name($name): AddressBookFilter
+    {
+        return $this->where('name', 'like', "%{$name}%");
+    }
 }
