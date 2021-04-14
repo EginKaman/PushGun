@@ -48,7 +48,7 @@ class runEmailMailings extends Command
         $emailmailings = EmailMailing::where('is_sent', 0)->whereBetween('date_send', [
             $now,
             $to
-        ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook', 'user'])->get();
+        ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook', 'user', 'emailSender'])->get();
         foreach ($emailmailings as $emailmailing) {
             $emails = [];
             foreach ($emailmailing->addressbook->contacts as $contact) {
@@ -63,7 +63,7 @@ class runEmailMailings extends Command
                 }
             }
             $this->info(count($emails));
-            Mail::cc($emails)->send(new MailEmailMailing($emailmailing->emailmessage->body, $emailmailing->user->email));
+            Mail::cc($emails)->send(new MailEmailMailing($emailmailing->emailmessage->body, $emailmailing->emailSender->address));
             $emailmailing->is_sent = true;
             $emailmailing->save();
         }

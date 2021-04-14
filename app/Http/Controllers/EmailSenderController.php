@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\EmailSender;
+use App\Exports\EmailSenderExport;
 use App\Http\Requests\EmailSenderStoreRequest;
 use App\Http\Requests\EmailSenderUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmailSenderController extends Controller
 {
@@ -31,5 +33,11 @@ class EmailSenderController extends Controller
     {
         $emailSender = Auth::user()->emailSenders()->findOrFail($id);
         $input = $request->validated();
+    }
+
+    public function exportEmailSenders(): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        $emailSenders = Auth::user()->emailSenders()->get();
+        return Excel::download(new EmailSenderExport($emailSenders), 'emailsender.xlsx');
     }
 }

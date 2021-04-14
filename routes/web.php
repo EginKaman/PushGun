@@ -54,6 +54,7 @@ Route::group([
             Route::post('/', [\App\Http\Controllers\EmailSenderController::class, 'store'])->name('emailSender.store');
             Route::delete('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'destroy'])->name('emailSender.destroy');
             Route::put('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'update'])->name('emailSender.update');
+            Route::get('/emailSenders.xlsx', [\App\Http\Controllers\EmailSenderController::class, 'exportEmailSenders'])->name('emailSender.export');
         });
         Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
         Route::delete('/autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
