@@ -63,7 +63,7 @@ class runEmailMailings extends Command
                 }
             }
             $this->info(count($emails));
-            Mail::cc($emails)->send(new MailEmailMailing(($emailmailing->emailmessage->body)));
+            Mail::cc($emails)->send(new MailEmailMailing($emailmailing->emailmessage->body, $emailmailing->user->email));
             $emailmailing->is_sent = true;
             $emailmailing->save();
         }

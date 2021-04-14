@@ -16,9 +16,10 @@ class EmailMailing extends Mailable
      *
      * @return void
      */
-    public function __construct(string $body)
+    public function __construct(string $body, string $sender)
     {
         $this->body = $body;
+        $this->sender = $sender;
     }
 
     /**
@@ -28,7 +29,7 @@ class EmailMailing extends Mailable
      */
     public function build()
     {
-        return $this->subject('Email mailing')->view('mails.emailmailing', [
+        return $this->from($this->sender)->subject('Email mailing')->view('mails.emailmailing', [
             'body' => $this->body
         ]);
     }

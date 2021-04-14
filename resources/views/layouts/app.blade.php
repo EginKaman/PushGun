@@ -27,11 +27,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/trumbowyg.min.js"
         integrity="sha512-sffB9/tXFFTwradcJHhojkhmrCj0hWeaz8M05Aaap5/vlYBfLx5Y7woKi6y0NrqVNgben6OIANTGGlojPTQGEw=="
         crossorigin="anonymous"></script>
-<<<<<<< HEAD
-=======
     {{-- <script src="http://www.pushgun.ru/js/redactor.js"></script> --}}
 
->>>>>>> d8c37ae58e5aaac84ac857d62784be445bd9ba3a
     <meta name="theme-color" content="#ffffff">
 
 
