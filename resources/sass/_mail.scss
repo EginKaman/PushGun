@@ -558,6 +558,10 @@
     .image__wrapper {
         position: relative;
         transition: 0.2s ease-out;
+        img {
+            max-width: 325px;
+            margin: 0 auto;
+        }
         .image-before {
             position: absolute;
             top: 50%;
@@ -643,6 +647,11 @@
                 background: rgba(59, 131, 120, 0.05);
                 box-shadow: 0px 2px 8px rgba(134, 140, 144, 0.05);
                 border-radius: 10px;
+                p {
+                    a {
+                        color: #3b8378;
+                    }
+                }
                 span {
                     opacity: 1;
                     background: #3b8378;
@@ -689,8 +698,8 @@
                         padding: 8px;
                     }
                     input[type="radio"]::before {
-                        width: 12px;
-                        height: 12px;
+                        width: 10px;
+                        height: 10px;
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%, -50%);
@@ -729,7 +738,7 @@
             textarea {
                 resize: none;
                 width: 60%;
-                border: 1px solid #e5e5e5;
+                border: 2px solid #e5e5e5;
                 box-sizing: border-box;
                 border-radius: 4px;
                 padding: 10px;
@@ -738,6 +747,16 @@
     }
     &__title {
         margin: 32px 0px;
+        &.editor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            a {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+            }
+        }
         h2 {
             font-weight: normal;
             font-style: italic;
@@ -1002,4 +1021,17 @@
             padding-bottom: 26px;
         }
     }
+}
+.icon_wrapper {
+    height: 256px;
+    width: 256px;
+    background-color: #fefefe;
+    border: dashed 1px #ccc;
+}
+.icon_wrapper div {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
 }

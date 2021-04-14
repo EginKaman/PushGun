@@ -27,6 +27,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/trumbowyg.min.js"
         integrity="sha512-sffB9/tXFFTwradcJHhojkhmrCj0hWeaz8M05Aaap5/vlYBfLx5Y7woKi6y0NrqVNgben6OIANTGGlojPTQGEw=="
         crossorigin="anonymous"></script>
+<<<<<<< HEAD
+=======
+    {{-- <script src="http://www.pushgun.ru/js/redactor.js"></script> --}}
+
+>>>>>>> d8c37ae58e5aaac84ac857d62784be445bd9ba3a
     <meta name="theme-color" content="#ffffff">
 
 
@@ -48,7 +53,6 @@
     <!-- Scripts -->
     @routes()
     <script src="{{ asset('js/app.js') }}" defer></script>
-
     @stack('scripts')
 
     <!-- Styles -->
@@ -241,8 +245,14 @@
                             </div>
                             <div class="account__link_exit">
                                 <div class="account__link_wrapper icon icon-exit">
+<<<<<<< HEAD
                                     <a href="{{ route('logout') }}" class="account__bottom_link" onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
+=======
+                                    <a href="{{ route('logout') }}" class="account__bottom_link"
+                                        onclick="event.preventDefault();
+                                                                                   document.getElementById('logout-form').submit();">
+>>>>>>> d8c37ae58e5aaac84ac857d62784be445bd9ba3a
                                         @lang('Выйти')
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -267,6 +277,21 @@
                                 <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                             </div>
                             <div class="nav__item_wrap">
+<<<<<<< HEAD
+=======
+                                <a href="/account">@lang('Все рассылки')</a>
+
+                            </div>
+                            <div class="nav__item_wrap">
+                                <a href="/account/autoMailing">@lang('Авторассылки')</a>
+
+                            </div>
+                            <div class="nav__item_wrap">
+                                <a href="/email/push">@lang('E-Mail рассылки')</a>
+
+                            </div>
+                            <div class="nav__item_wrap">
+>>>>>>> d8c37ae58e5aaac84ac857d62784be445bd9ba3a
                                 {{-- <a href="#">@lang('Мои сайты')</a> --}}
                                 <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                             </div>
@@ -312,6 +337,28 @@
             <a href="{{ route('ticket.index') }}">@lang('Тех. поддержка')</a>
             <a href="{{ route('page.privacy') }}">@lang('Политика конфиденциальности')</a>
         </footer>
+    </div>
+    <div class="resize-img-modal">
+        <form class="resize-form">
+            <div class="trumbowyg-modal-boxes">
+                <span class="resize-title">Изменить размер</span>
+                <label>
+                    <input type="number" name="height" value="">
+                    <span class="trumbowyg-input-infos">
+                        <span>Высота/px</span>
+                    </span>
+                </label>
+                <label>
+                    <input type="number" name="width" value="">
+                    <span class="trumbowyg-input-infos">
+                        <span>Ширина/px</span>
+                    </span>
+                </label>
+                <button class="trumbowyg-modal-button trumbowyg-modal-submit resize-submit"
+                    type="submit">Confirm</button>
+                <button class="trumbowyg-modal-button trumbowyg-modal-reset resize-cancel" type="reset">Cancel</button>
+            </div>
+        </form>
     </div>
 </body>
 
