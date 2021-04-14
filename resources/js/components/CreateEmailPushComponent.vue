@@ -43,23 +43,19 @@
                                     ])
                                 )
                             "
-                            v-model="item.adressSend.title"
+                            v-model="form.email_sender_id"
                         >
                             <option style="display: none" disabled selected
                                 >Значение</option
                             >
-                            <option>Адрес отправителя 1</option>
-                            <option>Адрес отправителя 2</option>
-                            <option>Адрес отправителя 3</option>
+                            <option
+                                v-for="sender in emailsenders"
+                                :value="sender.id"
+                                :key="sender.id"
+                            >
+                                {{ sender.address }}
+                            </option>
                         </select>
-                    </div>
-                    <div class="create-push-mail__block__item">
-                        <p>Имя отправителя</p>
-                        <input
-                            v-model="form.sender_name"
-                            type="text"
-                            placeholder="Значение"
-                        />
                     </div>
                     <div class="create-push-mail__block__item">
                         <p>Тема сообщения</p>
@@ -326,7 +322,10 @@
                             ></calendar>
                         </div>
                     </div>
-                    <div style="display: none" class="create-push-mail__block__item checkbox">
+                    <div
+                        style="display: none"
+                        class="create-push-mail__block__item checkbox"
+                    >
                         <label>
                             <input name="send" type="checkbox" />
                             <p>Переотправить рассылку по непрочитанным</p>
@@ -414,7 +413,7 @@ export default {
         Calendar,
         VueEditor
     },
-    props: ["addressbooks"],
+    props: ["addressbooks", "emailsenders"],
     data: () => ({
         editContent: null,
         images: [],
@@ -447,7 +446,8 @@ export default {
             subject: "",
             sender_name: "",
             date_send: null,
-            body: ""
+            body: "",
+            email_sender_id: null
         },
         modeSend: null,
         editorConfig: {}
@@ -509,7 +509,7 @@ export default {
             if (stepCurrent === 1) {
                 if (
                     this.form.address_book_id != 0 &&
-                    this.form.sender_name != "" &&
+                    this.form.email_sender_id &&
                     this.form.subject != ""
                 ) {
                     this.show = 2;
@@ -559,7 +559,8 @@ export default {
             form.append("image", this.form.image);
             form.append("address_book_id", this.form.address_book_id);
             form.append("subject", this.form.subject);
-            form.append("sender_name", this.form.sender_name);
+            // form.append("sender_name", this.form.sender_name);
+            form.append("email_sender_id", this.form.email_sender_id);
             form.append("body", this.form.body);
             if (this.form.date_send !== null) {
                 form.append("date_send", this.form.date_send);

@@ -8,6 +8,7 @@ use App\Http\Requests\EmailMailingCreateRequest;
 use App\Http\Resources\AddressBooksResource;
 use App\Http\Resources\EmailMailingResource;
 use App\Http\Resources\EmailMailingsResource;
+use App\Http\Resources\EmailSendersResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use NotificationChannels\WebPush\PushSubscription;
@@ -64,9 +65,12 @@ class EmailPageController extends Controller
      */
     public function create()
     {
-        $addressBooks = Auth::user()->addressBooks()->get();
+        $user = Auth::user();
+        $addressBooks = $user->addressBooks()->get();
+        $emailSenders = $user->emailSenders()->get();
         return view('email.create', [
-            'addressBooks' => new AddressBooksResource($addressBooks)
+            'addressBooks' => new AddressBooksResource($addressBooks),
+            'emailSenders' => new EmailSendersResource($emailSenders)
         ]);
     }
 
@@ -85,12 +89,13 @@ class EmailPageController extends Controller
         $emailMailing->user()->associate($user);
         $emailMessage->user()->associate($user);
         $emailMessage->preheader = $input['preheader'];
-        $emailMessage->image = $input['image']->store('public/mails');
+        // $emailMessage->image = $input['image']->store('public/mails');
         $emailMessage->body = $input['body'];
         $emailMessage->save();
         $emailMailing->fill($input);
         $emailMailing->addressBook()->associate($input['address_book_id']);
         $emailMailing->emailMessage()->associate($emailMessage);
+        $emailMailing->emailSender()->associate($input['email_sender_id']);
         $emailMailing->save();
         return response()->json([
             'id' => $emailMailing->id

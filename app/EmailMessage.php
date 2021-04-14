@@ -8,7 +8,6 @@ class EmailMessage extends Model
 {
     protected $fillable = [
         'preheader',
-        'image',
         'body'
     ];
 

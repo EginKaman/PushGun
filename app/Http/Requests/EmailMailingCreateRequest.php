@@ -25,11 +25,9 @@ class EmailMailingCreateRequest extends FormRequest
     {
         return [
             'preheader' => ['required', 'string'],
-            'image' => ['nullable', 'image', 'max:5128'],
-
             'address_book_id' => ['required', 'exists:address_books,id'],
+            'email_sender_id' => ['required', 'exists:email_senders,id'],
             'subject' => ['required', 'string'],
-            'sender_name' => ['required', 'string'],
             'date_send' => ['nullable', 'date'],
             'body' => ['nullable', 'string']
         ];

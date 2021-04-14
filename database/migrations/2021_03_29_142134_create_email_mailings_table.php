@@ -18,9 +18,9 @@ class CreateEmailMailingsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('email_message_id')->constrained('email_messages');
             $table->foreignId('address_book_id')->constrained('address_books');
+            $table->foreignId('email_sender_id')->constrained('email_senders');
             $table->boolean('is_sent')->default(false);
             $table->string('subject');
-            $table->string('sender_name');
             $table->timestamp('date_send')->nullable();
             $table->timestamps();
         });

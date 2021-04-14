@@ -8,9 +8,7 @@
                     <h1 class="title">@lang('Настройки сервиса')</h1>
                 </div>
                 <setting-mailing-component :emailSenders="{{ json_encode($emailSenders) }}"></setting-mailing-component>
-                {{
-                    $emailSenders->links()
-                }}
+                {{ $emailSenders->links() }}
             </section>
         </div>
     </main>

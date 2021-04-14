@@ -242,14 +242,9 @@
                             </div>
                             <div class="account__link_exit">
                                 <div class="account__link_wrapper icon icon-exit">
-<<<<<<< HEAD
-                                    <a href="{{ route('logout') }}" class="account__bottom_link" onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
-=======
                                     <a href="{{ route('logout') }}" class="account__bottom_link"
                                         onclick="event.preventDefault();
                                                                                    document.getElementById('logout-form').submit();">
->>>>>>> d8c37ae58e5aaac84ac857d62784be445bd9ba3a
                                         @lang('Выйти')
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -274,8 +269,6 @@
                                 <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
                             </div>
                             <div class="nav__item_wrap">
-<<<<<<< HEAD
-=======
                                 <a href="/account">@lang('Все рассылки')</a>
 
                             </div>
@@ -288,7 +281,6 @@
 
                             </div>
                             <div class="nav__item_wrap">
->>>>>>> d8c37ae58e5aaac84ac857d62784be445bd9ba3a
                                 {{-- <a href="#">@lang('Мои сайты')</a> --}}
                                 <img class="nav__item_img" src="{{ asset('images/sites.svg') }}" alt="">
                             </div>

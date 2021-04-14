@@ -8,7 +8,6 @@ class EmailMailing extends Model
 {
     protected $fillable = [
         'subject',
-        'sender_name',
         'date_send',
         'is_sent'
 
@@ -58,5 +57,15 @@ class EmailMailing extends Model
     public function emailMessage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(EmailMessage::class, 'email_message_id', 'id');
+    }
+
+    /**
+     * Get the emailSender that owns the EmailMailing
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function emailSender(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(EmailSender::class, 'email_sender_id', 'id');
     }
 }
