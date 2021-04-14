@@ -65,6 +65,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     /**
+     * Get all of the emailSenders for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function emailSenders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EmailSender::class);
+    }
+
+    /**
      * Get all of the emailMailings for the User
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -92,20 +92,6 @@ export default {
     props: ["addressbooks"],
     data: () => ({
         show: false,
-        items: [
-            {
-                id: 1,
-                data: "03.02.2021 15:00",
-                name: "Название адресной книги",
-                count: "9 568"
-            },
-            {
-                id: 2,
-                data: "03.02.2021 15:00",
-                name: "Название адресной книги",
-                count: "9 568"
-            }
-        ],
         form: {
             name: null
         }

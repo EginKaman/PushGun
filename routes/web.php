@@ -50,6 +50,11 @@ Route::group([
     Auth::routes(['verify' => true]);
     Route::middleware(['auth'])->group(function () {
         //TODO: REFACTORING!!!!
+        Route::prefix('emailSender')->group(function () {
+            Route::post('/', [\App\Http\Controllers\EmailSenderController::class, 'store'])->name('emailSender.store');
+            Route::delete('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'destroy'])->name('emailSender.destroy');
+            Route::put('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'update'])->name('emailSender.update');
+        });
         Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
         Route::delete('/autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
         Route::put(
