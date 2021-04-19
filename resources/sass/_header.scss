@@ -2,8 +2,8 @@
     background: $blue;
     padding: 14px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.301);
-    .nav__menu{
-        a{
+    .nav__menu {
+        a {
             color: #323441;
         }
     }
@@ -552,11 +552,15 @@
     .bell {
         margin: 0px 27px 0px 0px;
     }
-    .header {
+    .headers-wrapp {
         position: fixed;
         top: 0;
         left: 0;
         z-index: 99999;
+        width: 100%;
+    }
+
+    .header {
         &__burger {
             display: flex;
             transition: opacity 0.3s ease;

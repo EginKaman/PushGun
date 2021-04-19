@@ -24,7 +24,8 @@ class AddressBookFilterRequest extends FormRequest
     public function rules()
     {
         return [
-            'sort' => ['nullable', 'string']
+            'sort' => ['nullable', 'string'],
+            'name' => ['nullable', 'string']
         ];
     }
 }
