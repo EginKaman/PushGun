@@ -1,5 +1,5 @@
 <template>
-    <div class="main automailing-vue">
+    <div class="automailing-vue">
         <div
             :class="{ noActive: showMenus === true }"
             class="button_green mr-24"

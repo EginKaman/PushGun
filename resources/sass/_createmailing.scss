@@ -19,7 +19,7 @@
         align-items: center;
     }
     p,
-    ul>li {
+    ul > li {
         color: #3b8378;
         cursor: pointer;
     }
@@ -217,5 +217,26 @@
     }
     .savemailing__wrapper__content__item .right__block__wrapper {
         width: 240px;
+    }
+}
+.pre-header-email-page {
+    display: flex;
+    align-items: center;
+    a {
+        display: block;
+    }
+}
+@media screen and (max-width: 425px) {
+    .pre-header-email-page {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .general__stats__tabs{
+        a{
+            display: block;
+            margin: 0 auto;
+        }
     }
 }
