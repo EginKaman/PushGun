@@ -25,6 +25,7 @@ class EmailMailingCreateRequest extends FormRequest
     {
         return [
             'preheader' => ['required', 'string'],
+            'file' => ['nullable', 'file'],
             'address_book_id' => ['required', 'exists:address_books,id'],
             'email_sender_id' => ['required', 'exists:email_senders,id'],
             'subject' => ['required', 'string'],

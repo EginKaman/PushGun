@@ -80,16 +80,7 @@
 
                 <div class="create-push-mail__block">
                     <div class="create-push-mail__content">
-                        <div @click="imgModal = true" class="image__wrapper">
-                            <img
-                                class="image-before"
-                                src="../../images/search.svg"
-                                alt=""
-                            />
-                            <div v-for="(image, i) in images">
-                                <img :src="image" />
-                            </div>
-                        </div>
+                        <div class="preview_email" v-html="form.body"></div>
                         <div>
                             <div
                                 style="margin-bottom: 0"
@@ -112,10 +103,12 @@
                                 </p>
                                 <label>
                                     <input type="file" @change="onFileChange" />
-                                    <span
-                                        >Перетащите файл сюда или кликните,
-                                        чтобы загрузить их</span
-                                    >
+                                    <span>
+                                        {{
+                                            uploadFileName ||
+                                                "Перетащите файл сюда или кликните, чтобы загрузить их"
+                                        }}
+                                    </span>
                                 </label>
                             </div>
                         </div>
@@ -178,35 +171,7 @@
                 </div>
                 <div class="create-push-mail__block">
                     <div class="create-push-mail__content">
-                        <div @click="imgModal = true" class="image__wrapper">
-                            <img
-                                v-if="editContent != 2"
-                                class="image-before"
-                                src="../../images/search.svg"
-                                alt=""
-                            />
-                            <div
-                                v-if="editContent != 2"
-                                v-for="(image, i) in images"
-                            >
-                                <img :src="image" />
-                            </div>
-                            <div
-                                v-if="editContent === 2"
-                                class="create-push-mail__block__item label"
-                            >
-                                <p>
-                                    Прикрепить файл
-                                </p>
-                                <label>
-                                    <input type="file" @change="onFileChange" />
-                                    <span
-                                        >Перетащите файл сюда или кликните,
-                                        чтобы загрузить их</span
-                                    >
-                                </label>
-                            </div>
-                        </div>
+                        <div v-html="form.body"></div>
                         <div>
                             <div
                                 style="margin-bottom: 0"
@@ -438,16 +403,17 @@ export default {
             topic: "",
             headerName: ""
         },
+        uploadFileName: "",
         form: {
             unsubscribe: false,
             preheader: "",
-            image: null,
             address_book_id: null,
             subject: "",
             sender_name: "",
             date_send: null,
             body: "",
-            email_sender_id: null
+            email_sender_id: null,
+            file: null
         },
         modeSend: null,
         editorConfig: {}
@@ -469,15 +435,9 @@ export default {
     },
     methods: {
         onFileChange(e) {
-            this.createImages(e.target.files || e.dataTransfer.files);
-        },
-        createImages(files) {
-            [...files].forEach(file => {
-                this.images = [];
-                const reader = new FileReader();
-                reader.onload = e => this.images.push(e.target.result);
-                reader.readAsDataURL(file);
-            });
+            const file = e?.target?.files[0];
+            this.uploadFileName = file.name;
+            this.form.file = file;
         },
         removeImage(index) {
             this.images.splice(index, 1);
@@ -556,7 +516,7 @@ export default {
         createEmailMailing() {
             const form = new FormData();
             form.append("preheader", this.form.preheader);
-            form.append("image", this.form.image);
+            if(this.form.file) form.append("file", this.form.file);
             form.append("address_book_id", this.form.address_book_id);
             form.append("subject", this.form.subject);
             // form.append("sender_name", this.form.sender_name);
