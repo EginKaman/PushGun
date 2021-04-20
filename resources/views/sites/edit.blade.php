@@ -65,7 +65,6 @@
 {{--                                    <input type="radio" name="request" id="onJoin" value="visit"--}}
 {{--                                           @if($site->request === 'visit')checked @endif>--}}
 {{--                                    <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>--}}
-{{--                                    <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">--}}
 {{--                                </div>--}}
                                 {{--                                <div class="setreq__radio">--}}
                                 {{--                                    <input type="radio" name="request" id="onClick" value="click"--}}
@@ -161,7 +160,6 @@
                 {{--                                    <input type="radio" name="request" id="onJoin" value="visit"--}}
                 {{--                                           @if($site->request === 'visit')checked @endif>--}}
                 {{--                                    <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>--}}
-                {{--                                    <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">--}}
                 {{--                                </div>--}}
                 {{--                                --}}{{--                                <div class="setreq__radio">--}}
                 {{--                                --}}{{--                                    <input type="radio" name="request" id="onClick" value="click"--}}

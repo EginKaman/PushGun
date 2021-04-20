@@ -50,14 +50,12 @@
                                         <input type="radio" name="request" id="onJoin" value="visit"
                                                @if(old('request') === 'visit') checked @endif>
                                         <label for="onJoin" class="label-checkbox">@lang('При заходе на сайт')</label>
-                                        <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">
                                     </div>
 {{--                                    <div class="setreq__radio">--}}
 {{--                                        <input type="radio" name="request" id="onClick" value="click"--}}
 {{--                                               @if(old('request') === 'click') checked @endif>--}}
 {{--                                        <label for="onClick"--}}
 {{--                                               class="label-checkbox">@lang('При клике на элемент')</label>--}}
-{{--                                        <img class="setreq__info" src="{{ asset('images/info.svg') }}" alt="">--}}
 {{--                                    </div>--}}
 {{--                                    <div class="setreq__radio">--}}
 {{--                                        <input type="radio" name="request" id="intermediate" value="intermediate"--}}
