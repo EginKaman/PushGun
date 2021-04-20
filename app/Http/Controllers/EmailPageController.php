@@ -56,7 +56,7 @@ class EmailPageController extends Controller
      */
     public function sms()
     {
-        return view('email.sms',);
+        return view('email.sms');
     }
     /**
      * Show the form for creating a new resource.
