@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactsTable extends Migration
+class CreateSmsSendersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('sms_senders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('address_book_id')->nullable()->cascadeOnDelete();
-            $table->foreignId('sms_message_id')->nullable()->references('id')->on('sms_messages');
-            $table->string('address');
-            $table->boolean('is_email');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('sms_senders');
     }
 }

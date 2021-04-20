@@ -20,4 +20,14 @@ class Contact extends Model
     {
         return $this->belongsTo(AddressBook::class, 'address_book_id', 'id');
     }
+
+    /**
+     * Get the sms that owns the Contact
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sms(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(SmsMailing::class, 'sms_message_id', 'id');
+    }
 }
