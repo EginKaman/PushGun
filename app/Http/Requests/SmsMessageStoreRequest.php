@@ -24,7 +24,7 @@ class SmsMessageStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'sms_sender_id' => ['nullable', 'exists:sms_senders,id'],
+            'sender_name' => ['required', 'string'],
             'text' => ['required', 'string'],
             'date_send' => ['nullable', 'date'],
             'contacts' => ['nullable', 'array'],

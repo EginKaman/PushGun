@@ -28,6 +28,6 @@ class Contact extends Model
      */
     public function sms(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(SmsMailing::class, 'sms_message_id', 'id');
+        return $this->belongsTo(SmsMessage::class, 'sms_message_id', 'id');
     }
 }

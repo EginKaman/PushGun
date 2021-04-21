@@ -15,8 +15,9 @@ class SmsMessageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'sms_sender_id' => $this->sms_sender_id,
-            'sms_sender' => new SmsSenderResource($this->whenLoaded('sender')),
+            // 'sms_sender_id' => $this->sms_sender_id,
+            // 'sms_sender' => new SmsSenderResource($this->whenLoaded('sender')),
+            'sender_name' => $this->sender_name,
             'address_book_id' => $this->address_book_id,
             'address_book' => new AddressBookResource($this->whenLoaded('addressbook')),
             'text' => $this->text,

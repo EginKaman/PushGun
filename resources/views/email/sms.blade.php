@@ -7,7 +7,7 @@
             <div class="general__title">
                 <h1 class="title">@lang('Отправить sms')</h1>
             </div>
-            <sms-create-component></sms-create-component>
+            <sms-create-component :addressbooks="{{json_encode($addressbooks)}}"></sms-create-component>
         </section>
     </div>
 </main>

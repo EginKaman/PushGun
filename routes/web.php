@@ -40,7 +40,6 @@ Route::group([
         Route::get('/push', [\App\Http\Controllers\EmailPageController::class, 'Push'])->name('email.push');
         Route::get('/details/{id}', [\App\Http\Controllers\EmailPageController::class, 'show'])->name('email.show');
         Route::get('/create', [\App\Http\Controllers\EmailPageController::class, 'create'])->name('email.create');
-        Route::get('/sms/create', [\App\Http\Controllers\EmailPageController::class, 'sms'])->name('email.sms');
     });
     Route::get('/redactor', [\App\Http\Controllers\RedactorController::class, 'index'])->name('redactor.index');
     Route::get('/setting', [\App\Http\Controllers\SettingMailingController::class, 'index'])->name('setting.index');
@@ -55,6 +54,12 @@ Route::group([
             Route::delete('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'destroy'])->name('emailSender.destroy');
             Route::put('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'update'])->name('emailSender.update');
             Route::get('/emailSenders.xlsx', [\App\Http\Controllers\EmailSenderController::class, 'exportEmailSenders'])->name('emailSender.export');
+        });
+        Route::prefix('sms')->group(function () {
+            Route::post('/', [\App\Http\Controllers\SmsMessageController::class, 'store'])->name('sms.store');
+            Route::get('/create', [\App\Http\Controllers\SmsMessageController::class, 'create'])->name('sms.create');
+            Route::get('/{id}', [\App\Http\Controllers\SmsMessageController::class, 'show'])->name('sms.show');
+            Route::get('/', [\App\Http\Controllers\SmsMessageController::class, 'index'])->name('sms.index');
         });
         Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
         Route::delete('/autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');

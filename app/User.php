@@ -85,6 +85,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get all of the smsMessages for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function smsMessages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SmsMessage::class);
+    }
+
+    /**
      * Get all of the emailMessages for the User
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -9,23 +9,23 @@ class SmsMessage extends Model
 {
     protected $fillable = [
         'date_send',
-        'is_sent',
-        'text'
+        'text',
+        'sender_name'
     ];
 
     protected $casts = [
         'date_send' => 'datetime'
     ];
 
-    /**
-     * Get the user that owns the SmsMessage
-     *
-     * @return BelongsTo
-     */
-    public function sender(): BelongsTo
-    {
-        return $this->belongsTo(SmsSender::class, 'sms_sender_id', 'id');
-    }
+    // /**
+    //  * Get the user that owns the SmsMessage
+    //  *
+    //  * @return BelongsTo
+    //  */
+    // public function sender(): BelongsTo
+    // {
+    //     return $this->belongsTo(SmsSender::class, 'sms_sender_id', 'id');
+    // }
 
     /**
      * Get the user that owns the SmsMessage
@@ -34,7 +34,7 @@ class SmsMessage extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(User::class);
     }
 
     /**

@@ -15,8 +15,9 @@ class CreateSmsMessagesTable extends Migration
     {
         Schema::create('sms_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sms_sender_id')->references('id')->on('sms_senders');
-            $table->foreignId('address_book_id')->constrained('address_books');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('address_book_id')->nullable();
+            $table->string('sender_name');
             $table->text('text');
             $table->boolean('is_sent')->default(false);
             $table->timestamp('date_send')->nullable();

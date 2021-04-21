@@ -65,7 +65,7 @@
                     <div class="button_green mr-24">
                         <span class="green_button_circle desplode-circle" style="left: 51px; top: 43.125px;">
                         </span>
-                        <a href="{{ route('email.sms') }}" class="button_green_inner">
+                        <a href="{{ route('sms.create') }}" class="button_green_inner">
                             <img src="{{ asset('images/plusik.svg') }}" alt="">
                             <p class="button_text_container"><img src="" alt="">Создать SMS рассылку</p>
                         </a>
