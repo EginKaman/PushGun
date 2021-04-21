@@ -24,7 +24,7 @@ class StatisticController extends Controller
                 now()->startOfMonth(),
                 now()
             ]);
-        } elseif ($request->range === 'year') {
+        } else if ($request->range === 'year') {
             $statistics->whereBetween('created_at', [
                 now()->startOfYear(),
                 now()

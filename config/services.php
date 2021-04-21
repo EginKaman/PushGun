@@ -43,4 +43,8 @@ return [
         'api_key' => env('CLOUD_PAYMENTS_API_KEY', 'some api key'),
     ],
 
+    'nexmo' => [
+        'sms_from' => env('SMS_FROM'),
+    ],
+
 ];

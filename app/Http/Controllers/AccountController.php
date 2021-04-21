@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nexmo\Laravel\Facade\Nexmo;
 use NotificationChannels\WebPush\PushSubscription;
 
 class AccountController extends Controller

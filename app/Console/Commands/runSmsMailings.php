@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\SmsMessage;
 use Carbon\Carbon;
+use App\SmsMessage;
 use Illuminate\Console\Command;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class runSmsMailings extends Command
 {
@@ -44,9 +45,28 @@ class runSmsMailings extends Command
         $messages = SmsMessage::where('is_sent', 0)->whereBetween('date_send', [
             $now,
             $to
-        ])->orWhere('date_send', null)->with(['contacts', 'addressbook', 'user'])->get();
+        ])->orWhere('date_send', null)->with(['contacts', 'addressbook','addressbook.contacts', 'user'])->get();
         foreach ($messages as $message) {
+            if($message->contacts) {
+                foreach($message->contacts as $contact) {
+                    Nexmo::message()->send([
+                        'to' => $contact->address,
+                        'from' => $message->sender_name,
+                        'text' => $message->text,
+                        'type' => 'unicode'
+                    ]);
+                }
+            } else if ($message->addressbook->contacts) {
+                foreach($message->addressbook->contacts as $contact) {
+                    Nexmo::message()->send([
+                        'to' => $contact->address,
+                        'from' => $message->sender_name,
+                        'text' => $message->text,
+                        'type' => 'unicode'
+                    ]);
+                }
+            }
         }
-        return 0;
+        return 1;
     }
 }
