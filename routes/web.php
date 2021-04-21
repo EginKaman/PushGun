@@ -35,11 +35,23 @@ Route::group([
     Route::get('/blog/{blog}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
     Route::get('/test', [\App\Http\Controllers\PageController::class, 'test'])->name('page.test');
     Route::prefix('email')->group(function () {
+        Route::prefix('sms')->group(function () {
+            Route::post('/', [\App\Http\Controllers\SmsMessageController::class, 'store'])->name('sms.store');
+            Route::get('/create', [\App\Http\Controllers\SmsMessageController::class, 'create'])->name('sms.create');
+            Route::get('/{id}', [\App\Http\Controllers\SmsMessageController::class, 'show'])->name('sms.show');
+            Route::get('/', [\App\Http\Controllers\SmsMessageController::class, 'index'])->name('sms.index');
+        });
+        Route::get('autoMailing', [\App\Http\Controllers\AccountController::class, 'automailing'])->name('account.automailing');
+        Route::get('autoMailing/{id}', [\App\Http\Controllers\AccountController::class, 'automailingEdit'])->name('account.automailingEdit');
         Route::post('/', [\App\Http\Controllers\EmailPageController::class, 'store'])->name('email.store');
         Route::get('/', [\App\Http\Controllers\EmailPageController::class, 'index'])->name('email.index');
         Route::get('/push', [\App\Http\Controllers\EmailPageController::class, 'Push'])->name('email.push');
         Route::get('/details/{id}', [\App\Http\Controllers\EmailPageController::class, 'show'])->name('email.show');
         Route::get('/create', [\App\Http\Controllers\EmailPageController::class, 'create'])->name('email.create');
+        Route::get('saveMailing', [\App\Http\Controllers\AccountController::class, 'savemailing'])->name('account.savemailing');
+        Route::get('saveMailingRss', [\App\Http\Controllers\AccountController::class, 'savemailingrss'])->name('account.savemailingrss');
+        Route::get('createMailing', [\App\Http\Controllers\AccountController::class, 'createmailing'])->name('account.createmailing');
+        Route::get('createMailingRss', [\App\Http\Controllers\AccountController::class, 'createmailingrss'])->name('account.createmailingrss');
     });
     Route::get('/redactor', [\App\Http\Controllers\RedactorController::class, 'index'])->name('redactor.index');
     Route::get('/setting', [\App\Http\Controllers\SettingMailingController::class, 'index'])->name('setting.index');
@@ -54,12 +66,6 @@ Route::group([
             Route::delete('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'destroy'])->name('emailSender.destroy');
             Route::put('/{id}', [\App\Http\Controllers\EmailSenderController::class, 'update'])->name('emailSender.update');
             Route::get('/emailSenders.xlsx', [\App\Http\Controllers\EmailSenderController::class, 'exportEmailSenders'])->name('emailSender.export');
-        });
-        Route::prefix('sms')->group(function () {
-            Route::post('/', [\App\Http\Controllers\SmsMessageController::class, 'store'])->name('sms.store');
-            Route::get('/create', [\App\Http\Controllers\SmsMessageController::class, 'create'])->name('sms.create');
-            Route::get('/{id}', [\App\Http\Controllers\SmsMessageController::class, 'show'])->name('sms.show');
-            Route::get('/', [\App\Http\Controllers\SmsMessageController::class, 'index'])->name('sms.index');
         });
         Route::post('/autoMailing', [\App\Http\Controllers\AutoMailingController::class, 'store'])->name('autoMailing.store');
         Route::delete('/autoMailing/{automailing}', [\App\Http\Controllers\AutoMailingController::class, 'destroy'])->name('autoMailing.destroy');
@@ -87,15 +93,11 @@ Route::group([
             Route::post('/upload', [\App\Http\Controllers\ContactController::class, 'upload'])->name('contact.upload');
         });
         Route::prefix('account')->group(function () {
+            Route::resource('site', 'SiteController');
+            Route::resource('push', 'PushController');
             Route::get('/', [\App\Http\Controllers\AccountController::class, 'index'])->name('account.index');
             //TODO: REFACTORING!!!!
-            Route::get('autoMailing', [\App\Http\Controllers\AccountController::class, 'automailing'])->name('account.automailing');
-            Route::get('autoMailing/{id}', [\App\Http\Controllers\AccountController::class, 'automailingEdit'])->name('account.automailingEdit');
             Route::get('referal', [\App\Http\Controllers\AccountController::class, 'referal'])->name('account.referal');
-            Route::get('saveMailing', [\App\Http\Controllers\AccountController::class, 'savemailing'])->name('account.savemailing');
-            Route::get('saveMailingRss', [\App\Http\Controllers\AccountController::class, 'savemailingrss'])->name('account.savemailingrss');
-            Route::get('createMailing', [\App\Http\Controllers\AccountController::class, 'createmailing'])->name('account.createmailing');
-            Route::get('createMailingRss', [\App\Http\Controllers\AccountController::class, 'createmailingrss'])->name('account.createmailingrss');
 
             Route::get('edit', [\App\Http\Controllers\AccountController::class, 'edit'])->name('account.edit');
             Route::put('/', [\App\Http\Controllers\AccountController::class, 'update'])->name('account.update');
@@ -110,10 +112,8 @@ Route::group([
                 Route::get('/payment', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
                 Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
                 Route::put('/password', 'PasswordController')->name('account.password');
-                Route::resource('site', 'SiteController');
                 Route::get('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'index'])->name('complete.index');
                 Route::post('site/{site}/complete', [\App\Http\Controllers\CompleteController::class, 'store'])->name('complete.store');
-                Route::resource('push', 'PushController');
                 Route::resource('ticket', 'TicketController')->only(['index', 'show', 'store']);
                 Route::post('ticket/{ticket}/message', 'MessageController')->name('message.store');
                 Route::get('/tariff', 'TariffController')->name('tariff.index');

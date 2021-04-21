@@ -95,8 +95,14 @@
                                 </div>
                             </a>
                             @auth
+                                <a href="{{ route('contact.index') }}" class="nav__item">
+                                    <div class="nav__item_wrap">
+                                        <span>@lang('Адресная книга')</span>
+                                        <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
+                                    </div>
+                                </a>
                                 <div class="nav__wrapper">
-                                    <a href="{{ route('push.index') }}" class="nav__item nav__arrow">
+                                    <a href="{{ route('email.push') }}" class="nav__item nav__arrow">
                                         <div class="nav__item_wrap">
                                             <span>@lang('Мои рассылки')</span>
                                             <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
@@ -230,7 +236,7 @@
                                     <div class="account__link_wrapper icon icon-exit">
                                         <a href="{{ route('logout') }}" class="account__bottom_link"
                                             onclick="event.preventDefault();
-                                                                                               document.getElementById('logout-form').submit();">
+                                                                                                                           document.getElementById('logout-form').submit();">
                                             @lang('Выйти')
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -310,12 +316,6 @@
                             <a href="{{ route('account.index') }}" class="nav__item">
                                 <div class="nav__item_wrap">
                                     <span>@lang('Главная')</span>
-                                    <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
-                                </div>
-                            </a>
-                            <a href="{{ route('contact.index') }}" class="nav__item">
-                                <div class="nav__item_wrap">
-                                    <span>@lang('Адресная книга')</span>
                                     <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">
                                 </div>
                             </a>
@@ -466,7 +466,7 @@
                                     <div class="account__link_wrapper icon icon-exit">
                                         <a href="{{ route('logout') }}" class="account__bottom_link"
                                             onclick="event.preventDefault();
-                                                                                               document.getElementById('logout-form').submit();">
+                                                                                                                           document.getElementById('logout-form').submit();">
                                             @lang('Выйти')
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"

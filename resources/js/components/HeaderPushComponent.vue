@@ -9,11 +9,6 @@
           $t("Авторассылки")
         }}</a>
       </li>
-      <li class="nav__menu_items for">
-        <a class="nav__menu_link" href="/email/push"
-          >{{ $t("E-mail рассылки") }}
-        </a>
-      </li>
     </ul>
   </div>
 </template>
