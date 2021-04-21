@@ -166,7 +166,9 @@ export default {
                 return;
             }
             axios.post(route("sms.store"), this.form).then(res => {
-                console.log(res);
+                if (res.status === 201) {
+                    window.location.href = route("email.index");
+                }
             });
         }
     }
