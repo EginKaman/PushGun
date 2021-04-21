@@ -44,7 +44,7 @@ class SmsMessage extends Model
      */
     public function contacts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Contact::class, 'id', 'sms_message_id');
+        return $this->hasMany(Contact::class, 'sms_message_id', 'id');
     }
 
     /**
