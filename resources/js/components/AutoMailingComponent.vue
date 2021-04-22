@@ -13,7 +13,7 @@
             </a>
         </div>
         <div v-if="showMenus === true" class="btn-menus">
-            <a href="/account/saveMailing" class="btn-menus__item">
+            <a :href="route('account.savemailing')" class="btn-menus__item">
                 <div class="img-wrap">
                     <img src="../../images/sendmail.svg" alt="" />
                 </div>
@@ -56,7 +56,7 @@
                             <div class="button_green mr-24">
                                 <span class="green_button_circle"></span>
                                 <a
-                                    href="/account/saveMailingRss"
+                                    :href="route('account.createmailingrss')"
                                     class="button_green_inner"
                                 >
                                     <p class="button_text_container">
