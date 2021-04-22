@@ -5,7 +5,7 @@
         <a class="nav__menu_link" href="/account">{{ $t("Все рассылки") }}</a>
       </li>
       <li class="nav__menu_items two">
-        <a class="nav__menu_link" href="/account/autoMailing">{{
+        <a class="nav__menu_link" :href="route('account.automailing')">{{
           $t("Авторассылки")
         }}</a>
       </li>

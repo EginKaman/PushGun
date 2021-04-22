@@ -265,7 +265,7 @@
 
                                 </div>
                                 <div class="nav__item_wrap">
-                                    <a href="/account/autoMailing">@lang('Авторассылки')</a>
+                                    <a href="{{route('account.automailing')}}">@lang('Авторассылки')</a>
 
                                 </div>
                                 <div class="nav__item_wrap">
@@ -495,7 +495,7 @@
 
                                 </div>
                                 <div class="nav__item_wrap">
-                                    <a href="/account/autoMailing">@lang('Авторассылки')</a>
+                                    <a href="{{route('account.automailing')}}">@lang('Авторассылки')</a>
 
                                 </div>
                                 <div class="nav__item_wrap">
