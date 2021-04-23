@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\EmailMailing;
 use App\Mail\EmailMailing as MailEmailMailing;
-use App\SentLetter;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -55,16 +54,13 @@ class runEmailMailings extends Command
                 if ($contact->is_email) {
                     $when = $emailmailing->date_send === null ?  $now : $emailmailing->date_send;
                     $emails[] = $contact->address;
-                    $sentLetter = new SentLetter;
-                    $sentLetter->user()->associate($emailmailing->user);
-                    $sentLetter->contact()->associate($contact);
-                    $sentLetter->emalMailing()->associate($emailmailing);
-                    $sentLetter->save();
                 }
             }
             $this->info(count($emails));
             Mail::cc($emails)->send(new MailEmailMailing($emailmailing->emailmessage->body, $emailmailing->emailSender->address));
             $emailmailing->is_sent = true;
+            $emailmailing->number_of_not_sent = count(Mail::failures());
+            $emailmailing->number_of_sent = count($emails) - $emailmailing->number_of_not_sent;
             $emailmailing->save();
         }
         return 1;

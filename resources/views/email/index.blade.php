@@ -31,9 +31,9 @@
                     </div>
                     <div class="button_white">
                         <span class="white_button_circle"></span>
-                        <a href="{{ route('account.createmailingrss') }}" class="button_white_inner">
+                        <a href="{{ route('sms.create') }}" class="button_white_inner">
                             <p class="button_text_container">
-                                <img class="button-img" src="{{ asset('images/plusik.svg') }}" alt="">@lang('Создать Rss
+                                <img class="button-img" src="{{ asset('images/plusik.svg') }}" alt="">@lang('Создать SMS
                                 рассылку')
                             </p>
                         </a>

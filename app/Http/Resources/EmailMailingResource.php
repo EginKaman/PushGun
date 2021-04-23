@@ -28,7 +28,8 @@ class EmailMailingResource extends JsonResource
             'date_send' => $this->date_send,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'sent_letters_count' => $this->sent_letters_count
+            'sent_letters_count' => $this->number_of_sent,
+            'number_of_not_sent' => $this->number_of_not_sent
         ];
     }
 }
