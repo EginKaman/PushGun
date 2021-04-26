@@ -25,7 +25,7 @@
                         <a href="{{ route('email.create') }}" class="button_white_inner">
                             <p class="button_text_container">
                                 <img class="button-img" src="{{ asset('images/plusik.svg') }}" alt="">@lang('Создать
-                                рассылку')
+                                E-mail рассылку')
                             </p>
                         </a>
                     </div>

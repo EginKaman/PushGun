@@ -61,7 +61,8 @@
         <div class="headers-wrapp">
             <div class="pre-header">
                 <div class="container">
-                    <div style="display: flex; justify-content: space-between; align-items:center;">
+                    <!-- Добавил header в 53px для всех header -->
+                    <div style="display: flex; justify-content: space-between; align-items:center; height: 44px;">
                         <div class="pre-header-email-page">
                             <a class="{{ request()->is('*/email*') ? 'active' : '' }}"
                                 href="{{ route('email.index') }}">E-mail/SMS</a>

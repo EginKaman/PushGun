@@ -4,17 +4,14 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-
     & * {
         box-sizing: border-box;
     }
-
     // align-items: center;
     &__label {
         align-items: center;
         display: flex;
         margin-bottom: 16px;
-
         & input {
             max-width: 316px;
             width: 100%;
@@ -32,15 +29,12 @@
             color: $black;
             transition: 0.3s;
         }
-
         &.email {
             position: relative;
-
             & input {
                 opacity: 1;
                 transition: 0.3s;
             }
-
             & input.disable {
                 opacity: 0;
                 background: transparent !important;
@@ -48,7 +42,6 @@
             }
         }
     }
-
     &__val {
         font-family: "Gilroy";
         font-style: normal;
@@ -58,12 +51,10 @@
         letter-spacing: 0.25px;
         color: $black;
         transition: 0.3s;
-
         & img {
             vertical-align: middle;
         }
     }
-
     & .select2-container {
         max-width: 316px !important;
         width: 100% !important;
@@ -79,15 +70,12 @@
         color: $black;
         background: #fff;
     }
-
     & .select2-container--default .select2-selection--single {
         background: #fff;
     }
-
     & .select2-container--default .select2-selection--single .select2-selection__rendered {
         padding: 6px 10px;
     }
-
     &__title {
         display: block;
         max-width: 204px;
@@ -101,14 +89,12 @@
         text-align: right;
         letter-spacing: 0.25px;
         color: $black;
-
         &-wrap {
             display: flex;
             flex-direction: column;
             min-width: 204px;
         }
     }
-
     &__desc {
         max-width: 204px;
         width: 100%;
@@ -124,7 +110,6 @@
         letter-spacing: 0.25px;
         color: #979797;
     }
-
     &__link {
         display: inline-block;
         font-family: Gilroy;
@@ -137,7 +122,6 @@
         text-decoration: none !important;
         color: $black;
         position: relative;
-
         &::after {
             position: absolute;
             content: "";
@@ -150,7 +134,6 @@
             left: 0;
             transition: 0.3s;
         }
-
         &:hover::after {
             left: auto;
             right: 0;
@@ -194,19 +177,16 @@
     background-size: 16px 14px;
     background-position: center center;
     background-repeat: no-repeat;
-
     & figure {
         display: flex;
         align-items: center;
         justify-content: center;
         max-width: 100%;
         max-height: 100%;
-
         & img {
             width: 100%;
         }
     }
-
     img {
         width: 100%;
         height: 100%;
@@ -272,7 +252,6 @@
     text-decoration-line: none !important;
     color: $green;
     position: relative;
-
     &::after {
         content: "";
         height: 1px;
@@ -283,7 +262,6 @@
         background: $green;
         transition: 0.5s;
     }
-
     &:hover::after {
         width: 0%;
         left: auto;
@@ -303,33 +281,27 @@
     .set-form {
         max-width: 316px;
     }
-
     .set-form__label {
         flex-direction: column;
     }
-
     .set-form__title {
         text-align: left;
         max-width: 316px;
     }
-
     .set-form__title-wrap {
         text-align: left;
         max-width: 316px;
         width: 100%;
     }
-
     .set-form__desc {
         text-align: left;
         max-width: 316px;
         width: 100%;
     }
-
     .set-change {
         left: auto;
         top: 21px;
     }
-
     .photo-min {
         margin-right: auto;
         margin-top: 10px;
@@ -341,7 +313,6 @@
         flex-direction: column;
         align-items: flex-start;
     }
-
     .account-body .setgen__info {
         margin-bottom: 140px;
         padding: 15px;
@@ -370,7 +341,6 @@
     border-radius: 10px;
     margin-bottom: 24px;
     text-align: left;
-
     &:before {
         content: "";
         position: absolute;
@@ -481,7 +451,7 @@
     .general__sites_item-more_imgcontsd {
         display: inline-block;
     }
-    .general__sites_ul{
+    .general__sites_ul {
         display: none;
     }
 }
@@ -546,16 +516,13 @@
     .set-form-row {
         flex-direction: column;
     }
-
     .set-form-row__title {
         text-align: left;
         margin-bottom: 10px;
     }
-
     .set-form__label-check {
         margin-left: 0px;
     }
-
     .main {
         padding-top: 130px;
     }
@@ -565,16 +532,14 @@
     .push-check {
         margin-left: 0;
     }
-
     .form-row__wrap {
         padding: 15px;
     }
-
     .setgen__info-notifc {
         padding: 0 !important;
     }
 }
 
-.email-btn{
+.email-btn {
     margin-bottom: 25px;
 }
