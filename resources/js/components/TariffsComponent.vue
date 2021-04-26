@@ -51,14 +51,22 @@
                                 <li>
                                     <span>Цена в год</span>
                                     <div>
-                                        <a>{{ tariff.price_per_year / 12 }} руб</a>
+                                        <a
+                                            >{{
+                                                tariff.price_per_year / 12
+                                            }}
+                                            руб</a
+                                        >
                                         <!-- <a>{{ item.priceForYearAction }}</a> -->
                                     </div>
                                 </li>
                                 <li>
                                     <p>
                                         <label
-                                            ><input name="inp" type="radio"
+                                            ><input
+                                                v-model="tariff_email"
+                                                :value="tariff.id"
+                                                type="radio"
                                         /></label>
                                     </p>
                                 </li>
@@ -68,9 +76,19 @@
                 </div>
             </div>
             <div class="subscribe-info">
-                <p>Подписка: <span>9 000 - 10 000 (2 080 руб./месяц)</span></p>
+                <p>
+                    Подписка:
+                    <span v-if="selectedTariff">
+                        {{ selectedTariff.name }} <br />
+                        {{ selectedTariff.price_per_month }} руб/месяц
+                    </span>
+                </p>
             </div>
-            <div style="margin-top: 30px" class="button_green mr-24">
+            <div
+                style="margin-top: 30px"
+                class="button_green mr-24"
+                v-if="tariff_email !== user.tariff_email.id"
+            >
                 <span
                     class="green_button_circle desplode-circle"
                     style="left: 51px; top: 43.125px;"
@@ -138,7 +156,8 @@ export default {
     data: () => ({
         showPopup: false,
         showModal: null,
-        show: 1
+        show: 1,
+        tariff_email: null
     }),
     props: ["tariffs_email", "user"],
     methods: {
@@ -147,6 +166,18 @@ export default {
         },
         closePopup() {
             this.showPopup = false;
+        }
+    },
+    computed: {
+        selectedTariff() {
+            return this.tariffs_email.find(
+                tariff => tariff.id === this.tariff_email
+            );
+        }
+    },
+    mounted() {
+        if (this.user) {
+            this.tariff_email = this.user.tariff_email?.id;
         }
     }
 };
