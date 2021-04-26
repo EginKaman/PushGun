@@ -13,8 +13,9 @@
             <div class="mail__time-sent">
                 <p>@lang('Текущий план'): @lang($tariff->name)</p>
             </div>
-
-            <div class="tariff-wrap">
+            
+<!-- Убираю таблички с раздела тариф -->
+<!--            <div class="tariff-wrap">
 
                 <div class="tariff tariff-fs">
                     <div class="tariff-text">
@@ -47,7 +48,7 @@
                     <tariff-form :tariffs="{{ $tariffs }}" public_id="{{ config('services.cloud_payments.public_id') }}" account_id="{{ auth()->id() }}"></tariff-form>
                 </div>
 
-            </div>
+            </div>-->
 
 
             <div class="general__title sec">
