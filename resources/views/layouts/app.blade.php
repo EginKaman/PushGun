@@ -102,7 +102,7 @@
                                     </div>
                                 </a>
                                 <div class="nav__wrapper">
-                                    <a href="{{ route('email.push') }}" class="nav__item nav__arrow">
+                                    <a href="{{ route('email.push') }}" class="nav__item nav"> <!-- Убрал приставку __arrow -->
                                         <div class="nav__item_wrap">
                                             <span>@lang('Мои рассылки')</span>
                                             <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">
