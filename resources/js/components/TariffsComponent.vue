@@ -13,7 +13,10 @@
                 <div class="tariffs-table">
                     <div class="tariffs-table__title">
                         <p>
-                            Текущий тарифный план: <span>9 000 - 10 000</span>
+                            Текущий тарифный план:
+                            <span>
+                                {{ user.tariff_email.name }}
+                            </span>
                         </p>
                         <div class="tariffs-table__wrapper">
                             <ul class="tariffs-table__wrapper-head">
@@ -23,26 +26,33 @@
                                 <li><p></p></li>
                             </ul>
                             <ul
-                                v-for="item in items"
-                                :key="item.id"
+                                v-for="tariff in tariffs_email"
+                                :key="tariff.id"
                                 class="tariffs-table__wrapper-body"
                             >
                                 <li>
                                     <span>Подписчиков</span>
                                     <p>
-                                        {{ item.subscribe }}
-                                        <a>{{ item.accept }}</a>
+                                        {{ tariff.max_contacts }}
+                                        <a
+                                            v-if="
+                                                tariff.id ===
+                                                    user.tariff_email.id
+                                            "
+                                        >
+                                            Текущий
+                                        </a>
                                     </p>
                                 </li>
                                 <li>
                                     <span>Цена в месяц</span>
-                                    <p>{{ item.priceForMonth }}</p>
+                                    <a>{{ tariff.price_per_month }} руб</a>
                                 </li>
                                 <li>
                                     <span>Цена в год</span>
                                     <div>
-                                        <p>{{ item.priceForYear }}</p>
-                                        <a>{{ item.priceForYearAction }}</a>
+                                        <a>{{ tariff.price_per_year / 12 }} руб</a>
+                                        <!-- <a>{{ item.priceForYearAction }}</a> -->
                                     </div>
                                 </li>
                                 <li>
@@ -78,7 +88,7 @@
                 <div class="tariffs-table">
                     <div class="tariffs-table__title">
                         <p>
-                            Текущий тарифный план: <span>9 000 - 10 000</span>
+                            Текущий тарифный план:
                         </p>
                         <button>Пополнить счет</button>
                     </div>
@@ -128,31 +138,9 @@ export default {
     data: () => ({
         showPopup: false,
         showModal: null,
-        show: 1,
-        items: [
-            {
-                subscribe: "7 000 - 8 000",
-                priceForMonth: "2 600 руб",
-                priceForYearAction: "2 600 руб",
-                priceForYear: "2 080 руб",
-                accept: ""
-            },
-            {
-                subscribe: "7 000 - 8 000",
-                priceForMonth: "2 600 руб",
-                priceForYearAction: "2 600 руб",
-                priceForYear: "2 080 руб",
-                accept: ""
-            },
-            {
-                subscribe: "7 000 - 8 000",
-                priceForMonth: "2 600 руб",
-                priceForYearAction: "2 600 руб",
-                priceForYear: "2 080 руб",
-                accept: "Текущий"
-            }
-        ]
+        show: 1
     }),
+    props: ["tariffs_email", "user"],
     methods: {
         func(item) {
             this.showModal = item;

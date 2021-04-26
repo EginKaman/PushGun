@@ -112,6 +112,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Tariff::class);
     }
+    /**
+     * Get the tarrifEmail that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tariffEmail(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(TariffEmail::class, 'tariff_email_id', 'id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

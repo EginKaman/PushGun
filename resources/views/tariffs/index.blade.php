@@ -119,7 +119,7 @@
                 @endif
             </div>
             <div class="tariffs-fake create-push-mail">
-                <tariffs-component></tariffs-component>
+                <tariffs-component :tariffs_email="{{json_encode($tariffs_email)}}" :user="{{json_encode($user)}}"></tariffs-component>
             </div>
         </section>
     </div>
