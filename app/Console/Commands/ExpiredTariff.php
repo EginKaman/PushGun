@@ -48,6 +48,15 @@ class ExpiredTariff extends Command
         ])->orWhereBetween('tariff_expired_at', [
             now()->subDays(1)->startOfDay(),
             now()
+        ])->orWhereBetween('tariff_email_expired_at', [
+            now()->subDays(7)->startOfDay(),
+            now()->subDays(7)->endOfDay()
+        ])->orWhereBetween('tariff_email_expired_at', [
+            now()->subDays(3)->startOfDay(),
+            now()->subDays(3)->endOfDay()
+        ])->orWhereBetween('tariff_email_expired_at', [
+            now()->subDays(1)->startOfDay(),
+            now()
         ])->get();
         $users->each(function ($user) {
             $user->notify(new \App\Notifications\ExpiredTariff());
