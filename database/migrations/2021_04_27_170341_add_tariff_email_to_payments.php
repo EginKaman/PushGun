@@ -14,7 +14,7 @@ class AddTariffEmailToPayments extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->foreignId('tariff_email_id')->references('id')->on('tariff_emails')->nullable()->after('tariff_id');
+            $table->foreignId('tariff_email_id')->nullable()->references('id')->on('tariff_emails')->after('tariff_id');
             $table->foreignId('tariff_id')->nullable()->change();
         });
     }
