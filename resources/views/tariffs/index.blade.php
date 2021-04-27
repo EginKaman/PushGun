@@ -14,42 +14,45 @@
                     <p>@lang('Текущий план'): @lang($tariff->name)</p>
                 </div>
 
-                <div class="tariff-wrap">
+                <!-- Убираю таблички с раздела тариф -->
+                <!--            <div class="tariff-wrap">
 
-                    <div class="tariff tariff-fs">
-                        <div class="tariff-text">
-                            <h3 class="tariff-title">@lang('Подписка 1000')</h3>
-                            <strong class="tariff-subtitle">@lang('до 1 000 подписчиков')</strong>
-                            <ul class="tariff-offer">
-                                <li>@lang('Неограниченное количество web push сообщений')</li>
-                                <li>@lang('Поддержка HTTP и HTTPS')</li>
-                                <li>@lang('Рассылка RSS')</li>
-                                <li>@lang('Персонализация сообщений')</li>
-                            </ul>
-                        </div>
-                        <div class="tariff-bottom">
-                            <span class="tariff-price">@lang('Бесплатно')</span>
-
-                            <div class="button_green tariff-bay">
-                                <span class="green_button_circle">
-                                </span>
-                                <button type="submit" class="button_green_inner">
-                                    <p class="rb_button_text_container">
-                                        @lang('Активировать')
-                                    </p>
-                                </button>
+                        <div class="tariff tariff-fs">
+                            <div class="tariff-text">
+                                <h3 class="tariff-title">@lang('Подписка 1000')</h3>
+                                <strong class="tariff-subtitle">@lang('до 1 000 подписчиков')</strong>
+                                <ul class="tariff-offer">
+                                    <li>@lang('Неограниченное количество web push сообщений')</li>
+                                    <li>@lang('Поддержка HTTP и HTTPS')</li>
+                                    <li>@lang('Рассылка RSS')</li>
+                                    <li>@lang('Персонализация сообщений')</li>
+                                </ul>
                             </div>
+                            <div class="tariff-bottom">
+                                <span class="tariff-price">@lang('Бесплатно')</span>
 
+                                <div class="button_green tariff-bay">
+                                    <span class="green_button_circle">
+                                    </span>
+                                    <button type="submit" class="button_green_inner">
+                                        <p class="rb_button_text_container">
+                                            @lang('Активировать')
+                                        </p>
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
+
+                        <div class="tariff tariff-sec">
+                            <tariff-form :tariffs="{{ $tariffs }}"
+                                public_id="{{ config('services.cloud_payments.public_id') }}"
+                                account_id="{{ auth()->id() }}"></tariff-form>
+                        </div>
+
                     </div>
 
-                    <div class="tariff tariff-sec">
-                        <tariff-form :tariffs="{{ $tariffs }}"
-                            public_id="{{ config('services.cloud_payments.public_id') }}"
-                            account_id="{{ auth()->id() }}"></tariff-form>
-                    </div>
-
-                </div>
+                </div>-->
 
 
                 <div class="general__title sec">
@@ -121,8 +124,9 @@
                     @endif
                 </div>
                 <div class="tariffs-fake create-push-mail">
-                    <tariffs-component :tariffs_email="{{ json_encode($tariffs_email) }}" :user="{{ json_encode($user) }}"
-                        public_id="{{ config('services.cloud_payments.public_id') }}" account_id="{{ auth()->id() }}">
+                    <tariffs-component :tariffs_email="{{ json_encode($tariffs_email) }}"
+                        :user="{{ json_encode($user) }}" public_id="{{ config('services.cloud_payments.public_id') }}"
+                        account_id="{{ auth()->id() }}">
                     </tariffs-component>
                 </div>
             </section>

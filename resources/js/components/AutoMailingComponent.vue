@@ -178,6 +178,7 @@ import vClickOutside from "v-click-outside";
 import { mapGetters, mapState } from "vuex";
 import axios from "axios";
 
+
 export default {
     name: "AutoMailingComponent",
     directives: {

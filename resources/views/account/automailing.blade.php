@@ -14,6 +14,16 @@
                 </p>
             </div>
             <auto-mailing-component></auto-mailing-component>
+            <div class="button_white">
+                <span class="white_button_circle"></span>
+                    <a :href="route('account.createmailingrss')" class="button_white_inner">
+                        <p class="button_text_container">
+                            <img class="button-img" src="asset('images/plusik.svg')" alt="">Создать RSS
+                             рассылку
+                        </p>
+                    </a>
+            </div>
+                    
         </div>
     </main>
 @endsection

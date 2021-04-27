@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Site;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -234,5 +235,27 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getReferralLinkAttribute()
     {
         return $this->referral_link = route('index', ['ref' => $this->referral_token]);
+    }
+
+    public function getActualEmailTariff()
+    {
+        $tariffEmail = $this->tariffEmail()->first();
+        $defaultTariff = TariffEmail::find(1)->first();
+        $actualTariff = null;
+        $now = Carbon::now();
+        if ($tariffEmail->id !== 1) {
+            $expired = Carbon::create($this->tariff_email_expired_at);
+            if ($now > $expired) {
+                // истек срок платного тарифа, берем бесплатный
+                $actualTariff = $defaultTariff;
+            } else {
+                // Срок не истек, берем оплаченный тариф
+                $actualTariff = $tariffEmail;
+            }
+        } else {
+            // Бесплатный тариф
+            $actualTariff = $defaultTariff;
+        }
+        return $actualTariff;
     }
 }

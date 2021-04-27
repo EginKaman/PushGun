@@ -55,9 +55,9 @@
                             <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Изменить')</a>
                         </div>
                     </div>
-                    <div class="general__stats__tabs">
+                    <!--<div class="general__stats__tabs">
                         <a class="tabs active" tab-name="tab-3">Push</a>
-                    </div>
+                    </div>-->
                     <div class="general__stats tab-item tab-3 active">
                         <div class="general__stats_left">
                             <div class="general__stats_left-item stats__item" style="background: #FF808B;">

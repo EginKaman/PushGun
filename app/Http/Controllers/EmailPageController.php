@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AddressBook;
 use App\EmailMailing;
 use App\EmailMessage;
 use App\Http\Requests\EmailMailingCreateRequest;
@@ -79,6 +80,14 @@ class EmailPageController extends Controller
     {
         $user = Auth::user();
         $input = $request->validated();
+        $actualEmailTariff = $user->getActualEmailTariff();
+        $addressbook = AddressBook::find($input['address_book_id']);
+        $contactCount = $addressbook->contacts()->count();
+        if ($contactCount > $actualEmailTariff->max_contacts) {
+            return response()->json([
+                'message' => "Ваш тариф не позволяет создать рассылку"
+            ]);
+        }
         $emailMailing = new EmailMailing;
         $emailMessage = new EmailMessage;
         $emailMailing->user()->associate($user);
@@ -88,7 +97,7 @@ class EmailPageController extends Controller
         $emailMessage->body = $input['body'];
         $emailMessage->save();
         $emailMailing->fill($input);
-        $emailMailing->addressBook()->associate($input['address_book_id']);
+        $emailMailing->addressBook()->associate($addressbook);
         $emailMailing->emailMessage()->associate($emailMessage);
         $emailMailing->emailSender()->associate($input['email_sender_id']);
         $emailMailing->save();

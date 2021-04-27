@@ -61,7 +61,8 @@
         <div class="headers-wrapp">
             <div class="pre-header">
                 <div class="container">
-                    <div style="display: flex; justify-content: space-between; align-items:center;">
+                    <!-- Добавил header в 44px для всех header и каждый из них принял 73px в итоге как и задумано -->
+                    <div style="display: flex; justify-content: space-between; align-items:center; height: 44px;">
                         <div class="pre-header-email-page">
                             <a class="{{ request()->is('*/email*') ? 'active' : '' }}"
                                 href="{{ route('email.index') }}">E-mail/SMS</a>
@@ -83,7 +84,7 @@
             <header class="header {{ request()->is('*/email*') ? 'active' : '' }}">
                 <div class="container">
                     <div class="header__inner">
-                        <a href="{{ route('account.index') }}" class="header__logo">
+                        <a href="{{ route('email.index') }}" class="header__logo">
                             <img style="width: 208px;height: 16px;" src="{{ asset('images/logo.png') }}" alt=""
                                 class="header__logo_img">
                         </a>
@@ -102,7 +103,7 @@
                                     </div>
                                 </a>
                                 <div class="nav__wrapper">
-                                    <a href="{{ route('email.push') }}" class="nav__item nav__arrow">
+                                    <a href="{{ route('email.push') }}" class="nav__item nav"> <!-- Убрал приставку __arrow -->
                                         <div class="nav__item_wrap">
                                             <span>@lang('Мои рассылки')</span>
                                             <img class="nav__item_img" src="{{ asset('images/send.svg') }}" alt="">

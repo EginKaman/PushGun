@@ -1,5 +1,6 @@
 <template>
     <main>
+        <notifications group="foo" />
         <div class="create-push-mail">
             <div class="create-push-mail__btn">
                 <a @click="show = 1" :class="{ active: show === 1 }"
@@ -516,7 +517,7 @@ export default {
         createEmailMailing() {
             const form = new FormData();
             form.append("preheader", this.form.preheader);
-            if(this.form.file) form.append("file", this.form.file);
+            if (this.form.file) form.append("file", this.form.file);
             form.append("address_book_id", this.form.address_book_id);
             form.append("subject", this.form.subject);
             // form.append("sender_name", this.form.sender_name);
@@ -535,9 +536,12 @@ export default {
                 .then(res => {
                     if (res.status === 201) {
                         window.location.href = route("email.show", res.data.id);
+                    } else if (res.status === 200 && res.data.message) {
+                        alert(res.data.message);
                     }
                 });
         }
-    }
+    },
+    mounted() {}
 };
 </script>

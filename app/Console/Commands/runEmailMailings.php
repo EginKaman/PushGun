@@ -49,35 +49,27 @@ class runEmailMailings extends Command
             $now,
             $to
         ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook', 'user', 'user.tariffEmail', 'emailSender'])->get();
+
         foreach ($emailmailings as $emailmailing) {
-            $maxContacts = null;
             $emails = [];
-            $tariffEmail = $emailmailing->user->tariffEmail;
-            if ($tariffEmail->id !== 1) {
-                $expired = Carbon::create($emailmailing->user->tariff_email_expired_at);
-                if ($now > $expired) {
-                    $defaultTariff = TariffEmail::find(1)->first();
-                    $maxContacts = $defaultTariff->max_contacts;
-                } else {
-                    $maxContacts = $tariffEmail->max_contacts;
+            $actualTariff = $emailmailing->user->getActualEmailTariff();
+            if ($actualTariff) {
+                if (count($emailmailing->addressbook->contacts) > $actualTariff->max_contacts) {
+                    // если кол-во контактов превышает максимум тарифного плана
+                    return;
                 }
-            } else {
-                $maxContacts = $tariffEmail->max_contacts;
-            }
-            if (count($emailmailing->addressbook->contacts) > $maxContacts) {
-                return;
-            }
-            foreach ($emailmailing->addressbook->contacts as $contact) {
-                if ($contact->is_email) {
-                    $when = $emailmailing->date_send === null ?  $now : $emailmailing->date_send;
-                    $emails[] = $contact->address;
+                foreach ($emailmailing->addressbook->contacts as $contact) {
+                    if ($contact->is_email) {
+                        $when = $emailmailing->date_send === null ?  $now : $emailmailing->date_send;
+                        $emails[] = $contact->address;
+                    }
                 }
+                Mail::to($emails)->send(new MailEmailMailing($emailmailing->emailmessage->body, $emailmailing->emailSender->address));
+                $emailmailing->is_sent = true;
+                $emailmailing->number_of_not_sent = count(Mail::failures());
+                $emailmailing->number_of_sent = count($emails) - $emailmailing->number_of_not_sent;
+                $emailmailing->save();
             }
-            Mail::to($emails)->send(new MailEmailMailing($emailmailing->emailmessage->body, $emailmailing->emailSender->address));
-            $emailmailing->is_sent = true;
-            $emailmailing->number_of_not_sent = count(Mail::failures());
-            $emailmailing->number_of_sent = count($emails) - $emailmailing->number_of_not_sent;
-            $emailmailing->save();
         }
         return 1;
     }
