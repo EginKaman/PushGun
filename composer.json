@@ -31,7 +31,8 @@
         "propaganistas/laravel-phone": "^4.2",
         "tightenco/ziggy": "^1.0",
         "tucker-eric/eloquentfilter": "^2.4",
-        "web-token/jwt-util-ecc": "2.1.9"
+        "web-token/jwt-util-ecc": "2.1.9",
+        "doctrine/dbal": "^3.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

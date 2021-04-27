@@ -85,20 +85,18 @@
                 </p>
             </div>
             <div
-                style="margin-top: 30px"
-                class="button_green mr-24"
+                class="tariff-bottom tariff_component_btn_payment"
                 v-if="tariff_email !== user.tariff_email.id"
             >
-                <span
-                    class="green_button_circle desplode-circle"
-                    style="left: 51px; top: 43.125px;"
-                >
-                </span>
-                <a class="button_green_inner">
-                    <p class="button_text_container">
-                        Купить
-                    </p>
-                </a>
+                <button-payment
+                    :public_id="public_id"
+                    :account_id="account_id"
+                    :desctiption="'Тариф' + selectedTariff.name"
+                    :tariff="selectedTariff.id"
+                    :yearly="false"
+                    :amount="selectedTariff.price_per_month"
+                    tariff_type="email"
+                ></button-payment>
             </div>
         </div>
         <div v-if="show === 2">
@@ -159,7 +157,7 @@ export default {
         show: 1,
         tariff_email: null
     }),
-    props: ["tariffs_email", "user"],
+    props: ["tariffs_email", "user", "public_id", "account_id"],
     methods: {
         func(item) {
             this.showModal = item;

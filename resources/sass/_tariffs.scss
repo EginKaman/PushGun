@@ -17,46 +17,37 @@
     display: flex;
     flex-direction: column;
     transition: 0.3s;
-
     &:hover {
         transform: scale(1.01);
         box-shadow: 0px 2px 15px rgba(89, 93, 95, 0.5);
     }
-
     & .button_rb {
         margin-top: 0;
     }
-
     &-wrap {
         display: flex;
         justify-content: flex-start;
     }
-
     &-fs {
         margin-left: 0;
         background: $white;
         justify-content: space-between;
     }
-
     &-sec {
         margin-right: 0;
         background: $green;
-
         & * {
             color: $white !important;
         }
-
         & .tariff-bay button p {
             line-height: 40px;
             // background: $white !important;
             color: $green !important;
-
             &:hover {
                 color: $white !important;
             }
         }
     }
-
     &-title {
         font-family: "Gilroy";
         font-style: normal;
@@ -67,7 +58,6 @@
         color: $green;
         margin-bottom: 8px;
     }
-
     &-subtitle {
         font-family: "Gilroy";
         font-style: normal;
@@ -77,13 +67,11 @@
         letter-spacing: 0.25px;
         color: $green;
     }
-
     &-offer {
         margin-top: 54px;
         padding: 0;
         list-style: none;
         margin-left: 0;
-
         & li {
             font-family: "Gilroy";
             font-style: normal;
@@ -93,14 +81,12 @@
             margin-bottom: 8px;
             letter-spacing: 0.25px;
             color: $black;
-
             &::before {
                 content: "•";
                 padding-right: 10px;
             }
         }
     }
-
     &-price {
         display: block;
         margin-bottom: 27px;
@@ -113,13 +99,11 @@
         letter-spacing: 0.25px;
         color: $green;
     }
-
     &-bottom {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-
     &-bay {
         display: block;
         width: 292px;
@@ -138,25 +122,20 @@
         margin-left: auto;
         margin-right: auto;
     }
-
     & .button_rb_inner {
         width: 292px;
         padding: 0 !important;
     }
-
     & .button_green_inner {
         width: 292px;
         padding: 0;
-
         &:hover p {
             color: $white !important;
         }
     }
-
     & .rb_button_text_container {
         line-height: 40px;
     }
-
     &-slider {
         height: 33px;
         margin-top: 29px;
@@ -172,23 +151,19 @@
         background: #c4c4c4;
         z-index: 9;
         cursor: pointer;
-
         label {
             position: absolute;
             text-align: center;
         }
-
         &__item {
             position: absolute;
         }
-
         &-val {
             position: relative;
             display: flex;
             width: calc(100% - 16px);
             margin-top: -32px;
         }
-
         &__point,
         & .ui-slider-handle {
             display: block;
@@ -200,19 +175,17 @@
             box-shadow: $shadow;
             transition: 0.3s;
             // background: #C4C4C4;
-            background: linear-gradient(141.16deg, #d6e9f5 -0.37%, #add2eb 96.94%);
+            background: linear-gradient( 141.16deg, #d6e9f5 -0.37%, #add2eb 96.94%);
             border: none;
             z-index: 9;
             cursor: pointer;
         }
-
         &__point {
-            background: linear-gradient(141.16deg, #c4c4c4 -0.37%, #c4c4c4 96.94%);
+            background: linear-gradient( 141.16deg, #c4c4c4 -0.37%, #c4c4c4 96.94%);
             width: 16px;
             height: 16px;
             position: static;
         }
-
         &__text {
             display: block;
             // padding-top: 19px;
@@ -229,19 +202,16 @@
             transform: translateX(-50%);
         }
     }
-
     &-check {
         display: flex;
         align-items: center;
         margin-top: 28px;
-
         & .check {
             display: block;
             width: 12px;
             height: 12px;
             border: 2px solid $white;
         }
-
         &__text {
             font-family: "Gilroy";
             font-style: normal;
@@ -252,7 +222,6 @@
             color: $white;
             padding-left: 12px;
         }
-
         & input {
             position: absolute;
             z-index: -999;
@@ -260,14 +229,12 @@
             height: 0.00001px;
             opacity: 1;
             visibility: hidden;
-
-            &:checked + .check {
+            &:checked+.check {
                 background-size: contain;
                 background: url(../images/check.svg) no-repeat center center;
             }
         }
     }
-
     &-form {
         height: 100%;
         display: flex;
@@ -281,6 +248,24 @@
     margin-bottom: 0;
 }
 
+.tariff_component_btn_payment {
+    display: flex;
+    align-items: flex-start;
+    .tariff-bay {
+        background: none;
+    }
+    .button_rb {
+        margin-left: 0;
+        margin-right: 0;
+        box-shadow: none;
+        &_inner {
+            width: 100%;
+            background-color: $green;
+            color: #fff;
+        }
+    }
+}
+
 .follows {
     &-wrap {
         background: #ffffff;
@@ -291,38 +276,30 @@
         margin-top: 24px;
         flex-direction: column;
     }
-
     &-row {
         display: flex;
         padding-top: 10px;
         padding-bottom: 9px;
-
         &.bb-1 {
             border-bottom: 1px solid #e5e5e5;
         }
-
         &:first-child {
             padding-top: 0;
         }
-
         &:last-child {
             border-bottom: none;
             padding-bottom: 0;
         }
-
         .green {
             color: #68b781;
         }
     }
-
     &-left {
         width: 30%;
     }
-
     &-right {
         width: 70%;
     }
-
     &-text {
         font-family: "Gilroy";
         font-style: normal;
@@ -332,18 +309,15 @@
         letter-spacing: 0.25px;
         color: $black;
     }
-
     &-top {
         width: 100%;
         margin-bottom: 26px;
         display: flex;
         justify-content: space-between;
     }
-
     &-title {
         display: flex;
         flex-direction: column;
-
         &__hero {
             display: block;
             font-family: "Gilroy";
@@ -355,7 +329,6 @@
             color: $black;
             margin-bottom: 9px;
         }
-
         &__subtitle {
             display: block;
             font-family: Gilroy;
@@ -367,7 +340,6 @@
             color: #979797;
         }
     }
-
     &-change__tariff {
         display: block;
         font-family: Gilroy;
@@ -380,7 +352,6 @@
         text-decoration: none !important;
         color: $green;
         position: relative;
-
         &::after {
             position: absolute;
             content: "";
@@ -393,7 +364,6 @@
             left: 0;
             transition: 0.3s;
         }
-
         &:hover::after {
             left: auto;
             right: 0;
@@ -401,6 +371,7 @@
         }
     }
 }
+
 .tariffs-fake {
     .subscribe-info {
         padding-top: 32px;

@@ -60,4 +60,14 @@ class Payment extends Model
     {
         return $this->belongsTo(Tariff::class);
     }
+
+    /**
+     * Get the tariffEmail that owns the Payment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tariffEmail(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(TariffEmail::class, 'tariff_email_id', 'id');
+    }
 }

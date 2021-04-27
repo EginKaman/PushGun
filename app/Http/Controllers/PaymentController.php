@@ -83,15 +83,23 @@ class PaymentController extends Controller
             'card_product' => $request->CardProduct,
             'payment_method' => $request->PaymentMethod,
         ]);
+        $expired = now();
         $user = User::find($request->AccountId);
         $payment->user()->associate($user);
-        $payment->tariff()->associate($payment->data['tariff']);
-        $payment->save();
-        $user->tariff()->associate($payment->data['tariff']);
-        $expired = now();
-        if ($user->tariff_expired_at !== null) {
-            $expired = $user->tariff_expired_at;
+        if ($payment->data['tariff_type'] === 'mail') {
+            $payment->tariffEmail()->associate($payment->data['tariff']);
+            $user->tariffEmail()->associate($payment->data['tariff']);
+            if ($user->tariff_email_expired_at !== null) {
+                $expired = $user->tariff_email_expired_at;
+            }
+        } else if ($payment->data['tariff_type'] === 'push') {
+            $payment->tariff()->associate($payment->data['tariff']);
+            $user->tariff()->associate($payment->data['tariff']);
+            if ($user->tariff_expired_at !== null) {
+                $expired = $user->tariff_expired_at;
+            }
         }
+        $payment->save();
         if (!empty($payment->data['yearly']) && $payment->data['yearly'] === true) {
             $expired->addYear();
         } else {
@@ -103,7 +111,11 @@ class PaymentController extends Controller
             $referrer->bonus_balance = (float)$request->Amount * $bonus_percent / 100;
             $referrer->save();
         }
-        $user->tariff_expired_at = $expired;
+        if ($payment->data['tariff_type'] === 'mail') {
+            $user->tariff_email_expired_at = $expired;
+        } else if ($payment->data['tariff_type'] === 'push') {
+            $user->tariff_expired_at = $expired;
+        }
         $user->save();
         return response()->json([
             'code' => 0
