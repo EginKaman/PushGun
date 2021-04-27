@@ -61,7 +61,7 @@
         <div class="headers-wrapp">
             <div class="pre-header">
                 <div class="container">
-                    <!-- Добавил header в 53px для всех header -->
+                    <!-- Добавил header в 44px для всех header и каждый из них принял 73px в итоге как и задумано -->
                     <div style="display: flex; justify-content: space-between; align-items:center; height: 44px;">
                         <div class="pre-header-email-page">
                             <a class="{{ request()->is('*/email*') ? 'active' : '' }}"
@@ -84,7 +84,7 @@
             <header class="header {{ request()->is('*/email*') ? 'active' : '' }}">
                 <div class="container">
                     <div class="header__inner">
-                        <a href="{{ route('account.index') }}" class="header__logo">
+                        <a href="{{ route('email.index') }}" class="header__logo">
                             <img style="width: 208px;height: 16px;" src="{{ asset('images/logo.png') }}" alt=""
                                 class="header__logo_img">
                         </a>
