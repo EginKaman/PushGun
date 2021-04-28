@@ -203,7 +203,7 @@
             v-show="false"
             :public_id="public_id"
             :account_id="account_id"
-            :desctiption="'Пополнение баланса, сумма ' + price"
+            desctiption="Пополнение баланса, сумма"
             :amount="price"
             tariff_type="account"
         ></button-payment>
