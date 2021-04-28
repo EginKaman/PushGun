@@ -174,14 +174,15 @@
                         placeholder="Сумма"
                     />
                 </div>
-                <div class="contact-popup__block__foot top_up_account">
-                    <button-payment
-                        :public_id="public_id"
-                        :account_id="account_id"
-                        :desctiption="'Пополнение баланса, сумма ' + price"
-                        :amount="price"
-                        tariff_type="account"
-                    ></button-payment>
+                <div class="contact-popup__block__foot">
+                    <div class="button_green mr-24" @click="topUpAccount">
+                        <span class="green_button_circle"></span>
+                        <a class="button_green_inner">
+                            <p class="button_text_container">
+                                <img src="" alt="" />Пополнить счет
+                            </p>
+                        </a>
+                    </div>
                     <div style="backgorund: #fafafa" class="button_white">
                         <span class="white_button_circle"></span>
                         <a
@@ -197,6 +198,15 @@
                 </div>
             </div>
         </div>
+        <button-payment
+            ref="topUpAccount"
+            v-show="false"
+            :public_id="public_id"
+            :account_id="account_id"
+            :desctiption="'Пополнение баланса, сумма ' + price"
+            :amount="price"
+            tariff_type="account"
+        ></button-payment>
     </main>
 </template>
 
@@ -233,6 +243,10 @@ export default {
         },
         closePopup() {
             this.showPopup = false;
+        },
+        topUpAccount() {
+            this.isShowTopUpAccountModal = false;
+            this.$refs.topUpAccount.payment();
         }
     },
     computed: {
