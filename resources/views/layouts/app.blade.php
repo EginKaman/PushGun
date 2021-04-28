@@ -192,11 +192,11 @@
                                     <a href="{{ route('tariff.index') }}"
                                         class="account__bottom_subscribe">@lang('Повысить
                                         тариф')</a>
-                                    {{-- <div class="account__bottom_balance-wrapper"> --}}
-                                    {{-- <p class="account__bottom_balance">@lang('Баланс') --}}
-                                    {{-- <span>{{ Auth::user()->balance }} @lang('руб')</span></p> --}}
-                                    {{-- <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Пополнить')</a> --}}
-                                    {{-- </div> --}}
+                                    <div class="account__bottom_balance-wrapper">
+                                    <p class="account__bottom_balance">@lang('Баланс')
+                                    <span>{{ Auth::user()->balance }} @lang('руб')</span></p>
+                                    <a href="{{ route('tariff.index') }}" class="account__bottom_subscribe">@lang('Пополнить')</a>
+                                    </div>
                                     <div class="account__bottom_links">
                                         <div class="account__link_wrapper icon icon-pay">
                                             <a href="{{ route('payment.index') }}"

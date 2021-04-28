@@ -7,6 +7,12 @@
             <a @click="show = 2" :class="{ active: show === 2 }"
                 >SMS рассылка</a
             >
+            <a
+                @click="isShowTopUpAccountModal = true"
+                :class="{ active: isShowTopUpAccountModal }"
+            >
+                Пополнить счет
+            </a>
         </div>
         <div v-if="show === 1">
             <div class="tariffs-block">
@@ -95,7 +101,7 @@
                     :tariff="selectedTariff.id"
                     :yearly="false"
                     :amount="selectedTariff.price_per_month"
-                    tariff_type="email"
+                    tariff_type="mail"
                 ></button-payment>
             </div>
         </div>
@@ -142,20 +148,83 @@
             </div>
             <div class="subscribe-info"></div>
         </div>
+        <div
+            v-if="isShowTopUpAccountModal"
+            v-click-outside="() => (isShowTopUpAccountModal = false)"
+            class="contact-popup"
+        >
+            <div class="contact-popup__block">
+                <div class="contact-popup__block__head">
+                    <p>Пополнение баланса</p>
+                    <span>
+                        Текущий баланс: 1000 руб
+                    </span>
+                    <img
+                        @click="isShowTopUpAccountModal = false"
+                        src="../../images/business-close.svg"
+                        alt=""
+                    />
+                </div>
+                <div class="contact-popup__block__sect">
+                    <p>Введите сумму (руб)</p>
+                    <money
+                        v-model="price"
+                        v-bind="money"
+                        style="margin-top:5px;"
+                        placeholder="Сумма"
+                    />
+                </div>
+                <div class="contact-popup__block__foot top_up_account">
+                    <button-payment
+                        :public_id="public_id"
+                        :account_id="account_id"
+                        :desctiption="'Пополнение баланса, сумма ' + price"
+                        :amount="price"
+                        tariff_type="account"
+                    ></button-payment>
+                    <div style="backgorund: #fafafa" class="button_white">
+                        <span class="white_button_circle"></span>
+                        <a
+                            @click="isShowTopUpAccountModal = false"
+                            style="background: rgb(222 222 222 / 1)"
+                            class="button_white_inner"
+                        >
+                            <p class="button_text_container">
+                                <img class="button-img" src="" alt="" />Отмена
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </template>
 
 <script>
 import vClickOutside from "v-click-outside";
+import { Money } from "v-money";
 export default {
     directives: {
         clickOutside: vClickOutside.directive
+    },
+    components: {
+        Money
     },
     data: () => ({
         showPopup: false,
         showModal: null,
         show: 1,
-        tariff_email: null
+        tariff_email: null,
+        isShowTopUpAccountModal: false,
+        money: {
+            decimal: ",",
+            thousands: ".",
+            prefix: "",
+            suffix: " ₽",
+            precision: 0,
+            masked: false
+        },
+        price: 0
     }),
     props: ["tariffs_email", "user", "public_id", "account_id"],
     methods: {

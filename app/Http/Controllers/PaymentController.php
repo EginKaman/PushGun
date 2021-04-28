@@ -98,6 +98,8 @@ class PaymentController extends Controller
             if ($user->tariff_expired_at !== null) {
                 $expired = $user->tariff_expired_at;
             }
+        } else if ($payment->data['tariff_type'] === 'account') {
+            $user->balance += $payment->currency;
         }
         $payment->save();
         if (!empty($payment->data['yearly']) && $payment->data['yearly'] === true) {

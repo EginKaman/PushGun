@@ -39,6 +39,7 @@
     "v-calendar": "^2.2.4",
     "v-click-outside": "^3.1.2",
     "v-mask": "^2.2.4",
+    "v-money": "^0.8.1",
     "vue-chartjs": "^3.5.1",
     "vue-i18n": "^8.22.1",
     "vue-js-modal": "^2.0.0-rc.6",

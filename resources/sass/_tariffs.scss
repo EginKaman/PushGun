@@ -6,6 +6,27 @@
     margin-bottom: 46px;
 }
 
+.top_up_account {
+    display: flex;
+    .tariff-bay {
+        display: inherit;
+        margin-left: 0;
+        margin-right: 0;
+        height: auto;
+        margin-top: 0;
+        width: 170px;
+    }
+    .button_rb_inner {
+        padding: 19px 46px;
+        width: 150px;
+        background: none;
+        color: #fff;
+    }
+    .button_white {
+        margin-left: 32px;
+    }
+}
+
 .tariff {
     max-width: 456px;
     width: calc(50% - 16px);
