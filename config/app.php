@@ -14,6 +14,7 @@ return [
     */
     'bonus_percent' => env('BONUS_PERCENT', 5),
     'name' => env('APP_NAME', 'Laravel'),
+    'sms_price' => env('SMS_PRICE', 4),
 
     /*
     |--------------------------------------------------------------------------

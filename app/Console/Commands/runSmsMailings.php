@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\SmsExpectoService;
 use Carbon\Carbon;
 use App\SmsMessage;
 use Illuminate\Console\Command;
@@ -42,28 +43,35 @@ class runSmsMailings extends Command
     {
         $now = Carbon::now();
         $to = Carbon::now()->addMinutes(5);
+        $expecto = new SmsExpectoService();
         $messages = SmsMessage::where('is_sent', 0)->whereBetween('date_send', [
             $now,
             $to
-        ])->orWhere('date_send', null)->with(['contacts', 'addressbook','addressbook.contacts', 'user'])->get();
+        ])->orWhere('date_send', null)->with(['contacts', 'addressbook', 'addressbook.contacts', 'user'])->get();
+        $price = config('app.sms_price');
         foreach ($messages as $message) {
-            if($message->contacts) {
-                foreach($message->contacts as $contact) {
-                    Nexmo::message()->send([
-                        'to' => $contact->address,
-                        'from' => $message->sender_name,
-                        'text' => $message->text,
-                        'type' => 'unicode'
-                    ]);
+            if ($message->user->balance === 0) {
+                return;
+            }
+            if ($message->contacts) {
+                foreach ($message->contacts as $contact) {
+                    if ($message->user->balance < $price) {
+                        return;
+                    }
+                    $msg = $expecto->send($contact->address, $message->text, 'Expecto');
+                    $this->info($msg);
+                    $message->user->balance -= $price;
+                    $message->user->save();
                 }
             } else if ($message->addressbook->contacts) {
-                foreach($message->addressbook->contacts as $contact) {
-                    Nexmo::message()->send([
-                        'to' => $contact->address,
-                        'from' => $message->sender_name,
-                        'text' => $message->text,
-                        'type' => 'unicode'
-                    ]);
+                foreach ($message->addressbook->contacts as $contact) {
+                    if ($message->user->balance < $price) {
+                        return;
+                    }
+                    $msg = $expecto->send($contact->address, $message->text, 'Expecto');
+                    $this->info($msg);
+                    $message->user->balance -= $price;
+                    $message->user->save();
                 }
             }
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BonusPercent;
 use App\Http\Requests\AccountUpdate;
 use App\Payment;
+use App\Services\SmsExpectoService;
 use App\Site;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -58,9 +59,9 @@ class AccountController extends Controller
     public function automailingEdit($id)
     {
         $user = Auth::user();
-        $automailing = $user->automailings()->where('id', $id)->with(['pushes','sites'])->first();
+        $automailing = $user->automailings()->where('id', $id)->with(['pushes', 'sites'])->first();
         return view('account.automailingEdit', [
-            'automailing'=>$automailing
+            'automailing' => $automailing
         ]);
     }
 
@@ -70,7 +71,7 @@ class AccountController extends Controller
         $sites = $user->sites;
         $sites->loadCount('pushSubscriptions');
         return view('account.savemailing', [
-            'sites'=>$sites
+            'sites' => $sites
         ]);
     }
     public function saveMailingRss()
@@ -88,11 +89,11 @@ class AccountController extends Controller
         $referral_link = $user->getReferralLinkAttribute();
         $referral_count = $user->referrals()->count();
         $payments_made = Payment::all()->load('user')->where('referrer_id', $user->id)->count();
-        return view('account.referal',[
-            'refferal_link'=>$referral_link,
+        return view('account.referal', [
+            'refferal_link' => $referral_link,
             'referral_count' => $referral_count,
-            'bonus_balance'=>$user->bonus_balance,
-            'payments_made'=>$payments_made,
+            'bonus_balance' => $user->bonus_balance,
+            'payments_made' => $payments_made,
         ]);
     }
 

@@ -56,8 +56,8 @@
                         </div>
                     </div>
                     <!--<div class="general__stats__tabs">
-                        <a class="tabs active" tab-name="tab-3">Push</a>
-                    </div>-->
+                                                                                <a class="tabs active" tab-name="tab-3">Push</a>
+                                                                            </div>-->
                     <div class="general__stats tab-item tab-3 active">
                         <div class="general__stats_left">
                             <div class="general__stats_left-item stats__item" style="background: #FF808B;">

@@ -42,6 +42,11 @@ return [
         'public_id' => env('CLOUD_PAYMENTS_PUBLIC_ID', 'some id'),
         'api_key' => env('CLOUD_PAYMENTS_API_KEY', 'some api key'),
     ],
+    'smsexpecto' => [
+        'url' => env('SMS_EXPECTO_URL'),
+        'api_login' => env('SMS_EXPECTO_API_LOGIN'),
+        'api_password' => env('SMS_EXPECTO_API_PASSWORD')
+    ],
 
     'nexmo' => [
         'sms_from' => env('SMS_FROM'),
