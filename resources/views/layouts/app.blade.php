@@ -88,7 +88,7 @@
                                 class="header__logo_img">
                         </a>
                         <nav class="nav">
-                            <a href="{{ route('account.index') }}" class="nav__item">
+                            <a href="{{ route('email.index') }}" class="nav__item">
                                 <div class="nav__item_wrap">
                                     <span>@lang('Главная')</span>
                                     <img class="nav__item_img" src="{{ asset('images/main.svg') }}" alt="">

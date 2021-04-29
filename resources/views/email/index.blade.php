@@ -22,9 +22,9 @@
                 
                 <div class="email-btn">
                     
-                <div class="button_green mr-24">
+                <div class="button_green">
                     <span class="green_button_circle"></span>
-                        <a href="{{ route('contact.index') }}" @click="open" class="button_green_inner">
+                        <a href="{{ route('contact.index') }}" class="button_green_inner">
                             <p class="button_text_container">
                 <img src="/images/book.svg" alt="" />Новая адресная книга
                             </p>
