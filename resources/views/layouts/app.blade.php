@@ -61,7 +61,6 @@
         <div class="headers-wrapp">
             <div class="pre-header">
                 <div class="container">
-                    <!-- Добавил header в 44px для всех header и каждый из них принял 73px в итоге как и задумано -->
                     <div style="display: flex; justify-content: space-between; align-items:center; height: 44px;">
                         <div class="pre-header-email-page">
                             <a class="{{ request()->is('*/email*') ? 'active' : '' }}"

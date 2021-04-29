@@ -199,14 +199,14 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 30px" class="button_green mr-24">
+                    <!--<div style="margin-top: 30px" class="button_green mr-24">
                         <span class="green_button_circle"></span>
                         <a href="{{ route('push.create') }}" class="button_green_inner">
                             <p class="button_text_container">
                                 <img src="{{ asset('images/send.svg') }}" alt="">@lang('Отправить PUSH')
                             </p>
                         </a>
-                    </div>
+                    </div>-->
                     {{-- <div class="button_white">
                         <span class="white_button_circle"></span>
                         <a href="{{ route('site.create') }}" class="button_white_inner">
