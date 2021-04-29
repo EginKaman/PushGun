@@ -168,6 +168,8 @@ export default {
             axios.post(route("sms.store"), this.form).then(res => {
                 if (res.status === 201) {
                     window.location.href = route("email.index");
+                } else if (res.status === 200 && res.data?.msg) {
+                    alert(res.data.msg)
                 }
             });
         }

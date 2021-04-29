@@ -22,12 +22,23 @@ class SmsMessageController extends Controller
         $input = $request->validated();
         $smsMessage = new SmsMessage;
         $smsMessage->fill($input);
-        $smsMessage->user()->associate(Auth::id());
+        $user = Auth::user();
+        $smsMessage->user()->associate($user);
+        $price = config('app.sms_price');
         if (isset($input['address_book_id'])) {
+            $contactsCount = Contact::where('address_book_id', $input['address_book_id'])->count();
+            if ($user->balance < $contactsCount * $price) {
+                return response()->json([
+                    'msg' => 'Недостаточно средств'
+                ], 200);
+            }
             $smsMessage->addressbook()->associate($input['address_book_id']);
-        }
-        $smsMessage->save();
-        if (isset($input['contacts'])) {
+        } else if (isset($input['contacts'])) {
+            if ($user->balance < count($input['contacts']) * $price) {
+                return response()->json([
+                    'msg' => 'Недостаточно средств'
+                ], 200);
+            }
             foreach ($input['contacts'] as $number) {
                 $contact = new Contact;
                 $contact->address = $number;

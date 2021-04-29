@@ -157,7 +157,7 @@
                 <div class="contact-popup__block__head">
                     <p>Пополнение баланса</p>
                     <span>
-                        Текущий баланс: 1000 руб
+                        Текущий баланс: {{user.balance}} руб
                     </span>
                     <img
                         @click="isShowTopUpAccountModal = false"
