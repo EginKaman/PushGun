@@ -44,7 +44,14 @@ class runSmsMailings extends Command
         $now = Carbon::now();
         $to = Carbon::now()->addMinutes(5);
         $expecto = new SmsExpectoService();
-        $messages = SmsMessage::where('is_sent', 0)->whereBetween('date_send', [
+        $messages = SmsMessage::where([
+            [
+                'is_sent', 0
+            ],
+            [
+                'is_confirmed', 1
+            ]
+        ])->whereBetween('date_send', [
             $now,
             $to
         ])->orWhere('date_send', null)->with(['contacts', 'addressbook', 'addressbook.contacts', 'user'])->get();

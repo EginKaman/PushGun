@@ -45,7 +45,14 @@ class runEmailMailings extends Command
         $now = Carbon::now();
         $to = Carbon::now()->addMinutes(5);
         // $this->info("$now - $to");
-        $emailmailings = EmailMailing::where('is_sent', 0)->whereBetween('date_send', [
+        $emailmailings = EmailMailing::where([
+            [
+                'is_sent', 0
+            ],
+            [
+                'is_confirmed', 1
+            ]
+        ])->whereBetween('date_send', [
             $now,
             $to
         ])->orWhere('date_send', null)->with(['emailMessage', 'addressBook', 'user', 'user.tariffEmail', 'emailSender'])->get();
