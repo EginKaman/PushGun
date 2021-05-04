@@ -20,6 +20,7 @@ class CreateEmailMailingsTable extends Migration
             $table->foreignId('address_book_id')->constrained('address_books');
             $table->foreignId('email_sender_id')->constrained('email_senders');
             $table->boolean('is_sent')->default(false);
+            $table->boolean('is_confirmed')->default(false);
             $table->unsignedBigInteger('number_of_sent')->default(0);
             $table->unsignedBigInteger('number_of_not_sent')->default(0);
             $table->unsignedBigInteger('number_of_delivered')->default(0);

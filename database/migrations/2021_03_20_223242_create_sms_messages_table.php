@@ -20,6 +20,7 @@ class CreateSmsMessagesTable extends Migration
             $table->string('sender_name');
             $table->text('text');
             $table->boolean('is_sent')->default(false);
+            $table->boolean('is_confirmed')->default(false);
             $table->timestamp('date_send')->nullable();
             $table->timestamps();
         });
