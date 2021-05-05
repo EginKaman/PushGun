@@ -14,8 +14,8 @@ class AddTariffEmailToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('tariff_email_id')->default(1)->constrained('tariff_emails')->after('balance');
-            $table->timestamp('tariff_email_expired_at')->nullable()->after('balance');
+            $table->foreignId('tariff_email_id')->default(1)->constrained('tariff_emails');
+            $table->timestamp('tariff_email_expired_at')->nullable();
         });
     }
 
